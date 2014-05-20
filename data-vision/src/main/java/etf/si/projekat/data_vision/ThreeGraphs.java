@@ -82,8 +82,8 @@ Integer value = (Integer)spinner.getValue();
 				
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor("Line");
-					a.setVisible(true);
+					//Add1Sensor a = new Add1Sensor("Line");
+					//a.setVisible(true);
 				}
 				
 				else if(value == 2){

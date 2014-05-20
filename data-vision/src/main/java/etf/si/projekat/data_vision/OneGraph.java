@@ -88,16 +88,16 @@ public class OneGraph extends JFrame {
 		spinner.setBounds(177, 122, 117, 20);
 		
 		contentPane.add(spinner);
-		final String type=(String) choice.getSelectedItem();
+		//final String type=(String) choice.getSelectedItem();
+		final int type1=choice.getSelectedIndex();
 		Button button = new Button("Continue");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Integer value = (Integer) spinner.getValue();
-				//final String type=(String) choice.getSelectedItem();
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor(type);
+					Add1Sensor a = new Add1Sensor(type1);
 					a.setVisible(true);
 					dispose();
 				}
@@ -182,13 +182,6 @@ public class OneGraph extends JFrame {
 		textField.setBounds(177, 72, 117, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
-		/*UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
-        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        datePicker.setLocation(144, 59);
-        datePicker.setSize(202, 26);
-        this.add(datePicker);*/
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(177, 97, 117, 20);

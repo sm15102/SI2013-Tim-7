@@ -8,11 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
+
 import java.awt.Choice;
+
 import javax.swing.SpinnerNumberModel;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
 
 public class TwoGraphs extends JFrame {
@@ -20,7 +24,7 @@ public class TwoGraphs extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -28,8 +32,8 @@ public class TwoGraphs extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TwoGraphs frame = new TwoGraphs();
-					frame.setVisible(true);
+					//TwoGraphs frame = new TwoGraphs();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,6 +45,7 @@ public class TwoGraphs extends JFrame {
 	 * Create the frame.
 	 */
 	public TwoGraphs() {
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -73,7 +78,8 @@ public class TwoGraphs extends JFrame {
 		choice.add("Chart");
 		choice.add("Line");
 		contentPane.add(choice);
-		
+		//final String type=(String) choice.getSelectedItem();
+		final int type1=choice.getSelectedIndex();
 		Button button = new Button("Continue");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,7 +88,7 @@ Integer value = (Integer) spinner.getValue();
 				
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor("line");
+					Add1Sensor a = new Add1Sensor(type1);
 					a.setVisible(true);
 				}
 				
