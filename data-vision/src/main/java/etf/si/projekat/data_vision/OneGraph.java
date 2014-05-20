@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.Color;
 
 public class OneGraph extends JFrame {
 
@@ -187,5 +188,15 @@ public class OneGraph extends JFrame {
 		textField_1.setBounds(144, 98, 117, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 191, 255));
+		panel.setBounds(0, 0, 434, 36);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 191, 255));
+		panel_1.setBounds(0, 218, 434, 54);
+		contentPane.add(panel_1);
 	}
 }

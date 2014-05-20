@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class WelcomeScreen extends JFrame {
 
@@ -37,6 +40,7 @@ public class WelcomeScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 477, 348);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.CYAN);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -94,8 +98,19 @@ public class WelcomeScreen extends JFrame {
 		contentPane.add(btnConsumption);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 71, 441, 192);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 71, 461, 192);
 		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.CYAN);
+		panel_1.setBounds(0, 262, 461, 48);
+		contentPane.add(panel_1);
+		
+		JLabel lblNewLabel = new JLabel("WELCOME TO DATA VISION\r\n\r\n");
+		lblNewLabel.setFont(new Font("Rosewood Std Regular", Font.BOLD, 28));
+		lblNewLabel.setBounds(10, 11, 441, 36);
+		contentPane.add(lblNewLabel);
 		
 	}
 }
