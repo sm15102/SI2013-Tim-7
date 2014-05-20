@@ -44,7 +44,7 @@
     <dependency>
       <groupId>de.erichseifert.gral</groupId>
       <artifactId>gral-examples</artifactId>
-      <version>0.10</version>
+      <version>0.9</version>
     </dependency>
 
   </dependencies>
