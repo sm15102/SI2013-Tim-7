@@ -116,7 +116,15 @@ public class Add8Sensors extends JFrame {
 		Choice choice_7 = new Choice();
 		choice_7.setBounds(91, 202, 136, 20);
 		contentPane.add(choice_7);
-		
+		choice.add(""); 
+		choice_1.add(""); 
+		choice_2.add("");
+		choice_3.add("");
+		choice_4.add("");
+		choice_5.add("");
+		choice_6.add("");
+		choice_7.add("");
+
 		JButton btnProcess = new JButton("Process");
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -121,6 +121,12 @@ public class Add4Sensors extends JFrame {
 		contentPane.add(btnProcess);
 		btnProcess.setVisible(false);
 		
+
+		choice.add(""); 
+		choice_1.add(""); 
+		choice_2.add("");
+		choice_3.add("");
+		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

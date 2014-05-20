@@ -93,6 +93,13 @@ public class Add5Sensors extends JFrame {
 		choice_4.setBounds(101, 148, 135, 20);
 		contentPane.add(choice_4);
 		
+
+		choice.add(""); 
+		choice_1.add(""); 
+		choice_2.add("");
+		choice_3.add("");
+		choice_4.add("");
+		
 		JButton btnProcess = new JButton("Process");
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
