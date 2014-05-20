@@ -35,7 +35,7 @@ public class WelcomeScreen extends JFrame {
 	 */
 	public WelcomeScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 276, 300);
+		setBounds(100, 100, 477, 348);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -50,7 +50,7 @@ public class WelcomeScreen extends JFrame {
 			
 			
 		});
-		btnNewButton.setBounds(28, 36, 197, 23);
+		btnNewButton.setBounds(28, 92, 197, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnTwoGraphs = new JButton("TWO GRAPHS");
@@ -60,7 +60,7 @@ public class WelcomeScreen extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		btnTwoGraphs.setBounds(28, 68, 197, 23);
+		btnTwoGraphs.setBounds(28, 126, 197, 23);
 		contentPane.add(btnTwoGraphs);
 		
 		JButton btnThreeGraphs = new JButton("THREE GRAPHS");
@@ -70,7 +70,7 @@ public class WelcomeScreen extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		btnThreeGraphs.setBounds(28, 102, 197, 23);
+		btnThreeGraphs.setBounds(28, 160, 197, 23);
 		contentPane.add(btnThreeGraphs);
 		
 		JButton btnTableView = new JButton("TABLE VIEW");
@@ -80,7 +80,7 @@ public class WelcomeScreen extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		btnTableView.setBounds(28, 136, 197, 23);
+		btnTableView.setBounds(28, 194, 197, 23);
 		contentPane.add(btnTableView);
 		
 		JButton btnConsumption = new JButton("CONSUMPTION");
@@ -90,7 +90,12 @@ public class WelcomeScreen extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		btnConsumption.setBounds(28, 170, 197, 23);
+		btnConsumption.setBounds(28, 228, 197, 23);
 		contentPane.add(btnConsumption);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 71, 441, 192);
+		contentPane.add(panel);
+		
 	}
 }

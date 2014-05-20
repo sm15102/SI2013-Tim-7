@@ -55,23 +55,23 @@ public class OneGraph extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblGraphType = new JLabel("Graph type");
-		lblGraphType.setBounds(98, 50, 73, 14);
+		lblGraphType.setBounds(65, 51, 73, 14);
 		contentPane.add(lblGraphType);
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
-		lblTimeIntervalFrom.setBounds(70, 75, 111, 14);
+		lblTimeIntervalFrom.setBounds(37, 76, 111, 14);
 		contentPane.add(lblTimeIntervalFrom);
 		
 		JLabel lblTimeIntervalTo = new JLabel("Time interval to");
-		lblTimeIntervalTo.setBounds(80, 100, 91, 14);
+		lblTimeIntervalTo.setBounds(47, 101, 91, 14);
 		contentPane.add(lblTimeIntervalTo);
 		
 		JLabel lblDataNumber = new JLabel("Data number");
-		lblDataNumber.setBounds(98, 125, 83, 14);
+		lblDataNumber.setBounds(65, 126, 83, 14);
 		contentPane.add(lblDataNumber);
 		
 		Choice choice = new Choice();
-		choice.setBounds(177, 48, 117, 20);
+		choice.setBounds(144, 49, 117, 20);
 		choice.add("Line");
 		choice.add("Bar");
 		contentPane.add(choice);
@@ -85,7 +85,7 @@ public class OneGraph extends JFrame {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(177, 122, 117, 20);
+		spinner.setBounds(144, 123, 117, 20);
 		
 		contentPane.add(spinner);
 		//final String type=(String) choice.getSelectedItem();
@@ -179,12 +179,12 @@ public class OneGraph extends JFrame {
 		contentPane.add(button_1);
 		
 		textField = new JTextField();
-		textField.setBounds(177, 72, 117, 20);
+		textField.setBounds(144, 73, 117, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(177, 97, 117, 20);
+		textField_1.setBounds(144, 98, 117, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 	}
