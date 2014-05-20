@@ -57,7 +57,6 @@ public class ThreeGraphs extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
 		JLabel lblGraphType = new JLabel("Graph type");
 		lblGraphType.setBounds(98, 56, 73, 14);
 		contentPane.add(lblGraphType);
@@ -107,8 +106,8 @@ public class ThreeGraphs extends JFrame {
         datePicker1.setLocation(176, 110);
         datePicker1.setSize(117, 27);
         contentPane.add(datePicker1);
-		
-		Button button = new Button("Continue");
+        
+        Button button = new Button("Continue");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
