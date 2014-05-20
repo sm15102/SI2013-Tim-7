@@ -108,6 +108,10 @@ public class Add3Sensors extends JFrame {
 		contentPane.add(btnProcess);
 		btnProcess.setVisible(false);
 		
+		choice.add(""); 
+		choice_1.add(""); 
+		choice_2.add(""); 
+		
 		JButton btnExit = new JButton("Cancel");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

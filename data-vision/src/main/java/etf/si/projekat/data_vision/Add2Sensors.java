@@ -105,6 +105,9 @@ public class Add2Sensors extends JFrame {
 		});
 		btnExit.setBounds(91, 98, 89, 23);
 		contentPane.add(btnExit);
+		
+		choice.add(" ");
+		choice_1.add(" ");
 
 	    Session session = HibernateUtil.getSessionFactory().openSession();
 	    Transaction t=null;
@@ -132,6 +135,7 @@ public class Add2Sensors extends JFrame {
 	
 	
 	}
+	
 	
 	public void fillChoices(int k){
 		if(k==1) {

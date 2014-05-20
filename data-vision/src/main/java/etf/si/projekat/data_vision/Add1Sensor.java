@@ -123,6 +123,7 @@ public class Add1Sensor extends JFrame {
 		
 		choice.setBounds(134, 32, 105, 20);
 		contentPane.add(choice);
+		choice.add("");
 		
 		choice.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
