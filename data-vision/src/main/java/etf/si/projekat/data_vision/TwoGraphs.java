@@ -82,7 +82,7 @@ Integer value = (Integer) spinner.getValue();
 				
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor();
+					Add1Sensor a = new Add1Sensor("line");
 					a.setVisible(true);
 				}
 				

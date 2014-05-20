@@ -45,6 +45,7 @@ import ba.unsa.etf.si.beans.DeviceType;
 public class Add1Sensor extends JFrame {
 	JButton btnProcess = new JButton("Process");
 	Choice choice = new Choice();
+	String graphType;
 	private JPanel contentPane;
 
 
@@ -56,7 +57,7 @@ public class Add1Sensor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Add1Sensor frame = new Add1Sensor();
+					Add1Sensor frame = new Add1Sensor("Line");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +69,9 @@ public class Add1Sensor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Add1Sensor() {
+	public Add1Sensor(String graphT) {
+		
+		graphType=graphT;
 		btnProcess.setVisible(false);
 		setBounds(100, 100, 298, 160);
 		contentPane = new JPanel();
@@ -84,10 +87,16 @@ public class Add1Sensor extends JFrame {
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//prikaz grafa
-				BarPlotShow bp=new BarPlotShow();
-				//OneGraphShow og=new OneGraphShow();
+				
+				if(graphType=="Bar") {
+
+				BarPlotShow bp=new BarPlotShow();}
+				
+				if(graphType=="Line"){
+				OneGraphShow og=new OneGraphShow();
 			//	og.setVisible(true);
+					
+				}
 				dispose();
 				
 				

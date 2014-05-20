@@ -88,16 +88,16 @@ public class OneGraph extends JFrame {
 		spinner.setBounds(177, 122, 117, 20);
 		
 		contentPane.add(spinner);
-		
+		final String type=(String) choice.getSelectedItem();
 		Button button = new Button("Continue");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Integer value = (Integer) spinner.getValue();
-				
+				//final String type=(String) choice.getSelectedItem();
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor();
+					Add1Sensor a = new Add1Sensor(type);
 					a.setVisible(true);
 					dispose();
 				}

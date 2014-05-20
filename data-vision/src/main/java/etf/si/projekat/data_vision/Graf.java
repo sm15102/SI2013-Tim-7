@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class Graf {
 	String vrstaGrafa;
+	
+	
 	public String getVrstaGrafa() {
 		return vrstaGrafa;
 	}
