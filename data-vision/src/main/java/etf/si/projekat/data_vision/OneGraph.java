@@ -18,7 +18,13 @@ import javax.swing.SpinnerNumberModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
+
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.Color;
@@ -56,23 +62,23 @@ public class OneGraph extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblGraphType = new JLabel("Graph type");
-		lblGraphType.setBounds(65, 51, 73, 14);
+		lblGraphType.setBounds(98, 56, 73, 14);
 		contentPane.add(lblGraphType);
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
-		lblTimeIntervalFrom.setBounds(37, 76, 111, 14);
+		lblTimeIntervalFrom.setBounds(70, 85, 111, 14);
 		contentPane.add(lblTimeIntervalFrom);
 		
 		JLabel lblTimeIntervalTo = new JLabel("Time interval to");
-		lblTimeIntervalTo.setBounds(47, 101, 91, 14);
+		lblTimeIntervalTo.setBounds(80, 115, 91, 14);
 		contentPane.add(lblTimeIntervalTo);
 		
 		JLabel lblDataNumber = new JLabel("Data number");
-		lblDataNumber.setBounds(65, 126, 83, 14);
+		lblDataNumber.setBounds(98, 145, 83, 14);
 		contentPane.add(lblDataNumber);
 		
 		Choice choice = new Choice();
-		choice.setBounds(144, 49, 117, 20);
+		choice.setBounds(177, 50, 117, 25);
 		choice.add("Line");
 		choice.add("Bar");
 		contentPane.add(choice);
@@ -86,9 +92,24 @@ public class OneGraph extends JFrame {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(144, 123, 117, 20);
+		spinner.setBounds(177, 140, 117, 25);
 		
 		contentPane.add(spinner);
+		
+		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setLocation(176, 79);
+        datePicker.setSize(117, 27);
+        contentPane.add(datePicker);
+        
+        
+        UtilDateModel model1 = new UtilDateModel();
+        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
+        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+        datePicker1.setLocation(176, 110);
+        datePicker1.setSize(117, 27);
+        contentPane.add(datePicker1);
 		//final String type=(String) choice.getSelectedItem();
 		final int type1=choice.getSelectedIndex();
 		Button button = new Button("Continue");
@@ -179,7 +200,7 @@ public class OneGraph extends JFrame {
 		button_1.setBounds(278, 230, 70, 22);
 		contentPane.add(button_1);
 		
-		textField = new JTextField();
+		/*textField = new JTextField();
 		textField.setBounds(144, 73, 117, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -188,7 +209,7 @@ public class OneGraph extends JFrame {
 		textField_1.setBounds(144, 98, 117, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
-		
+		*/
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 191, 255));
 		panel.setBounds(0, 0, 434, 36);
