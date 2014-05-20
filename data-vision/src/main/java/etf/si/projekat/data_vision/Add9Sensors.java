@@ -125,6 +125,7 @@ public class Add9Sensors extends JFrame {
 		choice_8.setBounds(102, 231, 130, 20);
 		contentPane.add(choice_8);
 		
+		choice.add("");
 		choice_1.add(""); 
 		choice_2.add("");
 		choice_3.add("");

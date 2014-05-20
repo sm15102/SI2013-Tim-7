@@ -81,7 +81,7 @@ public class Add1Sensor extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblSensorType = new JLabel("Sensor type:");
-		lblSensorType.setBounds(55, 35, 79, 14);
+		lblSensorType.setBounds(55, 35, 72, 14);
 		contentPane.add(lblSensorType);
 		
 	
