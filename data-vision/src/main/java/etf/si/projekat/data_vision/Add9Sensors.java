@@ -90,39 +90,39 @@ public class Add9Sensors extends JFrame {
 		contentPane.add(lblSensorType_8);
 		
 		Choice choice = new Choice();
-		choice.setBounds(102, 32, 130, 20);
+		choice.setBounds(124, 32, 130, 20);
 		contentPane.add(choice);
 		
 		Choice choice_1 = new Choice();
-		choice_1.setBounds(102, 58, 130, 20);
+		choice_1.setBounds(124, 58, 130, 20);
 		contentPane.add(choice_1);
 		
 		Choice choice_2 = new Choice();
-		choice_2.setBounds(102, 83, 130, 20);
+		choice_2.setBounds(124, 83, 130, 20);
 		contentPane.add(choice_2);
 		
 		Choice choice_3 = new Choice();
-		choice_3.setBounds(102, 108, 130, 20);
+		choice_3.setBounds(124, 108, 130, 20);
 		contentPane.add(choice_3);
 		
 		Choice choice_4 = new Choice();
-		choice_4.setBounds(102, 131, 130, 20);
+		choice_4.setBounds(124, 131, 130, 20);
 		contentPane.add(choice_4);
 		
 		Choice choice_5 = new Choice();
-		choice_5.setBounds(102, 157, 130, 20);
+		choice_5.setBounds(124, 181, 130, 20);
 		contentPane.add(choice_5);
 		
 		Choice choice_6 = new Choice();
-		choice_6.setBounds(102, 181, 130, 20);
+		choice_6.setBounds(124, 156, 130, 20);
 		contentPane.add(choice_6);
 		
 		Choice choice_7 = new Choice();
-		choice_7.setBounds(102, 207, 130, 20);
+		choice_7.setBounds(124, 230, 130, 20);
 		contentPane.add(choice_7);
 		
 		Choice choice_8 = new Choice();
-		choice_8.setBounds(102, 231, 130, 20);
+		choice_8.setBounds(124, 204, 130, 20);
 		contentPane.add(choice_8);
 		
 		choice.add("");

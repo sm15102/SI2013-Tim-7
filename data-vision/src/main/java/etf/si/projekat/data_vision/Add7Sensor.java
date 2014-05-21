@@ -82,31 +82,31 @@ public class Add7Sensor extends JFrame {
 		contentPane.add(lblSensorType_6);
 		
 		Choice choice = new Choice();
-		choice.setBounds(106, 48, 120, 20);
+		choice.setBounds(130, 48, 120, 20);
 		contentPane.add(choice);
 		
 		Choice choice_1 = new Choice();
-		choice_1.setBounds(106, 73, 120, 20);
+		choice_1.setBounds(130, 73, 120, 20);
 		contentPane.add(choice_1);
 		
 		Choice choice_2 = new Choice();
-		choice_2.setBounds(106, 102, 120, 20);
+		choice_2.setBounds(130, 102, 120, 20);
 		contentPane.add(choice_2);
 		
 		Choice choice_3 = new Choice();
-		choice_3.setBounds(106, 128, 120, 20);
+		choice_3.setBounds(130, 128, 120, 20);
 		contentPane.add(choice_3);
 		
 		Choice choice_4 = new Choice();
-		choice_4.setBounds(106, 154, 120, 20);
+		choice_4.setBounds(130, 154, 120, 20);
 		contentPane.add(choice_4);
 		
 		Choice choice_5 = new Choice();
-		choice_5.setBounds(106, 180, 120, 20);
+		choice_5.setBounds(130, 180, 120, 20);
 		contentPane.add(choice_5);
 		
 		Choice choice_6 = new Choice();
-		choice_6.setBounds(106, 205, 120, 20);
+		choice_6.setBounds(130, 206, 120, 20);
 		contentPane.add(choice_6);
 		
 		choice.add(""); 

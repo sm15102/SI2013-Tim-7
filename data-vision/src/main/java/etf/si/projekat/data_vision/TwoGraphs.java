@@ -21,6 +21,10 @@ import javax.swing.JTextField;
 
 public class TwoGraphs extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1220749560655781995L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;

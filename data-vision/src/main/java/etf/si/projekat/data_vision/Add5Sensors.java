@@ -69,29 +69,32 @@ public class Add5Sensors extends JFrame {
 		lblSensorType_3.setBounds(20, 129, 86, 14);
 		contentPane.add(lblSensorType_3);
 		
+
+		
 		JLabel lblSensorType_4 = new JLabel("Sensor type 5");
 		lblSensorType_4.setBounds(20, 154, 86, 14);
 		contentPane.add(lblSensorType_4);
 		
 		Choice choice = new Choice();
-		choice.setBounds(101, 48, 135, 20);
+		choice.setBounds(128, 48, 135, 20);
 		contentPane.add(choice);
 		
 		Choice choice_1 = new Choice();
-		choice_1.setBounds(101, 73, 135, 20);
+		choice_1.setBounds(128, 73, 135, 20);
 		contentPane.add(choice_1);
 		
 		Choice choice_2 = new Choice();
-		choice_2.setBounds(101, 98, 135, 20);
+		choice_2.setBounds(128, 98, 135, 20);
 		contentPane.add(choice_2);
 		
 		Choice choice_3 = new Choice();
-		choice_3.setBounds(101, 123, 135, 20);
+		choice_3.setBounds(128, 123, 135, 20);
 		contentPane.add(choice_3);
 		
 		Choice choice_4 = new Choice();
-		choice_4.setBounds(101, 148, 135, 20);
+		choice_4.setBounds(128, 148, 135, 20);
 		contentPane.add(choice_4);
+		
 		
 
 		choice.add(""); 

@@ -78,27 +78,27 @@ public class Add6Sensors extends JFrame {
 		contentPane.add(lblSensorType_5);
 		
 		Choice choice = new Choice();
-		choice.setBounds(113, 41, 120, 20);
+		choice.setBounds(138, 41, 120, 20);
 		contentPane.add(choice);
 		
 		Choice choice_1 = new Choice();
-		choice_1.setBounds(113, 67, 120, 20);
+		choice_1.setBounds(138, 65, 120, 20);
 		contentPane.add(choice_1);
 		
 		Choice choice_2 = new Choice();
-		choice_2.setBounds(113, 90, 120, 20);
+		choice_2.setBounds(138, 90, 120, 20);
 		contentPane.add(choice_2);
 		
 		Choice choice_3 = new Choice();
-		choice_3.setBounds(113, 115, 120, 20);
+		choice_3.setBounds(138, 115, 120, 20);
 		contentPane.add(choice_3);
 		
 		Choice choice_4 = new Choice();
-		choice_4.setBounds(113, 138, 120, 20);
+		choice_4.setBounds(138, 138, 120, 20);
 		contentPane.add(choice_4);
 		
 		Choice choice_5 = new Choice();
-		choice_5.setBounds(113, 163, 120, 20);
+		choice_5.setBounds(138, 163, 120, 20);
 		contentPane.add(choice_5);
 
 		choice.add(""); 
