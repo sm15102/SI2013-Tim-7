@@ -24,6 +24,7 @@ import de.erichseifert.gral.util.Orientation;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -38,6 +39,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -47,6 +49,7 @@ public class OneGraphShow extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame f;
+	public Choice sensorChoice;
 	
 	// * Launch the application.
 	// */
@@ -67,7 +70,8 @@ public class OneGraphShow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OneGraphShow() {                                               
+	public OneGraphShow(Choice _sensorChoice) {   
+		sensorChoice=_sensorChoice;
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        setSize(1000, 1000);

@@ -28,7 +28,7 @@ public class TwoGraphs extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	
+	public Choice choice;
 	/**
 	 * Launch the application.
 	 */
@@ -77,7 +77,7 @@ public class TwoGraphs extends JFrame {
 		spinner.setBounds(143, 135, 127, 20);
 		contentPane.add(spinner);
 		
-		Choice choice = new Choice();
+		 choice = new Choice();
 		choice.setBounds(143, 66, 127, 20);
 		choice.add("Chart");
 		choice.add("Line");
@@ -92,13 +92,12 @@ Integer value = (Integer) spinner.getValue();
 				
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor(type1);
-					a.setVisible(true);
+				//	Add1Sensor a = new Add1Sensor(choice.getSelectedItem());
+				//	a.setVisible(true);
 				}
 				
-				else if(value == 2){
-					
-					Add2Sensors a = new Add2Sensors();
+				if(value == 2){
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
 					a.setVisible(true);
 				}
 				

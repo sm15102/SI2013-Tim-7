@@ -34,6 +34,7 @@ public class OneGraph extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	public Choice choice;
 
 	/**
 	 * Launch the application.
@@ -77,7 +78,7 @@ public class OneGraph extends JFrame {
 		lblDataNumber.setBounds(98, 145, 83, 14);
 		contentPane.add(lblDataNumber);
 		
-		Choice choice = new Choice();
+		 choice = new Choice();
 		choice.setBounds(177, 50, 117, 25);
 		choice.add("Line");
 		choice.add("Bar");
@@ -110,7 +111,6 @@ public class OneGraph extends JFrame {
         datePicker1.setLocation(176, 110);
         datePicker1.setSize(117, 27);
         contentPane.add(datePicker1);
-		//final String type=(String) choice.getSelectedItem();
 		final int type1=choice.getSelectedIndex();
 		Button button = new Button("Continue");
 		button.addActionListener(new ActionListener() {
@@ -119,14 +119,14 @@ public class OneGraph extends JFrame {
 				Integer value = (Integer) spinner.getValue();
 				if(value == 1){
 					
-					Add1Sensor a = new Add1Sensor(type1);
+					Add1Sensor a = new Add1Sensor(choice.getSelectedItem(), datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else if(value == 2){
 					
-					Add2Sensors a = new Add2Sensors();
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
 					a.setVisible(true);
 					dispose();
 				}

@@ -28,6 +28,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.util.Iterator;
 import java.util.List;
 
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction; 
 import org.hibernate.SessionFactory;
@@ -37,18 +39,23 @@ import org.hibernate.cfg.Configuration;
 
 
 
+
 import etf.si.projekat.util.HibernateUtil;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
-
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 
 public class Add1Sensor extends JFrame {
 	JButton btnProcess = new JButton("Process");
 	Choice choice = new Choice();
-	final int graphType;
+	final String graphType;
 	private JPanel contentPane;
-
+	  
+	final JDatePickerImpl datePickerFrom;
+	final JDatePickerImpl datePickerTo;
 
 	
 	/**
@@ -71,8 +78,9 @@ public class Add1Sensor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Add1Sensor(int graphT) {
-		
+	public Add1Sensor(String graphT, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) {
+		datePickerFrom=datePicker1;
+		datePickerTo=datePicker2;
 		graphType=graphT;
 		btnProcess.setVisible(false);
 		setBounds(100, 110, 320, 160);
@@ -90,12 +98,13 @@ public class Add1Sensor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if(graphType==0) {
+				if(graphType=="Bar") {
 
-				BarPlotShow bp=new BarPlotShow();}
+				BarPlotShow bp=new BarPlotShow(choice);
+				}
 				
 				else{
-				OneGraphShow og=new OneGraphShow();
+				OneGraphShow og=new OneGraphShow(choice);
 					
 			//	og.setVisible(true);
 					

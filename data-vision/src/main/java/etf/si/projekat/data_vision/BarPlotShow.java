@@ -14,6 +14,7 @@ import de.erichseifert.gral.examples.ExamplePanel;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -29,6 +30,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import java.awt.BasicStroke;
+import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Font;
@@ -40,6 +42,7 @@ public class BarPlotShow extends ExamplePanel {
 
 	private JPanel contentPane;
 	private JFrame f;
+	public Choice sensorChoice;
 	
 	// * Launch the application.
 	// */
@@ -60,7 +63,8 @@ public class BarPlotShow extends ExamplePanel {
 	/**
 	 * Create the frame.
 	 */
-	public BarPlotShow() {    
+	public BarPlotShow(Choice _sensorChoice) { 
+		sensorChoice=_sensorChoice;
 		
 		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
          data.add(0.1,  1, "January");

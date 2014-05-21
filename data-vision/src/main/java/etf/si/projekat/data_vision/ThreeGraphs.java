@@ -30,7 +30,7 @@ public class ThreeGraphs extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-
+	public Choice choice;
 	/**
 	 * Launch the application.
 	 */
@@ -73,7 +73,7 @@ public class ThreeGraphs extends JFrame {
 		lblDataNumber.setBounds(98, 145, 83, 14);
 		contentPane.add(lblDataNumber);
 		
-		Choice choice = new Choice();
+		choice = new Choice();
 		choice.setBounds(177, 50, 117, 25);
 		choice.add("Line");
 		choice.add("Bar");
@@ -121,7 +121,7 @@ Integer value = (Integer)spinner.getValue();
 				
 				else if(value == 2){
 					
-					Add2Sensors a = new Add2Sensors();
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
 					a.setVisible(true);
 				}
 				

@@ -32,6 +32,7 @@ public class Add2Sensors extends JFrame {
 	JButton btnProcess = new JButton("Process");
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
+	public String graphType;
 
 	/**
 	 * Launch the application.
@@ -40,8 +41,8 @@ public class Add2Sensors extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Add2Sensors frame = new Add2Sensors();
-					frame.setVisible(true);
+					//Add2Sensors frame = new Add2Sensors(graphType);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,7 +53,8 @@ public class Add2Sensors extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Add2Sensors() {
+	public Add2Sensors(String _graphType) {
+		graphType=_graphType;
 		setBounds(100, 100, 305, 170);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,6 +89,18 @@ public class Add2Sensors extends JFrame {
 		});
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(graphType=="Bar") {
+
+					BarPlotShow bp=new BarPlotShow(choice);}
+					
+					else{
+					OneGraphShow og=new OneGraphShow(choice);
+						
+			
+						
+					}
+				
 				
 				//dispose();
 			}
