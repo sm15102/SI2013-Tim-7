@@ -36,6 +36,7 @@ import org.hibernate.cfg.Configuration;
 
 
 
+
 import etf.si.projekat.util.HibernateUtil;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
@@ -74,14 +75,14 @@ public class Add1Sensor extends JFrame {
 		
 		graphType=graphT;
 		btnProcess.setVisible(false);
-		setBounds(100, 100, 298, 160);
+		setBounds(100, 110, 320, 160);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblSensorType = new JLabel("Sensor type:");
-		lblSensorType.setBounds(55, 35, 72, 14);
+		lblSensorType.setBounds(55, 35, 79, 14);
 		contentPane.add(lblSensorType);
 		
 	
@@ -105,7 +106,7 @@ public class Add1Sensor extends JFrame {
 			
 			}
 		});
-		btnProcess.setBounds(152, 88, 89, 23);
+		btnProcess.setBounds(192, 88, 89, 23);
 		contentPane.add(btnProcess);
 		
 		
@@ -117,13 +118,12 @@ public class Add1Sensor extends JFrame {
 				
 			}
 		});
-		btnExit.setBounds(45, 88, 89, 23);
+		btnExit.setBounds(88, 88, 89, 23);
 		contentPane.add(btnExit);
 		
 		
-		choice.setBounds(134, 32, 105, 20);
+		choice.setBounds(134, 32, 150, 20);
 		contentPane.add(choice);
-		choice.add("");
 		
 		choice.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -132,27 +132,28 @@ public class Add1Sensor extends JFrame {
 			}
 		});
 			
-		    Session session = HibernateUtil.getSessionFactory().openSession();
-		    Transaction t=null;
-			try{
-				t = session.beginTransaction(); 
-			    List list = session.createQuery("from DeviceType").list();
-			   
-			     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
-			        DeviceType dt =(DeviceType) iterator.next();
-			        choice.addItem(dt.getType());
-			        
-			      }
-			      t.commit();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+	    Transaction t=null;
+		try{
+			t = session.beginTransaction(); 
+		    List list = session.createQuery("from DeviceType").list();
+		   
+		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+		        DeviceType dt =(DeviceType) iterator.next();
+		        choice.addItem(dt.getType());
+		         
+		      }
+		      t.commit();
+	}
+		catch(Exception e)
+	{
+		System.out.println("Error:"+e);
+	}
+		finally{
+			session.close();
 		}
-			catch(Exception e)
-		{
-			System.out.println("Error:"+e);
-		}
-			finally{
-				session.close();
-			}
-}
+	}
+
 }		
 	    
 	

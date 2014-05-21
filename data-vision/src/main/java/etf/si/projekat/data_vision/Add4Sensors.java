@@ -55,7 +55,7 @@ public class Add4Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add4Sensors() {
-		setBounds(100, 100, 378, 243);
+		setBounds(100, 100, 370, 243);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -78,7 +78,7 @@ public class Add4Sensors extends JFrame {
 		contentPane.add(lblSensorType_3);
 		
 		
-		choice.setBounds(122, 37, 95, 20);
+		choice.setBounds(122, 37, 150, 20);
 		contentPane.add(choice);
 		choice.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -86,7 +86,7 @@ public class Add4Sensors extends JFrame {
 			}
 		});
 		
-		choice_1.setBounds(122, 62, 95, 20);
+		choice_1.setBounds(122, 62, 150, 20);
 		contentPane.add(choice_1);
 		choice_1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -94,7 +94,7 @@ public class Add4Sensors extends JFrame {
 			}
 		});
 		
-		choice_2.setBounds(122, 88, 95, 20);
+		choice_2.setBounds(122, 88, 150, 20);
 		contentPane.add(choice_2);
 		choice_2.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -103,7 +103,7 @@ public class Add4Sensors extends JFrame {
 		});
 		
 		
-		choice_3.setBounds(122, 114, 95, 20);
+		choice_3.setBounds(122, 114, 150, 20);
 		contentPane.add(choice_3);
 		choice_3.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -120,12 +120,6 @@ public class Add4Sensors extends JFrame {
 		btnProcess.setBounds(247, 165, 89, 23);
 		contentPane.add(btnProcess);
 		btnProcess.setVisible(false);
-		
-
-		choice.add(""); 
-		choice_1.add(""); 
-		choice_2.add("");
-		choice_3.add("");
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {

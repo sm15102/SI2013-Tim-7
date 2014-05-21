@@ -54,7 +54,7 @@ public class Add3Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add3Sensors() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 370, 220);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,7 +65,7 @@ public class Add3Sensors extends JFrame {
 		contentPane.add(lblSensorType);
 		
 		JLabel lblSensorType_1 = new JLabel("Sensor type 2");
-		lblSensorType_1.setBounds(25, 61, 85, 14);
+		lblSensorType_1.setBounds(25, 59, 85, 14);
 		contentPane.add(lblSensorType_1);
 		
 		JLabel lblSensorType_2 = new JLabel("Sensor type 3");
@@ -73,7 +73,7 @@ public class Add3Sensors extends JFrame {
 		contentPane.add(lblSensorType_2);
 		
 		
-		choice.setBounds(116, 25, 136, 20);
+		choice.setBounds(116, 25, 150, 20);
 		contentPane.add(choice);
 		choice.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -81,7 +81,7 @@ public class Add3Sensors extends JFrame {
 			}
 		});
 		
-		choice_1.setBounds(116, 51, 136, 20);
+		choice_1.setBounds(116, 53, 150, 20);
 		contentPane.add(choice_1);
 		choice_1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -90,7 +90,7 @@ public class Add3Sensors extends JFrame {
 		});
 		
 		
-		choice_2.setBounds(116, 77, 136, 20);
+		choice_2.setBounds(116, 79, 150, 20);
 		contentPane.add(choice_2);
 		choice_2.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -104,13 +104,9 @@ public class Add3Sensors extends JFrame {
 		});
 		
 		
-		btnProcess.setBounds(268, 131, 89, 23);
+		btnProcess.setBounds(228, 133, 89, 23);
 		contentPane.add(btnProcess);
 		btnProcess.setVisible(false);
-		
-		choice.add(""); 
-		choice_1.add(""); 
-		choice_2.add(""); 
 		
 		JButton btnExit = new JButton("Cancel");
 		btnExit.addActionListener(new ActionListener() {
@@ -118,7 +114,7 @@ public class Add3Sensors extends JFrame {
 				dispose();
 			}
 		});
-		btnExit.setBounds(172, 131, 89, 23);
+		btnExit.setBounds(132, 131, 89, 23);
 		contentPane.add(btnExit);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    Transaction t=null;

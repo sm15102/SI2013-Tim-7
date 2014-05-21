@@ -1,3 +1,4 @@
+
 package etf.si.projekat.data_vision;
 
 import java.awt.BorderLayout;
@@ -20,11 +21,23 @@ import etf.si.projekat.util.HibernateUtil;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Add8Sensors extends JFrame {
-
+	JButton btnProcess = new JButton("Process");
+	Choice choice = new Choice();
+	Choice choice_1 = new Choice();
+	Choice choice_2 = new Choice();
+	Choice choice_3 = new Choice();
+	Choice choice_4 = new Choice();
+	Choice choice_5 = new Choice();
+	Choice choice_6 = new Choice();
+	Choice choice_7 = new Choice();
+	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
 
 	/**
@@ -47,7 +60,7 @@ public class Add8Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add8Sensors() {
-		setBounds(100, 100, 450, 327);
+		setBounds(100, 100, 370, 327);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -85,54 +98,73 @@ public class Add8Sensors extends JFrame {
 		lblSensorType_7.setBounds(10, 208, 91, 14);
 		contentPane.add(lblSensorType_7);
 		
-		Choice choice = new Choice();
-		choice.setBounds(117, 28, 136, 20);
+		choice.setBounds(100, 30, 150, 20);
 		contentPane.add(choice);
-		
-		Choice choice_1 = new Choice();
-		choice_1.setBounds(117, 53, 136, 20);
-		contentPane.add(choice_1);
-		
-		Choice choice_2 = new Choice();
-		choice_2.setBounds(117, 78, 136, 20);
-		contentPane.add(choice_2);
-		
-		Choice choice_3 = new Choice();
-		choice_3.setBounds(117, 101, 136, 20);
-		contentPane.add(choice_3);
-		
-		Choice choice_4 = new Choice();
-		choice_4.setBounds(117, 127, 136, 20);
-		contentPane.add(choice_4);
-		
-		Choice choice_5 = new Choice();
-		choice_5.setBounds(117, 153, 136, 20);
-		contentPane.add(choice_5);
-		
-		Choice choice_6 = new Choice();
-		choice_6.setBounds(117, 202, 136, 20);
-		contentPane.add(choice_6);
-		
-		Choice choice_7 = new Choice();
-		choice_7.setBounds(117, 179, 136, 20);
-		contentPane.add(choice_7);
-		choice.add(""); 
-		choice_1.add(""); 
-		choice_2.add("");
-		choice_3.add("");
-		choice_4.add("");
-		choice_5.add("");
-		choice_6.add("");
-		choice_7.add("");
-
-		JButton btnProcess = new JButton("Process");
-		btnProcess.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//dispose();
+		choice.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(0);
 			}
 		});
-		btnProcess.setBounds(266, 239, 89, 23);
+		
+		choice_1.setBounds(100, 55, 150, 20);
+		contentPane.add(choice_1);
+		choice_1.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(1);
+			}
+		});
+		
+		choice_2.setBounds(100, 80, 150, 20);
+		contentPane.add(choice_2);
+		choice_2.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(2);
+			}
+		});
+		
+		choice_3.setBounds(100, 103, 150, 20);
+		contentPane.add(choice_3);
+		choice_3.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(3);
+			}
+		});
+		
+		choice_4.setBounds(100, 128, 150, 20);
+		contentPane.add(choice_4);
+		choice_4.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(4);
+			}
+		});
+		
+		choice_5.setBounds(100, 154, 150, 20);
+		contentPane.add(choice_5);
+		choice_5.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(5);
+			}
+		});
+		
+		choice_6.setBounds(100, 178, 150, 20);
+		contentPane.add(choice_6);
+		choice_6.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(6);
+			}
+		});
+		
+		choice_7.setBounds(100, 204, 150, 20);
+		contentPane.add(choice_7);
+		choice_7.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(7);
+			}
+		});
+		
+		btnProcess.setBounds(236, 239, 89, 23);
 		contentPane.add(btnProcess);
+		btnProcess.setVisible(false);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -140,7 +172,7 @@ public class Add8Sensors extends JFrame {
 				dispose();
 			}
 		});
-		btnCancel.setBounds(167, 239, 89, 23);
+		btnCancel.setBounds(137, 239, 89, 23);
 		contentPane.add(btnCancel);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    Transaction t=null;
@@ -151,13 +183,7 @@ public class Add8Sensors extends JFrame {
 		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
 		        DeviceType dt =(DeviceType) iterator.next();
 		        choice.addItem(dt.getType());
-		        choice_1.addItem(dt.getType()); 
-		        choice_2.addItem(dt.getType());
-		        choice_3.addItem(dt.getType());
-		        choice_4.addItem(dt.getType());
-		        choice_5.addItem(dt.getType());
-		        choice_6.addItem(dt.getType());
-		        choice_7.addItem(dt.getType());
+		        list_device.add(dt);
 		      }
 		      t.commit();
 	}
@@ -169,5 +195,76 @@ public class Add8Sensors extends JFrame {
 			session.close();
 		}
 	}
+	public void fillChoices(int k){
+		switch(k){
+		case 0 : {
+			for(int i=0; i<list_device.size();i++){
+			if(choice.getSelectedItem() == list_device.get(i).getType()) continue;
+			choice_1.add(list_device.get(i).getType());
+			}
+			choice.disable();
+			break;
+			
+		}
+		case 1 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_2.add(list_device.get(i).getType());
+				}
+				choice_1.disable();
+				break;
+		}
+		case 2 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())||(choice_2.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_3.add(list_device.get(i).getType());
+				}
+				choice_2.disable();
+				break;
+		}
+		case 3 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())||(choice_2.getSelectedItem() == list_device.get(i).getType())||
+						(choice_3.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_4.add(list_device.get(i).getType());
+				}
+				choice_3.disable();
+				break;
+		}
+		case 4 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())||(choice_2.getSelectedItem() == list_device.get(i).getType())||
+						(choice_3.getSelectedItem() == list_device.get(i).getType())||(choice_4.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_5.add(list_device.get(i).getType());
+				}
+				choice_4.disable();
+				break;
+		}
+		case 5 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())||(choice_2.getSelectedItem() == list_device.get(i).getType())||
+						(choice_3.getSelectedItem() == list_device.get(i).getType())||(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_6.add(list_device.get(i).getType());
+				}
+				choice_5.disable();
+				break;
+		}
+		case 6 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice.getSelectedItem() == list_device.get(i).getType()) || (choice_1.getSelectedItem() == list_device.get(i).getType())||(choice_2.getSelectedItem() == list_device.get(i).getType())||
+				   (choice_3.getSelectedItem() == list_device.get(i).getType())||(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||
+				   (choice_6.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice_7.add(list_device.get(i).getType());
+				}
+				choice_6.disable();
+				break;
+		}
+		case 7 : {
+			choice_7.disable();
+			btnProcess.setVisible(true);
+		}	
+	}
+	}
 
 }
+

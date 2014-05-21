@@ -60,20 +60,20 @@ public class Add2Sensors extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblSensorType = new JLabel("Sensor type 1");
-		lblSensorType.setBounds(10, 27, 75, 14);
+		lblSensorType.setBounds(10, 27, 85, 14);
 		contentPane.add(lblSensorType);
 		
 		JLabel lblSensorType_1 = new JLabel("Sensor type 2");
-		lblSensorType_1.setBounds(10, 52, 75, 14);
+		lblSensorType_1.setBounds(10, 52, 85, 14);
 		contentPane.add(lblSensorType_1);
 		
 		
-		choice.setBounds(91, 21, 115, 20);
+		choice.setBounds(100, 23, 150, 20);
 		contentPane.add(choice);
 		
 		
 		
-		choice_1.setBounds(91, 46, 115, 20);
+		choice_1.setBounds(100, 48, 150, 20);
 		contentPane.add(choice_1);
 		choice.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
@@ -105,11 +105,8 @@ public class Add2Sensors extends JFrame {
 		});
 		btnExit.setBounds(91, 98, 89, 23);
 		contentPane.add(btnExit);
-		
-		choice.add(" ");
-		choice_1.add(" ");
 
-	    Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 	    Transaction t=null;
 		try{
 			t = session.beginTransaction(); 
@@ -117,25 +114,20 @@ public class Add2Sensors extends JFrame {
 		   
 		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
 		        DeviceType dt =(DeviceType) iterator.next();
-		        choice.addItem(dt.getType());
-		        choice_1.addItem(dt.getType());
 		        list_device.add(dt);
-		     }
-		   
+		        choice.addItem(dt.getType());
+		         
+		      }
 		      t.commit();
 	}
 		catch(Exception e)
 	{
 		System.out.println("Error:"+e);
 	}
-		
 		finally{
 			session.close();
 		}
-	
-	
 	}
-	
 	
 	public void fillChoices(int k){
 		if(k==1) {
@@ -143,11 +135,11 @@ public class Add2Sensors extends JFrame {
 			if(choice.getSelectedItem() == list_device.get(i).getType()) continue;
 			choice_1.add(list_device.get(i).getType());
 			}
-			
+			choice.disable();
 			
 		}
 		if(k==2){
-	
+	        choice_1.disable();
 			btnProcess.setVisible(true);
 		}	
 	}
