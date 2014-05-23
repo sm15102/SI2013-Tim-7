@@ -12,6 +12,8 @@ import java.awt.Choice;
 
 import javax.swing.JButton;
 
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -33,6 +35,9 @@ public class Add2Sensors extends JFrame {
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
 	public String graphType;
+	
+	final JDatePickerImpl datePickerFrom;
+	final JDatePickerImpl datePickerTo;
 
 	/**
 	 * Launch the application.
@@ -53,7 +58,9 @@ public class Add2Sensors extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Add2Sensors(String _graphType) {
+	public Add2Sensors(String _graphType, JDatePickerImpl dp1, JDatePickerImpl dp2) {
+		datePickerFrom=dp1;
+		datePickerTo=dp2;
 		graphType=_graphType;
 		setBounds(100, 100, 305, 170);
 		contentPane = new JPanel();

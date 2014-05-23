@@ -35,6 +35,7 @@ public class OneGraph extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	public Choice choice;
+	
 
 	/**
 	 * Launch the application.
@@ -126,7 +127,7 @@ public class OneGraph extends JFrame {
 				
 				else if(value == 2){
 					
-					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem(), datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}

@@ -121,7 +121,7 @@ Integer value = (Integer)spinner.getValue();
 				
 				else if(value == 2){
 					
-					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem(), datePicker, datePicker1);
 					a.setVisible(true);
 				}
 				

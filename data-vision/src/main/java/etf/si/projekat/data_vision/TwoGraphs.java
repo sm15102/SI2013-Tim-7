@@ -19,6 +19,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
 
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+import javax.swing.SpringLayout;
+
 public class TwoGraphs extends JFrame {
 
 	/**
@@ -26,8 +31,8 @@ public class TwoGraphs extends JFrame {
 	 */
 	private static final long serialVersionUID = -1220749560655781995L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	//private JTextField textField;
+	// JTextField textField_1;
 	public Choice choice;
 	/**
 	 * Launch the application.
@@ -56,6 +61,26 @@ public class TwoGraphs extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        SpringLayout springLayout = (SpringLayout) datePicker.getLayout();
+        springLayout.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker);
+        datePicker.setLocation(143, 86);
+        datePicker.setSize(127, 22);
+        contentPane.add(datePicker);
+        
+        
+        UtilDateModel model1 = new UtilDateModel();
+        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
+        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+        SpringLayout springLayout_1 = (SpringLayout) datePicker1.getLayout();
+        springLayout_1.putConstraint(SpringLayout.WEST, datePicker1.getJFormattedTextField(), 0, SpringLayout.WEST, datePicker1);
+        datePicker1.setLocation(143, 116);
+        datePicker1.setSize(127, 27);
+        contentPane.add(datePicker1);
+		
 		JLabel lblDataType = new JLabel("Graph type:");
 		lblDataType.setBounds(42, 66, 70, 14);
 		contentPane.add(lblDataType);
@@ -65,20 +90,20 @@ public class TwoGraphs extends JFrame {
 		contentPane.add(lblTimeIntervalForm);
 		
 		JLabel lblTimeIntervalTo = new JLabel("Time interval to:");
-		lblTimeIntervalTo.setBounds(20, 113, 117, 14);
+		lblTimeIntervalTo.setBounds(20, 120, 117, 14);
 		contentPane.add(lblTimeIntervalTo);
 		
 		JLabel lblDataNumber = new JLabel("Data number:");
-		lblDataNumber.setBounds(30, 138, 103, 14);
+		lblDataNumber.setBounds(30, 145, 103, 14);
 		contentPane.add(lblDataNumber);
 		
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(143, 135, 127, 20);
+		spinner.setBounds(143, 142, 127, 20);
 		contentPane.add(spinner);
 		
 		 choice = new Choice();
-		choice.setBounds(143, 66, 127, 20);
+		choice.setBounds(143, 60, 127, 20);
 		choice.add("Chart");
 		choice.add("Line");
 		contentPane.add(choice);
@@ -97,7 +122,7 @@ Integer value = (Integer) spinner.getValue();
 				}
 				
 				if(value == 2){
-					Add2Sensors a = new Add2Sensors(choice.getSelectedItem());
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem(), datePicker, datePicker1);
 					a.setVisible(true);
 				}
 				
@@ -162,7 +187,14 @@ Integer value = (Integer) spinner.getValue();
 		button_1.setBounds(265, 230, 70, 22);
 		contentPane.add(button_1);
 		
-		textField = new JTextField();
+		
+		 
+	
+		 
+		
+		
+		
+		/*textField = new JTextField();
 		textField.setBounds(143, 88, 127, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -170,6 +202,6 @@ Integer value = (Integer) spinner.getValue();
 		textField_1 = new JTextField();
 		textField_1.setBounds(143, 110, 127, 20);
 		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textField_1.setColumns(10);*/
 	}
 }
