@@ -103,6 +103,7 @@ public class Add2Sensors extends JFrame {
 					senzori.add(choice.getSelectedItem());
 					senzori.add(choice_1.getSelectedItem());
 					BarPlotShow bp=new BarPlotShow(senzori);
+					dispose();
 					}
 					
 					else{

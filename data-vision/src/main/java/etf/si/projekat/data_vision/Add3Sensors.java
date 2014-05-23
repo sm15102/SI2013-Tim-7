@@ -33,6 +33,7 @@ public class Add3Sensors extends JFrame {
 	JButton btnProcess = new JButton("Process");
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
+	final List<String> senzori;
 
 	/**
 	 * Launch the application.
@@ -41,8 +42,8 @@ public class Add3Sensors extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Add3Sensors frame = new Add3Sensors();
-					frame.setVisible(true);
+					//Add3Sensors frame = new Add3Sensors();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,6 +55,7 @@ public class Add3Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add3Sensors() {
+		senzori=new ArrayList<String>();
 		setBounds(100, 100, 370, 220);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +101,12 @@ public class Add3Sensors extends JFrame {
 		});
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//dispose();
+				
+				senzori.add(choice.getSelectedItem());
+				senzori.add(choice_1.getSelectedItem());
+				senzori.add(choice_2.getSelectedItem());
+				BarPlotShow bp=new BarPlotShow(senzori);				
+				dispose();
 			}
 		});
 		

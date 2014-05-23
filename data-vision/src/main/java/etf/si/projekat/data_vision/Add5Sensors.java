@@ -35,6 +35,7 @@ public class Add5Sensors extends JFrame {
 	Choice choice = new Choice();
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
+	final List<String> senzori;
 
 	/**
 	 * Launch the application.
@@ -43,8 +44,8 @@ public class Add5Sensors extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Add5Sensors frame = new Add5Sensors();
-					frame.setVisible(true);
+					//Add5Sensors frame = new Add5Sensors();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,6 +57,7 @@ public class Add5Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add5Sensors() {
+		senzori=new ArrayList<String>();
 		setBounds(100, 100, 370, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,6 +122,17 @@ public class Add5Sensors extends JFrame {
 		choice_4.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
 				fillChoices(4);
+			}
+		});
+		btnProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				senzori.add(choice.getSelectedItem());
+				senzori.add(choice_1.getSelectedItem());
+				senzori.add(choice_2.getSelectedItem());
+				senzori.add(choice_3.getSelectedItem());
+				senzori.add(choice_4.getSelectedItem());
+				BarPlotShow bp=new BarPlotShow(senzori);				
+				dispose();
 			}
 		});
 	
