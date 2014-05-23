@@ -15,6 +15,9 @@ import de.erichseifert.gral.examples.ExamplePanel;
 
 
 
+
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -37,13 +40,15 @@ import java.awt.Font;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BarPlotShow extends ExamplePanel {
 
 	private JPanel contentPane;
 	private JFrame f;
 	public Choice sensorChoice;
-	
+	final List<String> senzori;
 	// * Launch the application.
 	// */
 	public static void main(String[] args) {
@@ -63,18 +68,29 @@ public class BarPlotShow extends ExamplePanel {
 	/**
 	 * Create the frame.
 	 */
-	public BarPlotShow(Choice _sensorChoice) { 
-		sensorChoice=_sensorChoice;
-		
+	final int velicina;
+	public BarPlotShow(List<String> s) { 
+		//sensorChoice=_sensorChoice;
+		senzori=s; 
+		velicina=senzori.size();
 		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
-         data.add(0.1,  1, "January");
+		 double j=0.1;
+		 for(int i=0; i<velicina; i++)
+		 {
+			String naziv=senzori.get(i);
+			data.add(j, i+1, naziv);
+			j+=0.2;
+			
+			
+		 }
+        /* data.add(0.1,  1, "January");
          data.add(0.2,  3, "February");
          data.add(0.3, -2, "March");
          data.add(0.4,  6, "April");
          data.add(0.5, -4, "May");
          data.add(0.6,  8, "June");
          data.add(0.7,  9, "July");
-         data.add(0.8, 11, "August");
+         data.add(0.8, 11, "August");*/
          // Create new bar plot
          BarPlot plot = new BarPlot(data);
          // Format plot

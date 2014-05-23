@@ -35,7 +35,7 @@ public class Add2Sensors extends JFrame {
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
 	public String graphType;
-	
+	final List<String> senzori;
 	final JDatePickerImpl datePickerFrom;
 	final JDatePickerImpl datePickerTo;
 
@@ -59,6 +59,7 @@ public class Add2Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add2Sensors(String _graphType, JDatePickerImpl dp1, JDatePickerImpl dp2) {
+		senzori=new ArrayList<String>();
 		datePickerFrom=dp1;
 		datePickerTo=dp2;
 		graphType=_graphType;
@@ -99,7 +100,10 @@ public class Add2Sensors extends JFrame {
 				
 				if(graphType=="Bar") {
 
-					BarPlotShow bp=new BarPlotShow(choice);}
+					senzori.add(choice.getSelectedItem());
+					senzori.add(choice_1.getSelectedItem());
+					BarPlotShow bp=new BarPlotShow(senzori);
+					}
 					
 					else{
 					OneGraphShow og=new OneGraphShow(choice);
