@@ -40,6 +40,7 @@ public class Add9Sensors extends JFrame {
 	Choice choice_8 = new Choice();
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	private JPanel contentPane;
+	final List<String> senzori;
 
 	/**
 	 * Launch the application.
@@ -48,8 +49,8 @@ public class Add9Sensors extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Add9Sensors frame = new Add9Sensors();
-					frame.setVisible(true);
+					//Add9Sensors frame = new Add9Sensors();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,6 +62,7 @@ public class Add9Sensors extends JFrame {
 	 * Create the frame.
 	 */
 	public Add9Sensors() {
+		senzori=new ArrayList<String>();
 		setBounds(100, 100, 370, 351);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,6 +174,21 @@ public class Add9Sensors extends JFrame {
 		choice_8.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
 				fillChoices(8);
+			}
+		});
+		btnProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				senzori.add(choice.getSelectedItem());
+				senzori.add(choice_1.getSelectedItem());
+				senzori.add(choice_2.getSelectedItem());
+				senzori.add(choice_3.getSelectedItem());
+				senzori.add(choice_4.getSelectedItem());
+				senzori.add(choice_5.getSelectedItem());
+				senzori.add(choice_6.getSelectedItem());
+				senzori.add(choice_7.getSelectedItem());
+				senzori.add(choice_8.getSelectedItem());
+				BarPlotShow bp=new BarPlotShow(senzori);				
+				dispose();
 			}
 		});
 		
