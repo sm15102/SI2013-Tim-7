@@ -109,12 +109,16 @@ public class OneGraphShow extends JFrame {
 	        Session session = HibernateUtil.getSessionFactory().openSession();
 		    Transaction t=null;
 			try{
+				
+				
 			
 				t = session.beginTransaction(); 
 				//ovo je samo za jedan sensor ako je izabran, za sad, pa kad proradi dalje cu :D
 			  list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo) and devicename=sensori[0]").list();
 			  list_value=session.createQuery("select value from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo) and devicename=sensori[0]").list();
-				data = new DataTable(Date.class, Double.class);
+			//OVDJE PADA POSLIJE OVIH QUERY-A!! 
+			  //JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+			  data = new DataTable(Date.class, Double.class);
 				for (Iterator iterator = list_time.iterator(); iterator.hasNext();){  
 			    	Iterator iterator1=list_value.iterator(); 
 			        Date dp =(Date) iterator.next();
@@ -124,6 +128,7 @@ public class OneGraphShow extends JFrame {
 			 
 		    	}
 			  
+				//
 				   //kreiranje 2D grafa
 			       plot = new XYPlot(data);
 			       //prikaz grafa na frameu
@@ -176,6 +181,7 @@ public class OneGraphShow extends JFrame {
 		}
 			catch(Exception e)
 		{
+				
 			System.out.println("Error:"+e);
 		}
 			finally{
