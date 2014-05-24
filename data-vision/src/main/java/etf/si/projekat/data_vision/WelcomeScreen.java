@@ -99,18 +99,25 @@ public class WelcomeScreen extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 71, 461, 192);
+		panel.setBounds(0, 73, 461, 192);
 		contentPane.add(panel);
+		
+	
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.CYAN);
 		panel_1.setBounds(0, 262, 461, 48);
 		contentPane.add(panel_1);
 		
-		JLabel lblNewLabel = new JLabel("WELCOME TO DATA VISION\r\n\r\n");
+		JLabel lblNewLabel = new JLabel("DATA VISION\r\n\r\n");
 		lblNewLabel.setFont(new Font("Rosewood Std Regular", Font.BOLD, 28));
-		lblNewLabel.setBounds(10, 11, 441, 36);
+		lblNewLabel.setBounds(28, 11, 441, 36);
 		contentPane.add(lblNewLabel);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(251, 73, 200, 192);
+		
+		contentPane.add(label);
 		
 	}
 }

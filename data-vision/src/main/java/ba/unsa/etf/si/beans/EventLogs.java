@@ -10,6 +10,15 @@ public class EventLogs implements java.io.Serializable{
 	String device_type;
 	String event_message;
 	Calendar timestamp;
+	double value;
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+
 	ActivityLogs activity_logs;
 	
 	public EventLogs(){}
