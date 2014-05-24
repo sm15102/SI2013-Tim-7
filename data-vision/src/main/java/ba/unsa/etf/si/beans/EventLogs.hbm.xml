@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-May-2014 11:32:16 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 24-May-2014 11:50:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="ba.unsa.etf.si.beans.EventLogs" table="EVENTLOGS">
         <id name="eventlogs_id" type="java.lang.Long">
             <column name="EVENTLOGS_ID" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="device_name" type="java.lang.String">
             <column name="DEVICE_NAME" />

@@ -9,10 +9,10 @@
   <property name="hibernate.connection.username">team7</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
-  <mapping resource="ba/unsa/etf/si/beans/ActivityLogs.hbm.xml"/>
   <mapping resource="ba/unsa/etf/si/beans/DeviceName.hbm.xml"/>
-  <mapping resource="ba/unsa/etf/si/beans/DeviceType.hbm.xml"/>
-  <mapping resource="ba/unsa/etf/si/beans/EventLogs.hbm.xml"/>
   <mapping resource="ba/unsa/etf/si/beans/User.hbm.xml"/>
+  <mapping resource="ba/unsa/etf/si/beans/EventLogs.hbm.xml"/>
+  <mapping resource="ba/unsa/etf/si/beans/DeviceType.hbm.xml"/>
+  <mapping resource="ba/unsa/etf/si/beans/ActivityLogs.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

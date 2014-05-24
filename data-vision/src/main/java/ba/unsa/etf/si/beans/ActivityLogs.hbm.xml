@@ -1,28 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 9:11:45 AM by Hibernate Tools 3.4.0.CR1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-May-2014 11:50:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
- <class name="ba.unsa.etf.si.beans.ActivityLogs" table="ACTIVITYLOGS">
-  <id name="activitylogs_id" type="java.lang.Long">
-   <column name="ACTIVITYLOGS_ID"/>
-   <generator class="native"/>
-  </id>
-  <property generated="never" lazy="false" name="command" type="java.lang.String">
-   <column name="COMMAND"/>
-  </property>
-  <property access="field" generated="never" lazy="false"
-   name="isGranted" type="boolean">
-   <column name="ISGRANTED"/>
-  </property>
-  <property generated="never" lazy="false" name="timestamp" type="java.sql.Date">
-   <column name="TIMESTAMP"/>
-  </property>
-  <property generated="never" lazy="false" name="user" type="java.lang.String">
-   <column name="USER"/>
-  </property>
-  <property generated="never" lazy="false" name="fixtureName" type="java.lang.String">
-   <column name="FIXTURENAME"/>
-  </property>
- </class>
+    <class name="ba.unsa.etf.si.beans.ActivityLogs" table="ACTIVITYLOGS">
+        <id name="activitylogs_id" type="java.lang.Long">
+            <column name="ACTIVITYLOGS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="command" type="java.lang.String">
+            <column name="COMMAND" />
+        </property>
+        <property name="isGranted" type="boolean" access="field">
+            <column name="ISGRANTED" />
+        </property>
+        <property name="timestamp" type="java.sql.Date">
+            <column name="TIMESTAMP" />
+        </property>
+        <property name="user" type="java.lang.String">
+            <column name="USER" />
+        </property>
+        <property name="fixtureName" type="java.lang.String">
+            <column name="FIXTURENAME" />
+        </property>
+    </class>
 </hibernate-mapping>

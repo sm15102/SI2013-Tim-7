@@ -11,6 +11,8 @@ public class EventLogs implements java.io.Serializable{
 	String event_message;
 	Calendar timestamp;
 	double value;
+	
+	
 	public double getValue() {
 		return value;
 	}
