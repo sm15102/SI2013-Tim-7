@@ -111,8 +111,9 @@ public class OneGraphShow extends JFrame {
 			try{
 			
 				t = session.beginTransaction(); 
-			  list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo)").list();
-			  list_value=session.createQuery("select value from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo)").list();
+				//ovo je samo za jedan sensor ako je izabran, za sad, pa kad proradi dalje cu :D
+			  list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo) and devicename=sensori[0]").list();
+			  list_value=session.createQuery("select value from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo) and devicename=sensori[0]").list();
 				data = new DataTable(Date.class, Double.class);
 				for (Iterator iterator = list_time.iterator(); iterator.hasNext();){  
 			    	Iterator iterator1=list_value.iterator(); 
