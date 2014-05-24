@@ -107,7 +107,9 @@ public class Add2Sensors extends JFrame {
 					}
 					
 					else{
-					OneGraphShow og=new OneGraphShow(choice);
+						senzori.add(choice.getSelectedItem());
+						senzori.add(choice_1.getSelectedItem());
+					OneGraphShow og=new OneGraphShow(senzori, datePickerFrom, datePickerTo);
 						
 			
 						

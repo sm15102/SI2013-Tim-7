@@ -25,6 +25,9 @@ import de.erichseifert.gral.util.Orientation;
 
 
 
+
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -39,17 +42,23 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
 import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.util.List;
 
 public class OneGraphShow extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame f;
 	public Choice sensorChoice;
+	final List<String> senzori;
+	final JDatePickerImpl datePickerFrom;
+	final JDatePickerImpl datePickerTo;
 	
 	// * Launch the application.
 	// */
@@ -70,8 +79,11 @@ public class OneGraphShow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OneGraphShow(Choice _sensorChoice) {   
-		sensorChoice=_sensorChoice;
+	public OneGraphShow(List<String> s, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) {  
+		senzori=s; 
+		datePickerFrom=datePicker1;
+		datePickerTo=datePicker2;
+		
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        setSize(1000, 1000);

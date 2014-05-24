@@ -18,6 +18,7 @@ import de.erichseifert.gral.examples.ExamplePanel;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
