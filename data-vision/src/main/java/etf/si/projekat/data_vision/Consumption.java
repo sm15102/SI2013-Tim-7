@@ -19,6 +19,10 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JSpinner;   
 
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 public class Consumption extends JFrame {
 
 	private JPanel contentPane;
@@ -56,19 +60,19 @@ public class Consumption extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval to:");
-		lblTimeIntervalFrom.setBounds(30, 48, 95, 14);
+		lblTimeIntervalFrom.setBounds(33, 50, 95, 14);
 		contentPane.add(lblTimeIntervalFrom);
 		
 		JLabel lblDevice = new JLabel("Device:");
-		lblDevice.setBounds(72, 73, 53, 14);
+		lblDevice.setBounds(72, 82, 53, 14);
 		contentPane.add(lblDevice);
 		
 		JLabel lblPower = new JLabel("Power:");
-		lblPower.setBounds(72, 98, 53, 14);
+		lblPower.setBounds(72, 106, 53, 14);
 		contentPane.add(lblPower);
 		
 		textField = new JTextField();
-		textField.setBounds(135, 95, 86, 20);
+		textField.setBounds(132, 105, 117, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -87,23 +91,28 @@ public class Consumption extends JFrame {
 		contentPane.add(btnCalculate);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(135, 70, 86, 20);
+		textField_1.setBounds(132, 80, 117, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblTimeInterfvalFrom = new JLabel("Time interval from:");
-		lblTimeInterfvalFrom.setBounds(20, 25, 112, 14);
+		lblTimeInterfvalFrom.setBounds(23, 25, 112, 14);
 		contentPane.add(lblTimeInterfvalFrom);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(135, 22, 86, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(134, 47, 87, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        datePicker.setLocation(132, 22);
+        datePicker.setSize(117, 27);
+        contentPane.add(datePicker);
+        
+        
+        UtilDateModel model1 = new UtilDateModel();
+        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
+        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+        datePicker1.setLocation(132, 50);
+        datePicker1.setSize(117, 27);
+        contentPane.add(datePicker1);
 		btnCalculate.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
