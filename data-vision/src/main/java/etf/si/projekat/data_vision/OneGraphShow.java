@@ -28,6 +28,8 @@ import de.erichseifert.gral.util.Orientation;
 
 
 
+import etf.si.projekat.util.HibernateUtil;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -42,6 +44,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import ba.unsa.etf.si.beans.DeviceType;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
 import java.awt.Choice;
@@ -49,6 +55,7 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.util.Iterator;
 import java.util.List;
 
 public class OneGraphShow extends JFrame {
@@ -59,6 +66,7 @@ public class OneGraphShow extends JFrame {
 	final List<String> senzori;
 	final JDatePickerImpl datePickerFrom;
 	final JDatePickerImpl datePickerTo;
+	//final List<JDatePickerImpl> dates;
 	
 	// * Launch the application.
 	// */
@@ -85,11 +93,40 @@ public class OneGraphShow extends JFrame {
 		datePickerTo=datePicker2;
 		
 		
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        setSize(1000, 1000);
 	        
+	        
+	        
+	        //racunanje vremenskog intervala
+	        Session session = HibernateUtil.getSessionFactory().openSession();
+		    Transaction t=null;
+			try{
+				t = session.beginTransaction(); 
+			    List list = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo);").list();
+			   
+			     /*for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+			        JDatePickerImpl dp =(JDatePickerImpl) iterator.next();
+			        dates.addItem(dp.getJDateInstantPanel());
+			        dates.addAll(arg0)
+			         
+			      }*/
+			      t.commit();
+		}
+			catch(Exception e)
+		{
+			System.out.println("Error:"+e);
+		}
+			finally{
+				session.close();
+			}
+	        
+	        
 	       //Podaci koji ce se prikazivati na grafu 
 	       DataTable data = new DataTable(Double.class, Double.class);
+	     
+	       
 	       double x = 1; 
 	       double y = 17;
 	       data.add(x, y);
