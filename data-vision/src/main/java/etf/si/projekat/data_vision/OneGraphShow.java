@@ -55,6 +55,9 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Component;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,6 +69,7 @@ public class OneGraphShow extends JFrame {
 	final List<String> senzori;
 	final JDatePickerImpl datePickerFrom;
 	final JDatePickerImpl datePickerTo;
+	
 	//final List<JDatePickerImpl> dates;
 	
 	// * Launch the application.
@@ -87,32 +91,87 @@ public class OneGraphShow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OneGraphShow(List<String> s, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) {  
+	public OneGraphShow(List<String> s, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) { 
+		final DataTable data;
+		final  XYPlot plot;
 		senzori=s; 
 		datePickerFrom=datePicker1;
 		datePickerTo=datePicker2;
+		final List list_time;
 		
-		
+		final List list_value;
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        setSize(1000, 1000);
 	        
-	        
-	        
+	     
 	        //racunanje vremenskog intervala
 	        Session session = HibernateUtil.getSessionFactory().openSession();
 		    Transaction t=null;
 			try{
+			
 				t = session.beginTransaction(); 
-			    List list = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo);").list();
+			  list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo)").list();
+			  list_value=session.createQuery("select value from eventlogs where TIMESTAMP> CONVERT(datetime, datePickerFrom) and timestamp< CONVERT(datetime, datePickerTo)").list();
+				data = new DataTable(Date.class, Double.class);
+				for (Iterator iterator = list_time.iterator(); iterator.hasNext();){  
+			    	Iterator iterator1=list_value.iterator(); 
+			        Date dp =(Date) iterator.next();
+			        Double value=(Double)iterator1.next();
+			        data.add(dp, value);
+			        iterator1.hasNext();
+			 
+		    	}
+			  
+				   //kreiranje 2D grafa
+			       plot = new XYPlot(data);
+			       //prikaz grafa na frameu
+			     //  add(new InteractivePanel(plot));
+
+			     plot.setVisible(data, true);
+			     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+			     // plot.setBackground(Color.WHITE);
+
+		         plot.getTitle().setText("Temperature  for 7 days");
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(data, lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		         plot.getPointRenderer(data).setColor(color);
+		         plot.getLineRenderer(data).setColor(color);
+		      // Draw a tick mark and a grid line every 10 units along x axis
+		         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+		         // Draw a tick mark and a grid line every 20 units along y axis
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        
+			     
+			     f = new JFrame();
+			     f.setEnabled(true);
+			     f.getContentPane().setBackground(Color.white);
+			     f.getContentPane().setBounds(new Rectangle(10, 10, 10, 10));
+			     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			     f.setVisible(true);
 			   
-			     /*for (Iterator iterator = list.iterator(); iterator.hasNext();){  
-			        JDatePickerImpl dp =(JDatePickerImpl) iterator.next();
-			        dates.addItem(dp.getJDateInstantPanel());
-			        dates.addAll(arg0)
-			         
-			      }*/
-			      t.commit();
+		     
+			  
+			     
+			     
+				f.setBounds(200, 100, 750, 550);
+					contentPane = new JPanel();
+					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+					contentPane.setBackground(Color.white);
+					contentPane.setBounds(10,10,5,5);
+					
+			       f.getContentPane().add(contentPane, BorderLayout.NORTH);
+			       
+			  
+				InteractivePanel interactivePanel = new InteractivePanel(plot);
+				interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+				f.getContentPane().add(interactivePanel, BorderLayout.CENTER);
+				
+			  t.commit();
+			    
 		}
 			catch(Exception e)
 		{
@@ -123,8 +182,13 @@ public class OneGraphShow extends JFrame {
 			}
 	        
 	        
+			 
+	    
+	   
+	    
+	    	
 	       //Podaci koji ce se prikazivati na grafu 
-	       DataTable data = new DataTable(Double.class, Double.class);
+	      /* DataTable data = new DataTable(Double.class, Double.class);
 	     
 	       
 	       double x = 1; 
@@ -153,48 +217,8 @@ public class OneGraphShow extends JFrame {
 	       x = 7; 
 	       y = 20;
 	       
-	       data.add(x, y);
-	        //kreiranje 2D grafa
-	       XYPlot plot = new XYPlot(data);
-	       //prikaz grafa na frameu
-	     //  add(new InteractivePanel(plot));
-
-	     plot.setVisible(data, true);
-	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-	     // plot.setBackground(Color.WHITE);
-
-         plot.getTitle().setText("Temperature  for 7 days");
-         LineRenderer lines = new DefaultLineRenderer2D();
-         plot.setLineRenderer(data, lines);
-         Color color = new Color(0.0f, 0.3f, 1.0f);
-         plot.getPointRenderer(data).setColor(color);
-         plot.getLineRenderer(data).setColor(color);
-      // Draw a tick mark and a grid line every 10 units along x axis
-         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-         // Draw a tick mark and a grid line every 20 units along y axis
-         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-         
-        
+	       data.add(x, y);*/
 	     
-	     f = new JFrame();
-	     f.setEnabled(true);
-	     f.getContentPane().setBackground(Color.white);
-	     f.getContentPane().setBounds(new Rectangle(10, 10, 10, 10));
-	     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	     f.setVisible(true);
-	   
-     
-	  
-	     
-	     
-		f.setBounds(200, 100, 750, 550);
-			contentPane = new JPanel();
-			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
-			contentPane.setBackground(Color.white);
-			contentPane.setBounds(10,10,5,5);
-			
-	       f.getContentPane().add(contentPane, BorderLayout.NORTH);
 	    
 
 		
@@ -229,11 +253,8 @@ public class OneGraphShow extends JFrame {
 					JOptionPane.showMessageDialog(null, "Nije implementirano.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
-			contentPane.add(btnChange);
+		 	contentPane.add(btnChange);
 			btnChange.setBounds(270, 154, 128, 23);
-			InteractivePanel interactivePanel = new InteractivePanel(plot);
-			interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			f.getContentPane().add(interactivePanel, BorderLayout.CENTER);
 		
 	}
 
