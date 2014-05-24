@@ -19,6 +19,7 @@ import de.erichseifert.gral.examples.ExamplePanel;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -50,6 +51,7 @@ public class BarPlotShow extends ExamplePanel {
 	private JFrame f;
 	public Choice sensorChoice;
 	final List<String> senzori;
+	 
 	// * Launch the application.
 	// */
 	public static void main(String[] args) {
