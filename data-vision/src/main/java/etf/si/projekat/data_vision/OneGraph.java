@@ -134,14 +134,14 @@ public class OneGraph extends JFrame {
 				
 				else if(value == 3){
 					
-					Add3Sensors a = new Add3Sensors();
+					Add3Sensors a = new Add3Sensors(choice.getSelectedItem(), datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else if(value == 4){
 						
-						Add4Sensors a = new Add4Sensors();
+						Add4Sensors a = new Add4Sensors(choice.getSelectedItem(), datePicker, datePicker1);
 						a.setVisible(true);
 						dispose();
 					}
@@ -149,35 +149,35 @@ public class OneGraph extends JFrame {
 				
 				else if(value == 5){
 					
-					Add5Sensors a = new Add5Sensors();
+					Add5Sensors a = new Add5Sensors(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else if(value == 6){
 					
-					Add6Sensors a = new Add6Sensors();
+					Add6Sensors a = new Add6Sensors(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else if(value == 7){
 					
-					Add7Sensor a = new Add7Sensor();
+					Add7Sensor a = new Add7Sensor(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else if(value == 8){
 					
-					Add8Sensors a = new Add8Sensors();
+					Add8Sensors a = new Add8Sensors(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}
 				
 				else{
 					
-					Add9Sensors a = new Add9Sensors();
+					Add9Sensors a = new Add9Sensors(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 					dispose();
 				}

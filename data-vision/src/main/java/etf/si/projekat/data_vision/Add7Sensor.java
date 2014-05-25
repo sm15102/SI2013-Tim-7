@@ -13,6 +13,8 @@ import java.awt.Choice;
 
 import javax.swing.JButton;
 
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -38,6 +40,10 @@ public class Add7Sensor extends JFrame {
 	Choice choice_6 = new Choice();
 	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	final List<String> senzori;
+	final JDatePickerImpl datePickerFrom;
+	final JDatePickerImpl datePickerTo;
+	public String graphType;
+
 
 	private JPanel contentPane;
 
@@ -60,8 +66,11 @@ public class Add7Sensor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Add7Sensor() {
+	public Add7Sensor(String _graphType, JDatePickerImpl dp1, JDatePickerImpl dp2) {
 		senzori=new ArrayList<String>();
+		datePickerFrom=dp1;
+		datePickerTo=dp2;
+		graphType=_graphType;
 		setBounds(100, 100, 370, 318);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -154,6 +163,8 @@ public class Add7Sensor extends JFrame {
 		});
 		btnProcess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(graphType=="Bar"){
 				senzori.add(choice.getSelectedItem());
 				senzori.add(choice_1.getSelectedItem());
 				senzori.add(choice_2.getSelectedItem());
@@ -161,7 +172,10 @@ public class Add7Sensor extends JFrame {
 				senzori.add(choice_4.getSelectedItem());
 				senzori.add(choice_5.getSelectedItem());
 				senzori.add(choice_6.getSelectedItem());
-				BarPlotShow bp=new BarPlotShow(senzori);				
+				BarPlotShow bp=new BarPlotShow(senzori,datePickerFrom, datePickerTo);	
+				}
+				
+				else {}
 				dispose();
 			}
 		});

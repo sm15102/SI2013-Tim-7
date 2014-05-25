@@ -20,6 +20,7 @@ import de.erichseifert.gral.examples.ExamplePanel;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -33,6 +34,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
+
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
 import java.awt.BasicStroke;
 import java.awt.Choice;
@@ -51,6 +54,8 @@ public class BarPlotShow extends ExamplePanel {
 	private JFrame f;
 	public Choice sensorChoice;
 	final List<String> senzori;
+	final JDatePickerImpl datePickerFrom;
+	final JDatePickerImpl datePickerTo;
 	 
 	// * Launch the application.
 	// */
@@ -72,9 +77,11 @@ public class BarPlotShow extends ExamplePanel {
 	 * Create the frame.
 	 */
 	final int velicina;
-	public BarPlotShow(List<String> s) { 
+	public BarPlotShow(List<String> s, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) { 
 		//sensorChoice=_sensorChoice;
 		senzori=s; 
+		datePickerFrom=datePicker1;
+		datePickerTo=datePicker2;
 		velicina=senzori.size();
 		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
 		 double j=0.1;

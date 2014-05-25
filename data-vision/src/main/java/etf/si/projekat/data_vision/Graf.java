@@ -2,10 +2,38 @@ package etf.si.projekat.data_vision;
 
 
 import java.util.Date;
+import java.util.List;
 
 public class Graf {
 	String vrstaGrafa;
+	Date intervalOd;
+	Date intervalDo;
+	int brojPodataka;
+	List<String> tipSenzora;
 	
+	
+
+	public Graf()
+	{}
+	
+	public Graf(String vrsta, Date od, Date doo, int broj, List<String> tip)
+	{
+		vrstaGrafa=vrsta;
+		intervalOd=od;
+		intervalDo=doo;
+		brojPodataka=broj;
+		tipSenzora=tip;
+		
+	}
+	
+	public Graf(String vrsta,int broj, List<String> tip)
+	{
+		vrstaGrafa=vrsta;
+		
+		brojPodataka=broj;
+		tipSenzora=tip;
+		
+	}
 	
 	public String getVrstaGrafa() {
 		return vrstaGrafa;
@@ -31,17 +59,13 @@ public class Graf {
 	public void setBrojPodataka(int brojPodataka) {
 		this.brojPodataka = brojPodataka;
 	}
-	public String getTipSenzora() {
+
+	public List<String> getTipSenzora() {
 		return tipSenzora;
 	}
-	public void setTipSenzora(String tipSenzora) {
+
+	public void setTipSenzora(List<String> tipSenzora) {
 		this.tipSenzora = tipSenzora;
 	}
-	Date intervalOd;
-	Date intervalDo;
-	int brojPodataka;
-	String tipSenzora;
-	
-	
 
 }
