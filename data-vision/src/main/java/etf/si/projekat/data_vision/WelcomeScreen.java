@@ -115,7 +115,7 @@ public class WelcomeScreen extends JFrame {
 		contentPane.add(label);
 		label.setVerticalAlignment(SwingConstants.TOP);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setIcon(new ImageIcon("slikapozadina.zip"));
+		label.setIcon(new ImageIcon("slikapozadina.jpg"));
 		
 		JLabel lblView = new JLabel("View");
 		lblView.setFont(new Font("Tahoma", Font.BOLD, 13));
