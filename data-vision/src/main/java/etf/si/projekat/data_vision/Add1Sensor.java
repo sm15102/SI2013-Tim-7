@@ -44,6 +44,7 @@ import org.hibernate.cfg.Configuration;
 
 
 
+
 import etf.si.projekat.util.HibernateUtil;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
@@ -58,6 +59,7 @@ public class Add1Sensor extends JFrame {
 	final String graphType;
 	private JPanel contentPane;
 	final List<String> senzori;
+	
 	  
 	final JDatePickerImpl datePickerFrom;
 	final JDatePickerImpl datePickerTo;
@@ -85,7 +87,8 @@ public class Add1Sensor extends JFrame {
 	 */
 	public Add1Sensor(String graphT, JDatePickerImpl datePicker1, JDatePickerImpl datePicker2) {
 		senzori=new ArrayList<String>();
-	
+		
+		
 		datePickerFrom=datePicker1;
 		datePickerTo=datePicker2;
 		graphType=graphT;
@@ -106,8 +109,7 @@ public class Add1Sensor extends JFrame {
 				
 				
 				if(graphType=="Bar") {
-					
-					
+										
 				senzori.add(choice.getSelectedItem());	
 	
 				BarPlotShow bp=new BarPlotShow(senzori, datePickerFrom, datePickerTo);
@@ -121,6 +123,9 @@ public class Add1Sensor extends JFrame {
 			//	og.setVisible(true);
 					
 				}
+				
+				
+				
 				dispose();
 				
 				

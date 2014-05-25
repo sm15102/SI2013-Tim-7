@@ -66,11 +66,11 @@ public class TwoGraphs extends JFrame {
 		UtilDateModel model = new UtilDateModel();
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        springLayout.putConstraint(SpringLayout.NORTH, datePicker.getJFormattedTextField(), -23, SpringLayout.SOUTH, datePicker);
-        springLayout.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), -6, SpringLayout.SOUTH, datePicker);
-        springLayout = (SpringLayout) datePicker.getLayout();
+        //springLayout.putConstraint(SpringLayout.NORTH, datePicker.getJFormattedTextField(), -23, SpringLayout.SOUTH, datePicker);
+       // springLayout.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), -6, SpringLayout.SOUTH, datePicker);
+       // springLayout = (SpringLayout) datePicker.getLayout();
         datePicker.setLocation(143, 86);
-        datePicker.setSize(127, 22);
+        datePicker.setSize(127, 27);
        
         contentPane.add(datePicker);
         
@@ -78,8 +78,8 @@ public class TwoGraphs extends JFrame {
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        SpringLayout springLayout_1 = (SpringLayout) datePicker1.getLayout();
-        springLayout_1.putConstraint(SpringLayout.WEST, datePicker1.getJFormattedTextField(), 0, SpringLayout.WEST, datePicker1);
+       // SpringLayout springLayout_1 = (SpringLayout) datePicker1.getLayout();
+       // springLayout_1.putConstraint(SpringLayout.WEST, datePicker1.getJFormattedTextField(), 0, SpringLayout.WEST, datePicker1);
         datePicker1.setLocation(143, 119);
         datePicker1.setSize(127, 27);
         contentPane.add(datePicker1);
@@ -173,6 +173,8 @@ Integer value = (Integer) spinner.getValue();
 				}
 				
 				else {}
+				
+				dispose();
 				
 			}
 			
