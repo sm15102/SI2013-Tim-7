@@ -115,11 +115,14 @@ public class OneGraphShow extends JFrame {
 				t = session.beginTransaction(); 
 			
 			
-			 JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+			 //JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				//ovo je samo za jedan sensor ako je izabran, za sad, pa kad proradi dalje cu :D
-			  list_time = session.createQuery("select value from EventLogs where timestamp>CAST(datePickerFrom as datetime) and timestamp<CAST(datePickerTo AS datetime) and device_name=senzori[0]").list();
+			
+				
+			 list_time = session.createQuery("select value from EventLogs where timestamp>CAST(datePickerFrom as datetime) and timestamp<CAST(datePickerTo AS datetime) and device_name=senzori[0]").list();
 			 
-			  list_value=session.createQuery("select value from EventLogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name=[0]").list();
+				//list_value = session.createQuery("select value from EventLogs where TIMESTAMP>STR_TO_DATE(datePickerFrom, 'YYYY-mm-dd hh:mm:ss') and timestamp<STR_TO_DATE(datePickerTo, 'YYYY-mm-dd hh:mm:ss') and device_name=senzori[0]").list();
+				list_value=session.createQuery("select value from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name=[0]").list();
 			//OVDJE PADA POSLIJE OVIH QUERY-A!! pada kod converta 
 			 
 			  data = new DataTable(Date.class, Double.class);

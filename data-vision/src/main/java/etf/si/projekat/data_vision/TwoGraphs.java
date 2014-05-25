@@ -34,6 +34,7 @@ public class TwoGraphs extends JFrame {
 	//private JTextField textField;
 	// JTextField textField_1;
 	public Choice choice;
+	private SpringLayout springLayout;
 	/**
 	 * Launch the application.
 	 */
@@ -65,10 +66,12 @@ public class TwoGraphs extends JFrame {
 		UtilDateModel model = new UtilDateModel();
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        SpringLayout springLayout = (SpringLayout) datePicker.getLayout();
-        springLayout.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker);
+        springLayout.putConstraint(SpringLayout.NORTH, datePicker.getJFormattedTextField(), -23, SpringLayout.SOUTH, datePicker);
+        springLayout.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), -6, SpringLayout.SOUTH, datePicker);
+        springLayout = (SpringLayout) datePicker.getLayout();
         datePicker.setLocation(143, 86);
         datePicker.setSize(127, 22);
+       
         contentPane.add(datePicker);
         
         
@@ -77,7 +80,7 @@ public class TwoGraphs extends JFrame {
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
         SpringLayout springLayout_1 = (SpringLayout) datePicker1.getLayout();
         springLayout_1.putConstraint(SpringLayout.WEST, datePicker1.getJFormattedTextField(), 0, SpringLayout.WEST, datePicker1);
-        datePicker1.setLocation(143, 116);
+        datePicker1.setLocation(143, 119);
         datePicker1.setSize(127, 27);
         contentPane.add(datePicker1);
 		
@@ -90,22 +93,22 @@ public class TwoGraphs extends JFrame {
 		contentPane.add(lblTimeIntervalForm);
 		
 		JLabel lblTimeIntervalTo = new JLabel("Time interval to:");
-		lblTimeIntervalTo.setBounds(20, 120, 117, 14);
+		lblTimeIntervalTo.setBounds(20, 126, 117, 14);
 		contentPane.add(lblTimeIntervalTo);
 		
 		JLabel lblDataNumber = new JLabel("Data number:");
-		lblDataNumber.setBounds(30, 145, 103, 14);
+		lblDataNumber.setBounds(30, 155, 103, 14);
 		contentPane.add(lblDataNumber);
 		
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(143, 142, 127, 20);
+		spinner.setBounds(143, 152, 127, 20);
 		contentPane.add(spinner);
 		
 		 choice = new Choice();
 		choice.setBounds(143, 60, 127, 20);
-		choice.add("Chart");
 		choice.add("Line");
+		choice.add("Bar");
 		contentPane.add(choice);
 		//final String type=(String) choice.getSelectedItem();
 		final int type1=choice.getSelectedIndex();
@@ -117,8 +120,8 @@ Integer value = (Integer) spinner.getValue();
 				
 				if(value == 1){
 					
-				//	Add1Sensor a = new Add1Sensor(choice.getSelectedItem());
-				//	a.setVisible(true);
+				Add1Sensor a = new Add1Sensor(choice.getSelectedItem(), datePicker, datePicker1);
+				a.setVisible(true);
 				}
 				
 				if(value == 2){
@@ -163,13 +166,13 @@ Integer value = (Integer) spinner.getValue();
 					a.setVisible(true);
 				}
 				
-				else{
+				else  if(value == 9){
 					
 					Add9Sensors a = new Add9Sensors(choice.getSelectedItem(),datePicker, datePicker1);
 					a.setVisible(true);
 				}
 				
-				
+				else {}
 				
 			}
 			

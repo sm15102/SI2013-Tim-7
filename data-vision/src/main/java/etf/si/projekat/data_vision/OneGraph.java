@@ -102,7 +102,7 @@ public class OneGraph extends JFrame {
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(176, 79);
-        datePicker.setSize(117, 27);
+        datePicker.setSize(118, 27);
         contentPane.add(datePicker);
         
         
@@ -110,7 +110,7 @@ public class OneGraph extends JFrame {
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
         datePicker1.setLocation(176, 110);
-        datePicker1.setSize(117, 27);
+        datePicker1.setSize(118, 27);
         contentPane.add(datePicker1);
 		final int type1=choice.getSelectedIndex();
 		Button button = new Button("Continue");
