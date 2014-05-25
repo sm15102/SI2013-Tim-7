@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Label;
 import javax.swing.SwingConstants;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
 
 public class WelcomeScreen extends JFrame {
 
@@ -56,6 +58,7 @@ public class WelcomeScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("ONE GRAPH");
+		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				OneGraph a = new OneGraph();
@@ -112,11 +115,16 @@ public class WelcomeScreen extends JFrame {
 		contentPane.add(label);
 		label.setVerticalAlignment(SwingConstants.TOP);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setIcon(new ImageIcon("C:\\Users\\snjezana.miletic\\Documents\\GitHub\\SI2013Tim7\\design\\slikapozadina.jpg"));
+		label.setIcon(new ImageIcon("slikapozadina.jpg"));
+		
+		JLabel lblView = new JLabel("View");
+		lblView.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblView.setBounds(28, 58, 55, 23);
+		contentPane.add(lblView);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 72, 461, 192);
+		panel.setBounds(0, 56, 461, 208);
 		contentPane.add(panel);
 		
 	
@@ -128,8 +136,10 @@ public class WelcomeScreen extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("DATA VISION\r\n\r\n");
 		lblNewLabel.setFont(new Font("Rosewood Std Regular", Font.BOLD, 28));
-		lblNewLabel.setBounds(28, 25, 441, 36);
+		lblNewLabel.setBounds(28, 9, 441, 36);
 		contentPane.add(lblNewLabel);
+		
+	
 		
 			
 	}
