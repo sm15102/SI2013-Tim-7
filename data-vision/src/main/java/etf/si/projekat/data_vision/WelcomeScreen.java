@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Label;
+import javax.swing.SwingConstants;
 
 public class WelcomeScreen extends JFrame {
 
@@ -105,9 +107,16 @@ public class WelcomeScreen extends JFrame {
 		btnConsumption.setBounds(28, 228, 197, 23);
 		contentPane.add(btnConsumption);
 		
+		JLabel label = new JLabel("");
+		label.setBounds(105, 73, 423, 191);
+		contentPane.add(label);
+		label.setVerticalAlignment(SwingConstants.TOP);
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setIcon(new ImageIcon("C:\\Users\\snjezana.miletic\\Documents\\GitHub\\SI2013Tim7\\design\\slikapozadina.jpg"));
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 73, 461, 192);
+		panel.setBounds(0, 72, 461, 192);
 		contentPane.add(panel);
 		
 	
@@ -119,15 +128,8 @@ public class WelcomeScreen extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("DATA VISION\r\n\r\n");
 		lblNewLabel.setFont(new Font("Rosewood Std Regular", Font.BOLD, 28));
-		lblNewLabel.setBounds(28, 11, 441, 36);
+		lblNewLabel.setBounds(28, 25, 441, 36);
 		contentPane.add(lblNewLabel);
-		
-		JLabel label = new JLabel("");
-		label.setBackground(Color.WHITE);
-		label.setIcon(new ImageIcon("C:\\Users\\snjezana.miletic\\Documents\\GitHub\\SI2013Tim7\\design\\slikapozadina.jpg"));
-		label.setBounds(251, 73, 200, 192);
-		
-		contentPane.add(label);
 		
 			
 	}
