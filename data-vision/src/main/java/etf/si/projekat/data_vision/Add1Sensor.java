@@ -158,6 +158,9 @@ public class Add1Sensor extends JFrame {
 		try{
 			t = session.beginTransaction(); 
 		    List list = session.createQuery("from DeviceType").list();
+		    
+		    
+		    /*list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
 		   
 		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
 		        DeviceType dt =(DeviceType) iterator.next();

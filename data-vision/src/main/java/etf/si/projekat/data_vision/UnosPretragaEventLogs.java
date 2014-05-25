@@ -1,10 +1,12 @@
 package etf.si.projekat.data_vision;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.mapping.List;
 
 import ba.unsa.etf.si.beans.ActivityLogs;
 import ba.unsa.etf.si.beans.EventLogs;
@@ -35,6 +37,7 @@ public class UnosPretragaEventLogs {
 		 s.setTimestamp(null);
 		 
 		 Long id = (Long) session.save(s);
+		 
 		 System.out.println("Dodan red u tabeli EventLogs sa  IDom "+id); 
 		 t.commit(); 
 		 } 
@@ -45,12 +48,20 @@ public class UnosPretragaEventLogs {
 		 System.out.println("Unesite id Eventloga"); 
 		 long id = sc.nextLong();
 		 EventLogs s = ( EventLogs) session.get( EventLogs.class, id);
+	
+		 
 
 		 if (s==null) { 
 		 System.out.println("Nema log sa tim IDom u bazi"); 
 		 } else { 
-		 System.out.println("Uredjaj: "+s.getDevice_name()+" "+s.getDevice_type()+" "+s.getEvent_message() + " "+ s.getTimestamp()); 
-		 } 
+	
+			
+		 System.out.println("Uredjaj: "+s.getDevice_name()+" "+s.getDevice_type()+" "+s.getEvent_message() + " "+ s.getTimestamp()+ s.getValue()); 
+		 }
+		 
+		
+		 
+		 
 		 
 		 t.commit(); 
 		 } 

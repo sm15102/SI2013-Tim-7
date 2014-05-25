@@ -3,15 +3,23 @@ package etf.si.projekat.data_vision;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.awt.Color;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
 public class WelcomeScreen extends JFrame {
 
@@ -115,9 +123,12 @@ public class WelcomeScreen extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel label = new JLabel("");
+		label.setBackground(Color.WHITE);
+		label.setIcon(new ImageIcon("C:\\Users\\snjezana.miletic\\Documents\\GitHub\\SI2013Tim7\\design\\slikapozadina.jpg"));
 		label.setBounds(251, 73, 200, 192);
 		
 		contentPane.add(label);
 		
+			
 	}
 }
