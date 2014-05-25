@@ -248,16 +248,6 @@ public class OneGraphShow extends JFrame {
 		btnEyport.setBounds(100, 100, 10, 10);
 		contentPane.add(btnEyport, BorderLayout.WEST);
 		
-		
-		JButton btnClose = new JButton("Close");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				f.dispose();
-			}
-		});
-		btnClose.setBounds(270, 207, 128, 23);
-		contentPane.add(btnClose);
-		
 			//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			//setContentPane(contentPane);
 			
@@ -269,6 +259,16 @@ public class OneGraphShow extends JFrame {
 			});
 		 	contentPane.add(btnChange);
 			btnChange.setBounds(270, 154, 128, 23);
+			
+			
+			JButton btnClose = new JButton("Close");
+			btnClose.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					f.dispose();
+				}
+			});
+			btnClose.setBounds(270, 207, 128, 23);
+			contentPane.add(btnClose);
 		
 	}
 
