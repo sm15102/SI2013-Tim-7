@@ -210,47 +210,47 @@ public class WelcomeDataVision extends JFrame {
 		
 		lblSensorType2 = new JLabel("Sensor type 2:");
 		lblSensorType2.setBounds(40, 196, 89, 24);
-		//lblSensorType2.setVisible(false);
+		lblSensorType2.setVisible(false);
 		content2.add(lblSensorType2);
 		
 		choice2.setBounds(130, 196, 120, 20);
-		//choice2.setVisible(false);
+		choice2.setVisible(false);
 		content2.add(choice2);
 
 		lblSensorType3 = new JLabel("Sensor type 3:");
 		lblSensorType3.setBounds(40, 226, 89, 14);
-		//lblSensorType3.setVisible(false);
+		lblSensorType3.setVisible(false);
 		content2.add(lblSensorType3);
 		
 		choice3.setBounds(130, 226, 120, 20);
-		//choice3.setVisible(false);
+		choice3.setVisible(false);
 		content2.add(choice3);
 		
 		lblSensorType4 = new JLabel("Sensor type 4:");
 		lblSensorType4.setBounds(40, 256, 89, 14);
-		//lblSensorType4.setVisible(false);
+		lblSensorType4.setVisible(false);
 		content2.add(lblSensorType4);
 		
 		choice4.setBounds(130, 256, 120, 20);
-		//choice4.setVisible(false);
+		choice4.setVisible(false);
 		content2.add(choice4);
 		
 		lblSensorType5 = new JLabel("Sensor type 5:");
 		lblSensorType5.setBounds(40, 286, 89, 14);
-		//lblSensorType5.setVisible(false);
+		lblSensorType5.setVisible(false);
 		content2.add(lblSensorType5);
 		
 		choice5.setBounds(130, 286, 120, 20);
-		//choice5.setVisible(false);
+		choice5.setVisible(false);
 		content2.add(choice5);
 		
 		lblSensorType6 = new JLabel("Sensor type 6:");
 		lblSensorType6.setBounds(40, 316, 89, 14);
-		//lblSensorType6.setVisible(false);
+		lblSensorType6.setVisible(false);
 		content2.add(lblSensorType6);
 		
 		choice6.setBounds(130, 316, 120, 20);
-		//choice6.setVisible(false);
+		choice6.setVisible(false);
 		content2.add(choice6);
 		
 		lblSensorType7 = new JLabel("Sensor type 7:");
@@ -317,60 +317,121 @@ public class WelcomeDataVision extends JFrame {
 				}
 				
 				else if(value == 2){
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
 					
-					Add2Sensors a = new Add2Sensors(choice.getSelectedItem(), datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
 				}
 				
 				else if(value == 3){
 					
-					Add3Sensors a = new Add3Sensors(choice.getSelectedItem(), datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
 				}
 				
 				else if(value == 4){
 						
-						Add4Sensors a = new Add4Sensors(choice.getSelectedItem(), datePicker, datePicker1);
-						a.setVisible(true);
-						dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					
 					}
 				
 				
 				else if(value == 5){
 					
-					Add5Sensors a = new Add5Sensors(choice.getSelectedItem(),datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					lblSensorType5.setVisible(true);
+					choice5.setVisible(true);
 				}
 				
 				else if(value == 6){
-					
-					Add6Sensors a = new Add6Sensors(choice.getSelectedItem(),datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					lblSensorType5.setVisible(true);
+					choice5.setVisible(true);
+					lblSensorType6.setVisible(true);
+					choice6.setVisible(true);
 				}
 				
 				else if(value == 7){
-					
-					Add7Sensor a = new Add7Sensor(choice.getSelectedItem(),datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					lblSensorType5.setVisible(true);
+					choice5.setVisible(true);
+					lblSensorType6.setVisible(true);
+					choice6.setVisible(true);
+					lblSensorType7.setVisible(true);
+					choice7.setVisible(true);
 				}
 				
 				else if(value == 8){
-					
-					Add8Sensors a = new Add8Sensors(choice.getSelectedItem(),datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					lblSensorType5.setVisible(true);
+					choice5.setVisible(true);
+					lblSensorType6.setVisible(true);
+					choice6.setVisible(true);
+					lblSensorType7.setVisible(true);
+					choice7.setVisible(true);
+					lblSensorType8.setVisible(true);
+					choice8.setVisible(true);
 				}
 				
 				else{
-					
-					Add9Sensors a = new Add9Sensors(choice.getSelectedItem(),datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					choice2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					choice3.setVisible(true);
+					lblSensorType4.setVisible(true);
+					choice4.setVisible(true);
+					lblSensorType5.setVisible(true);
+					choice5.setVisible(true);
+					lblSensorType6.setVisible(true);
+					choice6.setVisible(true);
+					lblSensorType7.setVisible(true);
+					choice7.setVisible(true);
+					lblSensorType8.setVisible(true);
+					choice8.setVisible(true);
+					lblSensorType9.setVisible(true);
+					choice9.setVisible(true);
 				}
 				
 				
