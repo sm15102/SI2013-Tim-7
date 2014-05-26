@@ -16,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JToolBar;
 import javax.swing.JTabbedPane;
@@ -156,6 +157,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	    content2 = new JPanel();
 	    content2.setBackground(Color.WHITE);
 	    content2.setBounds(new Rectangle(100, 100, 450, 300));
+	   
 	    JPanel tab2 = new JPanel();
 	    tab2.setOpaque(false);
 	    JLabel tabLabel2 = new JLabel("One graph " );
@@ -237,7 +239,7 @@ public class WelcomeDataVision extends ExamplePanel {
 			}
 			else
 			{
-				//OneBarGraphShow();
+				OneBarGraphShow();
 			}
 				
 			}
@@ -688,6 +690,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	}
 	
 	public void OneBarGraphShow(){
+		JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 		List<Choice> choices=new ArrayList<Choice>();
 		choices.add(choice1);
 		choices.add(choice2);
@@ -745,12 +748,17 @@ public class WelcomeDataVision extends ExamplePanel {
          pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
          // Add plot to Swing component
         // add(new InteractivePanel(plot));
-         
+       
          InteractivePanel interactivePanel = new InteractivePanel(plot);
 	       plot.getTitle().setText("Bar plot");
 			interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			interactivePanel.setVisible(true);
 			content2.add(interactivePanel, BorderLayout.CENTER);
+			//f.getContentPane().add(interactivePanel, BorderLayout.SOUTH);
+			
 		
+		
+			
 	}
 	
 	@Override

@@ -221,5 +221,6 @@ public class OneGraph extends JFrame { //extends JFrame
 		panel_1.setBackground(new Color(0, 191, 255));
 		panel_1.setBounds(0, 218, 434, 54);
 		contentPane.add(panel_1);
+		f.getContentPane().
 	}
 }
