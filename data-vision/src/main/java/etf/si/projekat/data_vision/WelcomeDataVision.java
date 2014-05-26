@@ -305,7 +305,7 @@ public class WelcomeDataVision extends JFrame {
 			
 					lblSensorType1.setVisible(true);
 					choice1.setVisible(true);
-					
+					btnProcess.setVisible(true);
 				
 				}
 				
@@ -314,7 +314,7 @@ public class WelcomeDataVision extends JFrame {
 					choice1.setVisible(true);
 					lblSensorType2.setVisible(true);
 					choice2.setVisible(true);
-					
+					btnProcess.setVisible(true);
 					
 			
 				
@@ -329,6 +329,7 @@ public class WelcomeDataVision extends JFrame {
 					choice2.setVisible(true);
 					lblSensorType3.setVisible(true);
 					choice3.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				else if(value == 4){
@@ -341,6 +342,7 @@ public class WelcomeDataVision extends JFrame {
 					choice3.setVisible(true);
 					lblSensorType4.setVisible(true);
 					choice4.setVisible(true);
+					btnProcess.setVisible(true);
 					
 					}
 				
@@ -357,6 +359,7 @@ public class WelcomeDataVision extends JFrame {
 					choice4.setVisible(true);
 					lblSensorType5.setVisible(true);
 					choice5.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				else if(value == 6){
@@ -372,6 +375,7 @@ public class WelcomeDataVision extends JFrame {
 					choice5.setVisible(true);
 					lblSensorType6.setVisible(true);
 					choice6.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				else if(value == 7){
@@ -389,6 +393,7 @@ public class WelcomeDataVision extends JFrame {
 					choice6.setVisible(true);
 					lblSensorType7.setVisible(true);
 					choice7.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				else if(value == 8){
@@ -408,6 +413,7 @@ public class WelcomeDataVision extends JFrame {
 					choice7.setVisible(true);
 					lblSensorType8.setVisible(true);
 					choice8.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				else{
@@ -429,6 +435,7 @@ public class WelcomeDataVision extends JFrame {
 					choice8.setVisible(true);
 					lblSensorType9.setVisible(true);
 					choice9.setVisible(true);
+					btnProcess.setVisible(true);
 				}
 				
 				
