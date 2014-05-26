@@ -6,11 +6,16 @@ import java.util.Calendar;
 
 public class EventLogs implements java.io.Serializable{
 	Long eventlogs_id;
+
 	String device_name;
 	String device_type;
 	String event_message;
 	Calendar timestamp;
 	double value;
+	ActivityLogs activity_logs;
+	
+	
+	public EventLogs(){}
 	
 	
 	public double getValue() {
@@ -21,10 +26,7 @@ public class EventLogs implements java.io.Serializable{
 		this.value = value;
 	}
 
-	ActivityLogs activity_logs;
 	
-	public EventLogs(){}
-
 	public Long getEventlogs_id() {
 		return eventlogs_id;
 	}

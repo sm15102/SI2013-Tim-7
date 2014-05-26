@@ -114,16 +114,27 @@ public class TableView extends JFrame {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane(table);
+        
+        JButton btnAddDevice = new JButton("Add Device");
+        btnAddDevice.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		AddDevice a = new AddDevice();
+				a.setVisible(true);
+        	}
+        });
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-        	gl_contentPane.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+        	gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
         			.addGap(5)
         			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        				.addComponent(btnAddDevice, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        					.addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
         );
         gl_contentPane.setVerticalGroup(
         	gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -134,7 +145,10 @@ public class TableView extends JFrame {
         				.addGroup(gl_contentPane.createSequentialGroup()
         					.addComponent(btnRefresh)
         					.addGap(4)
-        					.addComponent(btnExit))))
+        					.addComponent(btnExit)
+        					.addGap(7)
+        					.addComponent(btnAddDevice)
+        					.addContainerGap())))
         );
         contentPane.setLayout(gl_contentPane);
         
