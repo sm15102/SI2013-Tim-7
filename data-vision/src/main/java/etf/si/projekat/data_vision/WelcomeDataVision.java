@@ -59,12 +59,13 @@ public class WelcomeDataVision extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 715, 433);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.CYAN);
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(Color.WHITE);
 		/*JLabel lblSnjezaDodatiWelcome = new JLabel("Snjeza dodati welcome sliku :D");
 		lblSnjezaDodatiWelcome.setLocation(new Point(9, 6));
 		lblSnjezaDodatiWelcome.setBackground(SystemColor.inactiveCaptionBorder);
@@ -92,6 +93,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);*/
 		
 	    final JPanel content2 = new JPanel();
+	    content2.setBackground(Color.WHITE);
 	    content2.setBounds(new Rectangle(100, 100, 450, 300));
 	    JPanel tab2 = new JPanel();
 	    tab2.setOpaque(false);
