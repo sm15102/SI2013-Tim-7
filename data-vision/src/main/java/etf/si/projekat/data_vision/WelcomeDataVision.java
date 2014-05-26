@@ -457,38 +457,38 @@ public class WelcomeDataVision extends JFrame {
 		
 		choice1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(0);
+				fillChoices(0);
 			}
 		});
 		choice2.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(1);
+				fillChoices(1);
 			}
 		});
 		
 		choice3.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(2);
+				fillChoices(2);
 			}
 		});
 	
 		
 		choice4.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(3);
+				fillChoices(3);
 			}
 		});
 		
 		choice5.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(4);
+				fillChoices(4);
 			}
 		});
 		
 		
 		choice6.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(5);
+				fillChoices(5);
 			}
 		});
 		
@@ -501,13 +501,13 @@ public class WelcomeDataVision extends JFrame {
 		
 		choice8.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(7);
+				fillChoices(7);
 			}
 		});
 		
 		choice9.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(8);
+				fillChoices(8);
 			}
 		
 		});
