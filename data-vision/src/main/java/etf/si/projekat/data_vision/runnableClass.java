@@ -4,7 +4,7 @@ public class runnableClass {
 
 	public static void main(String[] args) {
 
-		WelcomeScreen s = new WelcomeScreen();
+		GlavniFrame s = new GlavniFrame();
 		s.setVisible(true);
 	}
 
