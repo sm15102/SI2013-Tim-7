@@ -21,6 +21,7 @@ import javax.swing.JSpinner;
 import javax.swing.JToolBar;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.Timer;
 
 import java.awt.SystemColor;
 import java.awt.Point;
@@ -51,7 +52,10 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
+
 import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 import etf.si.projekat.util.HibernateUtil;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -77,7 +81,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	final Choice choice7 = new Choice();
 	final Choice choice8 = new Choice();
 	final Choice choice9 = new Choice();
-	
+	List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
 	final JLabel lblSensorType1;
 	final JLabel lblSensorType2;
 	final JLabel lblSensorType3;
@@ -87,7 +91,6 @@ public class WelcomeDataVision extends ExamplePanel {
 	final JLabel lblSensorType7;
 	final JLabel lblSensorType8;
 	final JLabel lblSensorType9;
-	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
 	final  Button button;
 	final JSpinner spinner;
 	final JTabbedPane tabbedPane;
@@ -101,8 +104,24 @@ public class WelcomeDataVision extends ExamplePanel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					WelcomeDataVision frame = new WelcomeDataVision();
 					frame.setVisible(true);
+					
+					Timer timer = new Timer(1000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				        	
+				    		HibernateDeviceType dt = new HibernateDeviceType();
+				    		dt.giveAllDeviceType();
+				    		HibernateDeviceName dn = new HibernateDeviceName();
+				    		dn.giveAllDeviceName();
+
+				    	
+				        }
+				    });
+				
+				    timer.setRepeats(false);
+				    timer.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -195,6 +214,8 @@ public class WelcomeDataVision extends ExamplePanel {
 		choice.add("Bar");
 		content2.add(choice);
 		
+		
+	  
 		 spinner = new JSpinner();
 		spinner.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
@@ -371,6 +392,28 @@ public class WelcomeDataVision extends ExamplePanel {
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				choice1.enable();
+				choice2.enable();
+				choice3.enable();
+				choice4.enable();
+				choice5.enable();
+				choice6.enable();
+				choice7.enable();
+				choice8.enable();
+				choice9.enable();
+				choice1.removeAll();
+				choice2.removeAll();
+				choice3.removeAll();
+				choice4.removeAll();
+				choice5.removeAll();
+				choice6.removeAll();
+				choice7.removeAll();
+				choice8.removeAll();
+				choice9.removeAll();
+				 for (int i=0; i<list_device.size(); i++){
+			    	 choice1.add(list_device.get(i).getType());
+			    	   }
 				
 				Integer value = (Integer) spinner.getValue();
 				if(value == 1){
@@ -576,26 +619,7 @@ public class WelcomeDataVision extends ExamplePanel {
 		
 		});
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-	    Transaction t=null;
-		try{
-			t = session.beginTransaction(); 
-		    List list = session.createQuery("from DeviceType").list();
-		   
-		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
-		        DeviceType dt =(DeviceType) iterator.next();
-		        choice1.addItem(dt.getType());
-		        list_device.add(dt);
-		      }
-		      t.commit();
-	}
-		catch(Exception e)
-	{
-		System.out.println("Error:"+e);
-	}
-		finally{
-			session.close();
-		}
+		
 		
 		contentPane.add(tabbedPane);
 		}
