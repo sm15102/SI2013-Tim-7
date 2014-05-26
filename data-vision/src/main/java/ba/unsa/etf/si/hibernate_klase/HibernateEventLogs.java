@@ -3,11 +3,10 @@ package ba.unsa.etf.si.hibernate_klase;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import ba.unsa.etf.si.beans.ActivityLogs;
 import ba.unsa.etf.si.beans.EventLogs;
 import etf.si.projekat.util.HibernateUtil;
 
