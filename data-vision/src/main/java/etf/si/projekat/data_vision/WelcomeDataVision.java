@@ -532,8 +532,9 @@ public class WelcomeDataVision extends JFrame {
 		finally{
 			session.close();
 		}
-		/*
-	}
+		
+		contentPane.add(tabbedPane);
+		}
 	
 	public void fillChoices(int k){
 		switch(k){
@@ -651,7 +652,7 @@ public class WelcomeDataVision extends JFrame {
 	    
 	    */
 	    
-	    contentPane.add(tabbedPane);
+	    
 	    
 	    
 	}
