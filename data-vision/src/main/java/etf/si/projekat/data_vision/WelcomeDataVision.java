@@ -100,7 +100,7 @@ public class WelcomeDataVision extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		 tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.WHITE);
 		
 		/*JLabel lblSnjezaDodatiWelcome = new JLabel("Snjeza dodati welcome sliku :D");
@@ -121,6 +121,7 @@ public class WelcomeDataVision extends JFrame {
 		*/
 		
 		final JPanel content = new JPanel();
+		content.setBackground(Color.WHITE);
 	    JPanel tab = new JPanel();
 	    tab.setOpaque(false);
 	   
@@ -290,6 +291,7 @@ public class WelcomeDataVision extends JFrame {
 		content2.add(choice9);
 		
 		final JPanel content3 = new JPanel();
+		content3.setBackground(Color.WHITE);
 	    JPanel tab3 = new JPanel();
 	    tab3.setOpaque(false);
 	    JLabel tabLabel3 = new JLabel("Two graphs" );
@@ -298,6 +300,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab3);
 	    
 	    final JPanel content4 = new JPanel();
+	    content4.setBackground(Color.WHITE);
 	    JPanel tab4 = new JPanel();
 	    tab4.setOpaque(false);
 	    JLabel tabLabel4= new JLabel("Three graphs" );
@@ -306,6 +309,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab4);
 	    
 	    final JPanel content5 = new JPanel();
+	    content5.setBackground(Color.WHITE);
 	    JPanel tab5 = new JPanel();
 	    tab3.setOpaque(false);
 	    JLabel tabLabel5 = new JLabel("Table view" );
@@ -314,6 +318,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab5);
 	    
 	    final JPanel content6 = new JPanel();
+	    content6.setBackground(Color.WHITE);
 	    JPanel tab6 = new JPanel();
 	    tab3.setOpaque(false);
 	    JLabel tabLabel6 = new JLabel("Consumption" );
