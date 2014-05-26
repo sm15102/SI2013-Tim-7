@@ -120,14 +120,14 @@ public class WelcomeDataVision extends JFrame {
 		//tabbedPane.getTabComponent.add(lblGraphType, BorderLayout.WEST);
 		*/
 		
-		/*final JPanel content = new JPanel();
+		final JPanel content = new JPanel();
 	    JPanel tab = new JPanel();
 	    tab.setOpaque(false);
 	   
 	    JLabel tabLabel = new JLabel("Welcome" );
 	    tab.add(tabLabel, BorderLayout.WEST);
 	    tabbedPane.addTab(null, content);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);*/
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);
 		
 	    final JPanel content2 = new JPanel();
 	    content2.setBackground(Color.WHITE);
@@ -141,12 +141,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab2);
 	    
 	    
-	    
-	    
-	    
-	    
-	   // contentPane = new JPanel();
-		//content2.setBorder(new EmptyBorder(5, 5, 5, 5));
+	   
 	
 		content2.setLayout(null);
 		
@@ -294,7 +289,38 @@ public class WelcomeDataVision extends JFrame {
 		choice9.setVisible(false);
 		content2.add(choice9);
 		
-	
+		final JPanel content3 = new JPanel();
+	    JPanel tab3 = new JPanel();
+	    tab3.setOpaque(false);
+	    JLabel tabLabel3 = new JLabel("Two graphs" );
+	    tab3.add(tabLabel3);
+	    tabbedPane.addTab(null, content3);
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab3);
+	    
+	    final JPanel content4 = new JPanel();
+	    JPanel tab4 = new JPanel();
+	    tab4.setOpaque(false);
+	    JLabel tabLabel4= new JLabel("Three graphs" );
+	    tab4.add(tabLabel4);
+	    tabbedPane.addTab(null, content4);
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab4);
+	    
+	    final JPanel content5 = new JPanel();
+	    JPanel tab5 = new JPanel();
+	    tab3.setOpaque(false);
+	    JLabel tabLabel5 = new JLabel("Table view" );
+	    tab5.add(tabLabel5);
+	    tabbedPane.addTab(null, content5);
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab5);
+	    
+	    final JPanel content6 = new JPanel();
+	    JPanel tab6 = new JPanel();
+	    tab3.setOpaque(false);
+	    JLabel tabLabel6 = new JLabel("Consumption" );
+	    tab3.add(tabLabel6);
+	    tabbedPane.addTab(null, content6);
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab6);
+	    
 		
 		
 		button.addActionListener(new ActionListener() {
@@ -604,48 +630,11 @@ public class WelcomeDataVision extends JFrame {
 		}
 		case 8 : {
 			choice9.disable();
-			//btnProcess.setVisible(true);
+			
 		}	
 	}
 		
 		
-		
-	   /* final JPanel content3 = new JPanel();
-	    JPanel tab3 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel3 = new JLabel("Two graphs" );
-	    tab3.add(tabLabel3);
-	    tabbedPane.addTab(null, content3);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab3);
-	    
-	    final JPanel content4 = new JPanel();
-	    JPanel tab4 = new JPanel();
-	    tab4.setOpaque(false);
-	    JLabel tabLabel4= new JLabel("Three graphs" );
-	    tab4.add(tabLabel4);
-	    tabbedPane.addTab(null, content4);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab4);
-	    
-	    final JPanel content5 = new JPanel();
-	    JPanel tab5 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel5 = new JLabel("Table view" );
-	    tab5.add(tabLabel5);
-	    tabbedPane.addTab(null, content5);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab5);
-	    
-	    final JPanel content6 = new JPanel();
-	    JPanel tab6 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel6 = new JLabel("Consumption" );
-	    tab3.add(tabLabel6);
-	    tabbedPane.addTab(null, content6);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab6);
-	    
-	    */
-	    
-	    
-	    
 	    
 	}
 }
