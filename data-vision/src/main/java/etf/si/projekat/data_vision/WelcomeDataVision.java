@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -23,6 +24,8 @@ import javax.swing.SwingConstants;
 
 import java.awt.Choice;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
@@ -35,7 +38,7 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 public class WelcomeDataVision extends JFrame {
 	
 	private JPanel contentPane;
-	
+	final Choice choice;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -99,6 +102,10 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab2);
 	    
 	    
+	    
+	    
+	    
+	    
 	   // contentPane = new JPanel();
 		//content2.setBorder(new EmptyBorder(5, 5, 5, 5));
 	
@@ -122,7 +129,7 @@ public class WelcomeDataVision extends JFrame {
 		lblDataNumber.setBounds(40, 96, 83, 14);
 		content2.add(lblDataNumber);
 		
-	    Choice choice = new Choice();
+	    choice = new Choice();
 		choice.setBounds(130, 10, 117, 25);
 		choice.add("Line");
 		choice.add("Bar");
@@ -137,14 +144,14 @@ public class WelcomeDataVision extends JFrame {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(130, 36, 117, 25);
+		spinner.setBounds(130, 96, 117, 25);
 		
 		content2.add(spinner);
 		
 		UtilDateModel model = new UtilDateModel();
         JDatePanelImpl datePanel = new JDatePanelImpl(model);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        datePicker.setLocation(130, 66);
+        datePicker.setLocation(130, 36);
         datePicker.setSize(118, 27);
         content2.add(datePicker);
         
@@ -152,11 +159,90 @@ public class WelcomeDataVision extends JFrame {
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        datePicker1.setLocation(130, 96);
+        datePicker1.setLocation(130, 66);
         datePicker1.setSize(118, 27);
         content2.add(datePicker1);
         
         
+        Button button = new Button("Continue");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Integer value = (Integer) spinner.getValue();
+				if(value == 1){
+					
+					Add1Sensor a = new Add1Sensor(choice.getSelectedItem(), datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 2){
+					
+					Add2Sensors a = new Add2Sensors(choice.getSelectedItem(), datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 3){
+					
+					Add3Sensors a = new Add3Sensors(choice.getSelectedItem(), datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 4){
+						
+						Add4Sensors a = new Add4Sensors(choice.getSelectedItem(), datePicker, datePicker1);
+						a.setVisible(true);
+						dispose();
+					}
+				
+				
+				else if(value == 5){
+					
+					Add5Sensors a = new Add5Sensors(choice.getSelectedItem(),datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 6){
+					
+					Add6Sensors a = new Add6Sensors(choice.getSelectedItem(),datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 7){
+					
+					Add7Sensor a = new Add7Sensor(choice.getSelectedItem(),datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else if(value == 8){
+					
+					Add8Sensors a = new Add8Sensors(choice.getSelectedItem(),datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				else{
+					
+					Add9Sensors a = new Add9Sensors(choice.getSelectedItem(),datePicker, datePicker1);
+					a.setVisible(true);
+					dispose();
+				}
+				
+				
+				
+				
+				
+				
+			}
+		});
+        
+		button.setBounds(176, 126, 70, 22);
+		content2.add(button);
 	    
 	   /* final JPanel content3 = new JPanel();
 	    JPanel tab3 = new JPanel();

@@ -94,7 +94,7 @@ public class OneGraph extends JFrame {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(177, 140, 117, 25);
+		spinner.setBounds(177, 110, 117, 25);
 		
 		contentPane.add(spinner);
 		
@@ -109,7 +109,7 @@ public class OneGraph extends JFrame {
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        datePicker1.setLocation(176, 110);
+        datePicker1.setLocation(176, 140);
         datePicker1.setSize(118, 27);
         contentPane.add(datePicker1);
 		final int type1=choice.getSelectedIndex();
