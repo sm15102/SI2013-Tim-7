@@ -26,14 +26,7 @@ public class Graf {
 		
 	}
 	
-	public Graf(String vrsta,int broj, List<String> tip)
-	{
-		vrstaGrafa=vrsta;
-		
-		brojPodataka=broj;
-		tipSenzora=tip;
-		
-	}
+	
 	
 	public String getVrstaGrafa() {
 		return vrstaGrafa;

@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Potrosnja {
 	Date intervalOd;
+	Date intervalDo;
+	String tipSenzora;
+	double snagaUredjaja;
+	
 	public Date getIntervalOd() {
 		return intervalOd;
 	}
@@ -30,9 +34,7 @@ public class Potrosnja {
 	}
 	
 	
-	Date intervalDo;
-	String tipSenzora;
-	double snagaUredjaja;
+	
 	
 	public double RacunajPotrosnju(){
 		int days=(int)( (intervalDo.getTime() - intervalOd.getTime()) / (1000 * 60 * 60 * 24));
