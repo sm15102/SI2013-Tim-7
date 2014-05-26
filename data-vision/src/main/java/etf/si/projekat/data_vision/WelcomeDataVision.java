@@ -28,6 +28,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -65,6 +68,10 @@ public class WelcomeDataVision extends JFrame {
 	final JLabel lblSensorType7;
 	final JLabel lblSensorType8;
 	final JLabel lblSensorType9;
+	ArrayList<DeviceType> list_device = new ArrayList<DeviceType>();
+	final  Button button;
+	final JSpinner spinner;
+	final JTabbedPane tabbedPane;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -91,7 +98,7 @@ public class WelcomeDataVision extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		 tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.WHITE);
 		/*JLabel lblSnjezaDodatiWelcome = new JLabel("Snjeza dodati welcome sliku :D");
 		lblSnjezaDodatiWelcome.setLocation(new Point(9, 6));
@@ -164,7 +171,7 @@ public class WelcomeDataVision extends JFrame {
 		choice.add("Bar");
 		content2.add(choice);
 		
-		final JSpinner spinner = new JSpinner();
+		 spinner = new JSpinner();
 		spinner.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
 			}
@@ -193,7 +200,7 @@ public class WelcomeDataVision extends JFrame {
         content2.add(datePicker1);
         
         
-        Button button = new Button("Continue");
+       button = new Button("Continue");
 		
 		button.setBounds(176, 126, 70, 22);
 		content2.add(button);
@@ -280,20 +287,73 @@ public class WelcomeDataVision extends JFrame {
 		choice9.setVisible(false);
 		content2.add(choice9);
 		
+	/*	
+		choice1.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(0);
+			}
+		});
+		choice2.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(1);
+			}
+		});
+		
+		choice3.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(2);
+			}
+		});
+	
+		
+		choice4.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(3);
+			}
+		});
+		
+		choice5.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(4);
+			}
+		});
+		
+		
+		choice6.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(5);
+			}
+		});
+		
+		choice7.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(6);
+			}
+		});
+		
+		
+		choice8.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(7);
+			}
+		});
+		
+		choice9.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(8);
+			}
+		});
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    Transaction t=null;
 		try{
 			t = session.beginTransaction(); 
-		   List list = session.createQuery("from DeviceType").list();
-		    
-		    
-		   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
+		    List list = session.createQuery("from DeviceType").list();
 		   
-		  for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+		     for (Iterator iterator = list.iterator(); iterator.hasNext();){  
 		        DeviceType dt =(DeviceType) iterator.next();
 		        choice1.addItem(dt.getType());
-		         
+		        list_device.add(dt);
 		      }
 		      t.commit();
 	}
@@ -303,9 +363,88 @@ public class WelcomeDataVision extends JFrame {
 	}
 		finally{
 			session.close();
-		} 
-	
-	    
+		}
+	}
+	public void fillChoices(int k){
+		switch(k){
+		case 0 : {
+			for(int i=0; i<list_device.size();i++){
+			if(choice1.getSelectedItem() == list_device.get(i).getType()) continue;
+			choice2.add(list_device.get(i).getType());
+			}
+			choice1.disable();
+			break;
+			
+		}
+		case 1 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice3.add(list_device.get(i).getType());
+				}
+				choice2.disable();
+				break;
+		}
+		case 2 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice4.add(list_device.get(i).getType());
+				}
+				choice3.disable();
+				break;
+		}
+		case 3 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
+						(choice4.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice5.add(list_device.get(i).getType());
+				}
+				choice4.disable();
+				break;
+		}
+		case 4 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
+						(choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice6.add(list_device.get(i).getType());
+				}
+				choice5.disable();
+				break;
+		}
+		case 5 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
+						(choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice7.add(list_device.get(i).getType());
+				}
+				choice6.disable();
+				break;
+		}
+		case 6 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
+				   (choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())||
+				   (choice7.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice8.add(list_device.get(i).getType());
+				}
+				choice7.disable();
+				break;
+		}
+		case 7 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
+				   (choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())||
+				   (choice7.getSelectedItem() == list_device.get(i).getType())||(choice8.getSelectedItem() == list_device.get(i).getType())) continue;
+				choice9.add(list_device.get(i).getType());
+				}
+				choice8.disable();
+				break;
+		}
+		case 8 : {
+			choice9.disable();
+			//btnProcess.setVisible(true);
+		}	
+	}
+		*/
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -314,6 +453,30 @@ public class WelcomeDataVision extends JFrame {
 			
 					lblSensorType1.setVisible(true);
 					choice1.setVisible(true);
+					
+					Session session = HibernateUtil.getSessionFactory().openSession();
+				    Transaction t=null;
+					try{
+						t = session.beginTransaction(); 
+					   List list = session.createQuery("from DeviceType").list();
+					    
+					    
+					   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
+					   
+					  for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+					        DeviceType dt =(DeviceType) iterator.next();
+					        choice1.addItem(dt.getType());
+					         
+					      }
+					      t.commit();
+				}
+					catch(Exception e1)
+				{
+					System.out.println("Error:"+e1);
+				}
+					finally{
+						session.close();
+					} 
 				}
 				
 				else if(value == 2){
@@ -321,6 +484,10 @@ public class WelcomeDataVision extends JFrame {
 					choice1.setVisible(true);
 					lblSensorType2.setVisible(true);
 					choice2.setVisible(true);
+					
+					
+			
+				
 					
 				}
 				
@@ -439,7 +606,7 @@ public class WelcomeDataVision extends JFrame {
 				
 				
 				
-			}
+		}
 		});
         
 		
