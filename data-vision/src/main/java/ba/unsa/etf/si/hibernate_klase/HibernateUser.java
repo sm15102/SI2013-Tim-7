@@ -12,6 +12,9 @@ public class HibernateUser {
 	Session session;
     Transaction t;
     
+    public HibernateUser() {}
+    
+    
     
 	
 
