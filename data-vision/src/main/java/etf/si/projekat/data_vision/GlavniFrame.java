@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.CompoundBorder;
 import javax.swing.BoxLayout;
+import java.awt.GridLayout;
 
 public class GlavniFrame extends JFrame {
 
@@ -41,7 +42,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 406);
+		setBounds(100, 100, 667, 465);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -65,7 +66,7 @@ public class GlavniFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(new CompoundBorder());
