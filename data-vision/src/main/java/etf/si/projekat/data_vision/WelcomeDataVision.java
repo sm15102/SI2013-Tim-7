@@ -11,6 +11,7 @@ import java.awt.EventQueue;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JToolBar;
@@ -72,6 +73,7 @@ public class WelcomeDataVision extends JFrame {
 	final  Button button;
 	final JSpinner spinner;
 	final JTabbedPane tabbedPane;
+	final JButton btnProcess = new JButton("Process");
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -100,6 +102,7 @@ public class WelcomeDataVision extends JFrame {
 		
 		 tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.WHITE);
+		
 		/*JLabel lblSnjezaDodatiWelcome = new JLabel("Snjeza dodati welcome sliku :D");
 		lblSnjezaDodatiWelcome.setLocation(new Point(9, 6));
 		lblSnjezaDodatiWelcome.setBackground(SystemColor.inactiveCaptionBorder);
@@ -205,6 +208,10 @@ public class WelcomeDataVision extends JFrame {
 		button.setBounds(176, 126, 70, 22);
 		content2.add(button);
 		
+		btnProcess.setBounds(170, 426, 90, 22);
+		btnProcess.setVisible(false);
+		content2.add(btnProcess);
+		
 		
 		lblSensorType1 = new JLabel("Sensor type 1:");
 		lblSensorType1.setBounds(40, 166, 89, 24);
@@ -299,29 +306,7 @@ public class WelcomeDataVision extends JFrame {
 					lblSensorType1.setVisible(true);
 					choice1.setVisible(true);
 					
-					/*Session session = HibernateUtil.getSessionFactory().openSession();
-				    Transaction t=null;
-					try{
-						t = session.beginTransaction(); 
-					   List list = session.createQuery("from DeviceType").list();
-					    
-					    
-					   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
-					   
-					  /*for (Iterator iterator = list.iterator(); iterator.hasNext();){  
-					        DeviceType dt =(DeviceType) iterator.next();
-					        choice1.addItem(dt.getType());
-					         
-					      }
-					      t.commit();
-				}
-					catch(Exception e1)
-				{
-					System.out.println("Error:"+e1);
-				}
-					finally{
-						session.close();
-					} */
+				
 				}
 				
 				else if(value == 2){
@@ -494,7 +479,7 @@ public class WelcomeDataVision extends JFrame {
 		
 		choice7.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				//fillChoices(6);
+				fillChoices(6);
 			}
 		});
 		
