@@ -28,9 +28,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import ba.unsa.etf.si.beans.DeviceType;
+import etf.si.projekat.util.HibernateUtil;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -39,6 +46,7 @@ public class WelcomeDataVision extends JFrame {
 	
 	private JPanel contentPane;
 	final Choice choice;
+	final Choice choice1 = new Choice();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -245,6 +253,41 @@ public class WelcomeDataVision extends JFrame {
         
 		button.setBounds(176, 126, 70, 22);
 		content2.add(button);
+		
+		
+		JLabel lblSensorType = new JLabel("Sensor type:");
+		lblSensorType.setBounds(40, 166, 79, 14);
+		lblSensorType.setVisible(false);
+		content2.add(lblSensorType);
+		
+		choice1.setBounds(130, 166, 120, 20);
+		choice1.setVisible(false);
+		content2.add(choice1);
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+	    Transaction t=null;
+		try{
+			t = session.beginTransaction(); 
+		   List list = session.createQuery("from DeviceType").list();
+		    
+		    
+		   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
+		   
+		  for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+		        DeviceType dt =(DeviceType) iterator.next();
+		        choice1.addItem(dt.getType());
+		         
+		      }
+		      t.commit();
+	}
+		catch(Exception e)
+	{
+		System.out.println("Error:"+e);
+	}
+		finally{
+			session.close();
+		} 
+	
 	    
 	   /* final JPanel content3 = new JPanel();
 	    JPanel tab3 = new JPanel();
