@@ -47,6 +47,25 @@ public class WelcomeDataVision extends JFrame {
 	private JPanel contentPane;
 	final Choice choice;
 	final Choice choice1 = new Choice();
+	final Choice choice2 = new Choice();
+	final Choice choice3 = new Choice();
+	final Choice choice4 = new Choice();
+	final Choice choice5 = new Choice();
+	final Choice choice6 = new Choice();
+	final Choice choice7 = new Choice();
+	final Choice choice8 = new Choice();
+	final Choice choice9 = new Choice();
+	
+	final JLabel lblSensorType1;
+	final JLabel lblSensorType2;
+	final JLabel lblSensorType3;
+	final JLabel lblSensorType4;
+	final JLabel lblSensorType5;
+	final JLabel lblSensorType6;
+	final JLabel lblSensorType7;
+	final JLabel lblSensorType8;
+	final JLabel lblSensorType9;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +84,7 @@ public class WelcomeDataVision extends JFrame {
 	 */
 	public WelcomeDataVision() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 715, 433);
+		setBounds(100, 100, 769, 538);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -175,15 +194,126 @@ public class WelcomeDataVision extends JFrame {
         
         
         Button button = new Button("Continue");
+		
+		button.setBounds(176, 126, 70, 22);
+		content2.add(button);
+		
+		
+		lblSensorType1 = new JLabel("Sensor type 1:");
+		lblSensorType1.setBounds(40, 166, 89, 24);
+		lblSensorType1.setVisible(false);
+		content2.add(lblSensorType1);
+		
+		choice1.setBounds(130, 166, 120, 20);
+		choice1.setVisible(false);
+		content2.add(choice1);
+		
+		lblSensorType2 = new JLabel("Sensor type 2:");
+		lblSensorType2.setBounds(40, 196, 89, 24);
+		//lblSensorType2.setVisible(false);
+		content2.add(lblSensorType2);
+		
+		choice2.setBounds(130, 196, 120, 20);
+		//choice2.setVisible(false);
+		content2.add(choice2);
+
+		lblSensorType3 = new JLabel("Sensor type 3:");
+		lblSensorType3.setBounds(40, 226, 89, 14);
+		//lblSensorType3.setVisible(false);
+		content2.add(lblSensorType3);
+		
+		choice3.setBounds(130, 226, 120, 20);
+		//choice3.setVisible(false);
+		content2.add(choice3);
+		
+		lblSensorType4 = new JLabel("Sensor type 4:");
+		lblSensorType4.setBounds(40, 256, 89, 14);
+		//lblSensorType4.setVisible(false);
+		content2.add(lblSensorType4);
+		
+		choice4.setBounds(130, 256, 120, 20);
+		//choice4.setVisible(false);
+		content2.add(choice4);
+		
+		lblSensorType5 = new JLabel("Sensor type 5:");
+		lblSensorType5.setBounds(40, 286, 89, 14);
+		//lblSensorType5.setVisible(false);
+		content2.add(lblSensorType5);
+		
+		choice5.setBounds(130, 286, 120, 20);
+		//choice5.setVisible(false);
+		content2.add(choice5);
+		
+		lblSensorType6 = new JLabel("Sensor type 6:");
+		lblSensorType6.setBounds(40, 316, 89, 14);
+		//lblSensorType6.setVisible(false);
+		content2.add(lblSensorType6);
+		
+		choice6.setBounds(130, 316, 120, 20);
+		//choice6.setVisible(false);
+		content2.add(choice6);
+		
+		lblSensorType7 = new JLabel("Sensor type 7:");
+		lblSensorType7.setBounds(40, 346, 89, 14);
+		lblSensorType7.setVisible(false);
+		content2.add(lblSensorType7);
+		
+		choice7.setBounds(130, 346, 120, 20);
+		choice7.setVisible(false);
+		content2.add(choice7);
+		
+		lblSensorType8 = new JLabel("Sensor type 8:");
+		lblSensorType8.setBounds(40, 376, 89, 14);
+		lblSensorType8.setVisible(false);
+		content2.add(lblSensorType8);
+		
+		choice8.setBounds(130, 376, 120, 20);
+		choice8.setVisible(false);
+		content2.add(choice8);
+		
+		lblSensorType9 = new JLabel("Sensor type 9:");
+		lblSensorType9.setBounds(40, 406, 89, 14);
+		lblSensorType9.setVisible(false);
+		content2.add(lblSensorType9);
+		
+		choice9.setBounds(130, 406, 120, 20);
+		choice9.setVisible(false);
+		content2.add(choice9);
+		
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+	    Transaction t=null;
+		try{
+			t = session.beginTransaction(); 
+		   List list = session.createQuery("from DeviceType").list();
+		    
+		    
+		   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
+		   
+		  for (Iterator iterator = list.iterator(); iterator.hasNext();){  
+		        DeviceType dt =(DeviceType) iterator.next();
+		        choice1.addItem(dt.getType());
+		         
+		      }
+		      t.commit();
+	}
+		catch(Exception e)
+	{
+		System.out.println("Error:"+e);
+	}
+		finally{
+			session.close();
+		} 
+	
+	    
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Integer value = (Integer) spinner.getValue();
 				if(value == 1){
-					
-					Add1Sensor a = new Add1Sensor(choice.getSelectedItem(), datePicker, datePicker1);
-					a.setVisible(true);
-					dispose();
+			
+					lblSensorType1.setVisible(true);
+					choice1.setVisible(true);
 				}
 				
 				else if(value == 2){
@@ -251,44 +381,8 @@ public class WelcomeDataVision extends JFrame {
 			}
 		});
         
-		button.setBounds(176, 126, 70, 22);
-		content2.add(button);
 		
 		
-		JLabel lblSensorType = new JLabel("Sensor type:");
-		lblSensorType.setBounds(40, 166, 79, 14);
-		lblSensorType.setVisible(false);
-		content2.add(lblSensorType);
-		
-		choice1.setBounds(130, 166, 120, 20);
-		choice1.setVisible(false);
-		content2.add(choice1);
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-	    Transaction t=null;
-		try{
-			t = session.beginTransaction(); 
-		   List list = session.createQuery("from DeviceType").list();
-		    
-		    
-		   // list_time = session.createQuery("select timestamp from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name='CO2'").list();*/
-		   
-		  for (Iterator iterator = list.iterator(); iterator.hasNext();){  
-		        DeviceType dt =(DeviceType) iterator.next();
-		        choice1.addItem(dt.getType());
-		         
-		      }
-		      t.commit();
-	}
-		catch(Exception e)
-	{
-		System.out.println("Error:"+e);
-	}
-		finally{
-			session.close();
-		} 
-	
-	    
 	   /* final JPanel content3 = new JPanel();
 	    JPanel tab3 = new JPanel();
 	    tab3.setOpaque(false);
