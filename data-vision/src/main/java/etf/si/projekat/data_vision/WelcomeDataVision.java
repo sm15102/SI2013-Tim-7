@@ -10,6 +10,7 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Label;
 import java.awt.LinearGradientPaint;
 
 import javax.swing.GroupLayout;
@@ -52,7 +53,6 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
-
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
@@ -67,6 +67,7 @@ import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import de.erichseifert.gral.examples.ExamplePanel;
+import de.erichseifert.gral.graphics.Drawable;
 public class WelcomeDataVision extends ExamplePanel {
 	ArrayList<String> senzori = new ArrayList<String>();
 	
@@ -97,9 +98,11 @@ public class WelcomeDataVision extends ExamplePanel {
 	final JButton btnProcess = new JButton("Process");
 	private JFrame f;
 	private InteractivePanel interactivePanel;
+	
     
 	
-	final JPanel content2;
+	//final JPanel content2;
+	private InteractivePanel interactivePanel_1;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -175,7 +178,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	    tabbedPane.addTab(null, content);
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);*/
 		
-	    content2 = new JPanel();
+		final JPanel content2=new JPanel();
 	    content2.setBackground(Color.WHITE);
 	    content2.setBounds(new Rectangle(100, 100, 450, 300));
 	    
@@ -359,6 +362,9 @@ public class WelcomeDataVision extends ExamplePanel {
 		choice9.setBounds(130, 406, 120, 20);
 		choice9.setVisible(false);
 		content2.add(choice9);
+		
+		interactivePanel_1 = new InteractivePanel((Drawable) null);
+		content2.add(interactivePanel_1);
 		
 		/*final JPanel content3 = new JPanel();
 		content3.setBackground(Color.WHITE);
@@ -753,7 +759,7 @@ public class WelcomeDataVision extends ExamplePanel {
 			
 		 }
        
-         BarPlot plot = new BarPlot(data);
+       BarPlot  plot = new BarPlot(data);
          // Format plot
          plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
          plot.setBarWidth(0.075);
@@ -786,10 +792,14 @@ public class WelcomeDataVision extends ExamplePanel {
 	       plot.getTitle().setText("Bar plot");
 			interactivePanel.setVisible(true);
 		   // content2.add(interactivePanel, BorderLayout.CENTER);
-			f.getContentPane().add(interactivePanel, BorderLayout.SOUTH); //doda u novi tab graf
-			//f.add(new InteractivePanel(plot));
-		//	f.getContentPane().getComponent(0).getComponentAt(0);
-			
+			//content2.add(new Label("bla")); //doda u novi tab graf
+			//content2.add(new InteractivePanel(plot));
+		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
+
+		//f.getContentPane().getComponent(0).getComponentAt(0);
+	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+		
+		    tabbedPane.addTab(null, interactivePanel);
 			
 			
 	}
@@ -802,5 +812,4 @@ public class WelcomeDataVision extends ExamplePanel {
 	 public String getDescription() {
 	         return "Bar plot with example data and color gradients";
 	 }
-	
 }
