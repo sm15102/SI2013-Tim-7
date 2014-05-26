@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
 
+import de.erichseifert.gral.examples.ExamplePanel;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -29,7 +30,7 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.Color;
 
-public class OneGraph extends JFrame {
+public class OneGraph extends JFrame { //extends JFrame
 
 	private JPanel contentPane;
 	private JTextField textField;

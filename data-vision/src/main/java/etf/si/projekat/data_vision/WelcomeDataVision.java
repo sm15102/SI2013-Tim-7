@@ -4,10 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.LinearGradientPaint;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -40,13 +43,27 @@ import javax.swing.BoxLayout;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import de.erichseifert.gral.data.DataTable;
+import de.erichseifert.gral.plots.BarPlot;
+import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.ui.InteractivePanel;
+import de.erichseifert.gral.util.GraphicsUtils;
+import de.erichseifert.gral.util.Insets2D;
+import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceType;
 import etf.si.projekat.util.HibernateUtil;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
-
-public class WelcomeDataVision extends JFrame {
+import de.erichseifert.gral.plots.BarPlot;
+import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.ui.InteractivePanel;
+import de.erichseifert.gral.util.GraphicsUtils;
+import de.erichseifert.gral.util.Insets2D;
+import de.erichseifert.gral.util.Location;
+import de.erichseifert.gral.examples.ExamplePanel;
+public class WelcomeDataVision extends ExamplePanel {
+	ArrayList<String> senzori = new ArrayList<String>();
 	
 	private JPanel contentPane;
 	final Choice choice;
@@ -74,6 +91,10 @@ public class WelcomeDataVision extends JFrame {
 	final JSpinner spinner;
 	final JTabbedPane tabbedPane;
 	final JButton btnProcess = new JButton("Process");
+	private JFrame f;
+    
+	
+	final JPanel content2;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -92,17 +113,20 @@ public class WelcomeDataVision extends JFrame {
 	 * Create the frame.
 	 */
 	public WelcomeDataVision() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 769, 538);
+	    f = new JFrame();
+		f.setEnabled(true);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setBounds(100, 100, 769, 538);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		f.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.WHITE);
-		
+		f.add(tabbedPane);
 		/*JLabel lblSnjezaDodatiWelcome = new JLabel("Snjeza dodati welcome sliku :D");
 		lblSnjezaDodatiWelcome.setLocation(new Point(9, 6));
 		lblSnjezaDodatiWelcome.setBackground(SystemColor.inactiveCaptionBorder);
@@ -120,17 +144,16 @@ public class WelcomeDataVision extends JFrame {
 		//tabbedPane.getTabComponent.add(lblGraphType, BorderLayout.WEST);
 		*/
 		
-		final JPanel content = new JPanel();
+		/*final JPanel content = new JPanel();
 		content.setBackground(Color.WHITE);
 	    JPanel tab = new JPanel();
 	    tab.setOpaque(false);
-	   
 	    JLabel tabLabel = new JLabel("Welcome" );
 	    tab.add(tabLabel, BorderLayout.WEST);
 	    tabbedPane.addTab(null, content);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);
+	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab);*/
 		
-	    final JPanel content2 = new JPanel();
+	    content2 = new JPanel();
 	    content2.setBackground(Color.WHITE);
 	    content2.setBounds(new Rectangle(100, 100, 450, 300));
 	    JPanel tab2 = new JPanel();
@@ -203,6 +226,22 @@ public class WelcomeDataVision extends JFrame {
 		
 		button.setBounds(176, 126, 70, 22);
 		content2.add(button);
+		btnProcess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+				//prikaz grafa za jedan senzor
+			if(choice.getSelectedItem()=="Line")
+			{
+				
+				//OneLineGraphShow();
+			}
+			else
+			{
+				//OneBarGraphShow();
+			}
+				
+			}
+		});
 		
 		btnProcess.setBounds(170, 426, 90, 22);
 		btnProcess.setVisible(false);
@@ -290,7 +329,7 @@ public class WelcomeDataVision extends JFrame {
 		choice9.setVisible(false);
 		content2.add(choice9);
 		
-		final JPanel content3 = new JPanel();
+		/*final JPanel content3 = new JPanel();
 		content3.setBackground(Color.WHITE);
 	    JPanel tab3 = new JPanel();
 	    tab3.setOpaque(false);
@@ -326,7 +365,7 @@ public class WelcomeDataVision extends JFrame {
 	    tabbedPane.addTab(null, content6);
 	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab6);
 	    
-		
+		*/
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -639,7 +678,88 @@ public class WelcomeDataVision extends JFrame {
 		}	
 	}
 		
-		
-	    
 	}
+	
+	
+	public void OneLineGraphShow(){
+		
+		
+	
+	}
+	
+	public void OneBarGraphShow(){
+		List<Choice> choices=new ArrayList<Choice>();
+		choices.add(choice1);
+		choices.add(choice2);
+		choices.add(choice3);
+		choices.add(choice4);
+		choices.add(choice5);
+		choices.add(choice6);
+		choices.add(choice7);
+		choices.add(choice8);
+		choices.add(choice9);
+		
+		Integer value = (Integer) spinner.getValue();
+		
+		for(int i=0;i<value;i++)
+		{
+			
+			senzori.add(choices.get(i).getSelectedItem());
+		   
+		}
+		
+		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
+		 double j=0.1;
+		 for(int i=0; i<senzori.size(); i++)
+		 {
+			String naziv=senzori.get(i);
+			data.add(j, i+1, naziv);
+			j+=0.2;
+			
+		 }
+       
+         BarPlot plot = new BarPlot(data);
+         // Format plot
+         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+         plot.setBarWidth(0.075);
+         // Format bars
+         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+         pointRenderer.setColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+                 )
+         );
+         pointRenderer.setBorderStroke(new BasicStroke(3f));
+         pointRenderer.setBorderColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                 )
+         );
+         
+         pointRenderer.setValueVisible(true);
+         pointRenderer.setValueColumn(2);
+         pointRenderer.setValueLocation(Location.CENTER);
+         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+         // Add plot to Swing component
+        // add(new InteractivePanel(plot));
+         
+         InteractivePanel interactivePanel = new InteractivePanel(plot);
+	       plot.getTitle().setText("Bar plot");
+			interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			content2.add(interactivePanel, BorderLayout.CENTER);
+		
+	}
+	
+	@Override
+	 public String getTitle() {
+	         return "Bar plot";
+	 }
+	 @Override
+	 public String getDescription() {
+	         return "Bar plot with example data and color gradients";
+	 }
+	
 }
