@@ -10,11 +10,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JTabbedPane;
 import javax.swing.border.CompoundBorder;
 import javax.swing.BoxLayout;
+
 import java.awt.GridLayout;
 
 public class GlavniFrame extends JFrame {
@@ -62,6 +65,13 @@ public class GlavniFrame extends JFrame {
 		mnNewMenu.add(mntmExit);
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				AboutTeam7 frame = new AboutTeam7();
+				frame.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmAbout);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
