@@ -21,17 +21,25 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.util.List;
+
 import javax.swing.JButton;
+
+import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BasicInformationPanel extends JPanel {
+    List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
 
 	/**
 	 * Create the panel.
 	 */
 	public BasicInformationPanel() {
 		setLayout(null);
+
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -219,13 +227,13 @@ public class BasicInformationPanel extends JPanel {
 		
 		lblSensorType.setVisible(false);
 		separator_2.setVisible(false);
-      
+
       JButton btnProcess = new JButton("Process");
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
-			int value = (Integer) spinner.getValue();
+      		int value = (Integer) spinner.getValue();
 			
 			if(value == 0){
 				choice_1.setVisible(false);
@@ -472,10 +480,103 @@ public class BasicInformationPanel extends JPanel {
 				label_4.setVisible(true);
 				label_5.setVisible(true);
 			}
+			
+			
+			
+		      
+		      for (int i=0; i<list_device.size(); i++){
+			    	 choice_1.add(list_device.get(i).getType() );
+		      }
+		      
+		     
+		     
+		  		switch(value){
+		  		case 2 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  			if(choice_1.getSelectedItem() == list_device.get(i).getType()) continue;
+		  			choice_2.add(list_device.get(i).getType());
+		  			}
+		  			choice_1.disable();
+		  			break;
+		  			
+		  		}
+		  		case 3 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_3.add(list_device.get(i).getType());
+		  				}
+		  				choice_2.disable();
+		  				break;
+		  		}
+		  		case 4 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_4.add(list_device.get(i).getType());
+		  				}
+		  				choice_3.disable();
+		  				break;
+		  		}
+		  		case 5 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
+		  						(choice_4.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_5.add(list_device.get(i).getType());
+		  				}
+		  				choice_4.disable();
+		  				break;
+		  		}
+		  		case 6 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
+		  						(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_6.add(list_device.get(i).getType());
+		  				}
+		  				choice_5.disable();
+		  				break;
+		  		}
+		  		case 7 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
+		  						(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_7.add(list_device.get(i).getType());
+		  				}
+		  				choice_6.disable();
+		  				break;
+		  		}
+		  		case 8 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
+		  				   (choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())||
+		  				   (choice_7.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_8.add(list_device.get(i).getType());
+		  				}
+		  				choice_7.disable();
+		  				break;
+		  		}
+		  		case 9 : {
+		  			for(int i=0; i<list_device.size();i++){
+		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
+		  				   (choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())||
+		  				   (choice_7.getSelectedItem() == list_device.get(i).getType())||(choice_8.getSelectedItem() == list_device.get(i).getType())) continue;
+		  				choice_9.add(list_device.get(i).getType());
+		  				}
+		  				choice_8.disable();
+		  				break;
+		  		}
+		  		
+		  			
+		  			
+		  	}
+		  		
+		      	
+			
       	}
       });
-				
-      	
+		
+      
+ 
+ //     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
+      
       
       
       btnProcess.setBounds(228, 163, 89, 23);

@@ -61,7 +61,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 715, 465);
+		setBounds(100, 100, 715, 610);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -97,16 +97,8 @@ public class GlavniFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 699, 550);
 		tabbedPane.setBorder(new CompoundBorder());
-		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			
-			};
-		});
-		tabbedPane.addTab("Data Vision", null, tabbedPane_2, null);
 		BasicInformationPanel basicInfo = new BasicInformationPanel();
 		BasicInformationPanel basicInfo1 = new BasicInformationPanel();
 		BasicInformationPanel basicInfo2 = new BasicInformationPanel();
@@ -117,6 +109,7 @@ public class GlavniFrame extends JFrame {
 				
 			}
 		});
+		contentPane.setLayout(null);
 		
 		
 		
@@ -148,19 +141,17 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		contentPane.add(tabbedPane);
 		
-		contentPane.setLayout(gl_contentPane);
+		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_2.setBounds(10, 49, 694, 501);
+		contentPane.add(tabbedPane_2);
+		tabbedPane_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			
+			};
+		});
 		
 		
 		
