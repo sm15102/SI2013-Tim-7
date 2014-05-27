@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
@@ -86,6 +88,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	 * Create the panel.
 	 */
 	public BasicInformationPanel(JTabbedPane tabbedPane_1) {
+		setBackground(UIManager.getColor("Button.light"));
 		tabbedPane=tabbedPane_1;
 		setLayout(null);
 
@@ -123,7 +126,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				
 			}
 		});
-		spinner.setModel(new SpinnerNumberModel(0, 0, 9, 1));
+		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
 		spinner.setBounds(152, 136, 165, 18);
 		
 		add(spinner);
@@ -158,7 +161,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(label);
       
       JSeparator separator = new JSeparator();
-      separator.setBounds(-13, 30, 330, 15);
+      separator.setBounds(10, 30, 307, 15);
       add(separator);
       
       final JLabel lblSensorType = new JLabel("Sensor type");
@@ -304,34 +307,19 @@ public class BasicInformationPanel  extends ExamplePanel {
 		separator_2.setVisible(false);
 
       JButton btnProcess = new JButton("Process");
+      btnProcess.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
       		int value = (Integer) spinner.getValue();
 			
-			if(value == 0){
-				choice_1.setVisible(false);
-				choice_2.setVisible(false);
-				choice_3.setVisible(false);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
-				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
-				
-				
-				lblSensorType.setVisible(false);
-				separator_2.setVisible(false);
-			}
 			
-			else if(value == 1){
+			
+			if(value == 1){
 				choice_1.setVisible(true);
 				choice_2.setVisible(false);
 				choice_3.setVisible(false);
@@ -346,11 +334,17 @@ public class BasicInformationPanel  extends ExamplePanel {
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
+				lblSensorType_1.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
+				
 				label_1.setVisible(true);
+				label_2.setVisible(false);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
 				btnGenerateGraph.setVisible(true);
 			}
 			
@@ -375,6 +369,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+
+
 				btnGenerateGraph.setVisible(true);
 			}
 			
@@ -397,9 +396,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 				
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
+				
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+
 				btnGenerateGraph.setVisible(true);
 			}
 			
@@ -420,12 +423,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 				lblSensorType_4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
+				lblSensorType.setVisible(false);
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
+				label_5.setVisible(false);
 				btnGenerateGraph.setVisible(true);
 			}
 			
@@ -672,11 +676,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 
 	         add(contentPane, BorderLayout.NORTH);*/
          
-           InteractivePanel p = new InteractivePanel(plot);
-           p.setLayout(null);
-           p.setBounds(new Rectangle(0, 0, 0, 50));
+           InteractivePanel interactivePanel = new InteractivePanel(plot);
+          interactivePanel.setLayout(null);
+          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
-	       p.setVisible(true);
+	       interactivePanel.setVisible(true);
 	      // contentPane.add(p, BorderLayout.CENTER);
 	       
 			//p.setVisible(true);
@@ -687,8 +691,47 @@ public class BasicInformationPanel  extends ExamplePanel {
 
 		//f.getContentPane().getComponent(0).getComponentAt(0);
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+	       
+	       
+	       
+	       
+	       final JButton btnChange = new JButton("Change data");
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
 		
-		   tabbedPane.addTab("Bar plot", p);
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 tabbedPane.addTab("Line plot", interactivePanel);
+		 tabbedPane.setSelectedIndex(1);
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
+		
+		   tabbedPane.addTab("Bar plot",  interactivePanel);
 		   tabbedPane.setSelectedIndex(1);
 		   	
 	}
@@ -751,10 +794,43 @@ public class BasicInformationPanel  extends ExamplePanel {
          
          
          InteractivePanel interactivePanel = new InteractivePanel(plot);
+         interactivePanel.setLayout(null);
 		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+		 final JButton btnChange = new JButton("Change data");
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
 		 tabbedPane.addTab("Line plot", interactivePanel);
 		 tabbedPane.setSelectedIndex(1);
 		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
 		
 	}
 	

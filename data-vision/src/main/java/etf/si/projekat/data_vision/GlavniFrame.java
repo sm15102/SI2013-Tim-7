@@ -1,12 +1,11 @@
 package etf.si.projekat.data_vision;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
@@ -22,6 +21,7 @@ import javax.swing.BoxLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+
 
 //import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
@@ -70,7 +70,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 715, 610);
+		setBounds(100, 100, 1038, 620);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -106,7 +106,7 @@ public class GlavniFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 699, 550);
+		tabbedPane.setBounds(0, 0, 1022, 560);
 		tabbedPane.setBorder(new CompoundBorder());
 		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
@@ -126,7 +126,7 @@ public class GlavniFrame extends JFrame {
 	
 	
 	
-	
+
 	
 		
 		
