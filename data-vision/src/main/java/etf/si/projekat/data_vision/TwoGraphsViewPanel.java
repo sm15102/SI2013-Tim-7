@@ -687,21 +687,21 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
       		if(choice.getSelectedItem()=="Bar")	
           	{
-          		//OneBarGraphShow();
+          		OneBarGraphShow();
           	}
           	if(choice.getSelectedItem()=="Line")	
           	{
-          		//OneLineGraphShow();
+          		OneLineGraphShow();
           	}
       		
       		if(choice_10.getSelectedItem()=="Bar")
       		{
-      		//OneBarGraphShow();
+      		OneBarGraphShow();
       		}
       		
       		if(choice_10.getSelectedItem()=="Line")
       		{
-      		//OneLineGraphShow();
+      		OneLineGraphShow();
       		}
       			
       	}
