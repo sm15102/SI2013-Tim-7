@@ -46,7 +46,10 @@ import com.mysql.jdbc.Statement;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.examples.ExamplePanel;
 import de.erichseifert.gral.plots.BarPlot;
+import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
+import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
@@ -176,7 +179,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       	}
       	else
       	{
-      		//OneLineGraphShow();
+      		OneLineGraphShow();
       	}
       	}
       });
@@ -681,11 +684,76 @@ public class BasicInformationPanel  extends ExamplePanel {
 		
 		   tabbedPane.addTab("Bar plot", p);
 		   tabbedPane.setSelectedIndex(1);
-		   
-		   
-			
-			
+		   	
 	}
+	
+	
+	
+	public void OneLineGraphShow()
+	{
+		
+		 //Podaci koji ce se prikazivati na grafu 
+	       DataTable data = new DataTable(Double.class, Double.class);
+	     
+	       
+	       double x = 1; 
+	       double y = 17;
+	       data.add(x, y);
+	       x = 2; 
+	       y = 16;
+	       data.add(x, y);
+	        
+	       x = 3; 
+	       y = 18;
+	       data.add(x, y);
+	        
+	      x = 4; 
+	       y = 20;
+	       data.add(x, y);
+	        
+	        x = 5; 
+	       y = 19;
+	       data.add(x, y);
+	        
+	       x = 6; 
+	        y = 22;
+	       data.add(x, y);
+	        
+	       x = 7; 
+	       y = 20;
+	       
+	       data.add(x, y);
+	       
+	       XYPlot plot=plot = new XYPlot(data);
+	       //prikaz grafa na frameu
+	     //  add(new InteractivePanel(plot));
+
+	     plot.setVisible(data, true);
+	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+	     // plot.setBackground(Color.WHITE);
+
+         plot.getTitle().setText("Temperature  for 7 days");
+         LineRenderer lines = new DefaultLineRenderer2D();
+         plot.setLineRenderer(data, lines);
+         Color color = new Color(0.0f, 0.3f, 1.0f);
+         plot.getPointRenderer(data).setColor(color);
+         plot.getLineRenderer(data).setColor(color);
+      // Draw a tick mark and a grid line every 10 units along x axis
+         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+         // Draw a tick mark and a grid line every 20 units along y axis
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+         
+         InteractivePanel interactivePanel = new InteractivePanel(plot);
+		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+		 tabbedPane.addTab("Line plot", interactivePanel);
+		 tabbedPane.setSelectedIndex(1);
+		
+		
+	}
+	
+	
+	
 	
 	@Override
 	 public String getTitle() {
