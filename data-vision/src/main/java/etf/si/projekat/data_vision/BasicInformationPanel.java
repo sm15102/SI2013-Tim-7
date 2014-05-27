@@ -579,8 +579,12 @@ public class BasicInformationPanel extends JPanel {
       
       
       
-      btnProcess.setBounds(228, 163, 89, 23);
+      btnProcess.setBounds(205, 163, 112, 23);
       add(btnProcess);
+      
+      JButton btnGenerateGraph = new JButton("Generate graph");
+      btnGenerateGraph.setBounds(205, 462, 113, 23);
+      add(btnGenerateGraph);
       
       
       //NADINA
