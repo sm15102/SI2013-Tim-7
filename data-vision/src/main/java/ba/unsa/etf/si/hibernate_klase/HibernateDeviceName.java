@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -62,37 +63,20 @@ public DeviceName giveActivityLogs(long id) {
 
 
 	
-	public List<DeviceName> giveAllDeviceName() {
-		
-		session=HibernateUtil.getSessionFactory().openSession();
-		 Transaction t=null;
-		 List<DeviceName> deviceNames = new ArrayList<DeviceName>();
-		
-		 try
-		 {
-			 transaction = session.beginTransaction(); 
-			 session.createQuery("from DeviceName").list(); 
-			 for (Iterator iterator = deviceNames.iterator(); iterator.hasNext();){  
-			        DeviceName dn =(DeviceName) iterator.next();
-			        
-			       deviceNames.add(dn);
-			      }
-			      transaction.commit();
-			  
-			 
-		 }
-		 
-		 catch(Exception ex) {
-			 
-			 System.out.println("Error:"+ex);
-		 }
-		 
-		 finally{
-				session.close();
-			}
-		 
-		 return deviceNames;
-		
+	
+	public List<DeviceName> giveAllDeviceName() throws HibernateException
+	{
+		session= HibernateUtil.getSessionFactory().openSession();
+		transaction= session.beginTransaction();
+			
+		List<DeviceName> temp=new ArrayList<DeviceName>();
+		temp=session.createCriteria(DeviceName.class).list();
+		if(temp.size()==0) {
+			session.close();
+			return new ArrayList<DeviceName>();
+		}
+			session.close();
+		return temp;
 	}
 	
 public boolean existDeviceName(long id) {

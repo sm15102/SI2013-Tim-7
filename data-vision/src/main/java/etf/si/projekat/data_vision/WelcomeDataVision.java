@@ -53,6 +53,7 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
+import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
@@ -82,7 +83,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	final Choice choice7 = new Choice();
 	final Choice choice8 = new Choice();
 	final Choice choice9 = new Choice();
-	List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
+	List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 	final JLabel lblSensorType1;
 	final JLabel lblSensorType2;
 	final JLabel lblSensorType3;
@@ -428,9 +429,11 @@ public class WelcomeDataVision extends ExamplePanel {
 				choice7.removeAll();
 				choice8.removeAll();
 				choice9.removeAll();
+				
 				 for (int i=0; i<list_device.size(); i++){
-			    	 choice1.add(list_device.get(i).getType());
+			    	 choice1.add(list_device.get(i).getName());
 			    	   }
+				 System.out.println(list_device.size());
 				
 				Integer value = (Integer) spinner.getValue();
 				if(value == 1){
@@ -645,8 +648,8 @@ public class WelcomeDataVision extends ExamplePanel {
 		switch(k){
 		case 0 : {
 			for(int i=0; i<list_device.size();i++){
-			if(choice1.getSelectedItem() == list_device.get(i).getType()) continue;
-			choice2.add(list_device.get(i).getType());
+			if(choice1.getSelectedItem() == list_device.get(i).getName()) continue;
+			choice2.add(list_device.get(i).getName());
 			}
 			choice1.disable();
 			break;
@@ -654,63 +657,63 @@ public class WelcomeDataVision extends ExamplePanel {
 		}
 		case 1 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice3.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice3.add(list_device.get(i).getName());
 				}
 				choice2.disable();
 				break;
 		}
 		case 2 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice4.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice4.add(list_device.get(i).getName());
 				}
 				choice3.disable();
 				break;
 		}
 		case 3 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
-						(choice4.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice5.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
+						(choice4.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice5.add(list_device.get(i).getName());
 				}
 				choice4.disable();
 				break;
 		}
 		case 4 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
-						(choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice6.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
+						(choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice6.add(list_device.get(i).getName());
 				}
 				choice5.disable();
 				break;
 		}
 		case 5 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
-						(choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice7.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
+						(choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice7.add(list_device.get(i).getName());
 				}
 				choice6.disable();
 				break;
 		}
 		case 6 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
-				   (choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())||
-				   (choice7.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice8.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice7.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice8.add(list_device.get(i).getName());
 				}
 				choice7.disable();
 				break;
 		}
 		case 7 : {
 			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getType()) || (choice2.getSelectedItem() == list_device.get(i).getType())||(choice3.getSelectedItem() == list_device.get(i).getType())||
-				   (choice4.getSelectedItem() == list_device.get(i).getType())||(choice5.getSelectedItem() == list_device.get(i).getType())||(choice6.getSelectedItem() == list_device.get(i).getType())||
-				   (choice7.getSelectedItem() == list_device.get(i).getType())||(choice8.getSelectedItem() == list_device.get(i).getType())) continue;
-				choice9.add(list_device.get(i).getType());
+				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice7.getSelectedItem() == list_device.get(i).getName())||(choice8.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice9.add(list_device.get(i).getName());
 				}
 				choice8.disable();
 				break;
