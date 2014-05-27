@@ -5,13 +5,19 @@ import java.awt.geom.*;
 
 import javax.swing.*;
 
+import java.awt.BasicStroke;
 import java.awt.Button;
 import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.LinearGradientPaint;
+import java.awt.Rectangle;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -27,21 +33,31 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 
 import com.mysql.jdbc.Statement;
 
+import de.erichseifert.gral.data.DataTable;
+import de.erichseifert.gral.examples.ExamplePanel;
+import de.erichseifert.gral.plots.BarPlot;
+import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.ui.InteractivePanel;
+import de.erichseifert.gral.util.GraphicsUtils;
+import de.erichseifert.gral.util.Insets2D;
+import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class BasicInformationPanel extends JPanel {
+public class BasicInformationPanel  extends ExamplePanel {
     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
     final Choice choice;
+    final JSpinner spinner;
 	/**
 	 * Create the panel.
 	 */
@@ -73,7 +89,7 @@ public class BasicInformationPanel extends JPanel {
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
-		final JSpinner spinner = new JSpinner();
+		 spinner = new JSpinner();
 		
 		spinner.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
@@ -557,9 +573,93 @@ public class BasicInformationPanel extends JPanel {
   
 	}
 	
+	public void OneBarGraphShow(){
+		JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+		/*List<Choice> choices=new ArrayList<Choice>();
+		choices.add(choice1);
+		choices.add(choice2);
+		choices.add(choice3);
+		choices.add(choice4);
+		choices.add(choice5);
+		choices.add(choice6);
+		choices.add(choice7);
+		choices.add(choice8);
+		choices.add(choice9);*/
+		
+		Integer value = (Integer) spinner.getValue();
+		
+		/*for(int i=0;i<value;i++)
+		{
+			
+			senzori.add(choices.get(i).getSelectedItem());
+		   
+		}*/
+		
+		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
+		 double j=0.1;
+		 for(int i=0; i<value; i++)
+		 {
+			//String naziv=senzori.get(i);
+			data.add(j, i+1, "neki naziv");
+			j+=0.2;
+			
+		 }
+       
+       BarPlot  plot = new BarPlot(data);
+         // Format plot
+         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+         plot.setBarWidth(0.075);
+         // Format bars
+         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+         pointRenderer.setColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+                 )
+         );
+         pointRenderer.setBorderStroke(new BasicStroke(3f));
+         pointRenderer.setBorderColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                 )
+         );
+         
+         pointRenderer.setValueVisible(true);
+         pointRenderer.setValueColumn(2);
+         pointRenderer.setValueLocation(Location.CENTER);
+         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+         // Add plot to Swing component
+        // add(new InteractivePanel(plot));
+       
+           InteractivePanel p = new InteractivePanel(plot);
+           p.setBounds(new Rectangle(0, 0, 0, 50));
+	       plot.getTitle().setText("Bar plot");
+	       
+			//p.setVisible(true);
+		   // content2.add(interactivePanel, BorderLayout.CENTER);
+			//content2.add(new Label("bla")); //doda u novi tab graf
+			//content2.add(new InteractivePanel(plot));
+		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
+
+		//f.getContentPane().getComponent(0).getComponentAt(0);
+	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+		
+		   // tabbedPane.add( p);
+		   
+			
+			
+	}
 	
-	
-	
+	@Override
+	 public String getTitle() {
+	         return "Bar plot";
+	 }
+	 @Override
+	 public String getDescription() {
+	         return "Bar plot with example data and color gradients";
+	 }
 	
 }
       
