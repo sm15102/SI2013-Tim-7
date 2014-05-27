@@ -68,6 +68,12 @@ public class TwoGraphsViewPanel extends JPanel {
 		choice.add("Bar");
 		contentPane.add(choice);*/
 		
+		  final JButton btnGenerateGraphs = new JButton("Generate graphs");
+	      btnGenerateGraphs.setBounds(493, 462, 136, 23);
+	      btnGenerateGraphs.setVisible(false);
+	      add(btnGenerateGraphs);
+		
+		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
 		final JSpinner spinner = new JSpinner();
@@ -79,7 +85,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				
 			}
 		});
-		spinner.setModel(new SpinnerNumberModel(0, 0, 9, 1));
+		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
 		spinner.setBounds(152, 136, 165, 18);
 		
 		add(spinner);
@@ -255,28 +261,9 @@ public class TwoGraphsViewPanel extends JPanel {
       		
       		int value = (Integer) spinner.getValue();
 			
-			if(value == 0){
-				choice_1.setVisible(false);
-				choice_2.setVisible(false);
-				choice_3.setVisible(false);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
-				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
-				
-				
-				lblSensorType.setVisible(false);
-				separator_2.setVisible(false);
-			}
 			
-			else if(value == 1){
+			
+			if(value == 1){
 				choice_1.setVisible(true);
 				choice_2.setVisible(false);
 				choice_3.setVisible(false);
@@ -291,12 +278,18 @@ public class TwoGraphsViewPanel extends JPanel {
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
+				lblSensorType_1.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
+				
 				label_1.setVisible(true);
-				//btnGenerateGraphs.setVisible(true);
+				label_2.setVisible(false);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+				btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 2){
@@ -320,7 +313,9 @@ public class TwoGraphsViewPanel extends JPanel {
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
-				//btnGenerateGraphs.setVisible(true);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
 			}
 			
 			else if(value == 3){
@@ -342,10 +337,13 @@ public class TwoGraphsViewPanel extends JPanel {
 				
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
+				
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+
 			}
 			
 			else if(value == 4){
@@ -365,13 +363,14 @@ public class TwoGraphsViewPanel extends JPanel {
 				lblSensorType_4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
+				lblSensorType.setVisible(false);
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
+				label_5.setVisible(false);
+				btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 5){
@@ -644,10 +643,7 @@ public class TwoGraphsViewPanel extends JPanel {
       choice_19.setVisible(false);
       add(choice_19);
       
-      final JButton btnGenerateGraphs = new JButton("Generate graphs");
-      btnGenerateGraphs.setBounds(493, 462, 136, 23);
-      btnGenerateGraphs.setVisible(false);
-      add(btnGenerateGraphs);
+    
       
       final JSeparator separator_3 = new JSeparator();
       separator_3.setBounds(356, 226, 273, 16);
@@ -690,6 +686,7 @@ public class TwoGraphsViewPanel extends JPanel {
       add(label_9);
       
       final JSpinner spinner_1 = new JSpinner();
+      spinner_1.setModel(new SpinnerNumberModel(1, 1, 9, 1));
       spinner_1.setBounds(464, 136, 165, 18);
       add(spinner_1);
       
@@ -702,32 +699,9 @@ public class TwoGraphsViewPanel extends JPanel {
       	  int valueSecondGraph = (Integer) spinner_1.getValue();
       		
       		// KOD ZA DRUGI GRAF
-      		if(valueSecondGraph == 0){
-				choice_11.setVisible(false);
-				choice_12.setVisible(false);
-				choice_13.setVisible(false);
-				choice_14.setVisible(false);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
-				
-				label_11.setVisible(false);
-				label_12.setVisible(false);
-				label_13.setVisible(false);
-				label_14.setVisible(false);
-				label_15.setVisible(false);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
-				
-				separator_3.setVisible(false);
-			}
+      		
 			
-			else if(valueSecondGraph == 1){
+			 if(valueSecondGraph == 1){
 				choice_11.setVisible(true);
 				choice_12.setVisible(false);
 				choice_13.setVisible(false);
