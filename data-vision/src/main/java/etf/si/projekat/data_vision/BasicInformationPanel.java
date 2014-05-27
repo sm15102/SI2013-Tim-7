@@ -59,6 +59,8 @@ import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
     List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
@@ -170,6 +172,10 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(separator_1);
       
       final JButton btnGenerateGraph = new JButton("Generate graph");
+      btnGenerateGraph.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       btnGenerateGraph.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {

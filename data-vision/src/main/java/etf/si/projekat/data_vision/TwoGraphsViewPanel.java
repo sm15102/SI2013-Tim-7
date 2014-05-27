@@ -5,14 +5,20 @@ import java.awt.geom.*;
 
 import javax.swing.*;
 
+import java.awt.BasicStroke;
 import java.awt.Button;
 import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.LinearGradientPaint;
+import java.awt.Rectangle;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -26,25 +32,64 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 
+import de.erichseifert.gral.data.DataTable;
+import de.erichseifert.gral.examples.ExamplePanel;
+import de.erichseifert.gral.plots.BarPlot;
+import de.erichseifert.gral.plots.XYPlot;
+import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
+import de.erichseifert.gral.plots.lines.LineRenderer;
+import de.erichseifert.gral.ui.InteractivePanel;
+import de.erichseifert.gral.util.GraphicsUtils;
+import de.erichseifert.gral.util.Insets2D;
+import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class TwoGraphsViewPanel extends JPanel {
+public class TwoGraphsViewPanel extends ExamplePanel {
     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
-
+    final Choice choice; 
+    final  Choice choice_10;
+    final Choice choice_1;
+    final Choice choice_2;
+    final Choice choice_3;
+    final Choice choice_4;
+    final Choice choice_5;
+    final Choice choice_6;
+    final Choice choice_7;
+    final Choice choice_8;
+    final Choice choice_9;
+    final Choice choice_11;
+    final Choice choice_12;
+    final Choice choice_13;
+    final Choice choice_14;
+    final Choice choice_15;
+    final Choice choice_16;
+    final Choice choice_17;
+    final Choice choice_18;
+    final Choice choice_19;
+    final JSpinner spinner;
+    final JSpinner spinner_1;
+    final JTabbedPane tabbedPane;
+    //final JTabbedPane tabbedPane;
+  
 	/**
 	 * Create the panel.
 	 */
-	public TwoGraphsViewPanel() {
+	public TwoGraphsViewPanel(JTabbedPane tabbedPane_1) {
+		tabbedPane=tabbedPane_1;
 		setLayout(null);
-
+		
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -70,7 +115,7 @@ public class TwoGraphsViewPanel extends JPanel {
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
-		final JSpinner spinner = new JSpinner();
+		spinner = new JSpinner();
 		
 		spinner.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
@@ -117,8 +162,10 @@ public class TwoGraphsViewPanel extends JPanel {
     datePicker3.setSize(165, 28);
   add(datePicker3);
       
-      Choice choice = new Choice();
+      choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
+      choice.add("Line");
+      choice.add("Bar");
       add(choice);
       
       Label label = new Label("Basic data");
@@ -169,39 +216,39 @@ public class TwoGraphsViewPanel extends JPanel {
       label_5.setBounds(30, 341, 95, 14);
       add(label_5);
       
-      final Choice choice_1 = new Choice();
+      choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
       
-      final Choice choice_2 = new Choice();
+      choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
       
-      final Choice choice_3 = new Choice();
+      choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
       
-      final Choice choice_4 = new Choice();
+      choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
       
-      final Choice choice_5 = new Choice();
+      choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
       
-      final Choice choice_6 = new Choice();
+      choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
       
-      final  Choice choice_7 = new Choice();
+      choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
       
-      final  Choice choice_8 = new Choice();
+      choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
       
-      final Choice choice_9 = new Choice();
+      choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
       
@@ -558,7 +605,7 @@ public class TwoGraphsViewPanel extends JPanel {
       label_12.setVisible(false);
       add(label_12);
       
-      final Choice choice_11 = new Choice();
+      choice_11 = new Choice();
      choice_11.setVisible(false);
       choice_11.setBounds(464, 235, 165, 20);
       add(choice_11);
@@ -604,47 +651,75 @@ public class TwoGraphsViewPanel extends JPanel {
       label_20.setVisible(false);
       add(label_20);
       
-      final Choice choice_12 = new Choice();
+      choice_12 = new Choice();
       choice_12.setBounds(464, 260, 165, 20);
       choice_12.setVisible(false);
       add(choice_12);
       
-      final  Choice choice_13 = new Choice();
+      choice_13 = new Choice();
       choice_13.setBounds(464, 285, 165, 20);
       choice_13.setVisible(false);
       add(choice_13);
       
-      final  Choice choice_14 = new Choice();
+      choice_14 = new Choice();
       choice_14.setBounds(464, 310, 165, 20);
       choice_14.setVisible(false);
       add(choice_14);
       
-      final  Choice choice_15 = new Choice();
+      choice_15 = new Choice();
       choice_15.setBounds(464, 335, 165, 20);
       choice_15.setVisible(false);
       add(choice_15);
       
-      final Choice choice_16 = new Choice();
+      choice_16 = new Choice();
       choice_16.setBounds(464, 360, 165, 20);
       choice_16.setVisible(false);
       add(choice_16);
       
-      final  Choice choice_17 = new Choice();
+      choice_17 = new Choice();
       choice_17.setBounds(464, 385, 165, 20);
       choice_17.setVisible(false);
       add(choice_17);
       
-      final  Choice choice_18 = new Choice();
+      choice_18 = new Choice();
       choice_18.setBounds(464, 410, 165, 20);
       choice_18.setVisible(false);
       add(choice_18);
       
-      final  Choice choice_19 = new Choice();
+      choice_19 = new Choice();
       choice_19.setBounds(464, 436, 165, 20);
       choice_19.setVisible(false);
       add(choice_19);
       
       final JButton btnGenerateGraphs = new JButton("Generate graphs");
+      btnGenerateGraphs.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
+      		if(choice.getSelectedItem()=="Bar")	
+          	{
+          		//OneBarGraphShow();
+          	}
+          	if(choice.getSelectedItem()=="Line")	
+          	{
+          		//OneLineGraphShow();
+          	}
+      		
+      		if(choice_10.getSelectedItem()=="Bar")
+      		{
+      		//OneBarGraphShow();
+      		}
+      		
+      		if(choice_10.getSelectedItem()=="Line")
+      		{
+      		//OneLineGraphShow();
+      		}
+      			
+      	}
+      });
+      btnGenerateGraphs.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       btnGenerateGraphs.setBounds(493, 462, 136, 23);
       btnGenerateGraphs.setVisible(false);
       add(btnGenerateGraphs);
@@ -669,8 +744,10 @@ public class TwoGraphsViewPanel extends JPanel {
       label_6.setBounds(373, 57, 68, 14);
       add(label_6);
       
-      final  Choice choice_10 = new Choice();
+      choice_10 = new Choice();
       choice_10.setBounds(464, 51, 165, 20);
+      choice_10.add("Line");
+      choice_10.add("Bar");
       add(choice_10);
       
       final JLabel label_7 = new JLabel("Time interval from");
@@ -689,7 +766,7 @@ public class TwoGraphsViewPanel extends JPanel {
       label_9.setBounds(358, 139, 83, 14);
       add(label_9);
       
-      final JSpinner spinner_1 = new JSpinner();
+      spinner_1 = new JSpinner();
       spinner_1.setBounds(464, 136, 165, 18);
       add(spinner_1);
       
@@ -977,17 +1054,181 @@ public class TwoGraphsViewPanel extends JPanel {
       });
       button.setBounds(493, 165, 136, 23);
       add(button);
+	}
       
       //-------------------------------------------------------------------------------
       
      
-      
-     
+      public void OneBarGraphShow(){
+  		
+  		
+  		List<Choice> choices=new ArrayList<Choice>();
+  		choices.add(choice_1);
+  		choices.add(choice_2);
+  		choices.add(choice_3);
+  		choices.add(choice_4);
+  		choices.add(choice_5);
+  		choices.add(choice_6);
+  		choices.add(choice_7);
+  		choices.add(choice_8);
+  		choices.add(choice_9);
+  		
+  		Integer value = (Integer) spinner.getValue();
+  		ArrayList<String> senzori = new ArrayList<String>();
+  		for(int i=0;i<value;i++)
+  		{
+  			
+  			senzori.add(choices.get(i).getSelectedItem());
+  		   
+  		}
+  		
+  		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
+  		 double j=0.1;
+  		 for(int i=0; i<value; i++)
+  		 {
+  			
+  			data.add(j, i+1, senzori.get(i));
+  			j+=0.2;
+  			
+  		 }
+         
+         BarPlot  plot = new BarPlot(data);
+           // Format plot
+           plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+           plot.setBarWidth(0.075);
+           // Format bars
+           BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+           pointRenderer.setColor(
+                   new LinearGradientPaint(0f,0f, 0f,1f,
+                                   new float[] { 0.0f, 1.0f },
+                                   new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+                   )
+           );
+           pointRenderer.setBorderStroke(new BasicStroke(3f));
+           pointRenderer.setBorderColor(
+                   new LinearGradientPaint(0f,0f, 0f,1f,
+                                   new float[] { 0.0f, 1.0f },
+                                   new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                   )
+           );
+           
+           pointRenderer.setValueVisible(true);
+           pointRenderer.setValueColumn(2);
+           pointRenderer.setValueLocation(Location.CENTER);
+           pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+           pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+           // Add plot to Swing component
+           // add(new InteractivePanel(plot));
+         
+           
+              /* contentPane = new JPanel();
+  			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+  			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+  			contentPane.setBackground(Color.white);
+  			contentPane.setBounds(10,10,5,5);
+
+  	         add(contentPane, BorderLayout.NORTH);*/
+           
+             InteractivePanel p = new InteractivePanel(plot);
+             p.setLayout(null);
+             p.setBounds(new Rectangle(0, 0, 0, 50));
+  	       plot.getTitle().setText("Bar plot");
+  	       p.setVisible(true);
+  	      // contentPane.add(p, BorderLayout.CENTER);
+  	       
+  			//p.setVisible(true);
+  		   // content2.add(interactivePanel, BorderLayout.CENTER);
+  			//content2.add(new Label("bla")); //doda u novi tab graf
+  			//content2.add(new InteractivePanel(plot));
+  		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
+
+  		//f.getContentPane().getComponent(0).getComponentAt(0);
+  	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+  		
+  		   tabbedPane.addTab("Bar plot", p);
+  		   tabbedPane.setSelectedIndex(1);
+  		   	
+  	}
+  	
+  	
+  	
+  	public void OneLineGraphShow()
+  	{
+  		
+  		 //Podaci koji ce se prikazivati na grafu 
+  	       DataTable data = new DataTable(Double.class, Double.class);
+  	     
+  	       
+  	       double x = 1; 
+  	       double y = 17;
+  	       data.add(x, y);
+  	       x = 2; 
+  	       y = 16;
+  	       data.add(x, y);
+  	        
+  	       x = 3; 
+  	       y = 18;
+  	       data.add(x, y);
+  	        
+  	      x = 4; 
+  	       y = 20;
+  	       data.add(x, y);
+  	        
+  	        x = 5; 
+  	       y = 19;
+  	       data.add(x, y);
+  	        
+  	       x = 6; 
+  	        y = 22;
+  	       data.add(x, y);
+  	        
+  	       x = 7; 
+  	       y = 20;
+  	       
+  	       data.add(x, y);
+  	       
+  	       XYPlot plot=plot = new XYPlot(data);
+  	       //prikaz grafa na frameu
+  	     //  add(new InteractivePanel(plot));
+
+  	     plot.setVisible(data, true);
+  	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+  	     // plot.setBackground(Color.WHITE);
+
+           plot.getTitle().setText("Temperature  for 7 days");
+           LineRenderer lines = new DefaultLineRenderer2D();
+           plot.setLineRenderer(data, lines);
+           Color color = new Color(0.0f, 0.3f, 1.0f);
+           plot.getPointRenderer(data).setColor(color);
+           plot.getLineRenderer(data).setColor(color);
+        // Draw a tick mark and a grid line every 10 units along x axis
+           plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+           // Draw a tick mark and a grid line every 20 units along y axis
+           plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+           
+           
+           InteractivePanel interactivePanel = new InteractivePanel(plot);
+  		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+  		 tabbedPane.addTab("Line plot", interactivePanel);
+  		 tabbedPane.setSelectedIndex(1);
+  		
+  		
+  	}
+  	
+  	
+      @Override
+ 	 public String getTitle() {
+ 	         return "Bar plot";
+ 	 }
+ 	 @Override
+ 	 public String getDescription() {
+ 	         return "Bar plot with example data and color gradients";
+ 	 }
       
       
       
   
 	}
-}
+//}
       
       

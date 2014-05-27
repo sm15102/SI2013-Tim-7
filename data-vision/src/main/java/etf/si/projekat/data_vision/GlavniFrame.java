@@ -109,7 +109,7 @@ public class GlavniFrame extends JFrame {
 		tabbedPane.setBounds(0, 0, 699, 550);
 		tabbedPane.setBorder(new CompoundBorder());
 		
-		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel();
+		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
 		//BasicInformationPanel basicInfo2 = new BasicInformationPanel(); ovo mijenjalaa
 		ThreeGraphsViewPanel basicInfo3 = new ThreeGraphsViewPanel();
 		
