@@ -93,7 +93,7 @@ public class ThreeGraphsViewPanel extends JPanel {
         add(lblGraphType);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(152, 75);
-        datePicker.setSize(165, 28);
+        datePicker.setSize(165, 24);
        add(datePicker);
         
         
@@ -101,22 +101,41 @@ public class ThreeGraphsViewPanel extends JPanel {
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
         datePicker1.setLocation(152, 104);
-        datePicker1.setSize(165, 28);
+        datePicker1.setSize(165, 24);
       add(datePicker1);
       
       UtilDateModel model2 = new UtilDateModel();
       JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
       final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);
       datePicker2.setLocation(464, 75);
-      datePicker2.setSize(165, 28);
+      datePicker2.setSize(165, 24);
     add(datePicker2);
     
     UtilDateModel model3 = new UtilDateModel();
     JDatePanelImpl datePane3 = new JDatePanelImpl(model3);
     final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);
     datePicker3.setLocation(464, 104);
-    datePicker3.setSize(165, 28);
+    datePicker3.setSize(165, 24);
   add(datePicker3);
+  
+  
+  
+  // NOVO
+  UtilDateModel model4 = new UtilDateModel();
+  JDatePanelImpl datePane4 = new JDatePanelImpl(model4);
+  final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePane4);
+  SpringLayout springLayout = (SpringLayout) datePicker4.getLayout();
+  springLayout.putConstraint(SpringLayout.NORTH, datePicker4.getJFormattedTextField(), 1, SpringLayout.NORTH, datePicker4);
+  datePicker4.setLocation(782, 75);
+  datePicker4.setSize(165, 24);
+add(datePicker4);
+
+UtilDateModel model5 = new UtilDateModel();
+JDatePanelImpl datePane5 = new JDatePanelImpl(model5);
+final JDatePickerImpl datePicker5 = new JDatePickerImpl(datePane5);
+datePicker5.setLocation(782, 104);
+datePicker5.setSize(165, 24);
+add(datePicker5);
       
       Choice choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
@@ -972,23 +991,23 @@ public class ThreeGraphsViewPanel extends JPanel {
       
       JLabel label_21 = new JLabel("Graph type");
       label_21.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_21.setBounds(708, 60, 68, 14);
+      label_21.setBounds(676, 60, 83, 14);
       add(label_21);
       
       JLabel label_22 = new JLabel("Time interval from");
       label_22.setVerticalAlignment(SwingConstants.BOTTOM);
       label_22.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_22.setBounds(663, 85, 113, 14);
+      label_22.setBounds(639, 85, 120, 14);
       add(label_22);
       
       JLabel label_23 = new JLabel("Time interval to");
       label_23.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_23.setBounds(683, 114, 93, 14);
+      label_23.setBounds(646, 114, 113, 14);
       add(label_23);
       
       JLabel label_24 = new JLabel("Data number");
       label_24.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_24.setBounds(693, 139, 83, 14);
+      label_24.setBounds(646, 139, 113, 14);
       add(label_24);
       
       Choice choice_20 = new Choice();
@@ -996,15 +1015,16 @@ public class ThreeGraphsViewPanel extends JPanel {
       add(choice_20);
       
       JSpinner spinner_2 = new JSpinner();
-      spinner_2.setBounds(786, 136, 165, 18);
+      spinner_2.setBounds(782, 137, 165, 18);
       add(spinner_2);
       
       JButton button_1 = new JButton("Process");
-      button_1.setBounds(782, 165, 168, 23);
+      button_1.setBounds(779, 165, 168, 23);
       add(button_1);
       
-      Label label_10 = new Label("");
-      label_10.setBounds(673, 241, 103, 14);
+      Label label_10 = new Label("Sensor type 1");
+      label_10.setAlignment(Label.RIGHT);
+      label_10.setBounds(646, 241, 113, 14);
       add(label_10);
       
       Choice choice_21 = new Choice();
@@ -1054,6 +1074,46 @@ public class ThreeGraphsViewPanel extends JPanel {
       JSeparator separator_7 = new JSeparator();
       separator_7.setBounds(646, 220, 301, 8);
       add(separator_7);
+      
+      Label label_25 = new Label("Sensor type 2");
+      label_25.setAlignment(Label.RIGHT);
+      label_25.setBounds(646, 266, 113, 14);
+      add(label_25);
+      
+      Label label_26 = new Label("Sensor type 3");
+      label_26.setAlignment(Label.RIGHT);
+      label_26.setBounds(646, 291, 113, 14);
+      add(label_26);
+      
+      Label label_27 = new Label("Sensor type 4");
+      label_27.setAlignment(Label.RIGHT);
+      label_27.setBounds(646, 316, 113, 14);
+      add(label_27);
+      
+      Label label_28 = new Label("Sensor type 5");
+      label_28.setAlignment(Label.RIGHT);
+      label_28.setBounds(646, 341, 113, 14);
+      add(label_28);
+      
+      Label label_29 = new Label("Sensor type 6");
+      label_29.setAlignment(Label.RIGHT);
+      label_29.setBounds(646, 366, 113, 14);
+      add(label_29);
+      
+      Label label_30 = new Label("Sensor type 7");
+      label_30.setAlignment(Label.RIGHT);
+      label_30.setBounds(646, 391, 113, 14);
+      add(label_30);
+      
+      Label label_31 = new Label("Sensor type 8");
+      label_31.setAlignment(Label.RIGHT);
+      label_31.setBounds(646, 416, 113, 14);
+      add(label_31);
+      
+      Label label_32 = new Label("Sensor type 9");
+      label_32.setAlignment(Label.RIGHT);
+      label_32.setBounds(646, 442, 113, 14);
+      add(label_32);
       
       //-------------------------------------------------------------------------------
       
