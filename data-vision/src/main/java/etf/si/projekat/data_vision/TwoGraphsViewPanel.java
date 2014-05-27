@@ -1016,6 +1016,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(button);
       
       spinner_2 = new JSpinner();
+      spinner_2.setModel(new SpinnerNumberModel(1, 1, 9, 1));
       spinner_2.setBounds(464, 136, 165, 18);
       add(spinner_2);
 	}
