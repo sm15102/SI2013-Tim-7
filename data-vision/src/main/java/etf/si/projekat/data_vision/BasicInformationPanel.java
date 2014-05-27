@@ -666,11 +666,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 
 	         add(contentPane, BorderLayout.NORTH);*/
          
-           InteractivePanel p = new InteractivePanel(plot);
-           p.setLayout(null);
-           p.setBounds(new Rectangle(0, 0, 0, 50));
+           InteractivePanel interactivePanel = new InteractivePanel(plot);
+          interactivePanel.setLayout(null);
+          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
-	       p.setVisible(true);
+	       interactivePanel.setVisible(true);
 	      // contentPane.add(p, BorderLayout.CENTER);
 	       
 			//p.setVisible(true);
@@ -689,17 +689,39 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       btnChange.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {
-	      
+	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     //  btnChange.setBounds(181, 462, 137, 23);
-	       btnChange.setVisible(true);
-	       p.add(btnChange);
-	       p.add(new Label("blaa"));
-	       
-	     
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
 		
-		   tabbedPane.addTab("Bar plot", p);
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 tabbedPane.addTab("Line plot", interactivePanel);
+		 tabbedPane.setSelectedIndex(1);
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
+		
+		   tabbedPane.addTab("Bar plot",  interactivePanel);
 		   tabbedPane.setSelectedIndex(1);
 		   	
 	}
