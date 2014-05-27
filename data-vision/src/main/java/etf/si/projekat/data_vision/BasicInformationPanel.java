@@ -31,6 +31,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 
+import com.mysql.jdbc.Statement;
+
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
@@ -131,8 +133,7 @@ public class BasicInformationPanel extends JPanel {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
-      		Graphics g2d = null;
-    		g2d.drawLine(400, 400, 100, 100);
+      		
       	}
       });
       btnGenerateGraph.setBounds(181, 462, 137, 23);
@@ -543,6 +544,9 @@ public class BasicInformationPanel extends JPanel {
       
       btnProcess.setBounds(181, 163, 136, 23);
       add(btnProcess);
+      
+      String querry = "Select value from eventlogs";
+    
       
   
 	}
