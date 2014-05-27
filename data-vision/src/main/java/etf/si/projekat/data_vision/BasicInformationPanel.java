@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
@@ -681,6 +683,23 @@ public class BasicInformationPanel  extends ExamplePanel {
 
 		//f.getContentPane().getComponent(0).getComponentAt(0);
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+	       
+	       
+	       
+	       
+	       final JButton btnChange = new JButton("Change data");
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      
+	       	}
+	       });
+	     //  btnChange.setBounds(181, 462, 137, 23);
+	       btnChange.setVisible(true);
+	       p.add(btnChange);
+	       p.add(new Label("blaa"));
+	       
+	     
 		
 		   tabbedPane.addTab("Bar plot", p);
 		   tabbedPane.setSelectedIndex(1);
@@ -745,10 +764,43 @@ public class BasicInformationPanel  extends ExamplePanel {
          
          
          InteractivePanel interactivePanel = new InteractivePanel(plot);
+         interactivePanel.setLayout(null);
 		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+		 final JButton btnChange = new JButton("Change data");
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
 		 tabbedPane.addTab("Line plot", interactivePanel);
 		 tabbedPane.setSelectedIndex(1);
 		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
 		
 	}
 	
