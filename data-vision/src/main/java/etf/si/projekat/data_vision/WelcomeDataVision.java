@@ -271,7 +271,10 @@ public class WelcomeDataVision extends ExamplePanel {
 			}
 			else
 			{
-				OneBarGraphShow();
+				
+				
+				tabbedPane.add(interactivePanel_1);
+				
 			}
 				
 			}
@@ -790,6 +793,7 @@ public class WelcomeDataVision extends ExamplePanel {
            interactivePanel = new InteractivePanel(plot);
            interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
+	       
 			interactivePanel.setVisible(true);
 		   // content2.add(interactivePanel, BorderLayout.CENTER);
 			//content2.add(new Label("bla")); //doda u novi tab graf
