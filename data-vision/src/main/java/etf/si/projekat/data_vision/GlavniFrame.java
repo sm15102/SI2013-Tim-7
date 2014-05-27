@@ -46,6 +46,7 @@ public class GlavniFrame extends JFrame {
 	
 	private JPanel contentPane;
 	private BasicInformationPanel basicInfo;
+	private TwoGraphsViewPanel twoGraphs;
 	/**
 	 * Launch the application.
 	 */
@@ -125,11 +126,6 @@ public class GlavniFrame extends JFrame {
 		
 	
 	
-	
-
-	
-		
-		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
 		basicInfo = new BasicInformationPanel(tabbedPane_1);
@@ -140,8 +136,9 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
-		tabbedPane_3.add(twographsviewpanel1);
-		tabbedPane_3.setTitleAt(0, "Basic data");
+		twoGraphs = new TwoGraphsViewPanel(tabbedPane_3);
+		tabbedPane_3.add("Basic info",twoGraphs);
+		twoGraphs.setLayout(null);
 
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
