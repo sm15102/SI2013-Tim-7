@@ -242,11 +242,7 @@ public class BasicInformationPanel extends JPanel {
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
-				label_1.setVisible(false);
-				label_2.setVisible(false);
-				label_3.setVisible(false);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				
 				
 				lblSensorType.setVisible(false);
 				separator_2.setVisible(false);
@@ -267,15 +263,214 @@ public class BasicInformationPanel extends JPanel {
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
-				label_1.setVisible(false);
-				label_2.setVisible(false);
-				label_3.setVisible(false);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				
 				
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
+			}
+			
+			else if(value == 2){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(false);
+				choice_4.setVisible(false);
+				choice_5.setVisible(false);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+			}
+			
+			else if(value == 3){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(false);
+				choice_5.setVisible(false);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+			}
+			
+			else if(value == 4){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(false);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+			}
+			
+			else if(value == 4){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(true);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+				label_5.setVisible(true);
+			}
+			
+			
+			else if(value == 6){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(true);
+				choice_6.setVisible(true);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+			
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+				label_5.setVisible(true);
+			}
+			
+			else if(value == 7){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(true);
+				choice_6.setVisible(true);
+				choice_7.setVisible(true);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(true);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+				label_5.setVisible(true);
+			}
+			
+			else if(value == 8){
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(true);
+				choice_6.setVisible(true);
+				choice_7.setVisible(true);
+				choice_8.setVisible(true);
+				choice_9.setVisible(false);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(true);
+				lblSensorType_3.setVisible(true);
+				lblSensorType_4.setVisible(false);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+				label_5.setVisible(true);
+			}
+			
+			else{
+				choice_1.setVisible(true);
+				choice_2.setVisible(true);
+				choice_3.setVisible(true);
+				choice_4.setVisible(true);
+				choice_5.setVisible(true);
+				choice_6.setVisible(true);
+				choice_7.setVisible(true);
+				choice_8.setVisible(true);
+				choice_9.setVisible(true);
+				
+				lblSensorType_1.setVisible(true);
+				lblSensorType_2.setVisible(true);
+				lblSensorType_3.setVisible(true);
+				lblSensorType_4.setVisible(true);
+				
+				
+				lblSensorType.setVisible(true);
+				separator_2.setVisible(true);
+				label_1.setVisible(true);
+				label_2.setVisible(true);
+				label_3.setVisible(true);
+				label_4.setVisible(true);
+				label_5.setVisible(true);
 			}
       	}
       });
