@@ -19,9 +19,22 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.BoxLayout;
 
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import javax.swing.JSeparator;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.JButton;
+
 
 public class GlavniFrame extends JFrame {
 
+	
 	private JPanel contentPane;
 
 	/**
@@ -32,7 +45,10 @@ public class GlavniFrame extends JFrame {
 			public void run() {
 				try {
 					GlavniFrame frame = new GlavniFrame();
-					frame.setVisible(true);
+					
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				    frame.setResizable(false);
+				//	frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,7 +61,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 667, 465);
+		setBounds(100, 100, 715, 465);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -66,9 +82,12 @@ public class GlavniFrame extends JFrame {
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mntmAbout.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				AboutTeam7 frame = new AboutTeam7();
+				frame.setName("About us");
+			
 				frame.setVisible(true);
 			}
 		});
@@ -76,20 +95,44 @@ public class GlavniFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(new CompoundBorder());
-		contentPane.add(tabbedPane);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			
+			};
+		});
 		tabbedPane.addTab("Data Vision", null, tabbedPane_2, null);
+		BasicInformationPanel basicInfo = new BasicInformationPanel();
+		basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				
+				
+			}
+		});
+		
+		
+		
+	
+		
+	
+	
+	
+		
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
+		tabbedPane_1.add(basicInfo);
+		
+		
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
+
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Three graph view", null, tabbedPane_4, null);
@@ -99,8 +142,24 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		
+		contentPane.setLayout(gl_contentPane);
+		
+		
+		
+		
 		
 		
 	}
-
 }
