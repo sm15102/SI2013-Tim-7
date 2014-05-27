@@ -2,10 +2,12 @@ package etf.si.projekat.data_vision;
 
 import java.awt.*;
 import java.awt.geom.*;
+
 import javax.swing.*;
 
 import java.awt.Button;
 import java.awt.Choice;
+import java.awt.Graphics;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
@@ -125,6 +127,14 @@ public class BasicInformationPanel extends JPanel {
       add(separator_1);
       
       final JButton btnGenerateGraph = new JButton("Generate graph");
+      btnGenerateGraph.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
+      		
+      		Graphics g2d = null;
+    		g2d.drawLine(400, 400, 100, 100);
+      	}
+      });
       btnGenerateGraph.setBounds(181, 462, 137, 23);
       btnGenerateGraph.setVisible(false);
       
