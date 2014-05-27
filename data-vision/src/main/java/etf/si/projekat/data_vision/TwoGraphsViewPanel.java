@@ -266,7 +266,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
@@ -957,6 +957,20 @@ public class TwoGraphsViewPanel extends JPanel {
 				btnGenerateGraphs.setVisible(true);
 				separator_3.setVisible(true);
 			}
+      		
+      		
+      		for (int i=0; i<list_device.size(); i++){
+		    	 choice_11.add(list_device.get(i).getType() );
+		    	 choice_12.add(list_device.get(i).getType() );
+		    	 choice_13.add(list_device.get(i).getType() );
+		    	 choice_14.add(list_device.get(i).getType() );
+		    	 choice_15.add(list_device.get(i).getType() );
+		    	 choice_16.add(list_device.get(i).getType() );
+		    	 choice_17.add(list_device.get(i).getType() );
+		    	 choice_18.add(list_device.get(i).getType() );
+		    	 choice_19.add(list_device.get(i).getType() );
+	      }
+	      
       		
       		
       	}

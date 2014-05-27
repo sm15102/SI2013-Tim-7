@@ -268,7 +268,7 @@ public class BasicInformationPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
