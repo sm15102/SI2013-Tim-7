@@ -41,7 +41,7 @@ import java.awt.event.MouseEvent;
 
 public class BasicInformationPanel extends JPanel {
     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
-
+    final Choice choice;
 	/**
 	 * Create the panel.
 	 */
@@ -65,11 +65,11 @@ public class BasicInformationPanel extends JPanel {
 		lblDataNumber.setBounds(40, 139, 83, 14);
 		add(lblDataNumber);
 		
-	/*	 choice = new Choice();
+	   /* choice = new Choice();
 		choice.setBounds(177, 50, 117, 25);
 		choice.add("Line");
 		choice.add("Bar");
-		contentPane.add(choice);*/
+		add(choice);*/
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
@@ -106,8 +106,10 @@ public class BasicInformationPanel extends JPanel {
         datePicker1.setSize(165, 28);
       add(datePicker1);
       
-      Choice choice = new Choice();
+     choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
+      choice.add("Line");
+      choice.add("Bar");
       add(choice);
       
       Label label = new Label("Basic data");
@@ -132,8 +134,14 @@ public class BasicInformationPanel extends JPanel {
       btnGenerateGraph.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		
-      		
+      	if(choice.getSelectedItem()=="Bar")	
+      	{
+      		//OneBarGraphShow();
+      	}
+      	else
+      	{
+      		//OneLineGraphShow();
+      	}
       	}
       });
       btnGenerateGraph.setBounds(181, 462, 137, 23);
@@ -538,8 +546,6 @@ public class BasicInformationPanel extends JPanel {
       });
 		
       
- 
- 
       
       
       btnProcess.setBounds(181, 163, 136, 23);
@@ -550,6 +556,10 @@ public class BasicInformationPanel extends JPanel {
       
   
 	}
+	
+	
+	
+	
 	
 }
       
