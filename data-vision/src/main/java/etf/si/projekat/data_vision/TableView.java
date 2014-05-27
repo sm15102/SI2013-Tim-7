@@ -32,6 +32,7 @@ import etf.si.projekat.util.HibernateUtil;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
 
 public class TableView extends JFrame {
 
