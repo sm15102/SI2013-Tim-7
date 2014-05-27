@@ -84,6 +84,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	 * Create the panel.
 	 */
 	public BasicInformationPanel(JTabbedPane tabbedPane_1) {
+		setBackground(UIManager.getColor("Button.light"));
 		tabbedPane=tabbedPane_1;
 		setLayout(null);
 
@@ -156,7 +157,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(label);
       
       JSeparator separator = new JSeparator();
-      separator.setBounds(-13, 30, 330, 15);
+      separator.setBounds(10, 30, 307, 15);
       add(separator);
       
       final JLabel lblSensorType = new JLabel("Sensor type");

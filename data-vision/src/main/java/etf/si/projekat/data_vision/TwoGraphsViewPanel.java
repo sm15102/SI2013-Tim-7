@@ -69,7 +69,7 @@ public class TwoGraphsViewPanel extends JPanel {
 		contentPane.add(choice);*/
 		
 		  final JButton btnGenerateGraphs = new JButton("Generate graphs");
-	      btnGenerateGraphs.setBounds(493, 462, 136, 23);
+	      btnGenerateGraphs.setBounds(493, 477, 136, 23);
 	      btnGenerateGraphs.setVisible(false);
 	      add(btnGenerateGraphs);
 		
@@ -132,7 +132,7 @@ public class TwoGraphsViewPanel extends JPanel {
       add(label);
       
       JSeparator separator = new JSeparator();
-      separator.setBounds(-13, 30, 330, 15);
+      separator.setBounds(10, 30, 614, 15);
       add(separator);
       
       final JLabel lblSensorType = new JLabel("Sensor type");
@@ -147,7 +147,7 @@ public class TwoGraphsViewPanel extends JPanel {
       
       
       final JSeparator separator_2 = new JSeparator();
-      separator_2.setBounds(10, 226, 307, 2);
+      separator_2.setBounds(10, 228, 619, 2);
       add(separator_2);
       
       final  JLabel label_1 = new JLabel("Sensor type 1");
@@ -542,16 +542,6 @@ public class TwoGraphsViewPanel extends JPanel {
       btnProcess.setBounds(181, 165, 136, 23);
       add(btnProcess);
       
-      
-      Label label_10 = new Label("Basic data");
-      label_10.setBounds(358, 10, 65, 14);
-      add(label_10);
-      
-      final  Label label_11 = new Label("Sensor type");
-      label_11.setBounds(358, 201, 65, 14);
-      label_11.setVisible(false);
-      add(label_11);
-      
       final  Label label_12 = new Label("Sensor type 1");
       label_12.setBounds(376, 241, 83, 14);
       label_12.setVisible(false);
@@ -643,21 +633,10 @@ public class TwoGraphsViewPanel extends JPanel {
       choice_19.setVisible(false);
       add(choice_19);
       
-    
-      
-      final JSeparator separator_3 = new JSeparator();
-      separator_3.setBounds(356, 226, 273, 16);
-      separator_3.setVisible(false);
-      add(separator_3);
-      
       JSeparator separator_4 = new JSeparator();
       //separator_4.setForeground(Color.GRAY);
       separator_4.setBounds(622, 30, -273, 15);
       add(separator_4);
-      
-      JSeparator separator_5 = new JSeparator();
-      separator_5.setBounds(358, 30, 330, 15);
-      add(separator_5);
       
       
       final JLabel label_6 = new JLabel("Graph type");
@@ -712,7 +691,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(false);
 				label_14.setVisible(false);
@@ -723,7 +702,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				
-				separator_3.setVisible(true);
+				
 				btnGenerateGraphs.setVisible(true);
 				
 			}
@@ -739,7 +718,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+		
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(false);
@@ -749,8 +728,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				
-				separator_3.setVisible(true);
+			
 				btnGenerateGraphs.setVisible(true);
 			}
 			
@@ -765,7 +743,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+		
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -776,7 +754,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 4){
@@ -790,7 +768,6 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -801,7 +778,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+				
 			}
 			
 			else if(valueSecondGraph == 5){
@@ -815,7 +792,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+		
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -826,7 +803,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			
@@ -843,7 +820,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+		
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -854,7 +831,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 7){
@@ -868,7 +845,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+		
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -879,7 +856,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 8){
@@ -893,7 +870,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(true);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -904,7 +881,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(true);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+				
 			}
 			
 			else{
@@ -918,7 +895,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				choice_18.setVisible(true);
 				choice_19.setVisible(true);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -929,7 +906,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_19.setVisible(true);
 				label_20.setVisible(true);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+				
 			}
       		
       		
@@ -951,6 +928,14 @@ public class TwoGraphsViewPanel extends JPanel {
       });
       button.setBounds(493, 165, 136, 23);
       add(button);
+      
+      JSeparator separator_3 = new JSeparator();
+      separator_3.setBounds(10, 466, 619, 0);
+      add(separator_3);
+      
+      JSeparator separator_5 = new JSeparator();
+      separator_5.setBounds(10, 464, 619, 2);
+      add(separator_5);
       
       //-------------------------------------------------------------------------------
       

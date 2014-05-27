@@ -153,7 +153,7 @@ add(datePicker5);
       add(label);
       
       JSeparator separator = new JSeparator();
-      separator.setBounds(-13, 30, 960, 15);
+      separator.setBounds(10, 30, 937, 15);
       add(separator);
       
       final JLabel lblSensorType = new JLabel("Sensor type");
@@ -168,7 +168,7 @@ add(datePicker5);
       
       
       final JSeparator separator_2 = new JSeparator();
-      separator_2.setBounds(10, 226, 307, 2);
+      separator_2.setBounds(10, 226, 934, 2);
       add(separator_2);
       
       final  JLabel label_1 = new JLabel("Sensor type 1");
@@ -567,11 +567,6 @@ add(datePicker5);
       btnProcess.setBounds(152, 165, 165, 23);
       add(btnProcess);
       
-      final  Label label_11 = new Label("Sensor type");
-      label_11.setBounds(358, 201, 65, 14);
-      label_11.setVisible(false);
-      add(label_11);
-      
       final  Label label_12 = new Label("Sensor type 1");
       label_12.setBounds(376, 241, 83, 14);
       label_12.setVisible(false);
@@ -663,12 +658,6 @@ add(datePicker5);
       choice_19.setVisible(false);
       add(choice_19);
       
-     
-      final JSeparator separator_3 = new JSeparator();
-      separator_3.setBounds(356, 226, 273, 16);
-      separator_3.setVisible(false);
-      add(separator_3);
-      
       JSeparator separator_4 = new JSeparator();
       //separator_4.setForeground(Color.GRAY);
       separator_4.setBounds(622, 30, -273, 15);
@@ -727,7 +716,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(false);
 				label_14.setVisible(false);
@@ -738,7 +727,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				
-				separator_3.setVisible(true);
+			
 				btnGenerateGraphs.setVisible(true);
 				
 			}
@@ -754,7 +743,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(false);
@@ -765,7 +754,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				
-				separator_3.setVisible(true);
+			
 				btnGenerateGraphs.setVisible(true);
 			}
 			
@@ -780,7 +769,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -791,7 +780,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 4){
@@ -805,7 +794,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -816,7 +805,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 5){
@@ -830,7 +819,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -841,7 +830,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+				
 			}
 			
 			
@@ -858,7 +847,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -869,7 +858,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				
-				separator_3.setVisible(true);
+			
 			}
 			
 			else if(valueSecondGraph == 7){
@@ -883,7 +872,7 @@ add(datePicker5);
 				choice_18.setVisible(false);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+			
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -894,7 +883,7 @@ add(datePicker5);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+				
 			}
 			
 			else if(valueSecondGraph == 8){
@@ -908,7 +897,7 @@ add(datePicker5);
 				choice_18.setVisible(true);
 				choice_19.setVisible(false);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -919,7 +908,7 @@ add(datePicker5);
 				label_19.setVisible(true);
 				label_20.setVisible(false);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
 			
 			else{
@@ -933,7 +922,7 @@ add(datePicker5);
 				choice_18.setVisible(true);
 				choice_19.setVisible(true);
 				
-				label_11.setVisible(true);
+				
 				label_12.setVisible(true);
 				label_13.setVisible(true);
 				label_14.setVisible(true);
@@ -944,7 +933,7 @@ add(datePicker5);
 				label_19.setVisible(true);
 				label_20.setVisible(true);
 				btnGenerateGraphs.setVisible(true);
-				separator_3.setVisible(true);
+			
 			}
       		
       		
@@ -1050,18 +1039,13 @@ add(datePicker5);
       add(choice_29);
       
       final  JSeparator separator_5 = new JSeparator();
-      separator_5.setBounds(-13, 462, 960, 15);
+      separator_5.setBounds(10, 462, 937, 15);
     
       add(separator_5);
       
       final  JSeparator separator_6 = new JSeparator();
       separator_6.setBounds(720, 220, -91, 22);
       add(separator_6);
-      
-      final JSeparator separator_7 = new JSeparator();
-      separator_7.setBounds(649, 226, 301, 2);
-      separator_7.setVisible(false);
-      add(separator_7);
       
       final  Label label_25 = new Label("Sensor type 2");
       label_25.setAlignment(Label.RIGHT);
@@ -1146,7 +1130,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 			
  				
  			}
  			
@@ -1172,7 +1156,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 				
  			}
  			
  			else if(valueSecondGraphThree == 3){
@@ -1197,7 +1181,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 			
  			}
  			
  			else if(valueSecondGraphThree == 4){
@@ -1222,7 +1206,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 				
  			}
  			
  			else if(valueSecondGraphThree == 5){
@@ -1247,7 +1231,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 				
  			}
  			
  			
@@ -1275,7 +1259,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 				
  			}
  			
  			else if(valueSecondGraphThree == 7){
@@ -1300,7 +1284,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 			
  			}
  			
  			else if(valueSecondGraphThree == 8){
@@ -1325,7 +1309,7 @@ add(datePicker5);
  				label_32.setVisible(false);
  				
  				
- 				separator_7.setVisible(true);
+ 				
  			}
  			
  			else{
@@ -1350,7 +1334,7 @@ add(datePicker5);
  				label_32.setVisible(true);
  				
  				
- 				separator_7.setVisible(true);
+ 			
  			}
        		
        		
