@@ -46,7 +46,7 @@ public class BasicInformationPanel extends JPanel {
 		
 		JLabel lblDataNumber = new JLabel("Data number");
 		lblDataNumber.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDataNumber.setBounds(40, 138, 83, 14);
+		lblDataNumber.setBounds(40, 139, 83, 14);
 		add(lblDataNumber);
 		
 	/*	 choice = new Choice();
@@ -67,7 +67,7 @@ public class BasicInformationPanel extends JPanel {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(0, 0, 9, 1));
-		spinner.setBounds(152, 134, 165, 18);
+		spinner.setBounds(152, 136, 165, 18);
 		
 		add(spinner);
 		
@@ -79,15 +79,15 @@ public class BasicInformationPanel extends JPanel {
         add(lblGraphType);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(152, 76);
-        datePicker.setSize(165, 23);
+        datePicker.setSize(165, 28);
        add(datePicker);
         
         
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        datePicker1.setLocation(152, 104);
-        datePicker1.setSize(165, 24);
+        datePicker1.setLocation(152, 106);
+        datePicker1.setSize(165, 28);
       add(datePicker1);
       
       Choice choice = new Choice();

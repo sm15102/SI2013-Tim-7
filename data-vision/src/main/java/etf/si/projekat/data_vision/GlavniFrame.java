@@ -20,7 +20,7 @@ import javax.swing.BoxLayout;
 
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Component;
@@ -130,6 +130,7 @@ public class GlavniFrame extends JFrame {
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
 		tabbedPane_1.add(basicInfo);
+		basicInfo.setLayout(null);
 		
 		
 		
