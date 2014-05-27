@@ -73,7 +73,7 @@ public class BasicInformationPanel  extends ExamplePanel {
     final Choice choice_7;
     final Choice choice_8;
     final Choice choice_9;
-    
+  
     
     
     
@@ -608,13 +608,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 		choices.add(choice_9);
 		
 		Integer value = (Integer) spinner.getValue();
-		
-		/*for(int i=0;i<value;i++)
+		ArrayList<String> senzori = new ArrayList<String>();
+		for(int i=0;i<value;i++)
 		{
 			
 			senzori.add(choices.get(i).getSelectedItem());
 		   
-		}*/
+		}
 		
 		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
 		 double j=0.1;
