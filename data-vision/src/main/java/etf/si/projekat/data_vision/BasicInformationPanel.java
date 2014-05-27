@@ -620,8 +620,8 @@ public class BasicInformationPanel  extends ExamplePanel {
 		 double j=0.1;
 		 for(int i=0; i<value; i++)
 		 {
-			//String naziv=senzori.get(i);
-			data.add(j, i+1, "neki naziv");
+			
+			data.add(j, i+1, senzori.get(i));
 			j+=0.2;
 			
 		 }
@@ -680,6 +680,8 @@ public class BasicInformationPanel  extends ExamplePanel {
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
 		
 		   tabbedPane.addTab("Bar plot", p);
+		   tabbedPane.setSelectedIndex(1);
+		   
 		   
 			
 			
