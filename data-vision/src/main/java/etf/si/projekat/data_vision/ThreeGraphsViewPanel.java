@@ -43,6 +43,7 @@ public class ThreeGraphsViewPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ThreeGraphsViewPanel() {
+		setBackground(UIManager.getColor("Button.light"));
 		setLayout(null);
 
 		
@@ -540,7 +541,7 @@ public class ThreeGraphsViewPanel extends JPanel {
  
       
       
-      btnProcess.setBounds(181, 165, 136, 23);
+      btnProcess.setBounds(152, 165, 165, 23);
       add(btnProcess);
       
       final  Label label_11 = new Label("Sensor type");
@@ -640,7 +641,7 @@ public class ThreeGraphsViewPanel extends JPanel {
       add(choice_19);
       
       final JButton btnGenerateGraphs = new JButton("Generate graphs");
-      btnGenerateGraphs.setBounds(493, 462, 136, 23);
+      btnGenerateGraphs.setBounds(782, 472, 168, 23);
       btnGenerateGraphs.setVisible(false);
       add(btnGenerateGraphs);
       
@@ -966,7 +967,7 @@ public class ThreeGraphsViewPanel extends JPanel {
       		
       	}
       });
-      button.setBounds(493, 165, 136, 23);
+      button.setBounds(464, 165, 165, 23);
       add(button);
       
       JLabel label_21 = new JLabel("Graph type");
@@ -999,12 +1000,60 @@ public class ThreeGraphsViewPanel extends JPanel {
       add(spinner_2);
       
       JButton button_1 = new JButton("Process");
-      button_1.setBounds(814, 165, 136, 23);
+      button_1.setBounds(782, 165, 168, 23);
       add(button_1);
       
       Label label_10 = new Label("");
       label_10.setBounds(673, 241, 103, 14);
       add(label_10);
+      
+      Choice choice_21 = new Choice();
+      choice_21.setBounds(782, 235, 165, 20);
+      add(choice_21);
+      
+      Choice choice_22 = new Choice();
+      choice_22.setBounds(782, 260, 165, 20);
+      add(choice_22);
+      
+      Choice choice_23 = new Choice();
+      choice_23.setBounds(782, 285, 165, 20);
+      add(choice_23);
+      
+      Choice choice_24 = new Choice();
+      choice_24.setBounds(782, 310, 165, 20);
+      add(choice_24);
+      
+      Choice choice_25 = new Choice();
+      choice_25.setBounds(782, 335, 165, 20);
+      add(choice_25);
+      
+      Choice choice_26 = new Choice();
+      choice_26.setBounds(782, 360, 165, 20);
+      add(choice_26);
+      
+      Choice choice_27 = new Choice();
+      choice_27.setBounds(782, 385, 165, 20);
+      add(choice_27);
+      
+      Choice choice_28 = new Choice();
+      choice_28.setBounds(782, 410, 165, 20);
+      add(choice_28);
+      
+      Choice choice_29 = new Choice();
+      choice_29.setBounds(782, 436, 165, 20);
+      add(choice_29);
+      
+      JSeparator separator_5 = new JSeparator();
+      separator_5.setBounds(-13, 462, 960, 15);
+      add(separator_5);
+      
+      JSeparator separator_6 = new JSeparator();
+      separator_6.setBounds(720, 220, -91, 22);
+      add(separator_6);
+      
+      JSeparator separator_7 = new JSeparator();
+      separator_7.setBounds(646, 220, 301, 8);
+      add(separator_7);
       
       //-------------------------------------------------------------------------------
       
