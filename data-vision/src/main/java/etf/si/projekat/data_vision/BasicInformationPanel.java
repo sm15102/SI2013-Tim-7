@@ -797,6 +797,7 @@ public class BasicInformationPanel  extends ExamplePanel {
          interactivePanel.setLayout(null);
 		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 		 final JButton btnChange = new JButton("Change data");
+		
 	       btnChange.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {

@@ -1025,172 +1025,246 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       
       //-------------------------------------------------------------------------------
       
-     
-      public void OneBarGraphShow(){
-  		
-  		
-  		List<Choice> choices=new ArrayList<Choice>();
-  		choices.add(choice_1);
-  		choices.add(choice_2);
-  		choices.add(choice_3);
-  		choices.add(choice_4);
-  		choices.add(choice_5);
-  		choices.add(choice_6);
-  		choices.add(choice_7);
-  		choices.add(choice_8);
-  		choices.add(choice_9);
-  		
-  		Integer value = (Integer) spinner.getValue();
-  		ArrayList<String> senzori = new ArrayList<String>();
-  		for(int i=0;i<value;i++)
-  		{
-  			
-  			senzori.add(choices.get(i).getSelectedItem());
-  		   
-  		}
-  		
-  		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
-  		 double j=0.1;
-  		 for(int i=0; i<value; i++)
-  		 {
-  			
-  			data.add(j, i+1, senzori.get(i));
-  			j+=0.2;
-  			
-  		 }
+public void OneBarGraphShow(){
+		
+		
+		List<Choice> choices=new ArrayList<Choice>();
+		choices.add(choice_1);
+		choices.add(choice_2);
+		choices.add(choice_3);
+		choices.add(choice_4);
+		choices.add(choice_5);
+		choices.add(choice_6);
+		choices.add(choice_7);
+		choices.add(choice_8);
+		choices.add(choice_9);
+		
+		Integer value = (Integer) spinner.getValue();
+		ArrayList<String> senzori = new ArrayList<String>();
+		for(int i=0;i<value;i++)
+		{
+			
+			senzori.add(choices.get(i).getSelectedItem());
+		   
+		}
+		
+		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
+		 double j=0.1;
+		 for(int i=0; i<value; i++)
+		 {
+			
+			data.add(j, i+1, senzori.get(i));
+			j+=0.2;
+			
+		 }
+       
+       BarPlot  plot = new BarPlot(data);
+         // Format plot
+         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+         plot.setBarWidth(0.075);
+         // Format bars
+         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+         pointRenderer.setColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+                 )
+         );
+         pointRenderer.setBorderStroke(new BasicStroke(3f));
+         pointRenderer.setBorderColor(
+                 new LinearGradientPaint(0f,0f, 0f,1f,
+                                 new float[] { 0.0f, 1.0f },
+                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                 )
+         );
          
-         BarPlot  plot = new BarPlot(data);
-           // Format plot
-           plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
-           plot.setBarWidth(0.075);
-           // Format bars
-           BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
-           pointRenderer.setColor(
-                   new LinearGradientPaint(0f,0f, 0f,1f,
-                                   new float[] { 0.0f, 1.0f },
-                                   new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-                   )
-           );
-           pointRenderer.setBorderStroke(new BasicStroke(3f));
-           pointRenderer.setBorderColor(
-                   new LinearGradientPaint(0f,0f, 0f,1f,
-                                   new float[] { 0.0f, 1.0f },
-                                   new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-                   )
-           );
-           
-           pointRenderer.setValueVisible(true);
-           pointRenderer.setValueColumn(2);
-           pointRenderer.setValueLocation(Location.CENTER);
-           pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-           pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-           // Add plot to Swing component
-           // add(new InteractivePanel(plot));
+         pointRenderer.setValueVisible(true);
+         pointRenderer.setValueColumn(2);
+         pointRenderer.setValueLocation(Location.CENTER);
+         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+         // Add plot to Swing component
+         // add(new InteractivePanel(plot));
+       
          
-           
-              /* contentPane = new JPanel();
-  			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-  			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
-  			contentPane.setBackground(Color.white);
-  			contentPane.setBounds(10,10,5,5);
+            /* contentPane = new JPanel();
+			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+			contentPane.setBackground(Color.white);
+			contentPane.setBounds(10,10,5,5);
 
-  	         add(contentPane, BorderLayout.NORTH);*/
-           
-             InteractivePanel p = new InteractivePanel(plot);
-             p.setLayout(null);
-             p.setBounds(new Rectangle(0, 0, 0, 50));
-  	       plot.getTitle().setText("Bar plot");
-  	       p.setVisible(true);
-  	      // contentPane.add(p, BorderLayout.CENTER);
-  	       
-  			//p.setVisible(true);
-  		   // content2.add(interactivePanel, BorderLayout.CENTER);
-  			//content2.add(new Label("bla")); //doda u novi tab graf
-  			//content2.add(new InteractivePanel(plot));
-  		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
-
-  		//f.getContentPane().getComponent(0).getComponentAt(0);
-  	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
-  		
-  		   tabbedPane.addTab("Bar plot", p);
-  		   tabbedPane.setSelectedIndex(1);
-  		   	
-  	}
-  	
-  	
-  	
-  	public void OneLineGraphShow()
-  	{
-  		
-  		 //Podaci koji ce se prikazivati na grafu 
-  	       DataTable data = new DataTable(Double.class, Double.class);
-  	     
-  	       
-  	       double x = 1; 
-  	       double y = 17;
-  	       data.add(x, y);
-  	       x = 2; 
-  	       y = 16;
-  	       data.add(x, y);
-  	        
-  	       x = 3; 
-  	       y = 18;
-  	       data.add(x, y);
-  	        
-  	      x = 4; 
-  	       y = 20;
-  	       data.add(x, y);
-  	        
-  	        x = 5; 
-  	       y = 19;
-  	       data.add(x, y);
-  	        
-  	       x = 6; 
-  	        y = 22;
-  	       data.add(x, y);
-  	        
-  	       x = 7; 
-  	       y = 20;
-  	       
-  	       data.add(x, y);
-  	       
-  	       XYPlot plot=plot = new XYPlot(data);
-  	       //prikaz grafa na frameu
-  	     //  add(new InteractivePanel(plot));
-
-  	     plot.setVisible(data, true);
-  	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-  	     // plot.setBackground(Color.WHITE);
-
-           plot.getTitle().setText("Temperature  for 7 days");
-           LineRenderer lines = new DefaultLineRenderer2D();
-           plot.setLineRenderer(data, lines);
-           Color color = new Color(0.0f, 0.3f, 1.0f);
-           plot.getPointRenderer(data).setColor(color);
-           plot.getLineRenderer(data).setColor(color);
-        // Draw a tick mark and a grid line every 10 units along x axis
-           plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-           // Draw a tick mark and a grid line every 20 units along y axis
-           plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-           
-           
+	         add(contentPane, BorderLayout.NORTH);*/
+         
            InteractivePanel interactivePanel = new InteractivePanel(plot);
-  		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-  		 tabbedPane.addTab("Line plot", interactivePanel);
-  		 tabbedPane.setSelectedIndex(1);
-  		
-  		
-  	}
-  	
-  	
-      @Override
- 	 public String getTitle() {
- 	         return "Bar plot";
- 	 }
- 	 @Override
- 	 public String getDescription() {
- 	         return "Bar plot with example data and color gradients";
- 	 }
+          interactivePanel.setLayout(null);
+          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+	       plot.getTitle().setText("Bar plot");
+	       interactivePanel.setVisible(true);
+	      // contentPane.add(p, BorderLayout.CENTER);
+	       
+			//p.setVisible(true);
+		   // content2.add(interactivePanel, BorderLayout.CENTER);
+			//content2.add(new Label("bla")); //doda u novi tab graf
+			//content2.add(new InteractivePanel(plot));
+		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
+
+		//f.getContentPane().getComponent(0).getComponentAt(0);
+	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+	       
+	       
+	       
+	       
+	       final JButton btnChange = new JButton("Change data");
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 tabbedPane.addTab("Line plot", interactivePanel);
+		 tabbedPane.setSelectedIndex(1);
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
+		
+		   tabbedPane.addTab("Bar plot",  interactivePanel);
+		   tabbedPane.setSelectedIndex(1);
+		   	
+	}
+	
+	
+	
+	public void OneLineGraphShow()
+	{
+		
+		 //Podaci koji ce se prikazivati na grafu 
+	       DataTable data = new DataTable(Double.class, Double.class);
+	     
+	       
+	       double x = 1; 
+	       double y = 17;
+	       data.add(x, y);
+	       x = 2; 
+	       y = 16;
+	       data.add(x, y);
+	        
+	       x = 3; 
+	       y = 18;
+	       data.add(x, y);
+	        
+	      x = 4; 
+	       y = 20;
+	       data.add(x, y);
+	        
+	        x = 5; 
+	       y = 19;
+	       data.add(x, y);
+	        
+	       x = 6; 
+	        y = 22;
+	       data.add(x, y);
+	        
+	       x = 7; 
+	       y = 20;
+	       
+	       data.add(x, y);
+	       
+	       XYPlot plot=plot = new XYPlot(data);
+	       //prikaz grafa na frameu
+	     //  add(new InteractivePanel(plot));
+
+	     plot.setVisible(data, true);
+	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+	     // plot.setBackground(Color.WHITE);
+
+         plot.getTitle().setText("Temperature  for 7 days");
+         LineRenderer lines = new DefaultLineRenderer2D();
+         plot.setLineRenderer(data, lines);
+         Color color = new Color(0.0f, 0.3f, 1.0f);
+         plot.getPointRenderer(data).setColor(color);
+         plot.getLineRenderer(data).setColor(color);
+      // Draw a tick mark and a grid line every 10 units along x axis
+         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+         // Draw a tick mark and a grid line every 20 units along y axis
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+         
+         InteractivePanel interactivePanel = new InteractivePanel(plot);
+         interactivePanel.setLayout(null);
+		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+		 final JButton btnChange = new JButton("Change data");
+		
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(81, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+		 final JButton btnExport = new JButton("Export plot");
+	       btnExport.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	      //ovdje ce ici kod za export
+	       	}
+	       });
+	     btnExport.setBounds(281, 462, 137, 23);
+		 interactivePanel.add(btnExport);
+		 
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(481, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 tabbedPane.addTab("Line plot", interactivePanel);
+		 tabbedPane.setSelectedIndex(1);
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
+		
+	}
+	
+	
+	
+	
+	@Override
+	 public String getTitle() {
+	         return "Bar plot";
+	 }
+	 @Override
+	 public String getDescription() {
+	         return "Bar plot with example data and color gradients";
+	 }
 	}
 //}
       
