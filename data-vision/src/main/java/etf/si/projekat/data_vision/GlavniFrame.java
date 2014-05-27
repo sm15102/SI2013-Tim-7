@@ -108,6 +108,9 @@ public class GlavniFrame extends JFrame {
 		});
 		tabbedPane.addTab("Data Vision", null, tabbedPane_2, null);
 		BasicInformationPanel basicInfo = new BasicInformationPanel();
+		BasicInformationPanel basicInfo1 = new BasicInformationPanel();
+		BasicInformationPanel basicInfo2 = new BasicInformationPanel();
+		
 		basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
 				
@@ -132,10 +135,12 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
+		tabbedPane_3.add(basicInfo1);
 
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Three graph view", null, tabbedPane_4, null);
+		tabbedPane_4.add(basicInfo2);
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);

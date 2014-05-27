@@ -482,6 +482,11 @@ public class BasicInformationPanel extends JPanel {
       add(btnProcess);
       
       
+      //NADINA
+      
+      
+      
+      
     
       
       
