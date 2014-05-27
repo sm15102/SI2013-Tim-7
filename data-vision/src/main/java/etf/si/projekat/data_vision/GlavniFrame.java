@@ -133,7 +133,7 @@ public class GlavniFrame extends JFrame {
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
 		basicInfo = new BasicInformationPanel(tabbedPane_1);
-		tabbedPane_1.add(basicInfo);
+		tabbedPane_1.add("Basic data",basicInfo);
 		basicInfo.setLayout(null);
 		
 		

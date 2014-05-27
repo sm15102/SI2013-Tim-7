@@ -581,7 +581,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	
 	public void OneBarGraphShow(){
 		
-		JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+		
 		/*List<Choice> choices=new ArrayList<Choice>();
 		choices.add(choice1);
 		choices.add(choice2);
@@ -665,7 +665,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		//f.getContentPane().getComponent(0).getComponentAt(0);
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
 		
-		   tabbedPane.addTab(null, p);
+		   tabbedPane.addTab("Bar plot", p);
 		   
 			
 			
