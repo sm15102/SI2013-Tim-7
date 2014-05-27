@@ -127,7 +127,7 @@ public class TableView extends JFrame {
         	gl_contentPane.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_contentPane.createSequentialGroup()
         			.addGap(5)
-        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
         				.addComponent(btnAddDevice, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
@@ -143,11 +143,11 @@ public class TableView extends JFrame {
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
         				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addComponent(btnAddDevice)
+        					.addGap(5)
         					.addComponent(btnRefresh)
         					.addGap(4)
         					.addComponent(btnExit)
-        					.addGap(7)
-        					.addComponent(btnAddDevice)
         					.addContainerGap())))
         );
         contentPane.setLayout(gl_contentPane);
