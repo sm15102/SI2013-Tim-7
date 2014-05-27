@@ -90,7 +90,7 @@ public class TwoGraphsViewPanel extends JPanel {
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        datePicker.setLocation(152, 77);
+        datePicker.setLocation(152, 75);
         datePicker.setSize(165, 28);
        add(datePicker);
         
@@ -98,9 +98,23 @@ public class TwoGraphsViewPanel extends JPanel {
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        datePicker1.setLocation(152, 106);
+        datePicker1.setLocation(152, 104);
         datePicker1.setSize(165, 28);
       add(datePicker1);
+      
+      UtilDateModel model2 = new UtilDateModel();
+      JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
+      final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);
+      datePicker2.setLocation(464, 75);
+      datePicker2.setSize(165, 28);
+    add(datePicker2);
+    
+    UtilDateModel model3 = new UtilDateModel();
+    JDatePanelImpl datePane3 = new JDatePanelImpl(model3);
+    final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);
+    datePicker3.setLocation(464, 104);
+    datePicker3.setSize(165, 28);
+  add(datePicker3);
       
       Choice choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
@@ -120,15 +134,9 @@ public class TwoGraphsViewPanel extends JPanel {
       add(lblSensorType);
       
       final JSeparator separator_1 = new JSeparator();
-      separator_1.setBounds(221, 213, -219, 2);
+      separator_1.setBounds(222, 220, -220, -5);
       separator_1.setVisible(false);
       add(separator_1);
-      
-      final JButton btnGenerateGraph = new JButton("Generate graph");
-      btnGenerateGraph.setBounds(181, 462, 137, 23);
-      btnGenerateGraph.setVisible(false);
-      
-      add(btnGenerateGraph);
       
       
       final JSeparator separator_2 = new JSeparator();
@@ -287,7 +295,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 2){
@@ -311,7 +319,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 3){
@@ -336,7 +344,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 4){
@@ -362,7 +370,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_2.setVisible(true);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 5){
@@ -389,7 +397,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -419,7 +427,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 7){
@@ -472,7 +480,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			else{
@@ -499,7 +507,7 @@ public class TwoGraphsViewPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
+				//btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -531,17 +539,134 @@ public class TwoGraphsViewPanel extends JPanel {
  
       
       
-      btnProcess.setBounds(181, 163, 136, 23);
+      btnProcess.setBounds(181, 165, 136, 23);
       add(btnProcess);
       
       JLabel label_6 = new JLabel("Graph type");
       label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_6.setBounds(368, 60, 68, 14);
+      label_6.setBounds(373, 57, 68, 14);
       add(label_6);
       
       Choice choice_10 = new Choice();
-      choice_10.setBounds(463, 51, 165, 20);
+      choice_10.setBounds(464, 51, 165, 20);
       add(choice_10);
+      
+      JLabel label_7 = new JLabel("Time interval from");
+      label_7.setVerticalAlignment(SwingConstants.BOTTOM);
+      label_7.setHorizontalAlignment(SwingConstants.RIGHT);
+      label_7.setBounds(327, 85, 113, 14);
+      add(label_7);
+      
+      JLabel label_8 = new JLabel("Time interval to");
+      label_8.setHorizontalAlignment(SwingConstants.RIGHT);
+      label_8.setBounds(348, 114, 93, 14);
+      add(label_8);
+      
+      JLabel label_9 = new JLabel("Data number");
+      label_9.setHorizontalAlignment(SwingConstants.RIGHT);
+      label_9.setBounds(358, 139, 83, 14);
+      add(label_9);
+      
+      JSpinner spinner_1 = new JSpinner();
+      spinner_1.setBounds(464, 136, 165, 18);
+      add(spinner_1);
+      
+      JButton button = new JButton("Process");
+      button.setBounds(493, 165, 136, 23);
+      add(button);
+      
+      Label label_10 = new Label("Basic data");
+      label_10.setBounds(348, 10, 65, 14);
+      add(label_10);
+      
+      Label label_11 = new Label("Sensor type");
+      label_11.setBounds(358, 201, 65, 14);
+      add(label_11);
+      
+      Label label_12 = new Label("Sensor type 1");
+      label_12.setBounds(376, 241, 83, 14);
+      add(label_12);
+      
+      Choice choice_11 = new Choice();
+      choice_11.setBounds(464, 235, 165, 20);
+      add(choice_11);
+      
+      Label label_13 = new Label("Sensor type 2");
+      label_13.setBounds(376, 266, 83, 14);
+      add(label_13);
+      
+      Label label_14 = new Label("Sensor type 3");
+      label_14.setBounds(376, 291, 83, 14);
+      add(label_14);
+      
+      Label label_15 = new Label("Sensor type 4");
+      label_15.setBounds(376, 316, 83, 14);
+      add(label_15);
+      
+      Label label_16 = new Label("Sensor type 5");
+      label_16.setBounds(376, 341, 83, 14);
+      add(label_16);
+      
+      Label label_17 = new Label("Sensor type 6");
+      label_17.setBounds(376, 366, 83, 14);
+      add(label_17);
+      
+      Label label_18 = new Label("Sensor type 7");
+      label_18.setBounds(376, 391, 83, 14);
+      add(label_18);
+      
+      Label label_19 = new Label("Sensor type 8");
+      label_19.setBounds(376, 416, 83, 14);
+      add(label_19);
+      
+      Label label_20 = new Label("Sensor type 9");
+      label_20.setBounds(376, 442, 83, 14);
+      add(label_20);
+      
+      Choice choice_12 = new Choice();
+      choice_12.setBounds(464, 260, 165, 20);
+      add(choice_12);
+      
+      Choice choice_13 = new Choice();
+      choice_13.setBounds(464, 285, 165, 20);
+      add(choice_13);
+      
+      Choice choice_14 = new Choice();
+      choice_14.setBounds(464, 310, 165, 20);
+      add(choice_14);
+      
+      Choice choice_15 = new Choice();
+      choice_15.setBounds(464, 335, 165, 20);
+      add(choice_15);
+      
+      Choice choice_16 = new Choice();
+      choice_16.setBounds(464, 360, 165, 20);
+      add(choice_16);
+      
+      Choice choice_17 = new Choice();
+      choice_17.setBounds(464, 385, 165, 20);
+      add(choice_17);
+      
+      Choice choice_18 = new Choice();
+      choice_18.setBounds(464, 410, 165, 20);
+      add(choice_18);
+      
+      Choice choice_19 = new Choice();
+      choice_19.setBounds(464, 436, 165, 20);
+      add(choice_19);
+      
+      JButton btnGenerateGraphs = new JButton("Generate graphs");
+      btnGenerateGraphs.setBounds(493, 462, 136, 23);
+      add(btnGenerateGraphs);
+      
+      JSeparator separator_3 = new JSeparator();
+      separator_3.setBounds(356, 226, 273, 16);
+      add(separator_3);
+      
+      JSeparator separator_4 = new JSeparator();
+      //separator_4.setForeground(Color.GRAY);
+      separator_4.setBounds(622, 30, -273, 15);
+      add(separator_4);
       
   
 	}
