@@ -63,6 +63,20 @@ public class BasicInformationPanel  extends ExamplePanel {
     final JSpinner spinner;
     private JPanel contentPane;
     final JTabbedPane tabbedPane;
+    //choices
+    final Choice choice_1;
+    final Choice choice_2;
+    final Choice choice_3;
+    final Choice choice_4;
+    final Choice choice_5;
+    final Choice choice_6;
+    final Choice choice_7;
+    final Choice choice_8;
+    final Choice choice_9;
+    
+    
+    
+    
 	/**
 	 * Create the panel.
 	 */
@@ -201,39 +215,39 @@ public class BasicInformationPanel  extends ExamplePanel {
       label_5.setBounds(30, 341, 95, 14);
       add(label_5);
       
-      final Choice choice_1 = new Choice();
+      choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
       
-      final Choice choice_2 = new Choice();
+      choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
       
-      final Choice choice_3 = new Choice();
+       choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
       
-      final Choice choice_4 = new Choice();
+      choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
       
-      final Choice choice_5 = new Choice();
+     choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
       
-      final Choice choice_6 = new Choice();
+      choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
       
-      final  Choice choice_7 = new Choice();
+      choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
       
-      final  Choice choice_8 = new Choice();
+       choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
       
-      final Choice choice_9 = new Choice();
+      choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
       
@@ -582,16 +596,16 @@ public class BasicInformationPanel  extends ExamplePanel {
 	public void OneBarGraphShow(){
 		
 		
-		/*List<Choice> choices=new ArrayList<Choice>();
-		choices.add(choice1);
-		choices.add(choice2);
-		choices.add(choice3);
-		choices.add(choice4);
-		choices.add(choice5);
-		choices.add(choice6);
-		choices.add(choice7);
-		choices.add(choice8);
-		choices.add(choice9);*/
+		List<Choice> choices=new ArrayList<Choice>();
+		choices.add(choice_1);
+		choices.add(choice_2);
+		choices.add(choice_3);
+		choices.add(choice_4);
+		choices.add(choice_5);
+		choices.add(choice_6);
+		choices.add(choice_7);
+		choices.add(choice_8);
+		choices.add(choice_9);
 		
 		Integer value = (Integer) spinner.getValue();
 		
