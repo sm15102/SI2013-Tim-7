@@ -301,6 +301,10 @@ public class BasicInformationPanel  extends ExamplePanel {
 		separator_2.setVisible(false);
 
       JButton btnProcess = new JButton("Process");
+      btnProcess.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
