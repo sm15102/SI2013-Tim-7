@@ -54,14 +54,14 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
-import ba.unsa.etf.si.beans.DeviceType;
-import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
+import ba.unsa.etf.si.beans.DeviceName;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
-    List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
+    List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
     final Choice choice;
     final JSpinner spinner;
     private JPanel contentPane;
@@ -564,15 +564,15 @@ public class BasicInformationPanel  extends ExamplePanel {
 			
 		      
 		      for (int i=0; i<list_device.size(); i++){
-			    	 choice_1.add(list_device.get(i).getType() );
-			    	 choice_2.add(list_device.get(i).getType() );
-			    	 choice_3.add(list_device.get(i).getType() );
-			    	 choice_4.add(list_device.get(i).getType() );
-			    	 choice_5.add(list_device.get(i).getType() );
-			    	 choice_6.add(list_device.get(i).getType() );
-			    	 choice_7.add(list_device.get(i).getType() );
-			    	 choice_8.add(list_device.get(i).getType() );
-			    	 choice_9.add(list_device.get(i).getType() );
+			    	 choice_1.add(list_device.get(i).getName() );
+			    	 choice_2.add(list_device.get(i).getName() );
+			    	 choice_3.add(list_device.get(i).getName() );
+			    	 choice_4.add(list_device.get(i).getName() );
+			    	 choice_5.add(list_device.get(i).getName() );
+			    	 choice_6.add(list_device.get(i).getName() );
+			    	 choice_7.add(list_device.get(i).getName() );
+			    	 choice_8.add(list_device.get(i).getName() );
+			    	 choice_9.add(list_device.get(i).getName() );
 		      }
 		      
 		     
