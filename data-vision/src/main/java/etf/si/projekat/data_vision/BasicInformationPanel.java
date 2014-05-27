@@ -1,5 +1,9 @@
 package etf.si.projekat.data_vision;
 
+import java.awt.*;
+import java.awt.geom.*;
+import javax.swing.*;
+
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.event.InputMethodEvent;
@@ -119,6 +123,13 @@ public class BasicInformationPanel extends JPanel {
       separator_1.setBounds(221, 213, -219, 2);
       separator_1.setVisible(false);
       add(separator_1);
+      
+      final JButton btnGenerateGraph = new JButton("Generate graph");
+      btnGenerateGraph.setBounds(181, 462, 137, 23);
+      btnGenerateGraph.setVisible(false);
+      
+      add(btnGenerateGraph);
+      
       
       final JSeparator separator_2 = new JSeparator();
       separator_2.setBounds(10, 226, 307, 2);
@@ -276,6 +287,7 @@ public class BasicInformationPanel extends JPanel {
 				lblSensorType.setVisible(true);
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 2){
@@ -289,7 +301,7 @@ public class BasicInformationPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
@@ -299,6 +311,7 @@ public class BasicInformationPanel extends JPanel {
 				separator_2.setVisible(true);
 				label_1.setVisible(true);
 				label_2.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 3){
@@ -312,7 +325,7 @@ public class BasicInformationPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
@@ -323,6 +336,7 @@ public class BasicInformationPanel extends JPanel {
 				label_1.setVisible(true);
 				label_2.setVisible(true);
 				label_3.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 4){
@@ -336,7 +350,7 @@ public class BasicInformationPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
@@ -348,9 +362,10 @@ public class BasicInformationPanel extends JPanel {
 				label_2.setVisible(true);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
-			else if(value == 4){
+			else if(value == 5){
 				choice_1.setVisible(true);
 				choice_2.setVisible(true);
 				choice_3.setVisible(true);
@@ -361,7 +376,7 @@ public class BasicInformationPanel extends JPanel {
 				choice_8.setVisible(false);
 				choice_9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
+				lblSensorType_1.setVisible(false);
 				lblSensorType_2.setVisible(false);
 				lblSensorType_3.setVisible(false);
 				lblSensorType_4.setVisible(false);
@@ -374,7 +389,10 @@ public class BasicInformationPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
+			
+			
 			
 			
 			else if(value == 6){
@@ -401,6 +419,7 @@ public class BasicInformationPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 7){
@@ -453,6 +472,7 @@ public class BasicInformationPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			else{
@@ -479,6 +499,7 @@ public class BasicInformationPanel extends JPanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
+				btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -486,87 +507,19 @@ public class BasicInformationPanel extends JPanel {
 		      
 		      for (int i=0; i<list_device.size(); i++){
 			    	 choice_1.add(list_device.get(i).getType() );
+			    	 choice_2.add(list_device.get(i).getType() );
+			    	 choice_3.add(list_device.get(i).getType() );
+			    	 choice_4.add(list_device.get(i).getType() );
+			    	 choice_5.add(list_device.get(i).getType() );
+			    	 choice_6.add(list_device.get(i).getType() );
+			    	 choice_7.add(list_device.get(i).getType() );
+			    	 choice_8.add(list_device.get(i).getType() );
+			    	 choice_9.add(list_device.get(i).getType() );
 		      }
 		      
 		     
 		     
-		  		switch(value){
-		  		case 2 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  			if(choice_1.getSelectedItem() == list_device.get(i).getType()) continue;
-		  			choice_2.add(list_device.get(i).getType());
-		  			}
-		  			choice_1.disable();
-		  			break;
-		  			
-		  		}
-		  		case 3 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_3.add(list_device.get(i).getType());
-		  				}
-		  				choice_2.disable();
-		  				break;
-		  		}
-		  		case 4 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_4.add(list_device.get(i).getType());
-		  				}
-		  				choice_3.disable();
-		  				break;
-		  		}
-		  		case 5 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
-		  						(choice_4.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_5.add(list_device.get(i).getType());
-		  				}
-		  				choice_4.disable();
-		  				break;
-		  		}
-		  		case 6 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
-		  						(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_6.add(list_device.get(i).getType());
-		  				}
-		  				choice_5.disable();
-		  				break;
-		  		}
-		  		case 7 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
-		  						(choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_7.add(list_device.get(i).getType());
-		  				}
-		  				choice_6.disable();
-		  				break;
-		  		}
-		  		case 8 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
-		  				   (choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())||
-		  				   (choice_7.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_8.add(list_device.get(i).getType());
-		  				}
-		  				choice_7.disable();
-		  				break;
-		  		}
-		  		case 9 : {
-		  			for(int i=0; i<list_device.size();i++){
-		  				if((choice_1.getSelectedItem() == list_device.get(i).getType()) || (choice_2.getSelectedItem() == list_device.get(i).getType())||(choice_3.getSelectedItem() == list_device.get(i).getType())||
-		  				   (choice_4.getSelectedItem() == list_device.get(i).getType())||(choice_5.getSelectedItem() == list_device.get(i).getType())||(choice_6.getSelectedItem() == list_device.get(i).getType())||
-		  				   (choice_7.getSelectedItem() == list_device.get(i).getType())||(choice_8.getSelectedItem() == list_device.get(i).getType())) continue;
-		  				choice_9.add(list_device.get(i).getType());
-		  				}
-		  				choice_8.disable();
-		  				break;
-		  		}
-		  		
-		  			
-		  			
-		  	}
+	
 		  		
 		      	
 			
@@ -575,28 +528,15 @@ public class BasicInformationPanel extends JPanel {
 		
       
  
- //     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
+ 
       
       
-      
-      btnProcess.setBounds(205, 163, 112, 23);
+      btnProcess.setBounds(181, 163, 136, 23);
       add(btnProcess);
       
-      JButton btnGenerateGraph = new JButton("Generate graph");
-      btnGenerateGraph.setBounds(205, 462, 113, 23);
-      add(btnGenerateGraph);
-      
-      
-      //NADINA
-      
-      
-      
-      
-    
-      
-      
-		//final int type1=choice.getSelectedIndex();
-		
-
+  
 	}
+	
 }
+      
+      
