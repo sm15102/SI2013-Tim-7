@@ -97,7 +97,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	final JTabbedPane tabbedPane;
 	final JButton btnProcess = new JButton("Process");
 	private JFrame f;
-	private InteractivePanel interactivePanel;
+//	private InteractivePanel interactivePanel;
 	
     
 	
@@ -273,7 +273,7 @@ public class WelcomeDataVision extends ExamplePanel {
 			{
 				
 				
-				tabbedPane.add(interactivePanel_1);
+				OneBarGraphShow();
 				
 			}
 				
@@ -790,11 +790,11 @@ public class WelcomeDataVision extends ExamplePanel {
          // Add plot to Swing component
         // add(new InteractivePanel(plot));
        
-           interactivePanel = new InteractivePanel(plot);
-           interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+           InteractivePanel p = new InteractivePanel(plot);
+           p.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
 	       
-			interactivePanel.setVisible(true);
+			//p.setVisible(true);
 		   // content2.add(interactivePanel, BorderLayout.CENTER);
 			//content2.add(new Label("bla")); //doda u novi tab graf
 			//content2.add(new InteractivePanel(plot));
@@ -803,7 +803,8 @@ public class WelcomeDataVision extends ExamplePanel {
 		//f.getContentPane().getComponent(0).getComponentAt(0);
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
 		
-		    tabbedPane.addTab(null, interactivePanel);
+		    tabbedPane.add( p);
+		   
 			
 			
 	}
