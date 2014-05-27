@@ -273,7 +273,7 @@ public class WelcomeDataVision extends ExamplePanel {
 			{
 				
 				
-				OneBarGraphShow();
+				OneBarGraphShowWelcome();
 				
 			}
 				
@@ -730,7 +730,7 @@ public class WelcomeDataVision extends ExamplePanel {
 	
 	}
 	
-	public void OneBarGraphShow(){
+	public void OneBarGraphShowWelcome(){
 		JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 		List<Choice> choices=new ArrayList<Choice>();
 		choices.add(choice1);

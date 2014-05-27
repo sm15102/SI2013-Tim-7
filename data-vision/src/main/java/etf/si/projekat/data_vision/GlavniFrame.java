@@ -45,7 +45,7 @@ public class GlavniFrame extends JFrame {
 
 	
 	private JPanel contentPane;
-
+	private BasicInformationPanel basicInfo;
 	/**
 	 * Launch the application.
 	 */
@@ -108,17 +108,17 @@ public class GlavniFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 699, 550);
 		tabbedPane.setBorder(new CompoundBorder());
-		BasicInformationPanel basicInfo = new BasicInformationPanel();
+		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel();
-		BasicInformationPanel basicInfo2 = new BasicInformationPanel();
+		//BasicInformationPanel basicInfo2 = new BasicInformationPanel(); ovo mijenjalaa
 		ThreeGraphsViewPanel basicInfo3 = new ThreeGraphsViewPanel();
 		
-		basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
+	/*	basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
 				
 				
 			}
-		});
+		});*/
 		contentPane.setLayout(null);
 		
 		
@@ -132,6 +132,7 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
+		basicInfo = new BasicInformationPanel(tabbedPane_1);
 		tabbedPane_1.add(basicInfo);
 		basicInfo.setLayout(null);
 		

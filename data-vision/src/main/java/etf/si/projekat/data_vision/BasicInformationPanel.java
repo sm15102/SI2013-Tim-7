@@ -6,9 +6,11 @@ import java.awt.geom.*;
 import javax.swing.*;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.LinearGradientPaint;
@@ -20,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -58,10 +61,13 @@ public class BasicInformationPanel  extends ExamplePanel {
     List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
     final Choice choice;
     final JSpinner spinner;
+    private JPanel contentPane;
+    final JTabbedPane tabbedPane;
 	/**
 	 * Create the panel.
 	 */
-	public BasicInformationPanel() {
+	public BasicInformationPanel(JTabbedPane tabbedPane_1) {
+		tabbedPane=tabbedPane_1;
 		setLayout(null);
 
 		
@@ -152,7 +158,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
       	if(choice.getSelectedItem()=="Bar")	
       	{
-      		//OneBarGraphShow();
+      		OneBarGraphShow();
       	}
       	else
       	{
@@ -574,6 +580,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	}
 	
 	public void OneBarGraphShow(){
+		
 		JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 		/*List<Choice> choices=new ArrayList<Choice>();
 		choices.add(choice1);
@@ -631,11 +638,23 @@ public class BasicInformationPanel  extends ExamplePanel {
          pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
          pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
          // Add plot to Swing component
-        // add(new InteractivePanel(plot));
+         // add(new InteractivePanel(plot));
        
+         
+            /* contentPane = new JPanel();
+			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+			contentPane.setBackground(Color.white);
+			contentPane.setBounds(10,10,5,5);
+
+	         add(contentPane, BorderLayout.NORTH);*/
+         
            InteractivePanel p = new InteractivePanel(plot);
+           p.setLayout(null);
            p.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
+	       p.setVisible(true);
+	      // contentPane.add(p, BorderLayout.CENTER);
 	       
 			//p.setVisible(true);
 		   // content2.add(interactivePanel, BorderLayout.CENTER);
@@ -646,7 +665,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		//f.getContentPane().getComponent(0).getComponentAt(0);
 	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
 		
-		   // tabbedPane.add( p);
+		   tabbedPane.addTab(null, p);
 		   
 			
 			
