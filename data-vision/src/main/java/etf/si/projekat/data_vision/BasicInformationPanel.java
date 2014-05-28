@@ -48,8 +48,14 @@ import javax.swing.JButton;
 
 import com.mysql.jdbc.Statement;
 
+import de.erichseifert.gral.data.DataSource;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.examples.ExamplePanel;
+import de.erichseifert.gral.graphics.DrawingContext;
+import de.erichseifert.gral.io.data.DataWriter;
+import de.erichseifert.gral.io.data.DataWriterFactory;
+import de.erichseifert.gral.io.plots.DrawableWriter;
+import de.erichseifert.gral.io.plots.DrawableWriterFactory;
 import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
@@ -61,7 +67,11 @@ import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -83,7 +93,12 @@ public class BasicInformationPanel  extends ExamplePanel {
     final Choice choice_7;
     final Choice choice_8;
     final Choice choice_9;
+    final static DataTable data=new DataTable(Double.class, Double.class);
+    XYPlot plot;
+    
+
   
+    
     //final InteractivePanel interactivePanel;
     
     
@@ -647,9 +662,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 			
 		 }
        
-       BarPlot  plot = new BarPlot(data);
+		final BarPlot plot= new BarPlot(data);
          // Format plot
-         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+         plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
          plot.setBarWidth(0.075);
          // Format bars
          BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
@@ -710,7 +725,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     btnChange.setBounds(81, 462, 137, 23);
+	     btnChange.setBounds(231, 462, 137, 23);
 		 interactivePanel.add(btnChange);
 		 
 		 final JButton btnExport = new JButton("Export plot");
@@ -724,12 +739,12 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}
 	       	}
 	       });
-	     btnExport.setBounds(281, 462, 137, 23);
+	     btnExport.setBounds(431, 462, 137, 23);
 		 interactivePanel.add(btnExport);
 		 
 		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(481, 462, 137, 23);
+	     btnExit.setBounds(631, 462, 137, 23);
 		 interactivePanel.add(btnExit);
 		 
 		 tabbedPane.addTab("Line plot", interactivePanel);
@@ -754,7 +769,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 	{
 		
 		 //Podaci koji ce se prikazivati na grafu 
-	       DataTable data = new DataTable(Double.class, Double.class);
 	     
 	       
 	       double x = 1; 
@@ -785,12 +799,12 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       
 	       data.add(x, y);
 	       
-	       XYPlot plot=plot = new XYPlot(data);
+	       plot=plot = new XYPlot(data);
 	       //prikaz grafa na frameu
 	     //  add(new InteractivePanel(plot));
 
 	     plot.setVisible(data, true);
-	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 	     // plot.setBackground(Color.WHITE);
 
          plot.getTitle().setText("Temperature  for 7 days");
@@ -816,26 +830,34 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     btnChange.setBounds(81, 462, 137, 23);
+	     btnChange.setBounds(231, 462, 137, 23);
 		 interactivePanel.add(btnChange);
 		 
 		 final JButton btnExport = new JButton("Export plot");
 	       btnExport.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {
-	       		BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_RGB); 
+	       		/*BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_RGB); 
 	       		Graphics g = bi.createGraphics();
 	       		interactivePanel.paint(g);  //this == JComponent
 	       		g.dispose();
-	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}
+	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}*/
+	       		/*try{
+	       		writeData();
+	       		}
+	       		catch (Exception e) {e.printStackTrace();}*/
+	       		try{
+		       		getJpg();
+		       		}
+		       		catch (Exception e) {e.printStackTrace();}
 	       	}
 	       });
-	     btnExport.setBounds(281, 462, 137, 23);
+	     btnExport.setBounds(431, 462, 137, 23);
 		 interactivePanel.add(btnExport);
 		 
 		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(481, 462, 137, 23);
+	     btnExit.setBounds(631, 462, 137, 23);
 		 interactivePanel.add(btnExit);
 		 
 		 tabbedPane.addTab("Line plot", interactivePanel);
@@ -852,6 +874,36 @@ public class BasicInformationPanel  extends ExamplePanel {
 	}
 	
 	
+	
+	//za export grafa, ali snima graf kao csv file
+	private static void writeData() throws IOException {
+		
+	
+	    FileOutputStream dataStream = new FileOutputStream("filename.csv");
+	    DataWriterFactory factory = DataWriterFactory.getInstance();
+	    DataWriter writer = factory.get("text/tab-separated-values");
+	    try {
+	        writer.write(data, dataStream);
+	    } finally {
+	        dataStream.close();
+	    }
+	}
+	
+	
+	private byte[] getJpg() throws IOException {
+        BufferedImage bImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = (Graphics2D) bImage.getGraphics();
+        DrawingContext context = new DrawingContext(g2d);
+        
+        plot.draw(context);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        DrawableWriter wr = DrawableWriterFactory.getInstance().get("image/jpeg");
+        wr.write(plot, baos, 800, 600);
+        baos.flush();
+        byte[] bytes = baos.toByteArray();
+        baos.close();
+        return bytes;
+    }
 	
 	
 	@Override
