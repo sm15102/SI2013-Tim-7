@@ -1265,74 +1265,67 @@ public void OneBarGraphShow(){
 	
 	public void twoGraphsShow()
 	{
-		/*interactivePanel.setSize(10, 10);
-		interactivePanel.setLocation(10, 0);
-		interactivePanel1.setSize(10, 10);
-		interactivePanel1.setLocation(12, 0);
-		//tabbedPane.addTab("hj", interactivePanel);
-		//tabbedPane.add(interactivePanel);
-		//tabbedPane.add(interactivePanel1);*/
-		/*interactivePanel2.add(interactivePanel1);
-		interactivePanel2.add(interactivePanel);*/
-		// tabbedPane.addTab("Two graphs", interactivePanel2);
-
+		//KOD ZA THREE GRAPHS SHOW
+		
 		/*
-		 DataTable data = new DataTable(Double.class, Double.class);
-	     
-	       
-	       double x = 1; 
-	       double y = 17;
-	       data.add(x, y);
-	       x = 2; 
-	       y = 16;
-	       data.add(x, y);
-	        
-	       x = 3; 
-	       y = 18;
-	       data.add(x, y);
-	        
-	      x = 4; 
-	       y = 20;
-	       data.add(x, y);
-	        
-	        x = 5; 
-	       y = 19;
-	       data.add(x, y);
-	        
-	       x = 6; 
-	        y = 22;
-	       data.add(x, y);
-	        
-	       x = 7; 
-	       y = 20;
-	       
-	       data.add(x, y);
-	       
+		 +		 DataTable data = new DataTable(Double.class, Double.class);
+		 +	     
+		 +	       
+		 +	       double x = 1; 
+		 +	       double y = 17;
+		 +	       data.add(x, y);
+		 +	       x = 2; 
+		 +	       y = 16;
+		 +	       data.add(x, y);
+		 +	        
+		 +	       x = 3; 
+		 +	       y = 18;
+		 +	       data.add(x, y);
+		 +	        
+		 +	      x = 4; 
+		 +	       y = 20;
+		 +	       data.add(x, y);
+		 +	        
+		 +	        x = 5; 
+		 +	       y = 19;
+		 +	       data.add(x, y);
+		 +	        
+		 +	       x = 6; 
+		 +	        y = 22;
+		 +	       data.add(x, y);
+		 +	        
+		 +	       x = 7; 
+		 +	       y = 20;
+		 +	       
+		 +	       data.add(x, y);
+		 +	       
+		 +		
+		 +		
+		 +		
+		          
+		 +		final DataSeries barSeries = new DataSeries(data, 0, 1);
+		 +		final DataSeries lineSeries = new DataSeries(data, 0, 1);
+		 +
+		 +		BarPlot plot = new BarPlot(barSeries, lineSeries);
+		 +
+		 +		// Change the color of all bars
+		 +		PointRenderer barRenderer = plot.getPointRenderer(barSeries);
+		 +		barRenderer.setColor(Color.LIGHT_GRAY);
+		 +
+		 +		// Display the second data series as a line plot
+		 +		LineRenderer lineRenderer = new DefaultLineRenderer2D();
+		 +		lineRenderer.setColor(Color.RED);
+		 +		plot.setLineRenderer(lineSeries, lineRenderer);
+		 +		// The default point renderer (BarRenderer) needs to be deactivated (or changed)
+		 +		plot.setPointRenderer(lineSeries, null);
+		 +		
+		 +		interactivePanel2 = new InteractivePanel(plot);
+		  		tabbedPane.addTab("two",  interactivePanel2);
+		 -		tabbedPane.setSelectedIndex(1);
+		 +		tabbedPane.setSelectedIndex(1);*/
 		
 		
 		
-        
-		final DataSeries barSeries = new DataSeries(data, 0, 1);
-		final DataSeries lineSeries = new DataSeries(data, 0, 1);
-
-		BarPlot plot = new BarPlot(barSeries, lineSeries);
-
-		// Change the color of all bars
-		PointRenderer barRenderer = plot.getPointRenderer(barSeries);
-		barRenderer.setColor(Color.LIGHT_GRAY);
-
-		// Display the second data series as a line plot
-		LineRenderer lineRenderer = new DefaultLineRenderer2D();
-		lineRenderer.setColor(Color.RED);
-		plot.setLineRenderer(lineSeries, lineRenderer);
-		// The default point renderer (BarRenderer) needs to be deactivated (or changed)
-		plot.setPointRenderer(lineSeries, null);
-		
-		interactivePanel2 = new InteractivePanel(plot);
-		tabbedPane.addTab("two",  interactivePanel2);
-		tabbedPane.setSelectedIndex(1);*/
-		
-		  
 		
 	}
 	
