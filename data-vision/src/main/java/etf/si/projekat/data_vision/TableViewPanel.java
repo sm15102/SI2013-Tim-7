@@ -2,6 +2,7 @@ package etf.si.projekat.data_vision;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Choice;
@@ -10,6 +11,7 @@ import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -41,6 +43,7 @@ import etf.si.projekat.util.HibernateUtil;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Component;
 
 public class TableViewPanel extends JPanel
@@ -48,8 +51,10 @@ public class TableViewPanel extends JPanel
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
-	public TableViewPanel() 
+	private JTabbedPane tabbedPane;
+	public TableViewPanel(JTabbedPane tabbedPane1) 
 	{
+		 tabbedPane=tabbedPane1;
 		setLayout(null);
 		model=new DefaultTableModel(
 	        	new Object[][] {},

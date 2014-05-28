@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +33,7 @@ import etf.si.projekat.util.HibernateUtil;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Component;
 
 public class TableView extends JFrame {
@@ -39,6 +41,7 @@ public class TableView extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +49,7 @@ public class TableView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TableView frame = new TableView();
+				TableView frame = new TableView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,6 +62,7 @@ public class TableView extends JFrame {
 	 * Create the frame.
 	 */
 	public TableView() {
+		
 		model=new DefaultTableModel(
 	        	new Object[][] {},
 	            	new String[] {

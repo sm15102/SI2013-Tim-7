@@ -148,9 +148,14 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
-		tableView=new TableViewPanel();
-		tabbedPane_5.add("Table view",tableView);
+		tableView=new TableViewPanel(tabbedPane_5);
 		tableView.setLayout(null);
+		tableView.setBackground(Color.white);
+		//TREBA OVDJE TABLEVIEW DA BUDE ISTE VELICINE KAO I TAB, ODNOSNO TABELU POVECATI
+		tableView.setBounds(10, 49, 694, 501);
+		tabbedPane_5.add("Table view",tableView);
+		tabbedPane_5.setBounds(10, 49, 694, 501);
+		
 		
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
