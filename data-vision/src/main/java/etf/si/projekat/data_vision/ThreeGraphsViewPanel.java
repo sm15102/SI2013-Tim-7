@@ -30,14 +30,16 @@ import java.util.List;
 
 import javax.swing.JButton;
 
+import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ThreeGraphsViewPanel extends JPanel {
-    List<DeviceType> list_device=new HibernateDeviceType().giveAllDeviceType();
+	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 
 	/**
 	 * Create the panel.
@@ -539,15 +541,15 @@ add(datePicker5);
 			
 		      
 		      for (int i=0; i<list_device.size(); i++){
-			    	 choice_1.add(list_device.get(i).getType() );
-			    	 choice_2.add(list_device.get(i).getType() );
-			    	 choice_3.add(list_device.get(i).getType() );
-			    	 choice_4.add(list_device.get(i).getType() );
-			    	 choice_5.add(list_device.get(i).getType() );
-			    	 choice_6.add(list_device.get(i).getType() );
-			    	 choice_7.add(list_device.get(i).getType() );
-			    	 choice_8.add(list_device.get(i).getType() );
-			    	 choice_9.add(list_device.get(i).getType() );
+			    	 choice_1.add(list_device.get(i).getName() );
+			    	 choice_2.add(list_device.get(i).getName() );
+			    	 choice_3.add(list_device.get(i).getName() );
+			    	 choice_4.add(list_device.get(i).getName() );
+			    	 choice_5.add(list_device.get(i).getName() );
+			    	 choice_6.add(list_device.get(i).getName() );
+			    	 choice_7.add(list_device.get(i).getName() );
+			    	 choice_8.add(list_device.get(i).getName() );
+			    	 choice_9.add(list_device.get(i).getName() );
 		      }
 		      
 		     
@@ -938,15 +940,15 @@ add(datePicker5);
       		
       		
       		for (int i=0; i<list_device.size(); i++){
-		    	 choice_11.add(list_device.get(i).getType() );
-		    	 choice_12.add(list_device.get(i).getType() );
-		    	 choice_13.add(list_device.get(i).getType() );
-		    	 choice_14.add(list_device.get(i).getType() );
-		    	 choice_15.add(list_device.get(i).getType() );
-		    	 choice_16.add(list_device.get(i).getType() );
-		    	 choice_17.add(list_device.get(i).getType() );
-		    	 choice_18.add(list_device.get(i).getType() );
-		    	 choice_19.add(list_device.get(i).getType() );
+		    	 choice_11.add(list_device.get(i).getName() );
+		    	 choice_12.add(list_device.get(i).getName() );
+		    	 choice_13.add(list_device.get(i).getName() );
+		    	 choice_14.add(list_device.get(i).getName() );
+		    	 choice_15.add(list_device.get(i).getName() );
+		    	 choice_16.add(list_device.get(i).getName() );
+		    	 choice_17.add(list_device.get(i).getName() );
+		    	 choice_18.add(list_device.get(i).getName() );
+		    	 choice_19.add(list_device.get(i).getName() );
 	      }
 	      
       		
@@ -1339,15 +1341,14 @@ add(datePicker5);
        		
        		
        		for (int i=0; i<list_device.size(); i++){
- 		    	 choice_21.add(list_device.get(i).getType() );
- 		    	 choice_22.add(list_device.get(i).getType() );
- 		    	 choice_23.add(list_device.get(i).getType() );
- 		    	 choice_24.add(list_device.get(i).getType() );
- 		    	 choice_25.add(list_device.get(i).getType() );
- 		    	 choice_26.add(list_device.get(i).getType() );
- 		    	 choice_27.add(list_device.get(i).getType() );
- 		    	 choice_28.add(list_device.get(i).getType() );
- 		    	 choice_29.add(list_device.get(i).getType() );
+ 		    	 choice_21.add(list_device.get(i).getName() );
+ 		    	 choice_22.add(list_device.get(i).getName() );
+ 		    	 choice_23.add(list_device.get(i).getName() );
+ 		    	 choice_25.add(list_device.get(i).getName() );
+ 		    	 choice_26.add(list_device.get(i).getName() );
+ 		    	 choice_27.add(list_device.get(i).getName() );
+ 		    	 choice_28.add(list_device.get(i).getName() );
+ 		    	 choice_29.add(list_device.get(i).getName() );
  	      }
  	      
        		
