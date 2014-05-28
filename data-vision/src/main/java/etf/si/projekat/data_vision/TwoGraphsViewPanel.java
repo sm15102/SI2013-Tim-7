@@ -714,7 +714,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		OneLineGraphShow();
       		}
       		*/
-      		twoGraphsShow();
+      		TwoGraphsShow();
       			
       	}
       });
@@ -1433,6 +1433,141 @@ public void OneBarGraphShow(){
 		 tabbedPane.addTab("Two graphs", contentPane);
 		 
 		 tabbedPane.setSelectedIndex(1);
+		
+		
+		
+	}
+	
+	public void TwoGraphsShow() 
+	{
+		//if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Line")
+		//{
+			//dodavanje vrijednosti
+			 DataTable data = new DataTable(Double.class, Double.class);
+		     
+		       
+		       double x = 1; 
+		       double y = 17;
+		       data.add(x, y);
+		       x = 2; 
+		       y = 16;
+		       data.add(x, y);
+		        
+		       x = 3; 
+		       y = 18;
+		       data.add(x, y);
+		        
+		      x = 4; 
+		       y = 20;
+		       data.add(x, y);
+		        
+		        x = 5; 
+		       y = 19;
+		       data.add(x, y);
+		        
+		       x = 6; 
+		        y = 22;
+		       data.add(x, y);
+		        
+		       x = 7; 
+		       y = 20;
+		       
+		       data.add(x, y);
+		       
+		       //dodavanje data na plot
+		       XYPlot plot=plot = new XYPlot(data);
+		       //prikaz grafa na frameu
+		     //  add(new InteractivePanel(plot));
+
+		     plot.setVisible(data, true);
+		     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+		     // plot.setBackground(Color.WHITE);
+
+	         plot.getTitle().setText("Temperature  for 7 days");
+	         LineRenderer lines = new DefaultLineRenderer2D();
+	         plot.setLineRenderer(data, lines);
+	         Color color = new Color(0.0f, 0.3f, 1.0f);
+	         plot.getPointRenderer(data).setColor(color);
+	         plot.getLineRenderer(data).setColor(color);
+	      // Draw a tick mark and a grid line every 10 units along x axis
+	         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+	         // Draw a tick mark and a grid line every 20 units along y axis
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+			
+	         //dodavanje druge vrijednosti
+	         
+	         DataTable data1 = new DataTable(Double.class, Double.class);
+		     
+		       
+		       double x1 = 1; 
+		       double y1 = 17;
+		       data1.add(x1, y1);
+		       x1 = 2; 
+		       y1 = 16;
+		       data1.add(x1, y1);
+		        
+		       x1 = 3; 
+		       y1 = 18;
+		       data1.add(x1, y1);
+		        
+		      x1 = 4; 
+		       y1 = 20;
+		       data1.add(x1, y1);
+		        
+		        x1 = 5; 
+		       y1 = 19;
+		       data1.add(x1, y1);
+		        
+		       x1 = 6; 
+		        y1 = 22;
+		       data1.add(x1, y1);
+		        
+		       x1 = 7; 
+		       y1 = 20;
+		       
+		       data1.add(x1, y1);
+		       
+		       //dodavanje data na plot
+		       XYPlot plot1 = new XYPlot(data1);
+		       //prikaz grafa na frameu
+		     //  add(new InteractivePanel(plot));
+
+		     plot1.setVisible(data1, true);
+		     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+		     // plot.setBackground(Color.WHITE);
+
+	         plot1.getTitle().setText("Temperature  for 7 days");
+	         LineRenderer lines1 = new DefaultLineRenderer2D();
+	         plot1.setLineRenderer(data1, lines1);
+	         Color color1 = new Color(0.0f, 0.3f, 1.0f);
+	         plot1.getPointRenderer(data).setColor(color1);
+	         plot1.getLineRenderer(data).setColor(color1);
+	      // Draw a tick mark and a grid line every 10 units along x axis
+	         plot1.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+	         // Draw a tick mark and a grid line every 20 units along y axis
+	         plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+	         
+	         //dodavanje interactive panela
+	         InteractivePanel interactivePanel1 = new InteractivePanel(plot);
+	         InteractivePanel interactivePanel2=new InteractivePanel(plot1);
+	         interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+	         interactivePanel1.setVisible(true);
+	         interactivePanel1.setLayout(null);
+	        interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
+	        interactivePanel2.setVisible(true);
+	         interactivePanel2.setLayout(null);
+	         
+	         //dodavanje interactive na panel
+	        contentPane = new JPanel();
+	 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+	 		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+	 		contentPane.setBackground(Color.white);
+	 		contentPane.setBounds(10,10,5,5);	 		
+	 		contentPane.add(interactivePanel1);
+	 		contentPane.add(interactivePanel2);	 		
+	 		tabbedPane.addTab("Two graphs", contentPane);	 		 
+	 		tabbedPane.setSelectedIndex(1);
+	         
 		
 		
 		
