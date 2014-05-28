@@ -75,7 +75,7 @@ public class TableViewPanel extends JPanel
 	            		return columnEditables[column];
 	            	}
 	            };
-	    setBounds(100, 100, 526, 300);
+	    setBounds(100, 100, 986, 478);
 	   
 	    table = new JTable();
 	    Object[][] data = new Object[5][3];
@@ -88,7 +88,7 @@ public class TableViewPanel extends JPanel
 	    table.getColumnModel().getColumn(4).setPreferredWidth(110);        
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 22, 407, 267);
+		scrollPane.setBounds(45, 33, 739, 445);
 		add(scrollPane);
 		
 		JButton btnAddSensor = new JButton("Add Device");
@@ -98,7 +98,7 @@ public class TableViewPanel extends JPanel
 				a.setVisible(true);
 			}
 		});
-		btnAddSensor.setBounds(427, 22, 89, 23);
+		btnAddSensor.setBounds(825, 30, 114, 23);
 		add(btnAddSensor);
 		
 		JButton btnRefresh = new JButton("Refresh");
@@ -112,17 +112,8 @@ public class TableViewPanel extends JPanel
 					popuniTabelu();
 			}
 		});
-		btnRefresh.setBounds(427, 56, 89, 23);
+		btnRefresh.setBounds(825, 64, 114, 23);
 		add(btnRefresh);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					//Ovdje ne znam sta da stavim kad se pritisne cancel
-			}
-		});
-		btnCancel.setBounds(427, 90, 89, 23);
-		add(btnCancel);
 	}
 class CustModel extends AbstractTableModel {
     private String[] columnNames = {"Sensor Id", "Sensor Name","Sensor Value"};
