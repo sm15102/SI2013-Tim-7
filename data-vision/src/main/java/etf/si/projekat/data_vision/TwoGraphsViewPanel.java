@@ -1368,7 +1368,7 @@ public void OneBarGraphShow(){
 	     //  add(new InteractivePanel(plot));
 
 	     plot.setVisible(data, true);
-	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 	     // plot.setBackground(Color.WHITE);
 
       plot.getTitle().setText("Temperature  for 7 days");
@@ -1406,12 +1406,12 @@ public void OneBarGraphShow(){
       
       InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
       InteractivePanel interactivePanel2=new InteractivePanel(plot);
-      interactivePanel1.setSize(tabbedPane.getWidth()/2, tabbedPane.getHeight()/2);
+      interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
       interactivePanel1.setVisible(true);
-      
-      interactivePanel2.setSize(tabbedPane.getWidth()/2, tabbedPane.getHeight()/2);
+      interactivePanel1.setLayout(null);
+      interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
       interactivePanel2.setVisible(true);
-      
+      interactivePanel2.setLayout(null);
       
       
      // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
@@ -1423,7 +1423,7 @@ public void OneBarGraphShow(){
 		 
       contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 		contentPane.setBackground(Color.white);
 		contentPane.setBounds(10,10,5,5);
 		
