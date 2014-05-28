@@ -318,6 +318,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		
+      	
       		int value = (Integer) spinner.getValue();
 			
 			
@@ -589,7 +591,8 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      }
 		      
 		     
-		     
+		     String s = datePicker1.getComponentListeners().toString();
+		     System.out.println(s);
 	
 		  		
 		      	
@@ -602,6 +605,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       
       btnProcess.setBounds(181, 163, 136, 23);
       add(btnProcess);
+     
+    
       
       String querry = "Select value from eventlogs";
     
@@ -857,7 +862,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 	 public String getDescription() {
 	         return "Bar plot with example data and color gradients";
 	 }
-	
 }
       
       
