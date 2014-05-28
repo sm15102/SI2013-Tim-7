@@ -102,7 +102,7 @@ public class ThreeGraphsViewPanel extends JPanel {
         add(lblGraphType);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(152, 75);
-        datePicker.setSize(165, 24);
+        datePicker.setSize(165, 29);
        add(datePicker);
         
         
@@ -110,21 +110,21 @@ public class ThreeGraphsViewPanel extends JPanel {
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
         datePicker1.setLocation(152, 104);
-        datePicker1.setSize(165, 24);
+        datePicker1.setSize(165, 29);
       add(datePicker1);
       
       UtilDateModel model2 = new UtilDateModel();
       JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
       final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);
       datePicker2.setLocation(464, 75);
-      datePicker2.setSize(165, 24);
+      datePicker2.setSize(165, 29);
     add(datePicker2);
     
     UtilDateModel model3 = new UtilDateModel();
     JDatePanelImpl datePane3 = new JDatePanelImpl(model3);
     final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);
     datePicker3.setLocation(464, 104);
-    datePicker3.setSize(165, 24);
+    datePicker3.setSize(165, 29);
   add(datePicker3);
   
   
@@ -136,14 +136,14 @@ public class ThreeGraphsViewPanel extends JPanel {
   SpringLayout springLayout = (SpringLayout) datePicker4.getLayout();
   springLayout.putConstraint(SpringLayout.NORTH, datePicker4.getJFormattedTextField(), 1, SpringLayout.NORTH, datePicker4);
   datePicker4.setLocation(782, 75);
-  datePicker4.setSize(165, 24);
+  datePicker4.setSize(165, 29);
 add(datePicker4);
 
 UtilDateModel model5 = new UtilDateModel();
 JDatePanelImpl datePane5 = new JDatePanelImpl(model5);
 final JDatePickerImpl datePicker5 = new JDatePickerImpl(datePane5);
 datePicker5.setLocation(782, 104);
-datePicker5.setSize(165, 24);
+datePicker5.setSize(165, 29);
 add(datePicker5);
       
       Choice choice = new Choice();
