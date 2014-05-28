@@ -1427,7 +1427,7 @@ public void OneBarGraphShow(){
 		contentPane.add(interactivePanel1);
 		contentPane.add(interactivePanel2);
 		
-		 tabbedPane.addTab("Line plot", contentPane);
+		 tabbedPane.addTab("Two graphs", contentPane);
 		 
 		 tabbedPane.setSelectedIndex(1);
 		
