@@ -47,6 +47,7 @@ public class GlavniFrame extends JFrame {
 	private JPanel contentPane;
 	private BasicInformationPanel basicInfo;
 	private TwoGraphsViewPanel twoGraphs;
+	private TableViewPanel tableView;
 	/**
 	 * Launch the application.
 	 */
@@ -147,6 +148,9 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
+		tableView=new TableViewPanel();
+		tabbedPane_5.add("Table view",tableView);
+		tableView.setLayout(null);
 		
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
