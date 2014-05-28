@@ -9,6 +9,7 @@ import java.awt.BasicStroke;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
@@ -87,6 +88,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
    InteractivePanel interactivePanel;
   InteractivePanel interactivePanel1;
   InteractivePanel interactivePanel2;
+  private JPanel contentPane;
    
 	/**
 	 * Create the panel.
@@ -171,7 +173,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);
     datePicker3.setLocation(464, 104);
     datePicker3.setSize(165, 28);
-  add(datePicker3);
+    add(datePicker3);
       
       choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
@@ -690,7 +692,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       btnGenerateGraphs.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		if(choice.getSelectedItem()=="Bar")	
+      		/*if(choice.getSelectedItem()=="Bar")	
           	{
           		OneBarGraphShow();
           	}
@@ -708,7 +710,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		{
       		OneLineGraphShow();
       		}
-      		
+      		*/
       		twoGraphsShow();
       			
       	}
@@ -1324,6 +1326,110 @@ public void OneBarGraphShow(){
 		 -		tabbedPane.setSelectedIndex(1);
 		 +		tabbedPane.setSelectedIndex(1);*/
 		
+		
+		
+		 //Podaci koji ce se prikazivati na grafu 
+	       DataTable data = new DataTable(Double.class, Double.class);
+	     
+	       
+	       double x = 1; 
+	       double y = 17;
+	       data.add(x, y);
+	       x = 2; 
+	       y = 16;
+	       data.add(x, y);
+	        
+	       x = 3; 
+	       y = 18;
+	       data.add(x, y);
+	        
+	      x = 4; 
+	       y = 20;
+	       data.add(x, y);
+	        
+	        x = 5; 
+	       y = 19;
+	       data.add(x, y);
+	        
+	       x = 6; 
+	        y = 22;
+	       data.add(x, y);
+	        
+	       x = 7; 
+	       y = 20;
+	       
+	       data.add(x, y);
+	       
+	       XYPlot plot=plot = new XYPlot(data);
+	       //prikaz grafa na frameu
+	     //  add(new InteractivePanel(plot));
+
+	     plot.setVisible(data, true);
+	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+	     // plot.setBackground(Color.WHITE);
+
+      plot.getTitle().setText("Temperature  for 7 days");
+      LineRenderer lines = new DefaultLineRenderer2D();
+      plot.setLineRenderer(data, lines);
+      Color color = new Color(0.0f, 0.3f, 1.0f);
+      plot.getPointRenderer(data).setColor(color);
+      plot.getLineRenderer(data).setColor(color);
+   // Draw a tick mark and a grid line every 10 units along x axis
+      plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+      // Draw a tick mark and a grid line every 20 units along y axis
+      plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+      
+      
+      XYPlot plot1 = new XYPlot(data);
+      //prikaz grafa na frameu
+    //  add(new InteractivePanel(plot));
+
+    plot1.setVisible(data, true);
+    
+    
+    // plot.setBackground(Color.WHITE);
+
+ plot1.getTitle().setText("Temperature  for 7 days");
+// LineRenderer lines1 = new DefaultLineRenderer2D();
+ plot1.setLineRenderer(data, lines);
+ //Color color = new Color(0.0f, 0.3f, 1.0f);
+ plot1.getPointRenderer(data).setColor(color);
+ plot1.getLineRenderer(data).setColor(color);
+// Draw a tick mark and a grid line every 10 units along x axis
+ plot1.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+ // Draw a tick mark and a grid line every 20 units along y axis
+ plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+      
+      InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
+      InteractivePanel interactivePanel2=new InteractivePanel(plot);
+      interactivePanel1.setSize(tabbedPane.getWidth()/2, tabbedPane.getHeight()/2);
+      interactivePanel1.setVisible(true);
+      
+      interactivePanel2.setSize(tabbedPane.getWidth()/2, tabbedPane.getHeight()/2);
+      interactivePanel2.setVisible(true);
+      
+      
+      
+     // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+     
+      //interactivePanel.add(null, plot1);
+    /*  interactivePanel.setLayout(null);
+      plot1.setBounds(0, 0, 10, 50); 
+	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));*/
+		 
+      contentPane = new JPanel();
+		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		contentPane.setBounds(new Rectangle(50, 0, 50, 50));
+		contentPane.setBackground(Color.white);
+		contentPane.setBounds(10,10,5,5);
+		
+		contentPane.add(interactivePanel1);
+		contentPane.add(interactivePanel2);
+		
+		 tabbedPane.addTab("Two graphs", contentPane);
+		 
+		 tabbedPane.setSelectedIndex(1);
 		
 		
 		
