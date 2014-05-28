@@ -2,7 +2,10 @@ package etf.si.projekat.data_vision;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
 
 import java.awt.BasicStroke;
@@ -58,7 +61,7 @@ import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
-
+import java.io.File;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -81,7 +84,7 @@ public class BasicInformationPanel  extends ExamplePanel {
     final Choice choice_8;
     final Choice choice_9;
   
-    
+    //final InteractivePanel interactivePanel;
     
     
 	/**
@@ -675,8 +678,8 @@ public class BasicInformationPanel  extends ExamplePanel {
 			contentPane.setBounds(10,10,5,5);
 
 	         add(contentPane, BorderLayout.NORTH);*/
-         
-           InteractivePanel interactivePanel = new InteractivePanel(plot);
+        final InteractivePanel interactivePanel = new InteractivePanel(plot);
+           //InteractivePanel interactivePanel = new InteractivePanel(plot);
           interactivePanel.setLayout(null);
           interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
@@ -709,7 +712,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       btnExport.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {
-	      //ovdje ce ici kod za export
+	       		BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_ARGB); 
+	       		Graphics g = bi.createGraphics();
+	       		interactivePanel.paint(g);  //this == JComponent
+	       		g.dispose();
+	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}
 	       	}
 	       });
 	     btnExport.setBounds(281, 462, 137, 23);
@@ -793,7 +800,7 @@ public class BasicInformationPanel  extends ExamplePanel {
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
          
          
-         InteractivePanel interactivePanel = new InteractivePanel(plot);
+         final InteractivePanel interactivePanel = new InteractivePanel(plot);
          interactivePanel.setLayout(null);
 		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 		 final JButton btnChange = new JButton("Change data");
@@ -811,7 +818,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       btnExport.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {
-	      //ovdje ce ici kod za export
+	       		BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_RGB); 
+	       		Graphics g = bi.createGraphics();
+	       		interactivePanel.paint(g);  //this == JComponent
+	       		g.dispose();
+	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}
 	       	}
 	       });
 	     btnExport.setBounds(281, 462, 137, 23);
