@@ -82,14 +82,17 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     final JSpinner spinner_2;
     final JTabbedPane tabbedPane;
     //final JTabbedPane tabbedPane;
-  
+   InteractivePanel interactivePanel;
+  InteractivePanel interactivePanel1;
+  InteractivePanel interactivePanel2;
+   
 	/**
 	 * Create the panel.
 	 */
 	public TwoGraphsViewPanel(JTabbedPane tabbedPane_1) {
 		tabbedPane=tabbedPane_1;
 		setLayout(null);
-		
+
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -703,6 +706,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		{
       		OneLineGraphShow();
       		}
+      		
+      		twoGraphsShow();
       			
       	}
       });
@@ -1095,7 +1100,7 @@ public void OneBarGraphShow(){
 
 	         add(contentPane, BorderLayout.NORTH);*/
          
-           InteractivePanel interactivePanel = new InteractivePanel(plot);
+          interactivePanel = new InteractivePanel(plot);
           interactivePanel.setLayout(null);
           interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
@@ -1114,7 +1119,7 @@ public void OneBarGraphShow(){
 	       
 	       
 	       
-	       final JButton btnChange = new JButton("Change data");
+	      final JButton btnChange = new JButton("Change data");
 	       btnChange.addMouseListener(new MouseAdapter() {
 	       	@Override
 	       	public void mouseClicked(MouseEvent arg0) {
@@ -1150,8 +1155,8 @@ public void OneBarGraphShow(){
 				}
 			});
 		
-		   tabbedPane.addTab("Bar plot",  interactivePanel);
-		   tabbedPane.setSelectedIndex(1);
+		  tabbedPane.addTab("Bar plot",  interactivePanel);
+		  tabbedPane.setSelectedIndex(1);
 		   	
 	}
 	
@@ -1212,9 +1217,10 @@ public void OneBarGraphShow(){
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
          
          
-         InteractivePanel interactivePanel = new InteractivePanel(plot);
-         interactivePanel.setLayout(null);
-		 interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+         //InteractivePanel interactivePanel1 = new InteractivePanel(plot);
+         interactivePanel1 = new InteractivePanel(plot);
+         interactivePanel1.setLayout(null);
+		 interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
 		 final JButton btnChange = new JButton("Change data");
 		
 	       btnChange.addMouseListener(new MouseAdapter() {
@@ -1224,7 +1230,7 @@ public void OneBarGraphShow(){
 	       	}
 	       });
 	     btnChange.setBounds(81, 462, 137, 23);
-		 interactivePanel.add(btnChange);
+		 interactivePanel1.add(btnChange);
 		 
 		 final JButton btnExport = new JButton("Export plot");
 	       btnExport.addMouseListener(new MouseAdapter() {
@@ -1234,15 +1240,15 @@ public void OneBarGraphShow(){
 	       	}
 	       });
 	     btnExport.setBounds(281, 462, 137, 23);
-		 interactivePanel.add(btnExport);
+		 interactivePanel1.add(btnExport);
 		 
 		 final JButton btnExit = new JButton("Cancel");
 		
 	     btnExit.setBounds(481, 462, 137, 23);
-		 interactivePanel.add(btnExit);
+		 interactivePanel1.add(btnExit);
 		 
-		 tabbedPane.addTab("Line plot", interactivePanel);
-		 tabbedPane.setSelectedIndex(1);
+		 tabbedPane.addTab("Line plot", interactivePanel1);
+		tabbedPane.setSelectedIndex(1);
 		
 		 btnExit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -1251,10 +1257,28 @@ public void OneBarGraphShow(){
 			tabbedPane.setSelectedIndex(1);
 				}
 			});
+	
 		
 	}
 	
+	public void twoGraphsShow()
+	{
+		/*interactivePanel.setSize(10, 10);
+		interactivePanel.setLocation(10, 0);
+		interactivePanel1.setSize(10, 10);
+		interactivePanel1.setLocation(12, 0);
+		//tabbedPane.addTab("hj", interactivePanel);
+		//tabbedPane.add(interactivePanel);
+		//tabbedPane.add(interactivePanel1);
+		interactivePanel2.add(interactivePanel1);
+		interactivePanel2.add(interactivePanel);*/
+		// tabbedPane.addTab("Two graphs", interactivePanel2);
 	
+        
+		tabbedPane.addTab("two",  interactivePanel2);
+		tabbedPane.setSelectedIndex(1);
+		
+	}
 	
 	
 	@Override
