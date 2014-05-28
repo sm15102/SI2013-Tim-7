@@ -1393,12 +1393,12 @@ public void OneBarGraphShow(){
     // plot.setBackground(Color.WHITE);
 
  plot1.getTitle().setText("Temperature  for 7 days");
-// LineRenderer lines1 = new DefaultLineRenderer2D();
+LineRenderer lines1 = new DefaultLineRenderer2D();
  plot1.setLineRenderer(data, lines);
- //Color color = new Color(0.0f, 0.3f, 1.0f);
+ Color color1 = new Color(0.0f, 0.3f, 1.0f);
  plot1.getPointRenderer(data).setColor(color);
  plot1.getLineRenderer(data).setColor(color);
-// Draw a tick mark and a grid line every 10 units along x axis
+//Draw a tick mark and a grid line every 10 units along x axis
  plot1.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
  // Draw a tick mark and a grid line every 20 units along y axis
  plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1440,137 +1440,128 @@ public void OneBarGraphShow(){
 	
 	public void TwoGraphsShow() 
 	{
-		//if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Line")
-		//{
-			//dodavanje vrijednosti
-			 DataTable data = new DataTable(Double.class, Double.class);
-		     
-		       
-		       double x = 1; 
-		       double y = 17;
-		       data.add(x, y);
-		       x = 2; 
-		       y = 16;
-		       data.add(x, y);
-		        
-		       x = 3; 
-		       y = 18;
-		       data.add(x, y);
-		        
-		      x = 4; 
-		       y = 20;
-		       data.add(x, y);
-		        
-		        x = 5; 
-		       y = 19;
-		       data.add(x, y);
-		        
-		       x = 6; 
-		        y = 22;
-		       data.add(x, y);
-		        
-		       x = 7; 
-		       y = 20;
-		       
-		       data.add(x, y);
-		       
-		       //dodavanje data na plot
-		       XYPlot plot=plot = new XYPlot(data);
-		       //prikaz grafa na frameu
-		     //  add(new InteractivePanel(plot));
-
-		     plot.setVisible(data, true);
-		     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-		     // plot.setBackground(Color.WHITE);
-
-	         plot.getTitle().setText("Temperature  for 7 days");
-	         LineRenderer lines = new DefaultLineRenderer2D();
-	         plot.setLineRenderer(data, lines);
-	         Color color = new Color(0.0f, 0.3f, 1.0f);
-	         plot.getPointRenderer(data).setColor(color);
-	         plot.getLineRenderer(data).setColor(color);
-	      // Draw a tick mark and a grid line every 10 units along x axis
-	         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-	         // Draw a tick mark and a grid line every 20 units along y axis
-	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Bar")
+		{
 			
-	         //dodavanje druge vrijednosti
+			List<Choice> choices=new ArrayList<Choice>();
+			choices.add(choice_1);
+			choices.add(choice_2);
+			/*choices.add(choice_3);
+			choices.add(choice_4);
+			choices.add(choice_5);
+			choices.add(choice_6);
+			choices.add(choice_7);
+			choices.add(choice_8);
+			choices.add(choice_9);*/
+			
+			Integer value = (Integer) spinner.getValue();
+			ArrayList<String> senzori = new ArrayList<String>();
+			for(int i=0;i<value;i++)
+			{
+				
+				senzori.add(choices.get(i).getSelectedItem());
+			   
+			}
+			
+			 DataTable data = new DataTable(Double.class, Integer.class, String.class);
+			 double j=0.1;
+			 for(int i=0; i<value; i++)
+			 {
+				
+				data.add(j, i+1, senzori.get(i));
+				j+=0.2;
+				
+			 }
+	       
+	       BarPlot  plot = new BarPlot(data);
+	         // Format plot
+	         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+	         plot.setBarWidth(0.075);
+	         // Format bars
+	         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+	         pointRenderer.setColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	                 )
+	         );
+	         pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
 	         
-	         DataTable data1 = new DataTable(Double.class, Double.class);
-		     
-		       
-		       double x1 = 1; 
-		       double y1 = 17;
-		       data1.add(x1, y1);
-		       x1 = 2; 
-		       y1 = 16;
-		       data1.add(x1, y1);
-		        
-		       x1 = 3; 
-		       y1 = 18;
-		       data1.add(x1, y1);
-		        
-		      x1 = 4; 
-		       y1 = 20;
-		       data1.add(x1, y1);
-		        
-		        x1 = 5; 
-		       y1 = 19;
-		       data1.add(x1, y1);
-		        
-		       x1 = 6; 
-		        y1 = 22;
-		       data1.add(x1, y1);
-		        
-		       x1 = 7; 
-		       y1 = 20;
-		       
-		       data1.add(x1, y1);
-		       
-		       //dodavanje data na plot
-		       XYPlot plot1 = new XYPlot(data1);
-		       //prikaz grafa na frameu
-		     //  add(new InteractivePanel(plot));
-
-		     plot1.setVisible(data1, true);
-		     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-		     // plot.setBackground(Color.WHITE);
-
-	         plot1.getTitle().setText("Temperature  for 7 days");
-	         LineRenderer lines1 = new DefaultLineRenderer2D();
-	         plot1.setLineRenderer(data1, lines1);
-	         Color color1 = new Color(0.0f, 0.3f, 1.0f);
-	         plot1.getPointRenderer(data).setColor(color1);
-	         plot1.getLineRenderer(data).setColor(color1);
-	      // Draw a tick mark and a grid line every 10 units along x axis
-	         plot1.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-	         // Draw a tick mark and a grid line every 20 units along y axis
-	         plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		
 	         
-	         //dodavanje interactive panela
-	         InteractivePanel interactivePanel1 = new InteractivePanel(plot);
-	         InteractivePanel interactivePanel2=new InteractivePanel(plot1);
-	         interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+	        
+	         //drugi
+	         
+	         BarPlot  plot1 = new BarPlot(data);
+	         // Format plot
+	         plot1.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
+	         plot1.setBarWidth(0.075);
+	         // Format bars
+	         BarRenderer pointRenderer1 = (BarRenderer) plot1.getPointRenderer(data);
+	         pointRenderer1.setColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	                 )
+	         );
+	         pointRenderer1.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer1.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         
+	         pointRenderer1.setValueVisible(true);
+	         pointRenderer1.setValueColumn(2);
+	         pointRenderer1.setValueLocation(Location.CENTER);
+	         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	         
+	         //paneli
+	         
+	         
+	        InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
+	         InteractivePanel interactivePanel2=new InteractivePanel(plot);
+	       interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
 	         interactivePanel1.setVisible(true);
 	         interactivePanel1.setLayout(null);
-	        interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
-	        interactivePanel2.setVisible(true);
+	         interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
+	         interactivePanel2.setVisible(true);
 	         interactivePanel2.setLayout(null);
 	         
-	         //dodavanje interactive na panel
-	        contentPane = new JPanel();
-	 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-	 		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-	 		contentPane.setBackground(Color.white);
-	 		contentPane.setBounds(10,10,5,5);	 		
-	 		contentPane.add(interactivePanel1);
-	 		contentPane.add(interactivePanel2);	 		
-	 		tabbedPane.addTab("Two graphs", contentPane);	 		 
-	 		tabbedPane.setSelectedIndex(1);
 	         
-		
-		
-		
+	        // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+	        
+	         //interactivePanel.add(null, plot1);
+	       /*  interactivePanel.setLayout(null);
+	         plot1.setBounds(0, 0, 10, 50); 
+	   	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50))*/
+	   		 
+	         contentPane = new JPanel();
+	   		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+	   		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+	   		contentPane.setBackground(Color.white);
+	   		contentPane.setBounds(10,10,5,5);
+	   		
+	   		//contentPane.add(interactivePanel1);
+	   		//contentPane.add(interactivePanel2);
+	   		
+	   		 tabbedPane.addTab("Two graphs", contentPane);
+	   		 
+	   		 tabbedPane.setSelectedIndex(1);
+	}
 	}
 	
 	
