@@ -69,10 +69,9 @@ public class UnosPretragaEventLogs {
 		 al.setGranted(true);
 		 al.setUser("user");
 
-		 Date datum = new Date(1,2,2014);
+		 Date datum = Date.valueOf("2014-1-1");
 
 		 al.setTimestamp(datum);
-		 
 		 
 		 EventLogs s=new EventLogs();
 		 s.setActivity_logs(al);
