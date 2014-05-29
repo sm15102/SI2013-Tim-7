@@ -1332,7 +1332,7 @@ public void OneBarGraphShow(){
 		
 		
 		 //Podaci koji ce se prikazivati na grafu 
-	       DataTable data = new DataTable(Double.class, Double.class);
+	  /*     DataTable data = new DataTable(Double.class, Double.class);
 	     
 	       
 	       double x = 1; 
@@ -1419,7 +1419,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
       //interactivePanel.add(null, plot1);
     /*  interactivePanel.setLayout(null);
       plot1.setBounds(0, 0, 10, 50); 
-	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));*/
+	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 		 
       contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -1434,7 +1434,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 		 
 		 tabbedPane.setSelectedIndex(1);
 		
-		
+		*/
 		
 	}
 	
