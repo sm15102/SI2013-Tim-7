@@ -1434,7 +1434,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 		//contentPane.setBounds(0,0,2000,3000);
 		contentPane.add(interactivePanel1);
 		contentPane.add(interactivePanel2);
-		
+		contentPane.setLayout(null);
 		 tabbedPane.addTab("Two graphs", contentPane);
 		 
 		 contentPane.setLayout(null);
