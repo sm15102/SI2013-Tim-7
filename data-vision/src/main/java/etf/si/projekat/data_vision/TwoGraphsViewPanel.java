@@ -1572,7 +1572,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 			choices.add(choice_8);
 			choices.add(choice_9);
 			
-			
+		
 			
 			Integer value = (Integer) spinner.getValue();
 			ArrayList<String> senzori = new ArrayList<String>();
