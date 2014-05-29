@@ -645,7 +645,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	public void OneBarGraphShow(){
 		
 		
-		List<Choice> choices=new ArrayList<Choice>();
+		/*List<Choice> choices=new ArrayList<Choice>();
 		choices.add(choice_1);
 		choices.add(choice_2);
 		choices.add(choice_3);
@@ -656,6 +656,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		choices.add(choice_8);
 		choices.add(choice_9);
 		
+		
 		Integer value = (Integer) spinner.getValue();
 		ArrayList<String> senzori = new ArrayList<String>();
 		for(int i=0;i<value;i++)
@@ -664,29 +665,65 @@ public class BasicInformationPanel  extends ExamplePanel {
 			senzori.add(choices.get(i).getSelectedItem());
 		   
 		}
+		*/
+		 DataTable data1 = new DataTable(Long.class, Double.class, String.class);
 		
-		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
-		 double j=0.1;
-		 for(int i=0; i<value; i++)
-		 {
+		 
+		//Podaci koji ce se prikazivati na grafu 
+			Date dateString = (Date) datePicker.getModel().getValue();
+	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date date_start;
+			Date date_end;
 			
-			data.add(j, i+1, senzori.get(i));
-			j+=0.2;
-			
-		 }
+			  try {
+				date_start = sdf.parse(date_from);
+				date_end = sdf.parse(date_to);
+				try {
+					
+				
+			  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+			 list_values = new ArrayList<Double>();
+				size=list_logs.size();
+				for(int i=0; i<list_logs.size();i++){
+					list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
+				}
+				}catch(NullPointerException e){
+					System.out.println("Ne poklapaju se vrijednosti");
+				}
+			} 
+			  catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			 
+			 
+			  for(int i=0;i<size;i++)
+			  {
+				 
+				  data1.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i), list_logs.get(i).getDevice_name());
+				  
+			  }
+			  
+		 
        
-		final BarPlot plot= new BarPlot(data);
+		final BarPlot plot= new BarPlot(data1);
+		 
          // Format plot
          plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
          plot.setBarWidth(0.075);
          // Format bars
-         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
+         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data1);
          pointRenderer.setColor(
                  new LinearGradientPaint(0f,0f, 0f,1f,
                                  new float[] { 0.0f, 1.0f },
                                  new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
                  )
          );
+       
+
          pointRenderer.setBorderStroke(new BasicStroke(3f));
          pointRenderer.setBorderColor(
                  new LinearGradientPaint(0f,0f, 0f,1f,
@@ -694,6 +731,14 @@ public class BasicInformationPanel  extends ExamplePanel {
                                  new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
                  )
          );
+         
+        		 
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         rendererX.setTickLabelFormat(dateFormat);
+         
          
          pointRenderer.setValueVisible(true);
          pointRenderer.setValueColumn(2);
@@ -806,7 +851,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		
 		  for(int i=0;i<size;i++)
 		  {
-			  JOptionPane.showMessageDialog(null, list_values.get(i), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+			 
 			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
 			  
 		  }
@@ -847,7 +892,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 	     // plot.setBackground(Color.WHITE);
 
-         plot.getTitle().setText("Temperature  for 7 days");
+         plot.getTitle().setText("Measured values");
          LineRenderer lines = new DefaultLineRenderer2D();
          plot.setLineRenderer(data, lines);
          Color color = new Color(0.0f, 0.3f, 1.0f);

@@ -30,9 +30,5 @@ public class TableViewPanelTest {
 		
 		assertEquals(test.size(),t.size());
 		assertFalse(test.isEmpty());
-
 	}
-	
-
-
 }
