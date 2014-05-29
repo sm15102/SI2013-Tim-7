@@ -1332,7 +1332,7 @@ public void OneBarGraphShow(){
 		
 		
 		 //Podaci koji ce se prikazivati na grafu 
-	  /*     DataTable data = new DataTable(Double.class, Double.class);
+	      DataTable data = new DataTable(Double.class, Double.class);
 	     
 	       
 	       double x = 1; 
@@ -1406,10 +1406,10 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
       
       InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
       InteractivePanel interactivePanel2=new InteractivePanel(plot);
-      interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+      interactivePanel1.setBounds(new Rectangle(0, 0, 50, 50));
       interactivePanel1.setVisible(true);
       interactivePanel1.setLayout(null);
-      interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
+      interactivePanel2.setBounds(new Rectangle(0, -50, 50, 50));
       interactivePanel2.setVisible(true);
       interactivePanel2.setLayout(null);
       
@@ -1417,16 +1417,16 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
      // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
      
       //interactivePanel.add(null, plot1);
-    /*  interactivePanel.setLayout(null);
+     /* interactivePanel.setLayout(null);
       plot1.setBounds(0, 0, 10, 50); 
-	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));*/
 		 
       contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 		contentPane.setBackground(Color.white);
-		contentPane.setBounds(10,10,5,5);
-		
+		//contentPane.setBounds(10,10,5,5);
+		contentPane.setBounds(100,100,100,100);
 		contentPane.add(interactivePanel1);
 		contentPane.add(interactivePanel2);
 		
@@ -1434,7 +1434,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 		 
 		 tabbedPane.setSelectedIndex(1);
 		
-		*/
+		
 		
 	}
 	
@@ -1446,13 +1446,15 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 			List<Choice> choices=new ArrayList<Choice>();
 			choices.add(choice_1);
 			choices.add(choice_2);
-			/*choices.add(choice_3);
+			choices.add(choice_3);
 			choices.add(choice_4);
 			choices.add(choice_5);
 			choices.add(choice_6);
 			choices.add(choice_7);
 			choices.add(choice_8);
-			choices.add(choice_9);*/
+			choices.add(choice_9);
+			
+			
 			
 			Integer value = (Integer) spinner.getValue();
 			ArrayList<String> senzori = new ArrayList<String>();
@@ -1502,7 +1504,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	         
 	        
 	         //drugi
-	         
+	        
 	         BarPlot  plot1 = new BarPlot(data);
 	         // Format plot
 	         plot1.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
@@ -1542,7 +1544,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	         interactivePanel2.setLayout(null);
 	         
 	         
-	        // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+	        plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
 	        
 	         //interactivePanel.add(null, plot1);
 	       /*  interactivePanel.setLayout(null);
@@ -1553,10 +1555,10 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	   		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	   		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 	   		contentPane.setBackground(Color.white);
-	   		contentPane.setBounds(10,10,5,5);
+	   		//contentPane.setBounds(10,10,5,5);
 	   		
-	   		//contentPane.add(interactivePanel1);
-	   		//contentPane.add(interactivePanel2);
+	   		contentPane.add(interactivePanel1);
+	   		contentPane.add(interactivePanel2);
 	   		
 	   		 tabbedPane.addTab("Two graphs", contentPane);
 	   		 
