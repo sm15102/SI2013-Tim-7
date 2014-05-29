@@ -133,7 +133,8 @@ public HibernateEventLogs(){
 		List<EventLogs> temp_list=query.list();
 			if(temp_list.size()==0){
 				session.close();
-				return null;
+				List<EventLogs> newlist = new ArrayList<EventLogs>(); 
+				return newlist;
 				
 			}else{
 				session.close();
