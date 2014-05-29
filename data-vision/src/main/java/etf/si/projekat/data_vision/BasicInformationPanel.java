@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -261,38 +263,82 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
+      choice_1.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(1);
+			}
+		});
+      
       
       choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
+      choice_2.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(2);
+			}
+		});
       
        choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
+      choice_3.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(3);
+			}
+		});
       
       choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
+      choice_4.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(4);
+			}
+		});
       
      choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
+      choice_5.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(5);
+			}
+		});
       
       choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
+      choice_6.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(6);
+			}
+		});
       
       choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
-      
+      choice_7.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(7);
+			}
+		});
        choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
-      
+      choice_8.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(8);
+			}
+		});
       choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
+      choice_9.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(9);
+			}
+		});
       
       final  JLabel lblSensorType_1 = new JLabel("Sensor type 6");
       lblSensorType_1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -347,7 +393,26 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
       		
       		
-      	
+      		choice_1.enable();
+      		choice_2.enable();
+      		choice_3.enable();
+      		choice_4.enable();
+      		choice_5.enable();
+      		choice_6.enable();
+      		choice_7.enable();
+      		choice_8.enable();
+      		choice_9.enable();
+      		
+      		choice_1.removeAll();
+      		choice_2.removeAll();
+      		choice_3.removeAll();
+      		choice_4.removeAll();
+      		choice_5.removeAll();
+      		choice_6.removeAll();
+      		choice_7.removeAll();
+      		choice_8.removeAll();
+      		choice_9.removeAll();
+      		
       		int value = (Integer) spinner.getValue();
 			
 			
@@ -608,14 +673,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      
 		      for (int i=0; i<list_device.size(); i++){
 			    	 choice_1.add(list_device.get(i).getName() );
-			    	 choice_2.add(list_device.get(i).getName() );
-			    	 choice_3.add(list_device.get(i).getName() );
-			    	 choice_4.add(list_device.get(i).getName() );
-			    	 choice_5.add(list_device.get(i).getName() );
-			    	 choice_6.add(list_device.get(i).getName() );
-			    	 choice_7.add(list_device.get(i).getName() );
-			    	 choice_8.add(list_device.get(i).getName() );
-			    	 choice_9.add(list_device.get(i).getName() );
+			    	
 		      }
 		      
 		     
@@ -978,7 +1036,87 @@ public class BasicInformationPanel  extends ExamplePanel {
         baos.close();
         return bytes;
     }
-	
+	public void fillChoices(int k){
+		switch(k){
+		case 1 : {
+			for(int i=0; i<list_device.size();i++){
+			if(choice_1.getSelectedItem() == list_device.get(i).getName()) continue;
+			choice_2.add(list_device.get(i).getName());
+			}
+			choice_1.disable();
+			break;
+			
+		}
+		case 2 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_3.add(list_device.get(i).getName());
+				}
+				choice_2.disable();
+				break;
+		}
+		case 3 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_4.add(list_device.get(i).getName());
+				}
+				choice_3.disable();
+				break;
+		}
+		case 4 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_5.add(list_device.get(i).getName());
+				}
+				choice_4.disable();
+				break;
+		}
+		case 5 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_6.add(list_device.get(i).getName());
+				}
+				choice_5.disable();
+				break;
+		}
+		case 6 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_7.add(list_device.get(i).getName());
+				}
+				choice_6.disable();
+				break;
+		}
+		case 7 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_7.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_8.add(list_device.get(i).getName());
+				}
+				choice_7.disable();
+				break;
+		}
+		case 8 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_7.getSelectedItem() == list_device.get(i).getName())||(choice_8.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_9.add(list_device.get(i).getName());
+				}
+				choice_8.disable();
+				break;
+		}
+		case 9 : {
+			choice_9.disable();
+			
+		}	
+	}
+		
+	}
 	
 	@Override
 	 public String getTitle() {
