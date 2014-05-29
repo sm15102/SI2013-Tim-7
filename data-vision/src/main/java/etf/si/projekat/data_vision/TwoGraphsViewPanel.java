@@ -1544,7 +1544,7 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	         interactivePanel2.setLayout(null);
 	         
 	         
-	        plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+	      //  plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
 	        
 	         //interactivePanel.add(null, plot1);
 	       /*  interactivePanel.setLayout(null);
