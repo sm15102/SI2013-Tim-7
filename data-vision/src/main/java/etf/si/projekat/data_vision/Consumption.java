@@ -102,10 +102,14 @@ public Consumption() {
         devices = new JComboBox();
         devices.setBounds(132, 139, 117, 20);
         add(devices);
+        
+        selecteddevice = new HibernateEventLogs().giveEventLogs(1).getDevice_name();
         devices.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent arg0) {
-        		if(selecteddevice != null)
-        		PopuniTabelu();
+        	if(selecteddevice != null)
+        	PopuniTabelu();
+        	selecteddevice = null;
+        		
         	}
         });
         
@@ -116,7 +120,7 @@ public Consumption() {
 			}
 			
         units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowarrs (kW)"}));
-        units.setBounds(259, 139, 96, 20);
+        units.setBounds(256, 170, 96, 20);
         add(units);
         
      
@@ -148,11 +152,10 @@ public Consumption() {
 		});
 		devices.addItemListener(new ItemListener() {
 		public void itemStateChanged(ItemEvent arg0) {
-			selecteddevice = (String) arg0.getItem();
-			EarseTable();
-			 
+			selecteddevice =(String) arg0.getItem();
 			
-    	}
+				EarseTable();
+				}
     });
 		
 		
