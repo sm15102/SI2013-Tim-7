@@ -312,6 +312,10 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 		separator_2.setVisible(false);
 
       JButton btnProcess = new JButton("Process");
+      btnProcess.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
@@ -346,7 +350,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(false);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			
 			}
 			
 			else if(value == 2){
@@ -427,7 +431,6 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 5){
@@ -454,7 +457,6 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -484,7 +486,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
+
 			}
 			
 			else if(value == 7){
@@ -537,7 +539,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
+
 			}
 			
 			else{
@@ -564,7 +566,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
+
 			}
 			
 			
@@ -768,6 +770,10 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 
       
       JButton button = new JButton("Process");
+      button.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      	}
+      });
       
     //-------------------------------------------------------------------------
       button.addMouseListener(new MouseAdapter() {
