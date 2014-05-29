@@ -23,6 +23,8 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 
 
+import java.awt.Rectangle;
+
 //import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -72,7 +74,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1038, 620);
+		setBounds(100, 100, 928, 620);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -108,7 +110,8 @@ public class GlavniFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 1022, 560);
+		//tabbedPane.setBounds(0, 0, 1200,1200);
+		tabbedPane.setBounds(new Rectangle(0, 0, 912, 561));
 		tabbedPane.setBorder(new CompoundBorder());
 		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
@@ -137,6 +140,7 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
+		tabbedPane_3.setBounds(new Rectangle(0, 0,1200, 1200));
 		twoGraphs = new TwoGraphsViewPanel(tabbedPane_3);
 		tabbedPane_3.add("Basic info",twoGraphs);
 		twoGraphs.setLayout(null);
@@ -162,7 +166,7 @@ public class GlavniFrame extends JFrame {
 		contentPane.add(tabbedPane);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_2.setBounds(10, 49, 694, 501);
+		tabbedPane_2.setBounds(0, 45, 912, 516);
 		contentPane.add(tabbedPane_2);
 		tabbedPane_2.addMouseListener(new MouseAdapter() {
 			@Override

@@ -714,7 +714,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		OneLineGraphShow();
       		}
       		*/
-      		TwoGraphsShow();
+      		twoGraphsShow();
       			
       	}
       });
@@ -1369,7 +1369,7 @@ public void OneBarGraphShow(){
 
 	     plot.setVisible(data, true);
 	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	     // plot.setBackground(Color.WHITE);
+	   // plot.setBackground(Color.WHITE);
 
       plot.getTitle().setText("Temperature  for 7 days");
       LineRenderer lines = new DefaultLineRenderer2D();
@@ -1406,15 +1406,15 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
       
       InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
       InteractivePanel interactivePanel2=new InteractivePanel(plot);
-      interactivePanel1.setBounds(new Rectangle(0, 0, 50, 50));
+      interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
       interactivePanel1.setVisible(true);
       interactivePanel1.setLayout(null);
-      interactivePanel2.setBounds(new Rectangle(0, -50, 50, 50));
+      interactivePanel2.setBounds(new Rectangle(200, 0, 400, 400));
       interactivePanel2.setVisible(true);
       interactivePanel2.setLayout(null);
       
       
-     // plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
+     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
      
       //interactivePanel.add(null, plot1);
      /* interactivePanel.setLayout(null);
@@ -1423,16 +1423,19 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 		 
       contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+		contentPane.setBounds(new Rectangle(0, 0,2000, 2000));
 		contentPane.setBackground(Color.white);
 		//contentPane.setBounds(10,10,5,5);
-		contentPane.setBounds(100,100,100,100);
+		//contentPane.setBounds(0,0,2000,3000);
 		contentPane.add(interactivePanel1);
 		contentPane.add(interactivePanel2);
 		
 		 tabbedPane.addTab("Two graphs", contentPane);
 		 
+		 contentPane.setLayout(null);
 		 tabbedPane.setSelectedIndex(1);
+		 
 		
 		
 		
