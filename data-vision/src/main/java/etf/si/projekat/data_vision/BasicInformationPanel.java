@@ -738,26 +738,18 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     btnChange.setBounds(231, 462, 137, 23);
+	     //btnChange.setBounds(231, 462, 137, 23);
+	     btnChange.setBounds(690, 462, 137, 23);
 		 interactivePanel.add(btnChange);
 		 
-		 final JButton btnExport = new JButton("Export plot");
-	       btnExport.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_ARGB); 
-	       		Graphics g = bi.createGraphics();
-	       		interactivePanel.paint(g);  //this == JComponent
-	       		g.dispose();
-	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}
-	       	}
-	       });
-	     btnExport.setBounds(431, 462, 137, 23);
-		 interactivePanel.add(btnExport);
+		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setSize(400, 15);
+		 interactivePanel.add(lblExport);
 		 
 		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(631, 462, 137, 23);
+	     btnExit.setBounds(831, 462, 137, 23);
 		 interactivePanel.add(btnExit);
 		 
 		 tabbedPane.addTab("Line plot", interactivePanel);
@@ -887,27 +879,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	     btnChange.setBounds(690, 462, 137, 23);
 		 interactivePanel.add(btnChange);
 		 
-		 /*final JButton btnExport = new JButton("Export plot");
-	       btnExport.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		/*BufferedImage bi = new BufferedImage(interactivePanel.getSize().width, interactivePanel.getSize().height, BufferedImage.TYPE_INT_RGB); 
-	       		Graphics g = bi.createGraphics();
-	       		interactivePanel.paint(g);  //this == JComponent
-	       		g.dispose();
-	       		try{ImageIO.write(bi,"png",new File("test.png"));}catch (Exception e) {e.printStackTrace();}*/
-	       		/*try{
-	       		writeData();
-	       		}
-	       		catch (Exception e) {e.printStackTrace();}
-	       		try{
-		       		//getJpg();
-		       		}
-		       		catch (Exception e) {e.printStackTrace();}
-	       	}
-	       });
-	     btnExport.setBounds(431, 462, 137, 23);
-		 interactivePanel.add(btnExport);*/
+	
 		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 		 lblExport.setBounds(131, 462, 137, 23);
 		 lblExport.setSize(400, 15);

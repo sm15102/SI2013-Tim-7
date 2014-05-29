@@ -569,9 +569,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 
 			}
 			
-			
-			
-		      
+    
 		      for (int i=0; i<list_device.size(); i++){
 			    	 choice_1.add(list_device.get(i).getName() );
 			    	 choice_2.add(list_device.get(i).getName() );

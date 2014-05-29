@@ -74,7 +74,7 @@ public class GlavniFrame extends JFrame {
 	 */
 	public GlavniFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 928, 620);
+		setBounds(100, 100, 987, 620);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -111,7 +111,7 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		//tabbedPane.setBounds(0, 0, 1200,1200);
-		tabbedPane.setBounds(new Rectangle(0, 0, 912, 561));
+		tabbedPane.setBounds(new Rectangle(0, 0, 985, 561));
 		tabbedPane.setBorder(new CompoundBorder());
 		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
