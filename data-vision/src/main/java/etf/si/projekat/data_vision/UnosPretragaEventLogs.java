@@ -10,8 +10,10 @@ import org.hibernate.Transaction;
 import org.hibernate.mapping.List;
 
 import ba.unsa.etf.si.beans.ActivityLogs;
+import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import etf.si.projekat.util.HibernateUtil;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
 public class UnosPretragaEventLogs {
@@ -27,6 +29,8 @@ public class UnosPretragaEventLogs {
 		 
 //		 session.close(); 
 		 } 
+	    java.util.List<EventLogs> list_device=new HibernateEventLogs().giveAllEventLogs();
+
 	 private static void dodaj() { 
 		
 		 
@@ -54,6 +58,8 @@ public class UnosPretragaEventLogs {
 		
 		 
 		 System.out.println("Dodan red u tabeli EventLogs sa  IDom "+s.getEventlogs_id()); 
+		 
+		 
 		
 		 } 
 		 
