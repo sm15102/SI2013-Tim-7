@@ -360,6 +360,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
+      		
       		choice_1.enable();
       		choice_2.enable();
       		choice_3.enable();
@@ -635,13 +637,9 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 			    	 choice_1.add(list_device.get(i).getName() );
 			    	
 		      }
-		      
-		     
-		     
-	
-		  		
-		      	
-			
+      		}else{
+      			JOptionPane.showMessageDialog(null, "Date is not selected");
+      		}
       	}
       });
 		
@@ -872,6 +870,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       	@SuppressWarnings("deprecation")
 		@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		
+      		if(datePicker2.getModel().isSelected() && datePicker2.getModel().isSelected()){
       		
       		choice_11.enable();
       		choice_12.enable();
@@ -1137,8 +1137,13 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 	      
       		
       		
+      	
+      	}else{
+      		
+      		JOptionPane.showMessageDialog(null, "Date is not selected");
       	}
-      });
+     }
+  });
       button.setBounds(493, 165, 136, 23);
       add(button);
       
