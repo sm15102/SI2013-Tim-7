@@ -56,6 +56,8 @@ import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -235,38 +237,76 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
-      
+      choice_1.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				
+				fillChoices(1);
+			}
+		});
       choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
-      
+      choice_2.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(2);
+			}
+		});
       choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
-      
+      choice_3.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(3);
+			}
+		});
       choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
-      
+      choice_4.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(4);
+			}
+		});
       choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
-      
+      choice_5.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(5);
+			}
+		});
       choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
-      
+      choice_6.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(6);
+			}
+		});
       choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
-      
+      choice_7.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(7);
+			}
+		});
       choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
-      
+      choice_8.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(8);
+			}
+		});
       choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
+      choice_9.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices(9);
+			}
+		});
       
       final  JLabel lblSensorType_1 = new JLabel("Sensor type 6");
       lblSensorType_1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -319,6 +359,27 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		
+      		choice_1.enable();
+      		choice_2.enable();
+      		choice_3.enable();
+      		choice_4.enable();
+      		choice_5.enable();
+      		choice_6.enable();
+      		choice_7.enable();
+      		choice_8.enable();
+      		choice_9.enable();
+      		
+      		choice_1.removeAll();
+      		choice_2.removeAll();
+      		choice_3.removeAll();
+      		choice_4.removeAll();
+      		choice_5.removeAll();
+      		choice_6.removeAll();
+      		choice_7.removeAll();
+      		choice_8.removeAll();
+      		choice_9.removeAll();
+      		
       		
       		int value = (Integer) spinner.getValue();
 			
@@ -572,14 +633,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     
 		      for (int i=0; i<list_device.size(); i++){
 			    	 choice_1.add(list_device.get(i).getName() );
-			    	 choice_2.add(list_device.get(i).getName() );
-			    	 choice_3.add(list_device.get(i).getName() );
-			    	 choice_4.add(list_device.get(i).getName() );
-			    	 choice_5.add(list_device.get(i).getName() );
-			    	 choice_6.add(list_device.get(i).getName() );
-			    	 choice_7.add(list_device.get(i).getName() );
-			    	 choice_8.add(list_device.get(i).getName() );
-			    	 choice_9.add(list_device.get(i).getName() );
+			    	
 		      }
 		      
 		     
@@ -608,6 +662,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
      choice_11.setVisible(false);
       choice_11.setBounds(464, 235, 165, 20);
       add(choice_11);
+      choice_11.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(1);
+			}
+		});
       
       final Label label_13 = new Label("Sensor type 2");
       label_13.setBounds(376, 266, 83, 14);
@@ -654,42 +713,77 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       choice_12.setBounds(464, 260, 165, 20);
       choice_12.setVisible(false);
       add(choice_12);
-      
+      choice_12.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(2);
+			}
+		});
       choice_13 = new Choice();
       choice_13.setBounds(464, 285, 165, 20);
       choice_13.setVisible(false);
       add(choice_13);
-      
+      choice_13.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(3);
+			}
+		});
       choice_14 = new Choice();
       choice_14.setBounds(464, 310, 165, 20);
       choice_14.setVisible(false);
       add(choice_14);
-      
+      choice_14.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(4);
+			}
+		});
       choice_15 = new Choice();
       choice_15.setBounds(464, 335, 165, 20);
       choice_15.setVisible(false);
       add(choice_15);
-      
+      choice_15.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(5);
+			}
+		});
       choice_16 = new Choice();
       choice_16.setBounds(464, 360, 165, 20);
       choice_16.setVisible(false);
       add(choice_16);
+      choice_16.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(6);
+			}
+		});
       
       choice_17 = new Choice();
       choice_17.setBounds(464, 385, 165, 20);
       choice_17.setVisible(false);
       add(choice_17);
+      choice_17.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(7);
+			}
+		});
       
       choice_18 = new Choice();
       choice_18.setBounds(464, 410, 165, 20);
       choice_18.setVisible(false);
       add(choice_18);
+      choice_18.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(8);
+			}
+		});
       
       choice_19 = new Choice();
       choice_19.setBounds(464, 436, 165, 20);
       choice_19.setVisible(false);
       add(choice_19);
-      
+      choice_19.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				fillChoices_1(9);
+			}
+		});
 
       
       btnGenerateGraphs.addMouseListener(new MouseAdapter() {
@@ -775,8 +869,32 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       
     //-------------------------------------------------------------------------
       button.addMouseListener(new MouseAdapter() {
-      	@Override
+      	@SuppressWarnings("deprecation")
+		@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		
+      		choice_11.enable();
+      		choice_12.enable();
+      		choice_13.enable();
+      		choice_14.enable();
+      		choice_15.enable();
+      		choice_16.enable();
+      		choice_17.enable();
+      		choice_18.enable();
+      		choice_19.enable();
+      		
+      		choice_11.removeAll();
+      		choice_12.removeAll();
+      		choice_13.removeAll();
+      		choice_14.removeAll();
+      		choice_15.removeAll();
+      		choice_16.removeAll();
+      		choice_17.removeAll();
+      		choice_18.removeAll();
+      		choice_19.removeAll();
+      		
+      		
+      		
       	  int valueSecondGraph = (Integer) spinner_2.getValue();
       		
       		// KOD ZA DRUGI GRAF
@@ -1014,14 +1132,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		
       		for (int i=0; i<list_device.size(); i++){
 		    	 choice_11.add(list_device.get(i).getName() );
-		    	 choice_12.add(list_device.get(i).getName() );
-		    	 choice_13.add(list_device.get(i).getName() );
-		    	 choice_14.add(list_device.get(i).getName() );
-		    	 choice_15.add(list_device.get(i).getName() );
-		    	 choice_16.add(list_device.get(i).getName() );
-		    	 choice_17.add(list_device.get(i).getName() );
-		    	 choice_18.add(list_device.get(i).getName() );
-		    	 choice_19.add(list_device.get(i).getName() );
+		    	
 	      }
 	      
       		
@@ -1573,7 +1684,168 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	}
 	}
 	
-	
+	public void fillChoices(int k){
+		switch(k){
+		case 1 : {
+			for(int i=0; i<list_device.size();i++){
+			if(choice_1.getSelectedItem() == list_device.get(i).getName()) continue;
+			choice_2.add(list_device.get(i).getName());
+			}
+			choice_1.disable();
+			break;
+			
+		}
+		case 2 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_3.add(list_device.get(i).getName());
+				}
+				choice_2.disable();
+				break;
+		}
+		case 3 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_4.add(list_device.get(i).getName());
+				}
+				choice_3.disable();
+				break;
+		}
+		case 4 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_5.add(list_device.get(i).getName());
+				}
+				choice_4.disable();
+				break;
+		}
+		case 5 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_6.add(list_device.get(i).getName());
+				}
+				choice_5.disable();
+				break;
+		}
+		case 6 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_7.add(list_device.get(i).getName());
+				}
+				choice_6.disable();
+				break;
+		}
+		case 7 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_7.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_8.add(list_device.get(i).getName());
+				}
+				choice_7.disable();
+				break;
+		}
+		case 8 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_7.getSelectedItem() == list_device.get(i).getName())||(choice_8.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_9.add(list_device.get(i).getName());
+				}
+				choice_8.disable();
+				break;
+		}
+		case 9 : {
+			choice_9.disable();
+			
+		}	
+	}
+		
+	}
+	public void fillChoices_1(int k){
+		switch(k){
+		case 1 : {
+			for(int i=0; i<list_device.size();i++){
+			if(choice_11.getSelectedItem() == list_device.get(i).getName()) continue;
+			choice_12.add(list_device.get(i).getName());
+			}
+			choice_11.disable();
+			break;
+			
+		}
+		case 2 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_13.add(list_device.get(i).getName());
+				}
+				choice_12.disable();
+				break;
+		}
+		case 3 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_14.add(list_device.get(i).getName());
+				}
+				choice_13.disable();
+				break;
+		}
+		case 4 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
+						(choice_14.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_15.add(list_device.get(i).getName());
+				}
+				choice_14.disable();
+				break;
+		}
+		case 5 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
+						(choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_16.add(list_device.get(i).getName());
+				}
+				choice_15.disable();
+				break;
+		}
+		case 6 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
+						(choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_17.add(list_device.get(i).getName());
+				}
+				choice_16.disable();
+				break;
+		}
+		case 7 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_17.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_18.add(list_device.get(i).getName());
+				}
+				choice_17.disable();
+				break;
+		}
+		case 8 : {
+			for(int i=0; i<list_device.size();i++){
+				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())||
+				   (choice_17.getSelectedItem() == list_device.get(i).getName())||(choice_18.getSelectedItem() == list_device.get(i).getName())) continue;
+				choice_19.add(list_device.get(i).getName());
+				}
+				choice_18.disable();
+				break;
+		}
+		case 9 : {
+			choice_19.disable();
+			
+		}	
+	}
+		
+	}
 	@Override
 	 public String getTitle() {
 	         return "Bar plot";
