@@ -103,12 +103,13 @@ public Consumption() {
         devices.setBounds(132, 139, 117, 20);
         add(devices);
         
-        selecteddevice = new HibernateEventLogs().giveEventLogs(1).getDevice_name();
+       devices.addItem("Chose device...");
         devices.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent arg0) {
-        	if(selecteddevice != null)
-        	PopuniTabelu();
-        	selecteddevice = null;
+        	if(selecteddevice != null && selecteddevice !="Chose device..." )
+        		EarseTable();
+        		PopuniTabelu();
+        	
         		
         	}
         });
@@ -153,9 +154,8 @@ public Consumption() {
 		devices.addItemListener(new ItemListener() {
 		public void itemStateChanged(ItemEvent arg0) {
 			selecteddevice =(String) arg0.getItem();
-			
-				EarseTable();
-				}
+			EarseTable();
+		}
     });
 		
 		
@@ -209,8 +209,13 @@ private void PopuniTabelu()
 		return;
 	}
 	
-	try{
+	if (selecteddevice != "Chose device...")try{
     List<EventLogs> sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
+    if(sveKolone.size() == 0 && selecteddevice != "Chose device...")
+	{
+    	JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
+		return;
+	}
 	
 	
 	for(int i=0;i<sveKolone.size();i++)
