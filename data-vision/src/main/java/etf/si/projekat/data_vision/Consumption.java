@@ -203,6 +203,11 @@ private void PopuniTabelu()
 		JOptionPane.showMessageDialog(null, "Enter Time interval to value", "Error", JOptionPane.ERROR_MESSAGE);
 		return;
 	}
+	if(model1.getValue().before(model.getValue()))
+	{
+		JOptionPane.showMessageDialog(null, "Time interval from and time interval to are in inccorect order", "Info", JOptionPane.INFORMATION_MESSAGE);
+		return;
+	}
 	
 	try{
     List<EventLogs> sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
