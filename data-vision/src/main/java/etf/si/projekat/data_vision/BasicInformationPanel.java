@@ -42,7 +42,10 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -67,7 +70,9 @@ import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
+import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
+import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -97,6 +102,12 @@ public class BasicInformationPanel  extends ExamplePanel {
     final static DataTable data=new DataTable(Double.class, Double.class);
     XYPlot plot;
     
+    UtilDateModel model1 = new UtilDateModel();
+    JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
+    final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+    UtilDateModel model = new UtilDateModel();
+    JDatePanelImpl datePanel = new JDatePanelImpl(model);
+    final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
 
   
     
@@ -150,21 +161,17 @@ public class BasicInformationPanel  extends ExamplePanel {
 		
 		add(spinner);
 		
-		UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		
         JLabel lblGraphType = new JLabel("Graph type");
         lblGraphType.setHorizontalAlignment(SwingConstants.RIGHT);
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
-        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(152, 76);
         datePicker.setSize(165, 28);
        add(datePicker);
         
         
-        UtilDateModel model1 = new UtilDateModel();
-        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
-        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+       
         datePicker1.setLocation(152, 106);
         datePicker1.setSize(165, 28);
       add(datePicker1);
@@ -770,6 +777,32 @@ public class BasicInformationPanel  extends ExamplePanel {
 	{
 		
 		 //Podaci koji ce se prikazivati na grafu 
+		Date dateString = (Date) datePicker.getModel().getValue();
+  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date_start;
+		Date date_end;
+		
+		  try {
+			date_start = sdf.parse(date_from);
+			date_end = sdf.parse(date_to);
+			try {
+			List<EventLogs> list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+			
+			for(int i=0; i<list_logs.size();i++){
+				//list_logs.get(i).getValue();           //Ovo čemo stavljati na graf valjda :D
+			}
+			}catch(NullPointerException e){
+				System.out.println("Ne poklpaju se vrijednosti");
+			}
+		} 
+		  catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
 	     
 	       
 	       double x = 1; 

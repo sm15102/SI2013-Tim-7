@@ -1,12 +1,17 @@
 package ba.unsa.etf.si.hibernate_klase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
+
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import ba.unsa.etf.si.beans.EventLogs;
 import etf.si.projekat.util.HibernateUtil;
 
@@ -94,6 +99,46 @@ public HibernateEventLogs(){
 			return true;
 		}
 	}
+	public String existDeviceName(String name){
 	
+		session= HibernateUtil.getSessionFactory().openSession();
+		transaction= session.beginTransaction();
+		
+		Query query = session.createQuery("from EventLogs where device_name = :tempJib");
+		
+		query.setParameter("tempJib", name);
+		List<EventLogs> temp=query.list();
+		
+		if(temp.size() == 0) {
+			session.close();
+			return null;
+		}
+		else{
+		session.close();
+		
+		return temp.get(0).getTimestamp().toString().substring(0, 19);
+		}
+	}
+	public List<EventLogs> getdatesbetween(String name,Date dateFrom, Date dateTo){
+		session= HibernateUtil.getSessionFactory().openSession();
+		transaction= session.beginTransaction();
+		
+		Query query = session.createQuery("from EventLogs where device_name=:tmp and timestamp between :start_date and :end_date");
+		
+		query.setParameter("tmp", name);
+		query.setParameter("start_date", dateFrom);
+		query.setParameter("end_date", dateTo);
+		
+		
+		List<EventLogs> temp_list=query.list();
+			if(temp_list.size()==0){
+				session.close();
+				return null;
+				
+			}else{
+				session.close();
+				return temp_list;
+			}
+	}
 
 }

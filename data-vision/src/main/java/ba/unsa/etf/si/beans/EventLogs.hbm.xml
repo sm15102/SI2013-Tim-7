@@ -1,30 +1,30 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 24-May-2014 11:50:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="ba.unsa.etf.si.beans.EventLogs" table="EVENTLOGS">
-        <id name="eventlogs_id" type="java.lang.Long">
-            <column name="EVENTLOGS_ID" />
-            <generator class="native" />
-        </id>
-        <property name="device_name" type="java.lang.String">
-            <column name="DEVICE_NAME" />
-        </property>
-        <property name="device_type" type="java.lang.String">
-            <column name="DEVICE_TYPE" />
-        </property>
-        <property name="event_message" type="java.lang.String">
-            <column name="EVENT_MESSAGE" />
-        </property>
-        <property name="timestamp" type="java.util.Calendar">
-            <column name="TIMESTAMP" />
-        </property>
-        <property name="value" type="double">
-            <column name="VALUE" />
-        </property>
-        <many-to-one name="activity_logs" class="ba.unsa.etf.si.beans.ActivityLogs" fetch="join">
-            <column name="ACTIVITY_LOGS" />
-        </many-to-one>
-    </class>
+ <class name="ba.unsa.etf.si.beans.EventLogs" table="EVENTLOGS">
+  <id name="eventlogs_id" type="java.lang.Long">
+   <column name="EVENTLOGS_ID"/>
+   <generator class="native"/>
+  </id>
+  <property generated="never" lazy="false" name="device_name" type="java.lang.String">
+   <column name="DEVICE_NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="device_type" type="java.lang.String">
+   <column name="DEVICE_TYPE"/>
+  </property>
+  <property generated="never" lazy="false" name="event_message" type="java.lang.String">
+   <column name="EVENT_MESSAGE"/>
+  </property>
+  <property generated="never" lazy="false" name="timestamp" type="java.util.Date">
+   <column name="TIMESTAMP"/>
+  </property>
+  <property generated="never" lazy="false" name="value" type="double">
+   <column name="VALUE"/>
+  </property>
+  <many-to-one class="ba.unsa.etf.si.beans.ActivityLogs" fetch="join" name="activity_logs">
+   <column name="ACTIVITY_LOGS"/>
+  </many-to-one>
+ </class>
 </hibernate-mapping>

@@ -55,8 +55,10 @@ import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
+import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 import etf.si.projekat.util.HibernateUtil;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -433,7 +435,10 @@ public class WelcomeDataVision extends ExamplePanel {
 				 for (int i=0; i<list_device.size(); i++){
 			    	 choice1.add(list_device.get(i).getName());
 			    	   }
-				 System.out.println(list_device.size());
+				 List<EventLogs> list_event =  new HibernateEventLogs().giveAllEventLogs();
+				  
+			
+			     
 				
 				Integer value = (Integer) spinner.getValue();
 				if(value == 1){

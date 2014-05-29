@@ -1,6 +1,6 @@
 package ba.unsa.etf.si.beans;
 
-import java.util.Calendar;
+import java.util.Date;
 
 
 
@@ -10,7 +10,7 @@ public class EventLogs implements java.io.Serializable{
 	String device_name;
 	String device_type;
 	String event_message;
-	Calendar timestamp;
+	Date timestamp;
 	double value;
 	ActivityLogs activity_logs;
 	
@@ -59,11 +59,11 @@ public class EventLogs implements java.io.Serializable{
 		this.event_message = event_message;
 	}
 
-	public Calendar getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Calendar timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
