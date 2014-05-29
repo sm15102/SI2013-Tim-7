@@ -99,7 +99,10 @@ public class BasicInformationPanel  extends ExamplePanel {
     final Choice choice_7;
     final Choice choice_8;
     final Choice choice_9;
-    final static DataTable data=new DataTable(Double.class, Double.class);
+    private int size;
+    private List<EventLogs> list_logs;
+   private List<Double> list_values;
+    final static DataTable data=new DataTable(Date.class, Double.class);
     XYPlot plot;
     
     UtilDateModel model1 = new UtilDateModel();
@@ -789,10 +792,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 			date_start = sdf.parse(date_from);
 			date_end = sdf.parse(date_to);
 			try {
-			List<EventLogs> list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+				
 			
+		  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+		 list_values = new ArrayList<Double>();
+			size=list_logs.size();
 			for(int i=0; i<list_logs.size();i++){
-				//list_logs.get(i).getValue();           //Ovo čemo stavljati na graf valjda :D
+				list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
 			}
 			}catch(NullPointerException e){
 				System.out.println("Ne poklpaju se vrijednosti");
@@ -803,9 +809,14 @@ public class BasicInformationPanel  extends ExamplePanel {
 			e1.printStackTrace();
 		}
 		 
-	     
-	       
-	       double x = 1; 
+		
+		  for(int i=0;i<size;i++)
+		  {
+			  data.add(list_logs.get(i).getTimestamp(), list_values.get(i));
+			  
+		  }
+		  JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+	      /* double x = 1; 
 	       double y = 17;
 	       data.add(x, y);
 	       x = 2; 
@@ -832,7 +843,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	       y = 20;
 	       
 	       data.add(x, y);
-	       
+	       */
 	       plot=plot = new XYPlot(data);
 	       //prikaz grafa na frameu
 	     //  add(new InteractivePanel(plot));
