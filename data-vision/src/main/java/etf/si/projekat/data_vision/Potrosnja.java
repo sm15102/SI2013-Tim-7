@@ -32,10 +32,6 @@ public class Potrosnja {
 	public void setSnagaUredjaja(double snagaUredjaja) {
 		this.snagaUredjaja = snagaUredjaja;
 	}
-	
-	
-	
-	
 	public double RacunajPotrosnju(){
 		int days=(int)( (intervalDo.getTime() - intervalOd.getTime()) / (1000 * 60 * 60 * 24));
 		return days*24*this.getSnagaUredjaja();

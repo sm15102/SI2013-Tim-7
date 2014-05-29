@@ -59,10 +59,6 @@ public class SensorChoosingPanel extends JPanel {
 		JLabel lblSensorType_7 = new JLabel("Sensor type 9");
 		lblSensorType_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSensorType_7.setBounds(30, 241, 95, 14);
-	
-
-			
-		
 		
 		Choice choice = new Choice();
 		choice.setBounds(158, 30, 138, 20);

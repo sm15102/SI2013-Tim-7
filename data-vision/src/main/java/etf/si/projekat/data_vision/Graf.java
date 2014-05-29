@@ -10,8 +10,6 @@ public class Graf {
 	Date intervalDo;
 	int brojPodataka;
 	List<String> tipSenzora;
-	
-	
 
 	public Graf()
 	{}
@@ -25,9 +23,7 @@ public class Graf {
 		tipSenzora=tip;
 		
 	}
-	
-	
-	
+
 	public String getVrstaGrafa() {
 		return vrstaGrafa;
 	}
