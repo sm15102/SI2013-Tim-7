@@ -143,7 +143,7 @@ class CustModel extends AbstractTableModel {
     }
 }
 
-private void popuniTabelu()
+public void popuniTabelu()
 {
 	List<EventLogs> temp=new ArrayList<EventLogs>();
 	List<EventLogs> sveKolone=pokupiPodatke();
@@ -176,7 +176,7 @@ private void popuniTabelu()
 	}
 }
 
-private List<EventLogs> pokupiPodatke(){
+public List<EventLogs> pokupiPodatke(){
 	
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	List<EventLogs> temp=new ArrayList<EventLogs>();
