@@ -688,7 +688,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			 list_values = new ArrayList<Double>();
 				size=list_logs.size();
 				for(int i=0; i<list_logs.size();i++){
-					list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
+					//list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
 				}
 				}catch(NullPointerException e){
 					System.out.println("Ne poklapaju se vrijednosti");
