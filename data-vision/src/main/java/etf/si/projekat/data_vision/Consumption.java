@@ -5,12 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.persistence.NoResultException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -102,7 +104,7 @@ public Consumption() {
         add(devices);
         devices.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent arg0) {
-        		
+        		if(selecteddevice != null)
         		PopuniTabelu();
         	}
         });
@@ -127,7 +129,7 @@ public Consumption() {
         pane = new JScrollPane(table);
         pane.setSize(445, 149);
         pane.setLocation(10, 235);
-       add(pane);
+        add(pane);
        
         
         
@@ -147,7 +149,7 @@ public Consumption() {
 		devices.addItemListener(new ItemListener() {
 		public void itemStateChanged(ItemEvent arg0) {
 			selecteddevice = (String) arg0.getItem();
-			ObrisiTableu();
+			EarseTable();
 			 
 			
     	}
@@ -188,10 +190,19 @@ public void Model() {
 private void PopuniTabelu()
 {
 	
+	if(model.getValue() == null)
+	{
+		JOptionPane.showMessageDialog(null, "Enter Time interval from value", "Error", JOptionPane.ERROR_MESSAGE);
+		return;
+	}
+	if(model1.getValue() == null)
+	{
+		JOptionPane.showMessageDialog(null, "Enter Time interval to value", "Error", JOptionPane.ERROR_MESSAGE);
+		return;
+	}
 	
-  
-	
-	List<EventLogs> sveKolone=getTableData();
+	try{
+    List<EventLogs> sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
 	
 	
 	for(int i=0;i<sveKolone.size();i++)
@@ -204,23 +215,24 @@ private void PopuniTabelu()
 		String value=String.valueOf(e.getValue());
 		
 		SimpleDateFormat form=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date datefrom = (model.getValue());
+		Date time = null;
 		if(e.getTimestamp()!=null){
-		String time=e.getTimestamp().toString();
-	    Date vrijeme = e.getTimestamp();
+		
+	    time = e.getTimestamp();}
 		
 		if(devName.equals(selecteddevice)){
-			tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,vrijeme });}
-	}}
-}
+			tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,time });}}
+		} catch(Exception m){JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);}
+	}
 
-private void ObrisiTableu()
+
+private void EarseTable()
 {   
 	tablemodel.getDataVector().removeAllElements();
 	tablemodel.fireTableDataChanged();	
 }
 
-public  void ActivePeriods()
+public void ActivePeriods()
 {
 	Date start = model.getValue();
 	Date end = model1.getValue();
