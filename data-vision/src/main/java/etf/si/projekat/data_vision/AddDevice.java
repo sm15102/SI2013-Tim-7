@@ -79,9 +79,7 @@ public class AddDevice extends JFrame { //extends JFrame
 				
 				JOptionPane.showMessageDialog(null, "Novi uređaj dodan", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				
-				dispose();
-				
-				
+				dispose();				
 			}
 		});
 		button.setBounds(354, 230, 70, 22);

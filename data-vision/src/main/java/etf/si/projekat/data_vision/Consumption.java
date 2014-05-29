@@ -116,7 +116,6 @@ public class Consumption extends JFrame {
 		btnCalculate.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				
 				JOptionPane.showMessageDialog(null, "Nije implementirano.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
