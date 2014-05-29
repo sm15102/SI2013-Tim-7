@@ -1,125 +1,242 @@
 package etf.si.projekat.data_vision;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import javax.swing.JFrame;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.Choice;
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JSpinner;   
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
+import ba.unsa.etf.si.beans.DeviceName;
+import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.beans.EventLogs;
+import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
+import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
-public class Consumption extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Consumption frame = new Consumption();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Consumption() {
-		setTitle("Consumption");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 354, 235);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+public class Consumption extends JPanel {
+	List<DeviceName> listdevices = new HibernateDeviceName().giveAllDeviceName();
+	public ArrayList<DeviceType> ArrayDevices = new ArrayList<DeviceType>();
+	final JTable table;
+	private String selecteddevice;
+	private  DefaultTableModel tablemodel;
+	final  UtilDateModel model;
+	final  UtilDateModel model1;
+	final JComboBox devices;
+	final JButton btnAdd;
+	final  JDatePanelImpl datePanel;
+	final JDatePickerImpl time_interval_from;
+	final JDatePanelImpl datePane1;
+	final JDatePickerImpl time_interval_to;
+	final JComboBox units;
+	final JScrollPane pane;
+	final JSpinner spinner;
+   
+	
+public Consumption() {
+	   setBounds(10, 49, 694, 501);
+	   
+		
+		setBackground(Color.WHITE);
+		setLayout(null);
+		
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval to:");
-		lblTimeIntervalFrom.setBounds(33, 50, 95, 14);
-		contentPane.add(lblTimeIntervalFrom);
+		lblTimeIntervalFrom.setBounds(43, 111, 78, 14);
+		add(lblTimeIntervalFrom);
 		
 		JLabel lblDevice = new JLabel("Device:");
-		lblDevice.setBounds(72, 82, 53, 14);
-		contentPane.add(lblDevice);
+		lblDevice.setBounds(75, 142, 53, 14);
+		add(lblDevice);
 		
-		JLabel lblPower = new JLabel("Power:");
-		lblPower.setBounds(72, 106, 53, 14);
-		contentPane.add(lblPower);
+	    JLabel lblPower = new JLabel("Power:");
+		lblPower.setBounds(75, 173, 53, 14);
+		add(lblPower);
 		
-		textField = new JTextField();
-		textField.setBounds(132, 105, 117, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		Button button = new Button("Cancel");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		
-		});
-		button.setBounds(255, 168, 70, 22);
-		contentPane.add(button);
-		
-		JButton btnCalculate = new JButton("Calculate");
-		btnCalculate.setBounds(160, 168, 89, 23);
-		contentPane.add(btnCalculate);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(132, 80, 117, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+	    btnAdd = new JButton("Calculate");
+		btnAdd.setBounds(132, 201, 89, 23);
+		add(btnAdd);
 		
 		JLabel lblTimeInterfvalFrom = new JLabel("Time interval from:");
-		lblTimeInterfvalFrom.setBounds(23, 25, 112, 14);
-		contentPane.add(lblTimeInterfvalFrom);
+		lblTimeInterfvalFrom.setBounds(33, 76, 95, 14);
+		add(lblTimeInterfvalFrom);
 		
-		UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
-        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-        datePicker.setLocation(132, 22);
-        datePicker.setSize(117, 27);
-        contentPane.add(datePicker);
+		model = new UtilDateModel();
+        datePanel = new JDatePanelImpl(model);
+        time_interval_from = new JDatePickerImpl(datePanel);
+        time_interval_from.setLocation(132, 63);
+        time_interval_from.setSize(117, 27);
+        add(time_interval_from);
         
         
-        UtilDateModel model1 = new UtilDateModel();
-        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
-        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
-        datePicker1.setLocation(132, 50);
-        datePicker1.setSize(117, 27);
-        contentPane.add(datePicker1);
-		btnCalculate.addActionListener(new ActionListener()
+        model1 = new UtilDateModel();
+        datePane1 = new JDatePanelImpl(model1);
+        time_interval_to = new JDatePickerImpl(datePane1);
+        time_interval_to.setLocation(132, 101);
+        time_interval_to.setSize(117, 27);
+        add(time_interval_to);
+        
+        
+        
+        
+        devices = new JComboBox();
+        devices.setBounds(132, 139, 117, 20);
+        add(devices);
+        devices.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent arg0) {
+        		
+        		PopuniTabelu();
+        	}
+        });
+        
+        units = new JComboBox();
+        
+		for(int i=0; i<listdevices.size(); i++){
+			devices.addItem(listdevices.get(i).getName());
+			}
+			
+        units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowarrs (kW)"}));
+        units.setBounds(259, 139, 96, 20);
+        add(units);
+        
+     
+        Model();
+        
+        table = new  JTable();
+        table.setBackground(Color.WHITE);
+        table.setModel(tablemodel);
+        table.setVisible(true);
+        pane = new JScrollPane(table);
+        pane.setSize(445, 149);
+        pane.setLocation(10, 235);
+       add(pane);
+       
+        
+        
+        spinner = new JSpinner();
+        spinner.setBounds(132, 170, 114, 20);
+        add(spinner);
+        
+		btnAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Nije implementirano.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				ActivePeriods();
+				
+				JOptionPane.showMessageDialog(null, selecteddevice, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 		});
+		devices.addItemListener(new ItemListener() {
+		public void itemStateChanged(ItemEvent arg0) {
+			selecteddevice = (String) arg0.getItem();
+			ObrisiTableu();
+			 
+			
+    	}
+    });
+		
+		
 	}
+	
+	private List<EventLogs> getTableData(){
+		List<EventLogs> data =  new HibernateEventLogs().giveAllEventLogs();
+		return data;
+	}
+	
+public void Model() {
+		tablemodel=new DefaultTableModel(
+	        	new Object[][] {},
+	            	new String[] {
+	            		"Br.", "Device name", "Device type", "Event message", "Value", "Timestamp"
+	            	}
+	            ) {
+	            	Class[] columnTypes = new Class[] {
+	            		Integer.class, String.class, String.class, String.class, String.class, Date.class
+	            	};
+	            	public Class getColumnClass(int columnIndex) {
+	            		return columnTypes[columnIndex];
+	            	}
+	            	boolean[] columnEditables = new boolean[] {
+	            		false, false, false, false, false, false
+	            	};
+	            	public boolean isCellEditable(int row, int column) {
+	            		return columnEditables[column];
+	            	}
+	            };
+	            
+	           
+	   }
+
+private void PopuniTabelu()
+{
+	
+	
+  
+	
+	List<EventLogs> sveKolone=getTableData();
+	
+	
+	for(int i=0;i<sveKolone.size();i++)
+	{
+		EventLogs e=sveKolone.get(i);
+		String id=e.getEventlogs_id().toString();
+		String devName=e.getDevice_name();
+		String devType=e.getDevice_type();
+		String evMessage=e.getEvent_message();
+		String value=String.valueOf(e.getValue());
+		
+		SimpleDateFormat form=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date datefrom = (model.getValue());
+		if(e.getTimestamp()!=null){
+		String time=e.getTimestamp().toString();
+	    Date vrijeme = e.getTimestamp();
+		
+		if(devName.equals(selecteddevice)){
+			tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,vrijeme });}
+	}}
+}
+
+private void ObrisiTableu()
+{   
+	tablemodel.getDataVector().removeAllElements();
+	tablemodel.fireTableDataChanged();	
+}
+
+public  void ActivePeriods()
+{
+	Date start = model.getValue();
+	Date end = model1.getValue();
+	List<Integer> activeperiod = new ArrayList<Integer>();
+	int rowcount = tablemodel.getRowCount();
+	long datedifference = start.getTime() - end.getTime();
+	datedifference = TimeUnit.MILLISECONDS.toSeconds(datedifference);
+	JOptionPane.showMessageDialog(null, datedifference, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+	
+}
+
+
+
+
+
+
+	
 }
 

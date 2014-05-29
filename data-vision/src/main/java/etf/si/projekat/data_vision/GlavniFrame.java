@@ -163,7 +163,11 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
+		Consumption c= new Consumption();
+		c.setBounds(10, 49, 694, 501);
+		tabbedPane_6.add("Consumption",c);
 		contentPane.add(tabbedPane);
+		tabbedPane_6.setBounds(10, 49, 694, 501);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBounds(0, 45, 912, 516);
