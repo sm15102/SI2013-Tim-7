@@ -42,6 +42,7 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ import de.erichseifert.gral.io.plots.DrawableWriterFactory;
 import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.plots.axes.AxisRenderer;
 import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
 import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
@@ -102,7 +104,7 @@ public class BasicInformationPanel  extends ExamplePanel {
     private int size;
     private List<EventLogs> list_logs;
    private List<Double> list_values;
-    final static DataTable data=new DataTable(Date.class, Double.class);
+    final static DataTable data=new DataTable(Long.class, Double.class);
     XYPlot plot;
     
     UtilDateModel model1 = new UtilDateModel();
@@ -801,7 +803,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
 			}
 			}catch(NullPointerException e){
-				System.out.println("Ne poklpaju se vrijednosti");
+				System.out.println("Ne poklapaju se vrijednosti");
 			}
 		} 
 		  catch (ParseException e1) {
@@ -812,10 +814,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 		
 		  for(int i=0;i<size;i++)
 		  {
-			  data.add(list_logs.get(i).getTimestamp(), list_values.get(i));
+			  JOptionPane.showMessageDialog(null, list_values.get(i), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
 			  
 		  }
-		  JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+		 // JOptionPane.showMessageDialog(null, "blaaa.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 	      /* double x = 1; 
 	       double y = 17;
 	       data.add(x, y);
@@ -859,9 +862,15 @@ public class BasicInformationPanel  extends ExamplePanel {
          plot.getPointRenderer(data).setColor(color);
          plot.getLineRenderer(data).setColor(color);
       // Draw a tick mark and a grid line every 10 units along x axis
-         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+        // plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
          // Draw a tick mark and a grid line every 20 units along y axis
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+         
+         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         rendererX.setTickLabelFormat(dateFormat);
+         
          
          
          final InteractivePanel interactivePanel = new InteractivePanel(plot);
