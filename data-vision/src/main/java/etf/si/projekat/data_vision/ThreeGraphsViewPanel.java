@@ -1,14 +1,11 @@
 package etf.si.projekat.data_vision;
 
-import java.awt.*;
-import java.awt.geom.*;
-
 import javax.swing.*;
 
-import java.awt.Button;
 import java.awt.Choice;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
+import java.awt.event.WindowListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,24 +21,27 @@ import java.awt.Label;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import javax.swing.JButton;
 
 import ba.unsa.etf.si.beans.DeviceName;
-import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
-import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ThreeGraphsViewPanel extends JPanel {
-	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
+public class ThreeGraphsViewPanel extends JPanel  {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 	
-	 boolean isPressed1=false;
+	    boolean isPressed1=false;
 		boolean isPressed2=false;
 		boolean isPressed3=false;
 	 
@@ -58,7 +58,7 @@ public class ThreeGraphsViewPanel extends JPanel {
 		
 
 
-		
+		// Svi elemeti za dodavanje prvog grafa
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTimeIntervalFrom.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -79,11 +79,7 @@ public class ThreeGraphsViewPanel extends JPanel {
 		
 	      
 		
-	/*	 choice = new Choice();
-		choice.setBounds(177, 50, 117, 25);
-		choice.add("Line");
-		choice.add("Bar");
-		contentPane.add(choice);*/
+	
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
@@ -287,10 +283,15 @@ add(datePicker5);
 		separator_2.setVisible(false);
 
       JButton btnProcess = new JButton("Process");
+      btnProcess.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      		isPressed1 = true;
+      	}
+      });
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		isPressed1 = true;
+      	
       		
       		
       		
@@ -714,12 +715,17 @@ add(datePicker5);
       add(spinner_1);
       
       JButton button = new JButton("Process");
+      button.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      		isPressed2 = true;
+      	}
+      });
       
     //-------------------------------------------------------------------------
       button.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		isPressed2=true;
+      		
       		
       		if(datePicker2.getModel().isSelected() && datePicker3.getModel().isSelected()){
       		
@@ -1128,6 +1134,11 @@ add(datePicker5);
      
       
       JButton button_1 = new JButton("Process");
+      button_1.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+      		isPressed3 = true;
+      	}
+      });
       button_1.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
@@ -1394,15 +1405,33 @@ add(datePicker5);
       add(button_1);
      
       final JButton btnGenerateGraphs = new JButton("Generate graphs");
+      btnGenerateGraphs.setVisible(true);
 		 btnGenerateGraphs.addMouseListener(new MouseAdapter() {
+		
 		 	@Override
 		 	public void mouseClicked(MouseEvent arg0) {
+		 		 if(isPressed1 == true && isPressed2 == true && isPressed3 == true){
+		 			JOptionPane.showMessageDialog(null, "Generating graph view...");
+		 			btnGenerateGraphs.setEnabled(true);
+		 		 }
+		 		 else{
+		 			 
+		 			JOptionPane.showMessageDialog(null, "Invalid data entered");
+		 		 }
 		 		
 		 	}
 		 });
 	      btnGenerateGraphs.setBounds(782, 472, 168, 23);
-	      btnGenerateGraphs.setEnabled(false);
+	     
 	      add(btnGenerateGraphs);
+	      
+	      
+	      if(btnGenerateGraphs.getModel().isPressed()==true){
+	    	  isPressed1=false;
+	    	  isPressed2=false;
+	    	  isPressed3=false;
+	    	  
+	      }
 
       
    
