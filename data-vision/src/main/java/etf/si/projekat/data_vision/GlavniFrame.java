@@ -75,6 +75,7 @@ public class GlavniFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniFrame() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 987, 620);
 		
@@ -166,6 +167,7 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
+		tabbedPane.setEnabledAt(3, true);
 		tableView=new TableViewPanel(tabbedPane_5);
 		tableView.setLayout(null);
 		tableView.setBackground(Color.white);

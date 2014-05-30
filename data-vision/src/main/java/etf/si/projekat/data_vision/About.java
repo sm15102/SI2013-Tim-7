@@ -31,9 +31,7 @@ public class About extends JFrame {
 			public void run() {
 				try {
 					About frame = new About();
-					Image im = Toolkit.getDefaultToolkit().getImage("/data-vision/src/cmon-icon-about.png");
-				    frame.setIconImage(im);
-
+				    
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +49,7 @@ public class About extends JFrame {
 	public About() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 228, 300);
+		setBounds(100, 100, 285, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,23 +71,23 @@ public class About extends JFrame {
 		contentPane.add(lblDevelopers);
 		
 		JLabel lblMelikaKiselica = new JLabel("Melika Kiselica");
-		lblMelikaKiselica.setBounds(10, 100, 234, 14);
+		lblMelikaKiselica.setBounds(10, 100, 103, 14);
 		contentPane.add(lblMelikaKiselica);
 		
 		JLabel lblEnesMujic = new JLabel("Enes Mujic");
-		lblEnesMujic.setBounds(10, 119, 234, 14);
+		lblEnesMujic.setBounds(10, 119, 103, 14);
 		contentPane.add(lblEnesMujic);
 		
 		JLabel lblSnjezanaMiletic = new JLabel("Snjezana Miletic");
-		lblSnjezanaMiletic.setBounds(10, 138, 234, 14);
+		lblSnjezanaMiletic.setBounds(10, 138, 103, 14);
 		contentPane.add(lblSnjezanaMiletic);
 		
 		JLabel lblAdnanOmanovic = new JLabel("Adnan Omanovic");
-		lblAdnanOmanovic.setBounds(10, 156, 234, 14);
+		lblAdnanOmanovic.setBounds(10, 156, 103, 14);
 		contentPane.add(lblAdnanOmanovic);
 		
 		JLabel lblNadinaKunalic = new JLabel("Nadina Kunalic");
-		lblNadinaKunalic.setBounds(10, 174, 234, 14);
+		lblNadinaKunalic.setBounds(10, 174, 108, 14);
 		contentPane.add(lblNadinaKunalic);
 		
 		JLabel lblRijadMuhic = new JLabel("Rijad Muhic");
@@ -99,6 +97,11 @@ public class About extends JFrame {
 		JLabel lblcopyrightByTeam = new JLabel(" ©Copyright by Team7");
 		lblcopyrightByTeam.setBounds(10, 236, 192, 14);
 		contentPane.add(lblcopyrightByTeam);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\snjezana.miletic\\Documents\\GitHub\\SI2013Tim7\\design\\cmon-icon-about.png"));
+		label.setBounds(113, 19, 156, 151);
+		contentPane.add(label);
 		
 		
 		

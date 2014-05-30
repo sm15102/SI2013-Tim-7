@@ -32,6 +32,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class ThreeGraphsViewPanel extends JPanel  {
 	 /**
@@ -44,6 +46,7 @@ public class ThreeGraphsViewPanel extends JPanel  {
 	    boolean isPressed1=false;
 		boolean isPressed2=false;
 		boolean isPressed3=false;
+		private SpringLayout springLayout;
 	 
   	
 
@@ -53,7 +56,8 @@ public class ThreeGraphsViewPanel extends JPanel  {
 	 * Create the panel.
 	 */
 	public ThreeGraphsViewPanel() {
-		setBackground(UIManager.getColor("Button.light"));
+		setBackground(SystemColor.menu);
+	
 		setLayout(null);
 		
 
@@ -93,7 +97,7 @@ public class ThreeGraphsViewPanel extends JPanel  {
 			}
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-		spinner.setBounds(152, 136, 165, 18);
+		spinner.setBounds(152, 137, 165, 18);
 		
 		add(spinner);
 		
@@ -104,6 +108,8 @@ public class ThreeGraphsViewPanel extends JPanel  {
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
         final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+        SpringLayout springLayout_1 = (SpringLayout) datePicker.getLayout();
+        springLayout_1.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker);
         datePicker.setLocation(152, 75);
         datePicker.setSize(165, 29);
        add(datePicker);
@@ -112,6 +118,8 @@ public class ThreeGraphsViewPanel extends JPanel  {
         UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
         final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+        SpringLayout springLayout_2 = (SpringLayout) datePicker1.getLayout();
+        springLayout_2.putConstraint(SpringLayout.SOUTH, datePicker1.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker1);
         datePicker1.setLocation(152, 104);
         datePicker1.setSize(165, 29);
       add(datePicker1);
@@ -119,6 +127,8 @@ public class ThreeGraphsViewPanel extends JPanel  {
       UtilDateModel model2 = new UtilDateModel();
       JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
       final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);
+      SpringLayout springLayout_3 = (SpringLayout) datePicker2.getLayout();
+      springLayout_3.putConstraint(SpringLayout.SOUTH, datePicker2.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker2);
       datePicker2.setLocation(464, 75);
       datePicker2.setSize(165, 29);
     add(datePicker2);
@@ -136,8 +146,9 @@ public class ThreeGraphsViewPanel extends JPanel  {
   UtilDateModel model4 = new UtilDateModel();
   JDatePanelImpl datePane4 = new JDatePanelImpl(model4);
   final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePane4);
-  SpringLayout springLayout = (SpringLayout) datePicker4.getLayout();
-  springLayout.putConstraint(SpringLayout.NORTH, datePicker4.getJFormattedTextField(), 1, SpringLayout.NORTH, datePicker4);
+  springLayout.putConstraint(SpringLayout.NORTH, datePicker4.getJFormattedTextField(), -34, SpringLayout.SOUTH, datePicker4);
+  springLayout.putConstraint(SpringLayout.SOUTH, datePicker4.getJFormattedTextField(), -11, SpringLayout.SOUTH, datePicker4);
+  springLayout = (SpringLayout) datePicker4.getLayout();
   datePicker4.setLocation(782, 75);
   datePicker4.setSize(165, 29);
 add(datePicker4);
@@ -160,6 +171,7 @@ add(datePicker5);
       add(label);
       
       JSeparator separator = new JSeparator();
+      separator.setBackground(SystemColor.textHighlight);
       separator.setBounds(10, 30, 937, 15);
       add(separator);
       
@@ -175,6 +187,7 @@ add(datePicker5);
       
       
       final JSeparator separator_2 = new JSeparator();
+      separator_2.setBackground(SystemColor.textHighlight);
       separator_2.setBounds(10, 226, 934, 2);
       add(separator_2);
       
@@ -283,6 +296,7 @@ add(datePicker5);
 		separator_2.setVisible(false);
 
       JButton btnProcess = new JButton("Process");
+      btnProcess.setBackground(UIManager.getColor("inactiveCaption"));
       btnProcess.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
       		isPressed1 = true;
@@ -715,6 +729,7 @@ add(datePicker5);
       add(spinner_1);
       
       JButton button = new JButton("Process");
+      button.setBackground(UIManager.getColor("inactiveCaption"));
       button.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
       		isPressed2 = true;
@@ -1073,6 +1088,7 @@ add(datePicker5);
       add(choice_29);
       
       final  JSeparator separator_5 = new JSeparator();
+      separator_5.setBackground(SystemColor.textHighlight);
       separator_5.setBounds(10, 462, 937, 15);
     
       add(separator_5);
@@ -1406,6 +1422,7 @@ add(datePicker5);
       add(button_1);
      
       final JButton btnGenerateGraphs = new JButton("Generate graphs");
+      btnGenerateGraphs.setBackground(SystemColor.textHighlight);
       btnGenerateGraphs.setVisible(true);
 		 btnGenerateGraphs.addMouseListener(new MouseAdapter() {
 		

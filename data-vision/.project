@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>design</name>
+			<type>2</type>
+			<location>C:/Users/snjezana.miletic/Documents/GitHub/SI2013Tim7/design</location>
+		</link>
+	</linkedResources>
 </projectDescription>
