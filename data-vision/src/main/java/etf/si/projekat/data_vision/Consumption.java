@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,14 +33,21 @@ import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
+import javax.swing.SpinnerNumberModel;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JTextArea;
+import java.awt.Dimension;
+import java.awt.Font;
 
 
 public class Consumption extends JPanel {
 	List<DeviceName> listdevices = new HibernateDeviceName().giveAllDeviceName();
-	public ArrayList<DeviceType> ArrayDevices = new ArrayList<DeviceType>();
+	public List<DeviceType> ListDevices = new ArrayList<DeviceType>();
 	final JTable table;
 	private String selecteddevice;
 	private  DefaultTableModel tablemodel;
+	private  DefaultTableModel tablemodel1;
 	final  UtilDateModel model;
 	final  UtilDateModel model1;
 	final JComboBox devices;
@@ -50,11 +58,15 @@ public class Consumption extends JPanel {
 	final JDatePickerImpl time_interval_to;
 	final JComboBox units;
 	final JScrollPane pane;
+	final JScrollPane pane1;
 	final JSpinner spinner;
+	private JTable table1;
+	final JLabel lblTotalResult;
    
 	
 public Consumption() {
-	   setBounds(10, 49, 694, 501);
+	setForeground(Color.WHITE);
+	   setBounds(10, 49, 849, 501);
 	   
 		
 		setBackground(Color.WHITE);
@@ -62,45 +74,45 @@ public Consumption() {
 		
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval to:");
-		lblTimeIntervalFrom.setBounds(43, 111, 78, 14);
+		lblTimeIntervalFrom.setBounds(50, 49, 114, 27);
 		add(lblTimeIntervalFrom);
 		
 		JLabel lblDevice = new JLabel("Device:");
-		lblDevice.setBounds(75, 142, 53, 14);
+		lblDevice.setBounds(50, 86, 114, 27);
 		add(lblDevice);
 		
 	    JLabel lblPower = new JLabel("Power:");
-		lblPower.setBounds(75, 173, 53, 14);
+		lblPower.setBounds(50, 124, 114, 27);
 		add(lblPower);
 		
 	    btnAdd = new JButton("Calculate");
-		btnAdd.setBounds(132, 201, 89, 23);
+		btnAdd.setBounds(195, 164, 165, 28);
 		add(btnAdd);
 		
 		JLabel lblTimeInterfvalFrom = new JLabel("Time interval from:");
-		lblTimeInterfvalFrom.setBounds(33, 76, 95, 14);
+		lblTimeInterfvalFrom.setBounds(50, 11, 114, 27);
 		add(lblTimeInterfvalFrom);
 		
 		model = new UtilDateModel();
         datePanel = new JDatePanelImpl(model);
         time_interval_from = new JDatePickerImpl(datePanel);
-        time_interval_from.setLocation(132, 63);
-        time_interval_from.setSize(117, 27);
+        time_interval_from.setLocation(195, 11);
+        time_interval_from.setSize(165, 28);
         add(time_interval_from);
         
         
         model1 = new UtilDateModel();
         datePane1 = new JDatePanelImpl(model1);
         time_interval_to = new JDatePickerImpl(datePane1);
-        time_interval_to.setLocation(132, 101);
-        time_interval_to.setSize(117, 27);
+        time_interval_to.setLocation(195, 48);
+        time_interval_to.setSize(165, 28);
         add(time_interval_to);
         
         
         
         
         devices = new JComboBox();
-        devices.setBounds(132, 139, 117, 20);
+        devices.setBounds(195, 86, 165, 28);
         add(devices);
         
        devices.addItem("Chose device...");
@@ -115,39 +127,86 @@ public Consumption() {
         });
         
         units = new JComboBox();
+        units.addItemListener(new ItemListener() {
+        	public void itemStateChanged(ItemEvent arg0) {
+        		if((Double)spinner.getValue() != 0 && (String)units.getSelectedItem()=="kilowatts (kW)")
+        		{
+        			spinner.setValue((Double)spinner.getValue()/1000);
+        		} else
+        			spinner.setValue((Double)spinner.getValue()*1000);
+        	}
+        });
+       
         
 		for(int i=0; i<listdevices.size(); i++){
 			devices.addItem(listdevices.get(i).getName());
 			}
 			
-        units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowarrs (kW)"}));
-        units.setBounds(256, 170, 96, 20);
+        units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowatts (kW)"}));
+        units.setBounds(370, 125, 120, 28);
         add(units);
         
      
         Model();
+        Model1();
         
         table = new  JTable();
         table.setBackground(Color.WHITE);
         table.setModel(tablemodel);
         table.setVisible(true);
         pane = new JScrollPane(table);
-        pane.setSize(445, 149);
-        pane.setLocation(10, 235);
+        pane.setSize(440, 255);
+        pane.setLocation(50, 235);
         add(pane);
+        
+        
+        
+        table1 = new JTable();
+        table1.setBackground(Color.WHITE);
+        table1.setVisible(true);
+        table1.setModel(tablemodel1);
+        pane1 = new JScrollPane(table1);
+        pane1.setSize(339, 255);
+        pane1.setLocation(500, 235);
+        add(pane1);
        
         
         
         spinner = new JSpinner();
-        spinner.setBounds(132, 170, 114, 20);
+        spinner.setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(0)));
+        spinner.setBounds(195, 125, 165, 28);
         add(spinner);
+        
+        Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
+        rigidArea.setBounds(50, 0, 440, 201);
+        add(rigidArea);
+        
+        JLabel lblNewLabel = new JLabel("Event logs for selected device");
+        lblNewLabel.setBounds(50, 211, 200, 14);
+        add(lblNewLabel);
+        
+        JLabel lblNewLabel_1 = new JLabel("Periodical results (kWh)");
+        lblNewLabel_1.setBounds(500, 210, 150, 14);
+        add(lblNewLabel_1);
+        
+        JLabel lblNewLabel_2 = new JLabel("Total result for selected period (kWh)");
+        lblNewLabel_2.setBounds(500, 17, 181, 14);
+        add(lblNewLabel_2);
+        
+        lblTotalResult = new JLabel("");
+        lblTotalResult.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        lblTotalResult.setBounds(535, 62, 304, 58);
+        add(lblTotalResult);
+       
+        
+       
         
 		btnAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				ActivePeriods();
 				
-				JOptionPane.showMessageDialog(null, selecteddevice, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				CaculateResults();
+				
 			}
 			
 		});
@@ -174,13 +233,13 @@ public void Model() {
 	            	}
 	            ) {
 	            	Class[] columnTypes = new Class[] {
-	            		Integer.class, String.class, String.class, String.class, String.class, Date.class
+	            		Integer.class, String.class, String.class, String.class, String.class, String.class
 	            	};
 	            	public Class getColumnClass(int columnIndex) {
 	            		return columnTypes[columnIndex];
 	            	}
 	            	boolean[] columnEditables = new boolean[] {
-	            		false, false, false, false, false, false
+	            		true, true, true, true, true, true
 	            	};
 	            	public boolean isCellEditable(int row, int column) {
 	            		return columnEditables[column];
@@ -189,6 +248,29 @@ public void Model() {
 	            
 	           
 	   }
+public void Model1() {
+	tablemodel1=new DefaultTableModel(
+        	new Object[][] {},
+            	new String[] {
+            		"Date from", "Date to", "Energy Cuonsumption"
+            	}
+            ) {
+            	Class[] columnTypes = new Class[] {
+            		Date.class, Date.class, Double.class
+            	};
+            	public Class getColumnClass(int columnIndex) {
+            		return columnTypes[columnIndex];
+            	}
+            	boolean[] columnEditables = new boolean[] {
+            		true, true, true
+            	};
+            	public boolean isCellEditable(int row, int column) {
+            		return columnEditables[column];
+            	}
+            };
+            
+           
+   }
 
 private void PopuniTabelu()
 {
@@ -210,7 +292,7 @@ private void PopuniTabelu()
 	}
 	
 	if (selecteddevice != "Chose device...")try{
-    List<EventLogs> sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
+    List<EventLogs>sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
     if(sveKolone.size() == 0 && selecteddevice != "Chose device...")
 	{
     	JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -227,11 +309,10 @@ private void PopuniTabelu()
 		String evMessage=e.getEvent_message();
 		String value=String.valueOf(e.getValue());
 		
-		SimpleDateFormat form=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date time = null;
+		String time = null;
 		if(e.getTimestamp()!=null){
-		
-	    time = e.getTimestamp();}
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy hh:mm:ss");
+	    time = formatter.format(e.getTimestamp());}
 		
 		if(devName.equals(selecteddevice)){
 			tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,time });}}
@@ -244,24 +325,88 @@ private void EarseTable()
 	tablemodel.getDataVector().removeAllElements();
 	tablemodel.fireTableDataChanged();	
 }
-
-public void ActivePeriods()
-{
-	Date start = model.getValue();
-	Date end = model1.getValue();
-	List<Integer> activeperiod = new ArrayList<Integer>();
-	int rowcount = tablemodel.getRowCount();
-	long datedifference = start.getTime() - end.getTime();
-	datedifference = TimeUnit.MILLISECONDS.toSeconds(datedifference);
-	JOptionPane.showMessageDialog(null, datedifference, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-	
+private void EarseResultTable()
+{   
+	tablemodel1.getDataVector().removeAllElements();
+	tablemodel1.fireTableDataChanged();	
 }
 
-
-
-
-
-
+private List<ActivePeriod> ActivePeriods() 
+{
+	List<ActivePeriod> periods = new ArrayList<ActivePeriod>();
 	
+	Boolean on = false;
+	int rowcount = tablemodel.getRowCount();
+	
+	ActivePeriod activeperiod = new ActivePeriod();
+	for(int i=0;i<rowcount;i=i+1)
+	{   int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
+		EventLogs ev = new HibernateEventLogs().giveEventLogs(id);
+		 String message = ev.getEvent_message();
+		if((message=="open" || message=="turnOn") && activeperiod.getStart()==null && !on && i==0)
+		 {
+			 on = true;
+			 activeperiod.setStart(model.getValue());
+		 }
+		 else if((message=="open" || message=="turnOn")  && !on && i>0)
+		 {
+			 on = true;
+			 activeperiod.setStart(ev.getTimestamp());
+		 }
+		 else if((message=="closed" || message=="turnOff") && on && i==rowcount-1)
+		 {
+			 on = false;
+			 activeperiod.setEnd(model1.getValue());
+			 periods.add(activeperiod);
+			 activeperiod = new ActivePeriod(); 
+		 }
+		 else if((message=="closed" || message=="turnOff") && on && i<rowcount-1){
+		 on=false;
+		 activeperiod.setEnd(ev.getTimestamp());
+		 periods.add(activeperiod);
+		 activeperiod = new ActivePeriod(); 
+		 }
+		 else if((message=="open" || message=="turnOn") && !on && i==rowcount-1){
+			 on=false;
+			 activeperiod.setStart(ev.getTimestamp());
+			 activeperiod.setEnd(model1.getValue());
+			 periods.add(activeperiod);
+			 activeperiod = new ActivePeriod(); 
+			 }
+	}
+	 return periods;
+	
+}
+ private void CaculateResults()
+ {
+	 List<ActivePeriod> periods = ActivePeriods();
+	 if(periods.size()==0)
+	 {
+		 JOptionPane.showMessageDialog(null,"There are no data to calculate", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+		 return;
+	 }
+	 if(tablemodel1.getRowCount() > 0) EarseResultTable();
+	 double power = (Double) spinner.getValue();
+	 if(power == 0)
+	 {
+		 lblTotalResult.setText("0 kWh");
+		 return;
+		 
+	 }
+	 if((String)units.getSelectedItem()=="watts (W)") power = power/1000;
+	 double TotalConsumption = 0;
+	 for(int i=0;i<periods.size();i++)
+	 {
+		 Date date1 = periods.get(i).getStart();
+		 Date date2 = periods.get(i).getEnd();
+		 long hoursbetween = (date2.getTime() - date1.getTime())/3600000; 
+		 double PeriodicalConsumption = power*hoursbetween;
+		 tablemodel.addRow(new Object[]{date1,date2,PeriodicalConsumption});
+		 TotalConsumption+=PeriodicalConsumption;
+	 }
+	 
+	 lblTotalResult.setText(TotalConsumption+" kWh");
+	 }
+
 }
 
