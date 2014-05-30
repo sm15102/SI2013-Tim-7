@@ -339,39 +339,40 @@ private List<ActivePeriod> ActivePeriods()
 	int rowcount = tablemodel.getRowCount();
 	
 	ActivePeriod activeperiod = new ActivePeriod();
-	for(int i=0;i<rowcount;i=i+1)
-	{   int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
+	for(int i=0;i<rowcount;i++)
+	{   
+		int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
 		EventLogs ev = new HibernateEventLogs().giveEventLogs(id);
 		 String message = ev.getEvent_message();
-		if((message=="open" || message=="turnOn") && activeperiod.getStart()==null && !on && i==0)
+				if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && activeperiod.getStart()==null && !on && i==0)
 		 {
 			 on = true;
 			 activeperiod.setStart(model.getValue());
 		 }
-		 else if((message=="open" || message=="turnOn")  && !on && i>0)
+		 else if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn"))  && !on && i>0)
 		 {
 			 on = true;
 			 activeperiod.setStart(ev.getTimestamp());
 		 }
-		 else if((message=="closed" || message=="turnOff") && on && i==rowcount-1)
+		 else if((message.equalsIgnoreCase("closed") || message.equalsIgnoreCase("turnOff")) && on && i==rowcount-1)
 		 {
 			 on = false;
 			 activeperiod.setEnd(model1.getValue());
 			 periods.add(activeperiod);
-			 activeperiod = new ActivePeriod(); 
+			 activeperiod = new ActivePeriod();
 		 }
-		 else if((message=="closed" || message=="turnOff") && on && i<rowcount-1){
+		 else if((message.equalsIgnoreCase("closed") || message.equalsIgnoreCase("turnOff")) && on && i<rowcount-1){
 		 on=false;
 		 activeperiod.setEnd(ev.getTimestamp());
 		 periods.add(activeperiod);
 		 activeperiod = new ActivePeriod(); 
 		 }
-		 else if((message=="open" || message=="turnOn") && !on && i==rowcount-1){
+		 else if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && !on && i==rowcount-1){
 			 on=false;
 			 activeperiod.setStart(ev.getTimestamp());
 			 activeperiod.setEnd(model1.getValue());
 			 periods.add(activeperiod);
-			 activeperiod = new ActivePeriod(); 
+			 activeperiod = new ActivePeriod();
 			 }
 	}
 	 return periods;
@@ -379,7 +380,8 @@ private List<ActivePeriod> ActivePeriods()
 }
  private void CaculateResults()
  {
-	 List<ActivePeriod> periods = ActivePeriods();
+	 List<ActivePeriod> periods = new ArrayList<ActivePeriod>();
+	 periods = ActivePeriods();
 	 if(periods.size()==0)
 	 {
 		 JOptionPane.showMessageDialog(null,"There are no data to calculate", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
@@ -401,7 +403,7 @@ private List<ActivePeriod> ActivePeriods()
 		 Date date2 = periods.get(i).getEnd();
 		 long hoursbetween = (date2.getTime() - date1.getTime())/3600000; 
 		 double PeriodicalConsumption = power*hoursbetween;
-		 tablemodel.addRow(new Object[]{date1,date2,PeriodicalConsumption});
+		 tablemodel1.addRow(new Object[]{date1,date2,PeriodicalConsumption});
 		 TotalConsumption+=PeriodicalConsumption;
 	 }
 	 
