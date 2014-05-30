@@ -1234,18 +1234,18 @@ public class BasicInformationPanel  extends ExamplePanel {
 	        
 	        
 	        LineRenderer lines = new DefaultLineRenderer2D();
-	         plot.setLineRenderer(data, lines);
+	         plot.setLineRenderer(series1, lines);
 	         Color color = new Color(0.0f, 0.3f, 1.0f);
-	         plot.getPointRenderer(data).setColor(color);
-	         plot.getLineRenderer(data).setColor(color);
+	       //  plot.getPointRenderer(data).setColor(color);
+	         plot.getLineRenderer(series1).setColor(color);
 	        
 	      
 	       ;
 	       LineRenderer lines1 = new DefaultLineRenderer2D(); 
-	       plot.setLineRenderer(data1, lines1);
+	       plot.setLineRenderer(series2, lines1);
 	         Color color1 = new Color(0.0f, 0.3f, 1.0f);
-	       plot.getPointRenderer(data).setColor(color1);
-	         plot.getLineRenderer(data1).setColor(color1);
+	    // plot.getPointRenderer(data1).setColor(color1);
+	         plot.getLineRenderer(series2).setColor(color1);
 	        
 	         
 	      
