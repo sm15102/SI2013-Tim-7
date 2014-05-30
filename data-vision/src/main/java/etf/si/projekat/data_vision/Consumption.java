@@ -389,8 +389,8 @@ private List<ActivePeriod> ActivePeriods()
 	 {
 		 lblTotalResult.setText("0 kWh");
 		 return;
-		 
-	 }
+		 }
+	 
 	 if((String)units.getSelectedItem()=="watts (W)") power = power/1000;
 	 double TotalConsumption = 0;
 	 for(int i=0;i<periods.size();i++)
