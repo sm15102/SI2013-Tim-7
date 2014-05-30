@@ -1204,7 +1204,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				 { 
 		         // Format plot
 					
-					 plot.add(vrijednosti.get(j));
+				 plot.add(vrijednosti.get(j));
 		         plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 		         plot.setBarWidth(0.075);
 		         // Format bars
