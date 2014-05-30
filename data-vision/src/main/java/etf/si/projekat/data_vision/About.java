@@ -2,16 +2,25 @@ package etf.si.projekat.data_vision;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 
+import javax.print.DocFlavor.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 
 public class About extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2796036938770896102L;
 	private JPanel contentPane;
 
 	/**
@@ -22,11 +31,17 @@ public class About extends JFrame {
 			public void run() {
 				try {
 					About frame = new About();
+					Image im = Toolkit.getDefaultToolkit().getImage("/data-vision/src/cmon-icon-about.png");
+				    frame.setIconImage(im);
+
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+
+
+			
 		});
 	}
 
@@ -34,6 +49,7 @@ public class About extends JFrame {
 	 * Create the frame.
 	 */
 	public About() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 228, 300);
 		contentPane = new JPanel();
@@ -83,5 +99,8 @@ public class About extends JFrame {
 		JLabel lblcopyrightByTeam = new JLabel(" ©Copyright by Team7");
 		lblcopyrightByTeam.setBounds(10, 236, 192, 14);
 		contentPane.add(lblcopyrightByTeam);
+		
+		
+		
 	}
 }
