@@ -1416,7 +1416,21 @@ add(datePicker5);
 		 		 }
 		 		 else{
 		 			 
-		 			JOptionPane.showMessageDialog(null, "Invalid data entered");
+		 		
+		 			if(isPressed1 == false){
+		 				
+		 				JOptionPane.showMessageDialog(null, "Enter data for first graph");
+		 			}
+		 			
+		 			else if(isPressed2 == false){
+		 				
+		 				JOptionPane.showMessageDialog(null, "Enter data for second graph");
+		 			}
+		 			
+		 			else if (isPressed3 == false) {
+		 				
+		 				JOptionPane.showMessageDialog(null, "Enter data for third graph");
+		 			}
 		 		 }
 		 		
 		 	}
