@@ -41,6 +41,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class GlavniFrame extends JFrame {
@@ -84,6 +86,12 @@ public class GlavniFrame extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				System.exit(EXIT_ON_CLOSE);
+			}
+		});
 		mntmExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -94,6 +102,12 @@ public class GlavniFrame extends JFrame {
 		mnNewMenu.add(mntmExit);
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				About aboutTeam7 = new About();
+				aboutTeam7.setVisible(true);
+			}
+		});
 		mntmAbout.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			@Override
