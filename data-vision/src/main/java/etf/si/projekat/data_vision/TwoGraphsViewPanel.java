@@ -34,7 +34,11 @@ import javax.swing.SwingConstants;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -45,6 +49,7 @@ import de.erichseifert.gral.examples.ExamplePanel;
 import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
+import de.erichseifert.gral.plots.axes.AxisRenderer;
 import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
 import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.plots.points.PointRenderer;
@@ -54,8 +59,10 @@ import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
+import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
+import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -91,12 +98,30 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     final JSpinner spinner_2;
     final JTabbedPane tabbedPane;
     //final JTabbedPane tabbedPane;
-   InteractivePanel interactivePanel;
+  InteractivePanel interactivePanel;
   InteractivePanel interactivePanel1;
   InteractivePanel interactivePanel2;
+ // final InteractivePanel inter1;
+  //final InteractivePanel inter2;
   private JPanel contentPane;
+
+  final UtilDateModel model = new UtilDateModel();
+ final JDatePanelImpl datePanel = new JDatePanelImpl(model);
+  final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+  final UtilDateModel model1 = new UtilDateModel();
+  final JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
+  final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+  
+  private List<EventLogs> list_logs;
+  private List<Double> list_values;
+   final static DataTable data=new DataTable(Long.class, Double.class);
+   XYPlot plot;
+   private int size;
+ 
+
    boolean isFill1=false;
    boolean isFill2=false;
+
 	/**
 	 * Create the panel.
 	 */
@@ -149,21 +174,21 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 		
 		add(spinner);
 		
-		UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		//UtilDateModel model = new UtilDateModel();
+       // JDatePanelImpl datePanel = new JDatePanelImpl(model);
         JLabel lblGraphType = new JLabel("Graph type");
         lblGraphType.setHorizontalAlignment(SwingConstants.RIGHT);
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
-        final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+       // final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
         datePicker.setLocation(152, 75);
         datePicker.setSize(165, 28);
        add(datePicker);
         
         
-        UtilDateModel model1 = new UtilDateModel();
+        /*UtilDateModel model1 = new UtilDateModel();
         JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
-        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);*/
         datePicker1.setLocation(152, 104);
         datePicker1.setSize(165, 28);
       add(datePicker1);
@@ -193,7 +218,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(label);
       
       JSeparator separator = new JSeparator();
-      separator.setBounds(10, 30, 614, 15);
+      separator.setBounds(10, 30, 821, 15);
       add(separator);
       
       final JLabel lblSensorType = new JLabel("Sensor type");
@@ -878,26 +903,58 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       btnGenerateGraphs.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		/*if(choice.getSelectedItem()=="Bar")	
+      		 contentPane = new JPanel();
+      		 contentPane.setLayout(null);
+      		if(choice.getSelectedItem()=="Bar")	
           	{
-          		OneBarGraphShow();
+          		//OneBarGraphShow();
           	}
           	if(choice.getSelectedItem()=="Line")	
           	{
-          		OneLineGraphShow();
+          		XYPlot plot1=new XYPlot();
+          		plot1=OneLineGraphShow();
+               
+
+          	InteractivePanel inter1 = new InteractivePanel(plot1);
+          		//InteractivePanel inter1 = new InteractivePanel(plot);
+        		inter1.setBounds(new Rectangle(0, 0, 0, 50));
+        		 inter1.setLayout(null);
+        		 contentPane.add(inter1);
           	}
       		
       		if(choice_10.getSelectedItem()=="Bar")
       		{
-      		OneBarGraphShow();
+      		//OneBarGraphShow();
       		}
       		
       		if(choice_10.getSelectedItem()=="Line")
       		{
-      		OneLineGraphShow();
+      			XYPlot plot2=new XYPlot();
+      			plot2=OneLineGraphShow();
+      			InteractivePanel  inter2 = new InteractivePanel(plot2);
+                inter2.setLayout(null);
+        		 inter2.setBounds(new Rectangle(0, 0, 0, 50));
+        		 contentPane.add(inter2);
       		}
-      		*/
-      		twoGraphsShow();
+      		
+      		
+      		
+      		
+      		// contentPane = new JPanel();
+     		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+     		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+     		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
+     		contentPane.setBackground(Color.white);
+     		//contentPane.setBounds(10,10,5,5);
+     		//contentPane.setBounds(0,0,2000,3000);
+     		//contentPane.add(inter1);
+     		//contentPane.add(inter2);
+     		//contentPane.setLayout(null);
+     		 tabbedPane.addTab("Two graphs", contentPane);
+     		 
+     		contentPane.setLayout(null);
+     		 tabbedPane.setSelectedIndex(1);
+      		//twoGraphsShow();
       			
       	}
       });
@@ -1381,102 +1438,76 @@ public void OneBarGraphShow(){
 	
 	
 	
-	public void OneLineGraphShow()
+	public XYPlot OneLineGraphShow()
 	{
 		
-		 //Podaci koji ce se prikazivati na grafu 
-	       DataTable data = new DataTable(Double.class, Double.class);
-	     
-	       
-	       double x = 1; 
-	       double y = 17;
-	       data.add(x, y);
-	       x = 2; 
-	       y = 16;
-	       data.add(x, y);
-	        
-	       x = 3; 
-	       y = 18;
-	       data.add(x, y);
-	        
-	      x = 4; 
-	       y = 20;
-	       data.add(x, y);
-	        
-	        x = 5; 
-	       y = 19;
-	       data.add(x, y);
-	        
-	       x = 6; 
-	        y = 22;
-	       data.add(x, y);
-	        
-	       x = 7; 
-	       y = 20;
-	       
-	       data.add(x, y);
-	       
-	       XYPlot plot=plot = new XYPlot(data);
+		
+		//Podaci koji ce se prikazivati na grafu 
+		Date dateString = (Date) datePicker.getModel().getValue();
+ 		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+ 		Date dateString1 = (Date) datePicker1.getModel().getValue();
+ 		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date_start;
+		Date date_end;
+		
+		  try {
+			date_start = sdf.parse(date_from);
+			date_end = sdf.parse(date_to);
+			try {
+				
+			
+		  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+		  list_values = new ArrayList<Double>();
+			size=list_logs.size();
+			for(int i=0; i<list_logs.size();i++){
+				list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
+			}
+			}catch(NullPointerException e){
+				System.out.println("Ne poklapaju se vrijednosti");
+			}
+		} 
+		  catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
+		
+		  for(int i=0;i<size;i++)
+		  {
+			 
+			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
+			  
+		  }
+		
+	      XYPlot plot1 = new XYPlot(data);
 	       //prikaz grafa na frameu
 	     //  add(new InteractivePanel(plot));
 
-	     plot.setVisible(data, true);
-	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
+	     plot1.setVisible(data, true);
+	     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 	     // plot.setBackground(Color.WHITE);
 
-         plot.getTitle().setText("Temperature  for 7 days");
-         LineRenderer lines = new DefaultLineRenderer2D();
-         plot.setLineRenderer(data, lines);
-         Color color = new Color(0.0f, 0.3f, 1.0f);
-         plot.getPointRenderer(data).setColor(color);
-         plot.getLineRenderer(data).setColor(color);
-      // Draw a tick mark and a grid line every 10 units along x axis
-         plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-         // Draw a tick mark and a grid line every 20 units along y axis
-         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-         
-         
-         //InteractivePanel interactivePanel1 = new InteractivePanel(plot);
-         interactivePanel1 = new InteractivePanel(plot);
-         interactivePanel1.setLayout(null);
-		 interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
-		 final JButton btnChange = new JButton("Change data");
-		
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     btnChange.setBounds(81, 462, 137, 23);
-		 interactivePanel1.add(btnChange);
-		 
-		 final JButton btnExport = new JButton("Export plot");
-	       btnExport.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	      //ovdje ce ici kod za export
-	       	}
-	       });
-	     btnExport.setBounds(281, 462, 137, 23);
-		 interactivePanel1.add(btnExport);
-		 
-		 final JButton btnExit = new JButton("Cancel");
-		
-	     btnExit.setBounds(481, 462, 137, 23);
-		 interactivePanel1.add(btnExit);
-		 
-		 tabbedPane.addTab("Line plot", interactivePanel1);
-		tabbedPane.setSelectedIndex(1);
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			tabbedPane.setSelectedIndex(1);
-				}
-			});
-	
+        plot1.getTitle().setText("Measured values");
+        LineRenderer lines = new DefaultLineRenderer2D();
+        plot1.setLineRenderer(data, lines);
+        Color color = new Color(0.0f, 0.3f, 1.0f);
+        plot1.getPointRenderer(data).setColor(color);
+        plot1.getLineRenderer(data).setColor(color);
+     // Draw a tick mark and a grid line every 10 units along x axis
+       // plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
+        // Draw a tick mark and a grid line every 20 units along y axis
+        plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+        
+        
+        AxisRenderer rendererX = plot1.getAxisRenderer(XYPlot.AXIS_X);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        rendererX.setTickLabelFormat(dateFormat);
+        
+        
+        
+      /*  */
+        return plot1;
 		
 	}
 	
@@ -1616,17 +1647,19 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
  plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
       
-      InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
-      InteractivePanel interactivePanel2=new InteractivePanel(plot);
+      InteractivePanel interactivePanel1 = new InteractivePanel(plot);
+      InteractivePanel interactivePanel2=new InteractivePanel(plot1);
       interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
+      //interactivePanel1.setBounds(new Rectangle(0, 0, 600, 200));
       interactivePanel1.setVisible(true);
       interactivePanel1.setLayout(null);
-      interactivePanel2.setBounds(new Rectangle(200, 0, 400, 400));
+      //interactivePanel2.setBounds(new Rectangle(200, 0, 400, 400));
+   interactivePanel2.setBounds(new Rectangle(0, 100, 600, 400));
       interactivePanel2.setVisible(true);
       interactivePanel2.setLayout(null);
       
       
-     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+     plot1.setInsets(new Insets2D.Double(0.0, 40.0, 80.0, 80.0));
      
       //interactivePanel.add(null, plot1);
      /* interactivePanel.setLayout(null);
@@ -1636,16 +1669,16 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
       contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-		contentPane.setBounds(new Rectangle(0, 0,2000, 2000));
+		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
 		contentPane.setBackground(Color.white);
 		//contentPane.setBounds(10,10,5,5);
 		//contentPane.setBounds(0,0,2000,3000);
 		contentPane.add(interactivePanel1);
 		contentPane.add(interactivePanel2);
-		contentPane.setLayout(null);
+		//contentPane.setLayout(null);
 		 tabbedPane.addTab("Two graphs", contentPane);
 		 
-		 contentPane.setLayout(null);
+		contentPane.setLayout(null);
 		 tabbedPane.setSelectedIndex(1);
 		 
 		
@@ -1768,12 +1801,12 @@ LineRenderer lines1 = new DefaultLineRenderer2D();
 	   		 
 	         contentPane = new JPanel();
 	   		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-	   		contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+	   		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 	   		contentPane.setBackground(Color.white);
 	   		//contentPane.setBounds(10,10,5,5);
 	   		
 	   		contentPane.add(interactivePanel1);
-	   		contentPane.add(interactivePanel2);
+	   		//contentPane.add(interactivePanel2);
 	   		
 	   		 tabbedPane.addTab("Two graphs", contentPane);
 	   		 
