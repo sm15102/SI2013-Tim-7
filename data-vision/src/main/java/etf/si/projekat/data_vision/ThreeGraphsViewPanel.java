@@ -1386,6 +1386,7 @@ add(datePicker5);
  		    	 choice_21.add(list_device.get(i).getName() );
  		    	 choice_22.add(list_device.get(i).getName() );
  		    	 choice_23.add(list_device.get(i).getName() );
+ 		    	 choice_24.add(list_device.get(i).getName() );
  		    	 choice_25.add(list_device.get(i).getName() );
  		    	 choice_26.add(list_device.get(i).getName() );
  		    	 choice_27.add(list_device.get(i).getName() );
@@ -1412,7 +1413,7 @@ add(datePicker5);
 		 	public void mouseClicked(MouseEvent arg0) {
 		 		 if(isPressed1 == true && isPressed2 == true && isPressed3 == true){
 		 			JOptionPane.showMessageDialog(null, "Generating graph view...");
-		 			btnGenerateGraphs.setEnabled(true);
+		 			
 		 		 }
 		 		 else{
 		 			 
