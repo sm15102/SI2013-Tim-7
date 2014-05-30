@@ -374,6 +374,12 @@ private List<ActivePeriod> ActivePeriods()
 			 periods.add(activeperiod);
 			 activeperiod = new ActivePeriod();
 			 }
+		 else if(activeperiod.getStart() !=null && activeperiod.getEnd()==null && i==rowcount-1){
+			 on=true;
+			 activeperiod.setEnd(model1.getValue());
+			 periods.add(activeperiod);
+			 activeperiod = new ActivePeriod();
+			 }
 	}
 	 return periods;
 	
