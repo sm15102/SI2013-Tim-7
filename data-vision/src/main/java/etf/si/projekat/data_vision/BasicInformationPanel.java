@@ -217,8 +217,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
       	if(choice.getSelectedItem()=="Bar")	
       	{
-      		OneBarGraphShow();
-      		//Graf();
+      		//OneBarGraphShow();
+      		Graf();
       	}
       	else
       	{
@@ -1130,7 +1130,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				 plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 		         plot.setBarWidth(0.075);
 		         // Format bars
-		         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data1);
+		         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(vrijednosti.get(0));
 		         pointRenderer.setColor(
 		                 new LinearGradientPaint(0f,0f, 0f,1f,
 		                                 new float[] { 0.0f, 1.0f },
@@ -1160,6 +1160,43 @@ public class BasicInformationPanel  extends ExamplePanel {
 		         pointRenderer.setValueLocation(Location.CENTER);
 		         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 		         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         
+		       /*plot.add(vrijednosti.get(1));
+		         plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		         plot.setBarWidth(0.075);
+		         // Format bars
+		         pointRenderer = (BarRenderer) plot.getPointRenderer(vrijednosti.get(1));
+		         pointRenderer.setColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+
+		         pointRenderer.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         
+		        		 
+		        plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+		         rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+		         
+		         
+		         pointRenderer.setValueVisible(true);
+		         pointRenderer.setValueColumn(2);
+		         pointRenderer.setValueLocation(Location.CENTER);
+		         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));*/
 				 
 		         if(value>1){
 				 
@@ -1189,9 +1226,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 		         );
 		         
 		        		 
-		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		        plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
-		          rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
 		         
@@ -1210,6 +1247,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 		          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 			       plot.getTitle().setText("Bar plot");
 			       interactivePanel.setVisible(true);
+			       
+			       tabbedPane.addTab("Bar plot", interactivePanel);
+					 tabbedPane.setSelectedIndex(1);
 		
 	}
 	
