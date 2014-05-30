@@ -282,6 +282,9 @@ add(datePicker5);
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		
+      		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
+      		
       		int value = (Integer) spinner.getValue();
 			
 			
@@ -551,11 +554,9 @@ add(datePicker5);
 			    	 choice_8.add(list_device.get(i).getName() );
 			    	 choice_9.add(list_device.get(i).getName() );
 		      }
-		      
-		     
-		     
-	
-		  		
+      	}else{
+  			JOptionPane.showMessageDialog(null, "Time is not selected");
+  		}	
 		      	
 			
       	}
@@ -702,6 +703,10 @@ add(datePicker5);
       button.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		
+      		if(datePicker2.getModel().isSelected() && datePicker3.getModel().isSelected()){
+      		
+      		
       	  int valueSecondGraph = (Integer) spinner_1.getValue();
       		
       		// KOD ZA DRUGI GRAF
@@ -951,7 +956,9 @@ add(datePicker5);
 		    	 choice_19.add(list_device.get(i).getName() );
 	      }
 	      
-      		
+      		}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
       		
       	}
       });
@@ -1105,6 +1112,9 @@ add(datePicker5);
       button_1.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		
+      		if(datePicker4.getModel().isSelected() && datePicker5.getModel().isSelected()){
+      		
       		 int valueSecondGraphThree = (Integer) spinner_2.getValue();
        		
        		// KOD ZA DRUGI GRAF
@@ -1350,9 +1360,9 @@ add(datePicker5);
  		    	 choice_28.add(list_device.get(i).getName() );
  		    	 choice_29.add(list_device.get(i).getName() );
  	      }
- 	      
-       		
-       		
+      		}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
       		
       	}
       });

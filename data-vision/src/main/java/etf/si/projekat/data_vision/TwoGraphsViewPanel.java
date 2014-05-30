@@ -17,6 +17,7 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
@@ -94,7 +95,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
   InteractivePanel interactivePanel1;
   InteractivePanel interactivePanel2;
   private JPanel contentPane;
-   
+   boolean isFill1=false;
+   boolean isFill2=false;
 	/**
 	 * Create the panel.
 	 */
@@ -239,7 +241,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_1);
       choice_1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
-				
+				if((Integer) spinner.getValue()==1 && isFill2){
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==1 && !isFill2) isFill1=true;
 				fillChoices(1);
 			}
 		});
@@ -248,6 +254,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_2);
       choice_2.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==2 && isFill2){
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==2 && !isFill2) isFill1=true;
 				fillChoices(2);
 			}
 		});
@@ -256,6 +267,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_3);
       choice_3.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==3 && isFill2){
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==3 && !isFill2) isFill1=true;
 				fillChoices(3);
 			}
 		});
@@ -264,6 +280,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_4);
       choice_4.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==4 && isFill2){
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==4 && !isFill2) isFill1=true;
 				fillChoices(4);
 			}
 		});
@@ -272,6 +293,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_5);
       choice_5.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==5 && isFill2){
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==5 && !isFill2) isFill1=true;
 				fillChoices(5);
 			}
 		});
@@ -280,6 +306,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_6);
       choice_6.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==6 && isFill2) {
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==6 && !isFill2) isFill1=true;
 				fillChoices(6);
 			}
 		});
@@ -288,6 +319,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_7);
       choice_7.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==7 && isFill2) {
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==7 && !isFill2) isFill1=true;
 				fillChoices(7);
 			}
 		});
@@ -296,6 +332,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_8);
       choice_8.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==8 && isFill2) {
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==8 && !isFill2) isFill1=true;
 				fillChoices(8);
 			}
 		});
@@ -304,6 +345,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_9);
       choice_9.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==9 && isFill2) {
+					isFill1=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner.getValue()==9 && !isFill2) isFill1=true;
 				fillChoices(9);
 			}
 		});
@@ -382,7 +428,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		choice_8.removeAll();
       		choice_9.removeAll();
       		
-      		
+      		 btnGenerateGraphs.setVisible(false);
+      		 
       		int value = (Integer) spinner.getValue();
 			
 			
@@ -638,8 +685,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 			    	
 		      }
       		}else{
-      			JOptionPane.showMessageDialog(null, "Date is not selected");
-      		}
+      			JOptionPane.showMessageDialog(null, "Time is not selected");      		}
       	}
       });
 		
@@ -662,6 +708,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_11);
       choice_11.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==1 && isFill1) {
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==1 && !isFill1) isFill2=true;
 				fillChoices_1(1);
 			}
 		});
@@ -713,6 +764,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_12);
       choice_12.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==2 && isFill1) {
+					btnGenerateGraphs.setVisible(true);
+					isFill2=true;
+				}
+				if((Integer) spinner_2.getValue()==2 && !isFill1) isFill2=true;
 				fillChoices_1(2);
 			}
 		});
@@ -722,6 +778,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_13);
       choice_13.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==3 && isFill1){
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==3 && !isFill1) isFill2=true;
 				fillChoices_1(3);
 			}
 		});
@@ -731,6 +792,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_14);
       choice_14.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==4 && isFill1) {
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==4 && !isFill1) isFill2=true;
 				fillChoices_1(4);
 			}
 		});
@@ -740,6 +806,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_15);
       choice_15.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==5 && isFill1) {
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==5 && !isFill1) isFill2=true;
 				fillChoices_1(5);
 			}
 		});
@@ -749,6 +820,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_16);
       choice_16.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==6 && isFill1){
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==6 && !isFill1) isFill2=true;
 				fillChoices_1(6);
 			}
 		});
@@ -759,6 +835,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_17);
       choice_17.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==7 && isFill1){
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==7 && !isFill1) isFill2=true;
 				fillChoices_1(7);
 			}
 		});
@@ -769,6 +850,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_18);
       choice_18.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==8 && isFill1) {
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==8 && !isFill1) isFill2=true;
 				fillChoices_1(8);
 			}
 		});
@@ -779,6 +865,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       add(choice_19);
       choice_19.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner_2.getValue()==9 && isFill1){
+					isFill2=true;
+					btnGenerateGraphs.setVisible(true);
+				}
+				if((Integer) spinner_2.getValue()==9 && !isFill1) isFill2=true;
 				fillChoices_1(9);
 			}
 		});
@@ -871,8 +962,10 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 		@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
-      		if(datePicker2.getModel().isSelected() && datePicker2.getModel().isSelected()){
+      		if(datePicker2.getModel().isSelected() && datePicker3.getModel().isSelected()){
       		
+      		// KOD ZA DRUGI GRAF
+      			
       		choice_11.enable();
       		choice_12.enable();
       		choice_13.enable();
@@ -893,11 +986,11 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       		choice_18.removeAll();
       		choice_19.removeAll();
       		
-      		
+      		btnGenerateGraphs.setVisible(false);
       		
       	  int valueSecondGraph = (Integer) spinner_2.getValue();
       		
-      		// KOD ZA DRUGI GRAF
+      		
       		
 			
 			 if(valueSecondGraph == 1){
@@ -923,7 +1016,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_20.setVisible(false);
 				
 				
-				btnGenerateGraphs.setVisible(true);
+				
 				
 			}
 			
@@ -949,7 +1042,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_19.setVisible(false);
 				label_20.setVisible(false);
 			
-				btnGenerateGraphs.setVisible(true);
+				
 			}
 			
 			else if(valueSecondGraph == 3){
@@ -973,7 +1066,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				
 			
 			}
 			
@@ -997,7 +1090,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			
 				
 			}
 			
@@ -1022,7 +1115,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				
 			
 			}
 			
@@ -1075,7 +1168,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(true);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				
 			
 			}
 			
@@ -1100,7 +1193,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(true);
 				label_19.setVisible(true);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				
 				
 			}
 			
@@ -1125,7 +1218,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 				label_18.setVisible(true);
 				label_19.setVisible(true);
 				label_20.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+				
 				
 			}
       		
@@ -1140,8 +1233,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
       	
       	}else{
       		
-      		JOptionPane.showMessageDialog(null, "Date is not selected");
-      	}
+      		JOptionPane.showMessageDialog(null, "Time is not selected");      	}
      }
   });
       button.setBounds(493, 165, 136, 23);

@@ -266,6 +266,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_1);
       choice_1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==1) btnGenerateGraph.setVisible(true);
 				fillChoices(1);
 			}
 		});
@@ -276,6 +277,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_2);
       choice_2.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==2) btnGenerateGraph.setVisible(true);
 				fillChoices(2);
 			}
 		});
@@ -285,6 +287,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_3);
       choice_3.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==3) btnGenerateGraph.setVisible(true);
 				fillChoices(3);
 			}
 		});
@@ -294,6 +297,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_4);
       choice_4.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==4) btnGenerateGraph.setVisible(true);
 				fillChoices(4);
 			}
 		});
@@ -303,6 +307,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_5);
       choice_5.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==5) btnGenerateGraph.setVisible(true);
 				fillChoices(5);
 			}
 		});
@@ -312,6 +317,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_6);
       choice_6.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==6) btnGenerateGraph.setVisible(true);
 				fillChoices(6);
 			}
 		});
@@ -321,6 +327,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_7);
       choice_7.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==7) btnGenerateGraph.setVisible(true);
 				fillChoices(7);
 			}
 		});
@@ -329,6 +336,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_8);
       choice_8.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==8) btnGenerateGraph.setVisible(true);
 				fillChoices(8);
 			}
 		});
@@ -337,6 +345,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       add(choice_9);
       choice_9.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
+				if((Integer) spinner.getValue()==9) btnGenerateGraph.setVisible(true);
 				fillChoices(9);
 			}
 		});
@@ -393,6 +402,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
       		
       		choice_1.enable();
       		choice_2.enable();
@@ -413,6 +423,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       		choice_7.removeAll();
       		choice_8.removeAll();
       		choice_9.removeAll();
+      		
+      		btnGenerateGraph.setVisible(false);
       		
       		int value = (Integer) spinner.getValue();
 			
@@ -444,7 +456,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(false);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-				btnGenerateGraph.setVisible(true);
+				
 			}
 			
 			else if(value == 2){
@@ -471,9 +483,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(false);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-
-
-				btnGenerateGraph.setVisible(true);
+				
 			}
 			
 			else if(value == 3){
@@ -502,7 +512,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_4.setVisible(false);
 				label_5.setVisible(false);
 
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 4){
@@ -529,7 +538,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(false);
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 5){
@@ -556,7 +564,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -586,7 +593,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			else if(value == 7){
@@ -639,7 +645,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			else{
@@ -666,7 +671,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraph.setVisible(true);
 			}
 			
 			
@@ -681,6 +685,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 		     String s = datePicker1.getComponentListeners().toString();
 		     System.out.println(s);
 	
+      		}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
 		  		
 		      	
 			
