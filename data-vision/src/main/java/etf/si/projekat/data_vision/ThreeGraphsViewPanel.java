@@ -40,6 +40,14 @@ import java.awt.event.MouseEvent;
 
 public class ThreeGraphsViewPanel extends JPanel {
 	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
+	
+	 boolean isPressed1=false;
+		boolean isPressed2=false;
+		boolean isPressed3=false;
+	 
+  	
+
+
 
 	/**
 	 * Create the panel.
@@ -47,6 +55,8 @@ public class ThreeGraphsViewPanel extends JPanel {
 	public ThreeGraphsViewPanel() {
 		setBackground(UIManager.getColor("Button.light"));
 		setLayout(null);
+		
+
 
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
@@ -66,10 +76,7 @@ public class ThreeGraphsViewPanel extends JPanel {
 		add(lblDataNumber);
 		
 		
-		 final JButton btnGenerateGraphs = new JButton("Generate graphs");
-	      btnGenerateGraphs.setBounds(782, 472, 168, 23);
-	      btnGenerateGraphs.setVisible(false);
-	      add(btnGenerateGraphs);
+		
 	      
 		
 	/*	 choice = new Choice();
@@ -283,6 +290,8 @@ add(datePicker5);
       btnProcess.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		isPressed1 = true;
+      		
       		
       		
       		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
@@ -572,6 +581,9 @@ add(datePicker5);
       btnProcess.setBounds(152, 165, 165, 23);
       add(btnProcess);
       
+		System.out.println("ispressed 1 iznosi" + isPressed1 + " ");
+
+      
       final  Label label_12 = new Label("Sensor type 1");
       label_12.setBounds(376, 241, 83, 14);
       label_12.setVisible(false);
@@ -707,6 +719,7 @@ add(datePicker5);
       button.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		isPressed2=true;
       		
       		if(datePicker2.getModel().isSelected() && datePicker3.getModel().isSelected()){
       		
@@ -1118,6 +1131,8 @@ add(datePicker5);
       button_1.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
+      		isPressed3=true;
+
       		
       		if(datePicker4.getModel().isSelected() && datePicker5.getModel().isSelected()){
       		
@@ -1370,13 +1385,27 @@ add(datePicker5);
       			JOptionPane.showMessageDialog(null, "Time is not selected");
       		}
       		
+      		
+      		
+      		
       	}
       });
       button_1.setBounds(779, 165, 168, 23);
       add(button_1);
      
+      final JButton btnGenerateGraphs = new JButton("Generate graphs");
+		 btnGenerateGraphs.addMouseListener(new MouseAdapter() {
+		 	@Override
+		 	public void mouseClicked(MouseEvent arg0) {
+		 		
+		 	}
+		 });
+	      btnGenerateGraphs.setBounds(782, 472, 168, 23);
+	      btnGenerateGraphs.setEnabled(false);
+	      add(btnGenerateGraphs);
+
       
-      
+   
       
   
 	}
