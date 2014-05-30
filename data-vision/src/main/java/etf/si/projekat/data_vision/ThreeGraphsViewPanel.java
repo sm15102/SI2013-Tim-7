@@ -148,6 +148,8 @@ add(datePicker5);
       
       Choice choice = new Choice();
       choice.setBounds(152, 51, 165, 23);
+      choice.add("Line");
+      choice.add("Bar");
       add(choice);
       
       Label label = new Label("Basic data");
@@ -315,7 +317,7 @@ add(datePicker5);
 				label_3.setVisible(false);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 2){
@@ -342,7 +344,7 @@ add(datePicker5);
 				label_3.setVisible(false);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 3){
@@ -370,7 +372,7 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(false);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 4){
@@ -397,7 +399,7 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 5){
@@ -424,7 +426,7 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			}
 			
 			
@@ -454,7 +456,7 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 7){
@@ -481,7 +483,7 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(value == 8){
@@ -509,7 +511,7 @@ add(datePicker5);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
 				//btnGenerateGraph.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			}
 			
 			else{
@@ -536,8 +538,8 @@ add(datePicker5);
 				label_3.setVisible(true);
 				label_4.setVisible(true);
 				label_5.setVisible(true);
-				//btnGenerateGraph.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+		
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			
@@ -674,6 +676,8 @@ add(datePicker5);
       
       final  Choice choice_10 = new Choice();
       choice_10.setBounds(464, 51, 165, 20);
+      choice_10.add("Line");
+      choice_10.add("Bar");
       add(choice_10);
       
       final JLabel label_7 = new JLabel("Time interval from");
@@ -735,7 +739,7 @@ add(datePicker5);
 				label_20.setVisible(false);
 				
 			
-				btnGenerateGraphs.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 				
 			}
 			
@@ -762,7 +766,7 @@ add(datePicker5);
 				label_20.setVisible(false);
 				
 			
-				btnGenerateGraphs.setVisible(true);
+				//btnGenerateGraphs.setVisible(true);
 			}
 			
 			else if(valueSecondGraph == 3){
@@ -786,7 +790,7 @@ add(datePicker5);
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			
 			}
 			
@@ -811,7 +815,7 @@ add(datePicker5);
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			
 			}
 			
@@ -836,7 +840,7 @@ add(datePicker5);
 				label_18.setVisible(false);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 				
 			}
 			
@@ -889,7 +893,7 @@ add(datePicker5);
 				label_18.setVisible(true);
 				label_19.setVisible(false);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 				
 			}
 			
@@ -914,7 +918,7 @@ add(datePicker5);
 				label_18.setVisible(true);
 				label_19.setVisible(true);
 				label_20.setVisible(false);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			
 			}
 			
@@ -939,7 +943,7 @@ add(datePicker5);
 				label_18.setVisible(true);
 				label_19.setVisible(true);
 				label_20.setVisible(true);
-				btnGenerateGraphs.setVisible(true);
+			//	btnGenerateGraphs.setVisible(true);
 			
 			}
       		
@@ -988,6 +992,8 @@ add(datePicker5);
       
       Choice choice_20 = new Choice();
       choice_20.setBounds(782, 51, 165, 20);
+      choice_20.add("Line");
+      choice_20.add("Bar");
       add(choice_20);
       
       final JSpinner spinner_2 = new JSpinner();
