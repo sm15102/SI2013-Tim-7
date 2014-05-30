@@ -66,64 +66,56 @@ public class Consumption extends JPanel {
 	
 public Consumption() {
 	setForeground(Color.WHITE);
-	   setBounds(10, 49, 849, 501);
-	   
-		
-		setBackground(Color.WHITE);
-		setLayout(null);
-		
-		
-		JLabel lblTimeIntervalFrom = new JLabel("Time interval to:");
-		lblTimeIntervalFrom.setBounds(50, 49, 114, 27);
-		add(lblTimeIntervalFrom);
-		
-		JLabel lblDevice = new JLabel("Device:");
-		lblDevice.setBounds(50, 86, 114, 27);
-		add(lblDevice);
-		
-	    JLabel lblPower = new JLabel("Power:");
-		lblPower.setBounds(50, 124, 114, 27);
-		add(lblPower);
-		
-	    btnAdd = new JButton("Calculate");
-		btnAdd.setBounds(195, 164, 165, 28);
-		add(btnAdd);
-		
-		JLabel lblTimeInterfvalFrom = new JLabel("Time interval from:");
-		lblTimeInterfvalFrom.setBounds(50, 11, 114, 27);
-		add(lblTimeInterfvalFrom);
-		
-		model = new UtilDateModel();
-        datePanel = new JDatePanelImpl(model);
-        time_interval_from = new JDatePickerImpl(datePanel);
-        time_interval_from.setLocation(195, 11);
-        time_interval_from.setSize(165, 28);
-        add(time_interval_from);
+	setBounds(10, 49, 849, 501);
+	setBackground(Color.WHITE);
+	setLayout(null);
+	
+	JLabel lblTimeIntervalFrom = new JLabel("Time interval to:");
+	lblTimeIntervalFrom.setBounds(50, 49, 114, 27);
+	add(lblTimeIntervalFrom);
+	
+	JLabel lblDevice = new JLabel("Device:");
+	lblDevice.setBounds(50, 86, 114, 27);
+	add(lblDevice);
+	
+	JLabel lblPower = new JLabel("Power:");
+	lblPower.setBounds(50, 124, 114, 27);
+	add(lblPower);
+	
+	btnAdd = new JButton("Calculate");
+	btnAdd.setBounds(195, 164, 165, 28);
+	add(btnAdd);
+	
+	JLabel lblTimeInterfvalFrom = new JLabel("Time interval from:");
+	lblTimeInterfvalFrom.setBounds(50, 11, 114, 27);
+	add(lblTimeInterfvalFrom);
+	
+	model = new UtilDateModel();
+	datePanel = new JDatePanelImpl(model);
+	
+	time_interval_from = new JDatePickerImpl(datePanel);
+    time_interval_from.setLocation(195, 11);
+    time_interval_from.setSize(165, 28);
+    add(time_interval_from);
+    
+    model1 = new UtilDateModel();
+    datePane1 = new JDatePanelImpl(model1);
+    time_interval_to = new JDatePickerImpl(datePane1);
+    time_interval_to.setLocation(195, 48);
+    time_interval_to.setSize(165, 28);
+    add(time_interval_to);
+    
+    devices = new JComboBox();
+    devices.setBounds(195, 86, 165, 28);
+    add(devices);
         
-        
-        model1 = new UtilDateModel();
-        datePane1 = new JDatePanelImpl(model1);
-        time_interval_to = new JDatePickerImpl(datePane1);
-        time_interval_to.setLocation(195, 48);
-        time_interval_to.setSize(165, 28);
-        add(time_interval_to);
-        
-        
-        
-        
-        devices = new JComboBox();
-        devices.setBounds(195, 86, 165, 28);
-        add(devices);
-        
-       devices.addItem("Chose device...");
-        devices.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent arg0) {
-        	if(selecteddevice != null && selecteddevice !="Chose device..." )
-        		EarseTable();
-        		PopuniTabelu();
-        	
-        		
-        	}
+    devices.addItem("Chose device...");
+    devices.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent arg0) {
+    		if(selecteddevice != null && selecteddevice !="Chose device..." )
+    			EarseTable();
+    		PopuniTabelu();
+    		}
         });
         
         units = new JComboBox();
@@ -146,7 +138,6 @@ public Consumption() {
         units.setBounds(370, 125, 120, 28);
         add(units);
         
-     
         Model();
         Model1();
         
@@ -158,8 +149,6 @@ public Consumption() {
         pane.setSize(440, 255);
         pane.setLocation(50, 235);
         add(pane);
-        
-        
         
         table1 = new JTable();
         table1.setBackground(Color.WHITE);
@@ -190,7 +179,8 @@ public Consumption() {
         add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("Total result for selected period (kWh)");
-        lblNewLabel_2.setBounds(500, 17, 181, 14);
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_2.setBounds(500, 0, 260, 31);
         add(lblNewLabel_2);
         
         lblTotalResult = new JLabel("");
@@ -413,7 +403,7 @@ private List<ActivePeriod> ActivePeriods()
 		 TotalConsumption+=PeriodicalConsumption;
 	 }
 	 
-	 lblTotalResult.setText(TotalConsumption+" kWh");
+	 lblTotalResult.setText(String.format("%.4f",TotalConsumption)+" kWh");
 	 }
 
 }
