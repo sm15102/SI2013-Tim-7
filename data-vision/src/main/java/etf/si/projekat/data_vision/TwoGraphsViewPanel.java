@@ -1551,9 +1551,9 @@ public void OneBarGraphShow(){
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+		//plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		 plot.getTitle().setText("Line plot");
 			
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1572,8 +1572,8 @@ public void OneBarGraphShow(){
 	         interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel.setLayout(null);
-	         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
-	         interactivePanel.setOpaque(true);
+	         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+	         //interactivePanel.setOpaque(true);
 
 	       
 	          interactivePanel.setVisible(true);
@@ -1585,7 +1585,7 @@ public void OneBarGraphShow(){
 	      case 2:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 	  		 plot.getTitle().setText("Line plot");
@@ -1611,8 +1611,8 @@ public void OneBarGraphShow(){
 			     
 			     interactivePanel = new InteractivePanel(plot);
 		         
-		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		        interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		        
@@ -1626,7 +1626,7 @@ public void OneBarGraphShow(){
 	    	  
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 	  		 plot.getTitle().setText("Line plot");
@@ -1660,7 +1660,7 @@ public void OneBarGraphShow(){
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1672,7 +1672,7 @@ public void OneBarGraphShow(){
 	      case 4:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 	  		 plot.getTitle().setText("Line plot");
@@ -1711,7 +1711,7 @@ public void OneBarGraphShow(){
                  interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1724,7 +1724,7 @@ public void OneBarGraphShow(){
 	      case 5:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		      //Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -1769,7 +1769,7 @@ public void OneBarGraphShow(){
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1781,7 +1781,7 @@ public void OneBarGraphShow(){
 	      {
 	    	  
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		      //Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -1831,7 +1831,7 @@ public void OneBarGraphShow(){
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1842,7 +1842,7 @@ public void OneBarGraphShow(){
 	      case 7:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		      //Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -1900,7 +1900,7 @@ public void OneBarGraphShow(){
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1914,7 +1914,8 @@ public void OneBarGraphShow(){
 	      case 8:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	 
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		      //Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -1977,7 +1978,7 @@ public void OneBarGraphShow(){
 interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
-		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
 		          
@@ -1989,7 +1990,7 @@ interactivePanel = new InteractivePanel(plot);
 	      case 9:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		      //Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2055,7 +2056,7 @@ interactivePanel = new InteractivePanel(plot);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-interactivePanel = new InteractivePanel(plot);
+			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
@@ -2208,7 +2209,8 @@ interactivePanel = new InteractivePanel(plot);
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+		//plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		 plot.getTitle().setText("Line plot");
@@ -2229,20 +2231,24 @@ interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+	        // interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+	         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400)); 
 	         
 	          contentPane = new JPanel();
 	       
 				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				contentPane.add(interactivePanel1, BorderLayout.CENTER);
-				interactivePanel1.setVisible(true);
+			
+			//	interactivePanel1.setVisible(true);
 		         interactivePanel1.setLayout(null);			
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
-				contentPane.add(interactivePanel,BorderLayout.CENTER);
-				interactivePanel.isOpaque();
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);
+				contentPane.add(interactivePanel);
+				//interactivePanel.isOpaque();
+					//interactivePanel1.setVisible(true);
+			         
+			     	contentPane.add(interactivePanel1);
+			     	interactivePanel1.setLayout(null);
+			        // interactivePanel.setLayout(null);
 				contentPane.setLayout(null);
 				tabbedPane.setSelectedIndex(1);
 	         
@@ -2251,7 +2257,7 @@ interactivePanel = new InteractivePanel(plot);
 	      case 2:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 	    	  plot.getTitle().setText("Line plot");
@@ -2277,23 +2283,26 @@ interactivePanel = new InteractivePanel(plot);
 			     
 			     interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		          
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 			     
 			     break;
 	      }
@@ -2302,7 +2311,7 @@ interactivePanel = new InteractivePanel(plot);
 	    	  
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 	  		 plot.getTitle().setText("Line plot");
@@ -2334,23 +2343,26 @@ interactivePanel = new InteractivePanel(plot);
 			     
 			     interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 			     
 			     break;
 	      }
@@ -2358,7 +2370,7 @@ interactivePanel = new InteractivePanel(plot);
 	      case 4:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2401,18 +2413,21 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 		          break;
 	    	  
 	      }
@@ -2421,7 +2436,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      case 5:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2465,23 +2480,26 @@ interactivePanel1 = new InteractivePanel(plot);
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 		          break;
 	      }
 	      
@@ -2489,7 +2507,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2543,25 +2561,28 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 		          break;
 	      }
 	      
 	      case 7:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2618,23 +2639,26 @@ interactivePanel1 = new InteractivePanel(plot);
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 			     
 			     break; 
 	    	 
@@ -2644,7 +2668,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      case 8:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2706,23 +2730,26 @@ interactivePanel1 = new InteractivePanel(plot);
 			     
 interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 			     
 			     break; 
 	      }
@@ -2730,7 +2757,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      case 9:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8));
-	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
 		  		 plot.getTitle().setText("Line plot");
@@ -2798,23 +2825,26 @@ interactivePanel1 = new InteractivePanel(plot);
 			     
 interactivePanel1 = new InteractivePanel(plot);
 		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
 		       
-					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					contentPane.add(interactivePanel1, BorderLayout.CENTER);
-					interactivePanel1.setVisible(true);
-			         interactivePanel1.setLayout(null);			
-					 tabbedPane.addTab("Two graphs", contentPane);
-					 contentPane.setVisible(true);
-					contentPane.add(interactivePanel,BorderLayout.CENTER);
-					interactivePanel.isOpaque();
-						interactivePanel1.setVisible(true);
-				         interactivePanel1.setLayout(null);
-					contentPane.setLayout(null);
-					tabbedPane.setSelectedIndex(1);
+		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					
+					//	interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);			
+						 tabbedPane.addTab("Two graphs", contentPane);
+						 contentPane.setVisible(true);
+						contentPane.add(interactivePanel);
+						//interactivePanel.isOpaque();
+							//interactivePanel1.setVisible(true);
+					         
+					     	contentPane.add(interactivePanel1);
+					     	interactivePanel1.setLayout(null);
+					        // interactivePanel.setLayout(null);
+						contentPane.setLayout(null);
+						tabbedPane.setSelectedIndex(1);
 			     
 			     break; 
 	      }
