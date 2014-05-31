@@ -55,51 +55,51 @@ public class About extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTeam = new JLabel("Made by:");
+		JLabel lblTeam = new JLabel("Comming soon");
 		lblTeam.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblTeam.setBounds(10, 11, 71, 28);
+		lblTeam.setBounds(10, 10, 108, 28);
 		contentPane.add(lblTeam);
 		
-		JLabel lblTeam_1 = new JLabel("Team7");
+		JLabel lblTeam_1 = new JLabel("maybe later");
 		lblTeam_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTeam_1.setBounds(10, 38, 46, 14);
+		lblTeam_1.setBounds(10, 35, 93, 14);
 		contentPane.add(lblTeam_1);
 		
-		JLabel lblDevelopers = new JLabel("Developers:");
+		JLabel lblDevelopers = new JLabel("Starring");
 		lblDevelopers.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblDevelopers.setBounds(10, 75, 156, 14);
 		contentPane.add(lblDevelopers);
 		
 		JLabel lblMelikaKiselica = new JLabel("Melika Kiselica");
-		lblMelikaKiselica.setBounds(10, 100, 103, 14);
+		lblMelikaKiselica.setBounds(141, 91, 103, 14);
 		contentPane.add(lblMelikaKiselica);
 		
 		JLabel lblEnesMujic = new JLabel("Enes Mujic");
-		lblEnesMujic.setBounds(10, 119, 103, 14);
+		lblEnesMujic.setBounds(10, 100, 103, 14);
 		contentPane.add(lblEnesMujic);
 		
 		JLabel lblSnjezanaMiletic = new JLabel("Snjezana Miletic");
-		lblSnjezanaMiletic.setBounds(10, 138, 103, 14);
+		lblSnjezanaMiletic.setBounds(63, 116, 103, 14);
 		contentPane.add(lblSnjezanaMiletic);
 		
 		JLabel lblSalemMaglic = new JLabel("Salem Maglic");
-		lblSalemMaglic.setBounds(10, 138, 103, 14);
+		lblSalemMaglic.setBounds(155, 222, 103, 14);
 		contentPane.add(lblSalemMaglic);
 		
 		JLabel lblAdnanOmanovic = new JLabel("Adnan Omanovic");
-		lblAdnanOmanovic.setBounds(10, 156, 103, 14);
+		lblAdnanOmanovic.setBounds(0, 141, 103, 14);
 		contentPane.add(lblAdnanOmanovic);
 		
 		JLabel lblNadinaKunalic = new JLabel("Nadina Kunalic");
-		lblNadinaKunalic.setBounds(10, 174, 108, 14);
+		lblNadinaKunalic.setBounds(136, 141, 108, 14);
 		contentPane.add(lblNadinaKunalic);
 		
 		JLabel lblRijadMuhic = new JLabel("Rijad Muhic");
-		lblRijadMuhic.setBounds(10, 192, 234, 14);
+		lblRijadMuhic.setBounds(27, 174, 76, 14);
 		contentPane.add(lblRijadMuhic);
 		
-		JLabel lblcopyrightByTeam = new JLabel(" ©Copyright by Team7");
-		lblcopyrightByTeam.setBounds(10, 236, 192, 14);
+		JLabel lblcopyrightByTeam = new JLabel("Made in China");
+		lblcopyrightByTeam.setBounds(66, 247, 192, 14);
 		contentPane.add(lblcopyrightByTeam);
 		
 		JLabel label = new JLabel("");
