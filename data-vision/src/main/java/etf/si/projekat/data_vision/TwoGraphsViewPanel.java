@@ -115,14 +115,22 @@ InteractivePanel inter2;
   final UtilDateModel model1 = new UtilDateModel();
   final JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
   final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);
+  final UtilDateModel model2 = new UtilDateModel();
+  final JDatePanelImpl datePanel2 = new JDatePanelImpl(model2);
+  final JDatePickerImpl datePicker2=new JDatePickerImpl(datePanel2);
+  final UtilDateModel model3 = new UtilDateModel();
+  final JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
+  final JDatePickerImpl datePicker3=new JDatePickerImpl(datePanel3);
   
-  private List<EventLogs> list_logs;
-  private List<Double> list_values;
+  private List<List<EventLogs>> list_logs;
+  private List<List<Double>> list_values;
    final static DataTable data=new DataTable(Long.class, Double.class);
    XYPlot plot;
    private int size;
  
-
+   private List<DataTable> datas;
+   private List<DataSeries>series;
+   
    boolean isFill1=false;
    boolean isFill2=false;
 
@@ -132,7 +140,8 @@ InteractivePanel inter2;
 	public TwoGraphsViewPanel(JTabbedPane tabbedPane_1) {
 		tabbedPane=tabbedPane_1;
 		setLayout(null);
-		paneli=false;
+		paneli_line=false;
+		paneli_bar=false;
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -919,16 +928,16 @@ InteractivePanel inter2;
           	{
           		//OneBarGraphShow();
           		 paneli_bar=true; 
-          	}
+          	}*/
           	if(choice.getSelectedItem()=="Line")	
           	{
           		//XYPlot plot1=new XYPlot();
           		//plot1=OneLineGraphShow();
-          		OneLineGraphShow();
-          		paneli_line=true;
+          		OneLineGraphShow1();
+          		OneLineGraphShow2();
           	
           	}
-      		
+      		/*
       		if(choice_10.getSelectedItem()=="Bar")
       		{
       		//OneBarGraphShow();
@@ -1443,127 +1452,531 @@ public void OneBarGraphShow(){
 	
 	
 	
-	public void  OneLineGraphShow()
+	public void  OneLineGraphShow1()
 	{
+		contentPane = new JPanel();
+		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
+		contentPane.setBackground(Color.white);
+		//contentPane.setBounds(10,10,5,5);
+		//contentPane.setBounds(0,0,2000,3000);
 		
+		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+		Integer value = (Integer) spinner.getValue();
 		
-		//Podaci koji ce se prikazivati na grafu 
-	/*	Date dateString = (Date) datePicker.getModel().getValue();
- 		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
- 		Date dateString1 = (Date) datePicker1.getModel().getValue();
- 		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date date_start;
-		Date date_end;
-		
-		  try {
-			date_start = sdf.parse(date_from);
-			date_end = sdf.parse(date_to);
-			try {
-				
+		for(int k=0; k<value; k++)
+		{
+							 
+				//Podaci koji ce se prikazivati na grafu 
+					Date dateString = (Date) datePicker.getModel().getValue();
+			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+					Date date_start;
+					Date date_end;
+					
+					  try {
+						date_start = sdf.parse(date_from);
+						date_end = sdf.parse(date_to);
+						 
+
+						try {
+						
+							
+							List<Choice> choices=new ArrayList<Choice>();
+							choices.add(choice_1);
+							choices.add(choice_2);
+							choices.add(choice_3);
+							choices.add(choice_4);
+							choices.add(choice_5);
+							choices.add(choice_6);
+							choices.add(choice_7);
+							choices.add(choice_8);
+							choices.add(choice_9);	
+							
+							list_logs=new ArrayList<List<EventLogs>>();
+						for(int i=0;i<value;i++){
+							
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					 
+						}
+						size=list_logs.size();
+						list_values=new ArrayList<List<Double>>();
+						for(int i=0; i<list_logs.size();i++){
+							
+							List<Double>values=new ArrayList<Double>();
+							for(int j=0;j<list_logs.get(i).size();j++){
+								
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							
+							}
+							list_values.add(values);
+							
+							 
+						}
+						}catch(Exception e){
+							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+							System.out.println("Ne poklapaju se vrijednosti");
+						}
+					} 
+					  catch (Exception e1) {
+						// TODO Auto-generated catch block
+						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						e1.printStackTrace();
+					}
+					
+					datas=new ArrayList<DataTable>();
+					 series=new ArrayList<DataSeries>();
+					  DataTable d=new DataTable(Long.class, Double.class, String.class);
+					 
+					  
+					  for(int i=0;i<list_logs.size();i++)
+					  {
+						  
+						  for(int j=0;j<list_logs.get(i).size();j++){
+							
+							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+			  }
+						
+						  datas.add(d);
+						  series.add(new DataSeries(d));
+						  }
 			
-		  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-		  list_values = new ArrayList<Double>();
-			size=list_logs.size();
-			for(int i=0; i<list_logs.size();i++){
-				list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
-			}
-			}catch(NullPointerException e){
-				System.out.println("Ne poklapaju se vrijednosti");
-			}
-		} 
-		  catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+					  }
+		 
+	      switch(value)
+	      {
+	      case 1:
+	      {
+		XYPlot plot = new XYPlot(series.get(0));
+		plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		 plot.getTitle().setText("Measured values");
+			
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         rendererX.setTickLabelFormat(dateFormat);
+		  LineRenderer lines = new DefaultLineRenderer2D();
+	         plot.setLineRenderer(series.get(0), lines);
+	         Color color = new Color(0.0f, 0.3f, 1.0f);
+	        plot.getPointRenderer(series.get(0)).setColor(color);
+	         plot.getLineRenderer(series.get(0)).setColor(color);
+	         
+	         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+	         
+	         interactivePanel = new InteractivePanel(plot);
+	         
+	         interactivePanel.setLayout(null);
+	         interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+	          plot.getTitle().setText("Bar plot");
+	          interactivePanel.setVisible(true);
+	          
+	          contentPane.add(interactivePanel);
+	         
+		break;
+	      }
+	      case 2:
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1); 
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			    interactivePanel = new InteractivePanel(plot);
+			     
+			     interactivePanel.setLayout(null);
+			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel.setVisible(true);
+			      
+			      contentPane.add(interactivePanel);
+			  	
+			     
+			     break;
+	      }
+	      
+	      case 3:
+	    	  
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1);
+			     
+			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(2), lines2);
+			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(2)).setColor(color2);
+			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			  interactivePanel = new InteractivePanel(plot);
+			     
+			     interactivePanel.setLayout(null);
+			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel.setVisible(true);
+			      
+			      contentPane.add(interactivePanel);
+			     
+			     break;
+	      }
+	      
+	      case 4:
+	      {
+	    	  
+	    	  
+	      }
+	    	  
+	      }
+	
+		   
+		
+		 /*final JButton btnChange = new JButton("Change data");
+			
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(690, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+	
+		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setSize(400, 15);
+		 
+		 interactivePanel.add(lblExport);
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(831, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
 		 
 		
-		  for(int i=0;i<size;i++)
-		  {
-			 
-			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
-			  
-		  }
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			//tabbedPane.resetKeyboardActions();
+			tabbedPane.remove(0);
+			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
+			tabbedPane.add("Basic data",basicInfo);
+			basicInfo.setLayout(null);
+		
+			tabbedPane.setSelectedIndex(1);
+			
+				}
+			});
 		*/
 		
-		 DataTable data = new DataTable(Double.class, Double.class);
-	     
-	       
-	       double x = 1; 
-	       double y = 17;
-	       data.add(x, y);
-	       x = 2; 
-	       y = 16;
-	       data.add(x, y);
-	        
-	       x = 3; 
-	       y = 18;
-	       data.add(x, y);
-	        
-	      x = 4; 
-	       y = 20;
-	       data.add(x, y);
-	        
-	        x = 5; 
-	       y = 19;
-	       data.add(x, y);
-	        
-	       x = 6; 
-	        y = 22;
-	       data.add(x, y);
-	        
-	       x = 7; 
-	       y = 20;
-	       
-	       data.add(x, y);
-		
-	      XYPlot plot1 = new XYPlot(data);
-	       //prikaz grafa na frameu
-	     //  add(new InteractivePanel(plot));
-
-	     plot1.setVisible(data, true);
-	     plot1.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	     // plot.setBackground(Color.WHITE);
-
-        plot1.getTitle().setText("Measured values");
-        LineRenderer lines = new DefaultLineRenderer2D();
-        plot1.setLineRenderer(data, lines);
-        Color color = new Color(0.0f, 0.3f, 1.0f);
-        plot1.getPointRenderer(data).setColor(color);
-        plot1.getLineRenderer(data).setColor(color);
-     // Draw a tick mark and a grid line every 10 units along x axis
-       //plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-        // Draw a tick mark and a grid line every 20 units along y axis
-        plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-        
-        
-        AxisRenderer rendererX = plot1.getAxisRenderer(XYPlot.AXIS_X);
-        DateFormat dateFormat = new SimpleDateFormat(XYPlot.AXIS_Y);
-        rendererX.setTickLabelFormat(dateFormat);
-
-        if(paneli==false)
-        {
-        inter1 = new InteractivePanel(plot1);
-  		//InteractivePanel inter1 = new InteractivePanel(plot);
-		inter1.setBounds(new Rectangle(0, 0, 0, 50));
-		 inter1.setLayout(null);
-		 inter1.setVisible(true);
-		 contentPane.add(inter1);
-		 
-        }
-        
-        else {
-        	
-        	inter2 = new InteractivePanel(plot1);
-            inter2.setLayout(null);
-            
-    		 inter2.setBounds(new Rectangle(0, 0, 0, 50));
-    		 inter2.setVisible(true);
-    		 contentPane.add(inter2);
-        }
-       // return plot1;
-		//contentPane.setBackground(color.black);
 	}
+	
+	
+	
+	public void  OneLineGraphShow2()
+	{
+		
+		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+		Integer value = (Integer) spinner.getValue();
+		
+		for(int k=0; k<value; k++)
+		{
+							 
+				//Podaci koji ce se prikazivati na grafu 
+					Date dateString = (Date) datePicker2.getModel().getValue();
+			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		Date dateString1 = (Date) datePicker3.getModel().getValue();
+			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+					Date date_start;
+					Date date_end;
+					
+					  try {
+						date_start = sdf.parse(date_from);
+						date_end = sdf.parse(date_to);
+						 
+
+						try {
+						
+							
+							List<Choice> choices=new ArrayList<Choice>();
+							choices.add(choice_11);
+							choices.add(choice_12);
+							choices.add(choice_13);
+							choices.add(choice_14);
+							choices.add(choice_15);
+							choices.add(choice_16);
+							choices.add(choice_17);
+							choices.add(choice_18);
+							choices.add(choice_19);	
+						 value = (Integer) spinner_2.getValue();
+
+							list_logs=new ArrayList<List<EventLogs>>();
+						for(int i=0;i<value;i++){
+							
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					 
+						}
+						size=list_logs.size();
+						list_values=new ArrayList<List<Double>>();
+						for(int i=0; i<list_logs.size();i++){
+							
+							List<Double>values=new ArrayList<Double>();
+							for(int j=0;j<list_logs.get(i).size();j++){
+								
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							
+							}
+							list_values.add(values);
+							
+							 
+						}
+						}catch(Exception e){
+							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+							System.out.println("Ne poklapaju se vrijednosti");
+						}
+					} 
+					  catch (Exception e1) {
+						// TODO Auto-generated catch block
+						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						e1.printStackTrace();
+					}
+					
+					datas=new ArrayList<DataTable>();
+					 series=new ArrayList<DataSeries>();
+					  DataTable d=new DataTable(Long.class, Double.class, String.class);
+					 
+					  
+					  for(int i=0;i<list_logs.size();i++)
+					  {
+						  
+						  for(int j=0;j<list_logs.get(i).size();j++){
+							
+							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+			  }
+						
+						  datas.add(d);
+						  series.add(new DataSeries(d));
+						  }
+			
+					  }
+		 
+	      switch(value)
+	      {
+	      case 1:
+	      {
+		XYPlot plot = new XYPlot(series.get(0));
+		plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		 plot.getTitle().setText("Measured values");
+			
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         rendererX.setTickLabelFormat(dateFormat);
+		  LineRenderer lines = new DefaultLineRenderer2D();
+	         plot.setLineRenderer(series.get(0), lines);
+	         Color color = new Color(0.0f, 0.3f, 1.0f);
+	        plot.getPointRenderer(series.get(0)).setColor(color);
+	         plot.getLineRenderer(series.get(0)).setColor(color);
+	         
+	         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+	         
+	         interactivePanel1 = new InteractivePanel(plot);
+	         
+	         interactivePanel1.setLayout(null);
+	         interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+	          plot.getTitle().setText("Bar plot");
+	          interactivePanel1.setVisible(true);
+	          
+	          contentPane.add(interactivePanel1);
+	          tabbedPane.addTab("Line plot", contentPane);
+	          contentPane.setLayout(null);
+	      	  tabbedPane.setSelectedIndex(1);   
+	         
+		break;
+	      }
+	      case 2:
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1); 
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			    interactivePanel1 = new InteractivePanel(plot);
+			     
+			     interactivePanel1.setLayout(null);
+			     interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel1.setVisible(true);
+			      
+			      contentPane.add(interactivePanel1);
+			      tabbedPane.addTab("Line plot", contentPane);
+			      contentPane.setLayout(null);
+			  		tabbedPane.setSelectedIndex(1);
+			     
+			     break;
+	      }
+	      
+	      case 3:
+	    	  
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1);
+			     
+			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(2), lines2);
+			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(2)).setColor(color2);
+			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			  interactivePanel1 = new InteractivePanel(plot);
+			     
+			     interactivePanel1.setLayout(null);
+			     interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel1.setVisible(true);
+			      
+			      contentPane.add(interactivePanel1);
+			      tabbedPane.addTab("Line plot", contentPane);
+			      contentPane.setLayout(null);
+			  		tabbedPane.setSelectedIndex(1);
+			     
+			     break;
+	      }
+	      
+	      case 4:
+	      {
+	    	  
+	    	  
+	      }
+	    	  
+	      }
+	
+		   
+		
+		 /*final JButton btnChange = new JButton("Change data");
+			
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(690, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+	
+		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setSize(400, 15);
+		 
+		 interactivePanel.add(lblExport);
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(831, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			//tabbedPane.resetKeyboardActions();
+			tabbedPane.remove(0);
+			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
+			tabbedPane.add("Basic data",basicInfo);
+			basicInfo.setLayout(null);
+		
+			tabbedPane.setSelectedIndex(1);
+			
+				}
+			});
+		*/
+		
+	}
+	
+	
 	
 	public void twoGraphsShow()
 	{
