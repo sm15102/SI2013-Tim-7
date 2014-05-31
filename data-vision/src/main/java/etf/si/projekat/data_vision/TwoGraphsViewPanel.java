@@ -2705,8 +2705,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      }
 	
 		   
-		
-		 /*final JButton btnChange = new JButton("Change data");
+	      final JButton btnChange = new JButton("Change data");
 			
 	       btnChange.addMouseListener(new MouseAdapter() {
 	       	@Override
@@ -2714,19 +2713,19 @@ interactivePanel1 = new InteractivePanel(plot);
 	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
+	     btnChange.setBounds(650, 492, 137, 23);
+		 contentPane.add(btnChange);
 		 
 	
 		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setBounds(40, 499, 137, 23);
 		 lblExport.setSize(400, 15);
-		 
-		 interactivePanel.add(lblExport);
+		 lblExport.setForeground(Color.red);
+		 contentPane.add(lblExport);
 		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
+	     btnExit.setBounds(800, 492, 137, 23);
+		contentPane.add(btnExit);
 		 
 		 
 		
@@ -2741,10 +2740,8 @@ interactivePanel1 = new InteractivePanel(plot);
 			basicInfo.setLayout(null);
 		
 			tabbedPane.setSelectedIndex(1);
-			
 				}
 			});
-		*/
 		
 	}
 	
@@ -5593,19 +5590,19 @@ interactivePanel1 = new InteractivePanel(plot);
 	       		tabbedPane.setSelectedIndex(0);
 	       	}
 	       });
-	     btnChange.setBounds(690, 462, 137, 23);
+	     btnChange.setBounds(650, 492, 137, 23);
 		 contentPane.add(btnChange);
 		 
 	
 		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setBounds(40, 499, 137, 23);
 		 lblExport.setSize(400, 15);
-		 
+		 lblExport.setForeground(Color.red);
 		 contentPane.add(lblExport);
 		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 contentPane.add(btnExit);
+	     btnExit.setBounds(800, 492, 137, 23);
+		contentPane.add(btnExit);
 		 
 		 
 		
@@ -5620,7 +5617,6 @@ interactivePanel1 = new InteractivePanel(plot);
 			basicInfo.setLayout(null);
 		
 			tabbedPane.setSelectedIndex(1);
-			
 				}
 			});
 		
