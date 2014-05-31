@@ -2179,9 +2179,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 					
 			tabbedPane.remove(1);
 			//tabbedPane.resetKeyboardActions();
-			tabbedPane.remove(0);
+			//tabbedPane.remove(0);
 			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
 			tabbedPane.add("Basic data",basicInfo);
+			//tabbedPane.add("Basic data",basicInfo);
+
 			basicInfo.setLayout(null);
 		
 			tabbedPane.setSelectedIndex(1);
