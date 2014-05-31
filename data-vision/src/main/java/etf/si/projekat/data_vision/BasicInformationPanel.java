@@ -730,133 +730,11 @@ public class BasicInformationPanel  extends ExamplePanel {
   
 	}
 	
-	public void OneBarGraphShow(){
+	/*public void OneBarGraphShow(){
 		
-		//List<DataTable> vrijednosti= new ArrayList<DataTable>();
-		/*Integer value = (Integer) spinner.getValue();
-
-		 DataTable data1 = new DataTable(Long.class, Double.class, String.class);				 
-		//Podaci koji ce se prikazivati na grafu 
-			Date dateString = (Date) datePicker.getModel().getValue();
-	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
-	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date date_start;
-			Date date_end;
-			
-			  try {
-				date_start = sdf.parse(date_from);
-				date_end = sdf.parse(date_to);
-				try {
-					
-				
-			  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-			 list_values = new ArrayList<Double>();
-				size=list_logs.size();
-				for(int i=0; i<list_logs.size();i++){
-					list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
-				}
-				}catch(NullPointerException e){
-					System.out.println("Ne poklapaju se vrijednosti");
-				}
-			} 
-			  catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			 
-			 
-			  for(int i=0;i<size;i++)
-			  {
-				 
-				  data1.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i), list_logs.get(i).getDevice_name());
-				  
-			  }
-			  
-		 
-       
-		final BarPlot plot= new BarPlot(data1);
-		 
-         // Format plot
-         plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-         plot.setBarWidth(0.075);
-         // Format bars
-         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data1);
-         pointRenderer.setColor(
-                 new LinearGradientPaint(0f,0f, 0f,1f,
-                                 new float[] { 0.0f, 1.0f },
-                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-                 )
-         );
-       
-
-         pointRenderer.setBorderStroke(new BasicStroke(3f));
-         pointRenderer.setBorderColor(
-                 new LinearGradientPaint(0f,0f, 0f,1f,
-                                 new float[] { 0.0f, 1.0f },
-                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-                 )
-         );
-         
-        		 
-         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-
-         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
-         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-         rendererX.setTickLabelFormat(dateFormat);
-         
-         
-         pointRenderer.setValueVisible(true);
-         pointRenderer.setValueColumn(2);
-         pointRenderer.setValueLocation(Location.CENTER);
-         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-        
-        final InteractivePanel interactivePanel = new InteractivePanel(plot);
-           //InteractivePanel interactivePanel = new InteractivePanel(plot);
-          interactivePanel.setLayout(null);
-          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-	       plot.getTitle().setText("Bar plot");
-	       interactivePanel.setVisible(true);
-	     
-	       final JButton btnChange = new JButton("Change data");
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     //btnChange.setBounds(231, 462, 137, 23);
-	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
-		 
-		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
-		 lblExport.setSize(400, 15);
-		 interactivePanel.add(lblExport);
-		 
-		 final JButton btnExit = new JButton("Cancel");
 		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
-		 
-		 tabbedPane.addTab("Line plot", interactivePanel);
-		 tabbedPane.setSelectedIndex(1);
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			tabbedPane.setSelectedIndex(1);
-				}
-			});
-		
-		   tabbedPane.addTab("Bar plot",  interactivePanel);
-		   tabbedPane.setSelectedIndex(1);
-		*/   	
 	}
-	
+	*/
 	
 /*	public void OneLineGraphShow()
 	{
@@ -1146,7 +1024,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			    pointRenderer1.setColor(
 			           new LinearGradientPaint(0f,0f, 0f,1f,
 			           new float[] { 0.0f, 1.0f },
-			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			           new Color[] { COLOR2, GraphicsUtils.deriveBrighter(COLOR2) }
 			                 )
 			         );
 			       
@@ -1154,13 +1032,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 		         pointRenderer1.setBorderColor(
 		                 new LinearGradientPaint(0f,0f, 0f,1f,
 		                                 new float[] { 0.0f, 1.0f },
-		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR2), COLOR2 }
 		                 )
 		         );
 		         pointRenderer1.setValueVisible(true);
 		         pointRenderer1.setValueColumn(2);
 		         pointRenderer1.setValueLocation(Location.CENTER);
-		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR2));
 		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	        		 
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1339,7 +1217,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			                 )
 			         );
 			         pointRenderer2.setValueVisible(true);
-			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueColumn(3);
 			         pointRenderer2.setValueLocation(Location.CENTER);
 			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
