@@ -106,7 +106,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 InteractivePanel inter1;
 InteractivePanel inter2;
   private JPanel contentPane;
-  boolean paneli;
+  boolean paneli_bar;
+  boolean paneli_line;
 
   final UtilDateModel model = new UtilDateModel();
  final JDatePanelImpl datePanel = new JDatePanelImpl(model);
@@ -906,7 +907,8 @@ InteractivePanel inter2;
       btnGenerateGraphs.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      		twoGraphsShow();
+      		
+      		//twoGraphsShow();
       		/* contentPane = new JPanel();
       		 
       		//contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -916,19 +918,21 @@ InteractivePanel inter2;
       		if(choice.getSelectedItem()=="Bar")	
           	{
           		//OneBarGraphShow();
+          		 paneli_bar=true; 
           	}
           	if(choice.getSelectedItem()=="Line")	
           	{
           		//XYPlot plot1=new XYPlot();
           		//plot1=OneLineGraphShow();
           		OneLineGraphShow();
-          		paneli=true;
+          		paneli_line=true;
           	
           	}
       		
       		if(choice_10.getSelectedItem()=="Bar")
       		{
       		//OneBarGraphShow();
+      		 * paneli_bar=false;
       		}
       		
       		if(choice_10.getSelectedItem()=="Line")
@@ -937,7 +941,7 @@ InteractivePanel inter2;
       			//plot2=OneLineGraphShow();
       			
       			//OneLineGraphShow();
-      			//paneli=false;
+      			//paneli_line=false;
       			
       		}
       		
