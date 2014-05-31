@@ -89,6 +89,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
+	
+	
+	// POkupiti iz baze ime device-a
     List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
     final Choice choice;
     final JSpinner spinner;
@@ -706,7 +709,6 @@ public class BasicInformationPanel  extends ExamplePanel {
      
     
       
-      String querry = "Select value from eventlogs";
     
       
   
