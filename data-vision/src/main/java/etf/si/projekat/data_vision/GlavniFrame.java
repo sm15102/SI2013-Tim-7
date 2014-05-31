@@ -20,27 +20,11 @@ import javax.swing.BoxLayout;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
-
-
 import java.awt.Rectangle;
 
-//import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
-import java.awt.Component;
 
-import javax.swing.Box;
 
-import java.awt.Dimension;
-
-import javax.swing.JSeparator;
-
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -48,11 +32,18 @@ import java.awt.event.ActionEvent;
 public class GlavniFrame extends JFrame {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private BasicInformationPanel basicInfo;
 	private TwoGraphsViewPanel twoGraphs;
+	private ThreeGraphsViewPanel threeGraphs;
 	private TableViewPanel tableView;
-	/**
+	
+	
+	/*
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -62,7 +53,9 @@ public class GlavniFrame extends JFrame {
 					GlavniFrame frame = new GlavniFrame();
 					
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				    frame.setResizable(false);
+				  //  frame.setResizable(false); // no resize 
+				    
+				    
 				//	frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,7 +70,7 @@ public class GlavniFrame extends JFrame {
 	public GlavniFrame() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 987, 620);
+		setBounds(100, 100, 987, 630);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setToolTipText("");
@@ -120,18 +113,25 @@ public class GlavniFrame extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmAbout);
+		
+		
+		
+		//PANE
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		//tabbedPane.setBounds(0, 0, 1200,1200);
-		tabbedPane.setBounds(new Rectangle(0, 0, 985, 561));
+		tabbedPane.setBounds(new Rectangle(0, 0, 985, 590));
 		tabbedPane.setBorder(new CompoundBorder());
 		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
+		ThreeGraphsViewPanel threegraphsviewpanel1 = new ThreeGraphsViewPanel(tabbedPane);
+		
 		//BasicInformationPanel basicInfo2 = new BasicInformationPanel(); ovo mijenjalaa
-		//ThreeGraphsViewPanel basicInfo3 = new ThreeGraphsViewPanel();
+		
 		
 	/*	basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
@@ -163,7 +163,10 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Three graph view", null, tabbedPane_4, null);
-		//tabbedPane_4.add(basicInfo3);
+		threeGraphs = new ThreeGraphsViewPanel(tabbedPane_4);
+		tabbedPane_4.add("Three graphs", threeGraphs);
+		threeGraphs.setLayout(null);
+	
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
@@ -203,4 +206,6 @@ public class GlavniFrame extends JFrame {
 		
 		
 	}
+
+	
 }
