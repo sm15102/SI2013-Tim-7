@@ -1551,7 +1551,9 @@ public void OneBarGraphShow(){
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		plot.setInsets(new Insets2D.Double(20.0, 510.0, 60.0, 0));
+		//Insets2D.Double(double top, double left, double bottom, double right)
+
 		 plot.getTitle().setText("Measured values");
 			
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1570,11 +1572,13 @@ public void OneBarGraphShow(){
 	         interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel.setLayout(null);
-	         interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+	         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+	         interactivePanel.setOpaque(true);
+
 	          plot.getTitle().setText("Line plot");
 	          interactivePanel.setVisible(true);
 	          
-	          contentPane.add(interactivePanel);
+	          //contentPane.add(interactivePanel);
 	         
 		break;
 	      }
@@ -1807,7 +1811,9 @@ public void OneBarGraphShow(){
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		plot.setInsets(new Insets2D.Double(20.0, 40.0, 60.0, 0.0));
+		//Insets2D.Double(double top, double left, double bottom, double right)
+
 		 plot.getTitle().setText("Measured values");
 			
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1825,7 +1831,7 @@ public void OneBarGraphShow(){
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	         interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
+	         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
 	          plot.getTitle().setText("Bar plot");
 	         // interactivePanel1.setVisible(true);
 	          
@@ -1843,7 +1849,7 @@ public void OneBarGraphShow(){
 				//contentPane.setBounds(0,0,2000,3000);
 				//contentPane.add(interactivePanel);
 				contentPane.add(interactivePanel1, BorderLayout.CENTER);
-			      interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
+			      //interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
 
 				interactivePanel1.setVisible(true);
 		         interactivePanel1.setLayout(null);
@@ -1853,7 +1859,8 @@ public void OneBarGraphShow(){
 				 contentPane.setVisible(true);
 				 //contentPane.setLayout(null);
 				// contentPane.add(interactivePanel1, BorderLayout.CENTER);
-				// contentPane.add(interactivePanel);
+				contentPane.add(interactivePanel,BorderLayout.CENTER);
+				interactivePanel.isOpaque();
 					interactivePanel1.setVisible(true);
 			         interactivePanel1.setLayout(null);
 				contentPane.setLayout(null);
