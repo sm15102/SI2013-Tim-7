@@ -1551,10 +1551,10 @@ public void OneBarGraphShow(){
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(20.0, 510.0, 60.0, 0));
+		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		//Insets2D.Double(double top, double left, double bottom, double right)
 
-		 plot.getTitle().setText("Measured values");
+		 plot.getTitle().setText("Line plot");
 			
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
          
@@ -1575,7 +1575,7 @@ public void OneBarGraphShow(){
 	         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
 	         interactivePanel.setOpaque(true);
 
-	          plot.getTitle().setText("Line plot");
+	       
 	          interactivePanel.setVisible(true);
 	          
 	          //contentPane.add(interactivePanel);
@@ -1585,9 +1585,11 @@ public void OneBarGraphShow(){
 	      case 2:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
-	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	    	  plot.getTitle().setText("Measured values");
-	    		
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Line plot");
+	  			
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
@@ -1607,14 +1609,14 @@ public void OneBarGraphShow(){
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-			    interactivePanel = new InteractivePanel(plot);
-			     
-			     interactivePanel.setLayout(null);
-			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
-			      interactivePanel.setVisible(true);
-			      
-			     // contentPane.add(interactivePanel);
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setOpaque(true);
+
+		        
+		          interactivePanel.setVisible(true);
 			  	
 			     
 			     break;
@@ -1624,8 +1626,11 @@ public void OneBarGraphShow(){
 	    	  
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
-	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	    	  plot.getTitle().setText("Measured values");
+	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Line plot");
+	  			
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
@@ -1652,14 +1657,14 @@ public void OneBarGraphShow(){
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-			  interactivePanel = new InteractivePanel(plot);
-			     
-			     interactivePanel.setLayout(null);
-			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
-			      interactivePanel.setVisible(true);
-			      
-			     // contentPane.add(interactivePanel);
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
 			     
 			     break;
 	      }
@@ -1811,10 +1816,11 @@ public void OneBarGraphShow(){
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		plot.setInsets(new Insets2D.Double(20.0, 40.0, 60.0, 0.0));
+		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		//Insets2D.Double(double top, double left, double bottom, double right)
 
-		 plot.getTitle().setText("Measured values");
+		 plot.getTitle().setText("Line plot");
+	       
 			
          plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
          
@@ -1832,33 +1838,15 @@ public void OneBarGraphShow(){
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
 	         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
-	          plot.getTitle().setText("Bar plot");
-	         // interactivePanel1.setVisible(true);
-	          
-	       /*   contentPane.add(interactivePanel1);
-	          tabbedPane.addTab("Line plot", contentPane);
-	          contentPane.setLayout(null);
-	      	  tabbedPane.setSelectedIndex(1);   */
+	         
 	          contentPane = new JPanel();
 	       
 				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-				contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-				//contentPane.setBackground(Color.white);
-				//contentPane.setBounds(10,10,5,5);
-				//contentPane.setBounds(0,0,2000,3000);
-				//contentPane.add(interactivePanel);
 				contentPane.add(interactivePanel1, BorderLayout.CENTER);
-			      //interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
-
 				interactivePanel1.setVisible(true);
-		         interactivePanel1.setLayout(null);
-		        
-				
+		         interactivePanel1.setLayout(null);			
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
-				 //contentPane.setLayout(null);
-				// contentPane.add(interactivePanel1, BorderLayout.CENTER);
 				contentPane.add(interactivePanel,BorderLayout.CENTER);
 				interactivePanel.isOpaque();
 					interactivePanel1.setVisible(true);
@@ -1871,8 +1859,10 @@ public void OneBarGraphShow(){
 	      case 2:
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
-	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	    	  plot.getTitle().setText("Measured values");
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	    	  plot.getTitle().setText("Line plot");
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
@@ -1893,17 +1883,25 @@ public void OneBarGraphShow(){
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-			    interactivePanel1 = new InteractivePanel(plot);
-			     
-			     interactivePanel1.setLayout(null);
-			     interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
-			      interactivePanel1.setVisible(true);
-			      
-			      contentPane.add(interactivePanel1);
-			      tabbedPane.addTab("Line plot", contentPane);
-			      contentPane.setLayout(null);
-			  		tabbedPane.setSelectedIndex(1);
+			     interactivePanel1 = new InteractivePanel(plot);
+		         
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		          
+		       
+		          contentPane = new JPanel();
+		       
+					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					contentPane.add(interactivePanel1, BorderLayout.CENTER);
+					interactivePanel1.setVisible(true);
+			         interactivePanel1.setLayout(null);			
+					 tabbedPane.addTab("Two graphs", contentPane);
+					 contentPane.setVisible(true);
+					contentPane.add(interactivePanel,BorderLayout.CENTER);
+					interactivePanel.isOpaque();
+						interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);
+					contentPane.setLayout(null);
+					tabbedPane.setSelectedIndex(1);
 			     
 			     break;
 	      }
@@ -1912,8 +1910,10 @@ public void OneBarGraphShow(){
 	    	  
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
-	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	    	  plot.getTitle().setText("Measured values");
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Line plot");
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
@@ -1940,25 +1940,23 @@ public void OneBarGraphShow(){
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-			  interactivePanel1 = new InteractivePanel(plot);
-			     
-			     interactivePanel1.setLayout(null);
-			     interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
-			      interactivePanel1.setVisible(true);
-			      
-			      contentPane = new JPanel();
+			     interactivePanel1 = new InteractivePanel(plot);
+		         
+		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+		         
+		       
+		          contentPane = new JPanel();
+		       
 					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-					//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-					contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-					contentPane.setBackground(Color.white);
-					//contentPane.setBounds(10,10,5,5);
-					//contentPane.setBounds(0,0,2000,3000);
-					contentPane.add(interactivePanel);
-					contentPane.add(interactivePanel1);
-					//contentPane.setLayout(null);
-					 tabbedPane.addTab("Two graphs", interactivePanel1);
-					 
+					contentPane.add(interactivePanel1, BorderLayout.CENTER);
+					interactivePanel1.setVisible(true);
+			         interactivePanel1.setLayout(null);			
+					 tabbedPane.addTab("Two graphs", contentPane);
+					 contentPane.setVisible(true);
+					contentPane.add(interactivePanel,BorderLayout.CENTER);
+					interactivePanel.isOpaque();
+						interactivePanel1.setVisible(true);
+				         interactivePanel1.setLayout(null);
 					contentPane.setLayout(null);
 					tabbedPane.setSelectedIndex(1);
 			     
