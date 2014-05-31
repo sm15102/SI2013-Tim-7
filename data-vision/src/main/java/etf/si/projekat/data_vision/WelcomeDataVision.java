@@ -372,43 +372,7 @@ public class WelcomeDataVision extends ExamplePanel {
 		interactivePanel_1 = new InteractivePanel((Drawable) null);
 		content2.add(interactivePanel_1);
 		
-		/*final JPanel content3 = new JPanel();
-		content3.setBackground(Color.WHITE);
-	    JPanel tab3 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel3 = new JLabel("Two graphs" );
-	    tab3.add(tabLabel3);
-	    tabbedPane.addTab(null, content3);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab3);
-	    
-	    final JPanel content4 = new JPanel();
-	    content4.setBackground(Color.WHITE);
-	    JPanel tab4 = new JPanel();
-	    tab4.setOpaque(false);
-	    JLabel tabLabel4= new JLabel("Three graphs" );
-	    tab4.add(tabLabel4);
-	    tabbedPane.addTab(null, content4);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab4);
-	    
-	    final JPanel content5 = new JPanel();
-	    content5.setBackground(Color.WHITE);
-	    JPanel tab5 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel5 = new JLabel("Table view" );
-	    tab5.add(tabLabel5);
-	    tabbedPane.addTab(null, content5);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab5);
-	    
-	    final JPanel content6 = new JPanel();
-	    content6.setBackground(Color.WHITE);
-	    JPanel tab6 = new JPanel();
-	    tab3.setOpaque(false);
-	    JLabel tabLabel6 = new JLabel("Consumption" );
-	    tab3.add(tabLabel6);
-	    tabbedPane.addTab(null, content6);
-	    tabbedPane.setTabComponentAt(tabbedPane.getTabCount()-1, tab6);
-	    
-		*/
+	
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -796,20 +760,12 @@ public class WelcomeDataVision extends ExamplePanel {
          pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
          pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
          // Add plot to Swing component
-        // add(new InteractivePanel(plot));
        
            InteractivePanel p = new InteractivePanel(plot);
            p.setBounds(new Rectangle(0, 0, 0, 50));
 	       plot.getTitle().setText("Bar plot");
 	       
-			//p.setVisible(true);
-		   // content2.add(interactivePanel, BorderLayout.CENTER);
-			//content2.add(new Label("bla")); //doda u novi tab graf
-			//content2.add(new InteractivePanel(plot));
-		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
-
-		//f.getContentPane().getComponent(0).getComponentAt(0);
-	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
+			
 		
 		    tabbedPane.add( p);
 		   
