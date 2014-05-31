@@ -917,58 +917,39 @@ InteractivePanel inter2;
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
-      		//twoGraphsShow();
-      		/* contentPane = new JPanel();
-      		 
-      		//contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-     		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-     		contentPane.setBounds(new Rectangle(0, 0,400, 400));
-     		contentPane.setBackground(Color.white);
-      		if(choice.getSelectedItem()=="Bar")	
+      	
+          	if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Bar")	
           	{
-          		//OneBarGraphShow();
-          		 paneli_bar=true; 
-          	}*/
-          	if(choice.getSelectedItem()=="Line")	
-          	{
-          		//XYPlot plot1=new XYPlot();
-          		//plot1=OneLineGraphShow();
+          		//na lijevoj strani prikaz line, na desnoj prikaz bar
           		OneLineGraphShow1();
           		OneBarGraphShow2();
           	
           	}
-      		/*
-      		if(choice_10.getSelectedItem()=="Bar")
+      		
+      		if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Line")
       		{
-      		//OneBarGraphShow();
-      		 * paneli_bar=false;
+      			//i lijevo i desno line
+      			OneLineGraphShow1();
+          		OneLineGraphShow2();
       		}
       		
-      		if(choice_10.getSelectedItem()=="Line")
+      		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Line")
       		{
-      			//XYPlot plot2=new XYPlot();
-      			//plot2=OneLineGraphShow();
-      			
-      			//OneLineGraphShow();
-      			//paneli_line=false;
+      			//lijevo bar, desno line
+      			OneBarGraphShow1();
+          		OneLineGraphShow2();
       			
       		}
       		
+      		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Bar")
+      		{
+      			//lijevo i desno bar
+      			OneBarGraphShow1();
+          		OneBarGraphShow2();
+      			
+      		}
       		
-      		
-      		
-      		// contentPane = new JPanel();
-     		
-     		//contentPane.setBounds(10,10,5,5);
-     		//contentPane.setBounds(0,0,2000,3000);
-     		//contentPane.add(inter1);
-     		//contentPane.add(inter2);
-     		//contentPane.setLayout(null);
-     		 tabbedPane.addTab("Two graphs", contentPane);
-     		contentPane.setLayout(null);
-     		//contentPane.setLayout(null);
-     		 tabbedPane.setSelectedIndex(1);
-      		//twoGraphsShow();*/
+      	
       			
       	}
       });
