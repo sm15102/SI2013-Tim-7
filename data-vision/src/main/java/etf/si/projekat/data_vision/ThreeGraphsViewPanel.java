@@ -727,7 +727,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 	  }
 			  
 			  final BarPlot plot= new BarPlot(d);
-								plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+								plot.setInsets(new Insets2D.Double(30.0, 20.0, 40.0, 0.0));
 				 plot.getTitle().setText("Bar plot");
 					
 				  plot.setBarWidth(0.075);
@@ -765,7 +765,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			         interactivePanel = new InteractivePanel(plot);
 			         
 			         interactivePanel.setLayout(null);
-			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
 			         //interactivePanel.setOpaque(true);
 
 			       
@@ -833,7 +833,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						  
 						  final BarPlot plot1= new BarPlot(d1);
 							
-							plot1.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+							plot1.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 							 plot1.getTitle().setText("Bar plot");
 								
 							  plot1.setBarWidth(0.075);
@@ -899,7 +899,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 								
 						
 							final BarPlot plot3= new BarPlot(dt);
-							plot3.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+							plot3.setInsets(new Insets2D.Double(260.0, 200.0, 40,0));
 					
 						         // Format bars
 						    BarRenderer pointRenderer3 = (BarRenderer) plot3.getPointRenderer(dt);
@@ -937,7 +937,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 					         interactivePanel2 = new InteractivePanel(plot3);
 					         
 					         interactivePanel2.setLayout(null);
-					         interactivePanel2.setBounds(new Rectangle(0, 0, 440, 400));
+					         interactivePanel2.setBounds(new Rectangle(0, 0, 540, 500));
 					        
 
 					       
@@ -947,7 +947,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 					      interactivePanel1 = new InteractivePanel(plot1);
 						         
 						         interactivePanel1.setLayout(null);
-						         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+						         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 230));
 						         
 
 						       
