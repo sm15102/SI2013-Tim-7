@@ -101,6 +101,7 @@ public Consumption() {
     add(time_interval_to);
     
     devices = new JComboBox();
+    devices.setToolTipText("Device name");
     devices.setBounds(195, 86, 165, 28);
     add(devices);
         
@@ -151,7 +152,7 @@ public Consumption() {
         table1.setModel(tablemodel1);
         pane1 = new JScrollPane(table1);
         pane1.setSize(369, 255);
-        pane1.setLocation(586, 235);
+        pane1.setLocation(549, 235);
         add(pane1);
        
         
@@ -170,17 +171,19 @@ public Consumption() {
         add(lblNewLabel);
         
         JLabel lblNewLabel_1 = new JLabel("Periodical results (kWh)");
-        lblNewLabel_1.setBounds(586, 210, 150, 14);
+        lblNewLabel_1.setBounds(550, 211, 150, 14);
         add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("Total result for selected period (kWh)");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_2.setBounds(586, 20, 260, 31);
+        lblNewLabel_2.setBounds(549, 20, 260, 31);
         add(lblNewLabel_2);
         
         lblTotalResult = new JLabel("");
+        lblTotalResult.setForeground(Color.BLACK);
+        lblTotalResult.setToolTipText("Result");
         lblTotalResult.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        lblTotalResult.setBounds(586, 62, 304, 58);
+        lblTotalResult.setBounds(549, 62, 304, 58);
         add(lblTotalResult);
        
         
