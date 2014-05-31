@@ -227,7 +227,7 @@ public void Model() {
 	            		return columnTypes[columnIndex];
 	            	}
 	            	boolean[] columnEditables = new boolean[] {
-	            		true, true, true, true, true, true
+	            		false, false, false, false, false, false
 	            	};
 	            	public boolean isCellEditable(int row, int column) {
 	            		return columnEditables[column];
@@ -250,7 +250,7 @@ public void Model1() {
             		return columnTypes[columnIndex];
             	}
             	boolean[] columnEditables = new boolean[] {
-            		true, true, true
+            		false, false, false
             	};
             	public boolean isCellEditable(int row, int column) {
             		return columnEditables[column];
