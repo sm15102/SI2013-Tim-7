@@ -179,7 +179,7 @@ public Consumption() {
         lblNewLabel_2.setBounds(549, 20, 260, 31);
         add(lblNewLabel_2);
         
-        lblTotalResult = new JLabel("");
+        lblTotalResult = new JLabel("0.0000 kWh");
         lblTotalResult.setForeground(Color.BLACK);
         lblTotalResult.setToolTipText("Result");
         lblTotalResult.setFont(new Font("Tahoma", Font.PLAIN, 30));
