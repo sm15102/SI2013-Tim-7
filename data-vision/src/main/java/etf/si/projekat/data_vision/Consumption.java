@@ -158,7 +158,7 @@ public Consumption() {
         
         
         spinner = new JSpinner();
-        spinner.setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(0)));
+        spinner.setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(10)));
         spinner.setBounds(195, 125, 165, 28);
         add(spinner);
         
