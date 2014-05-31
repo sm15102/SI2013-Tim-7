@@ -1625,7 +1625,7 @@ public void OneBarGraphShow(){
 		
 		
 		 //Podaci koji ce se prikazivati na grafu 
-	     /* DataTable data = new DataTable(Double.class, Double.class);
+	     DataTable data = new DataTable(Double.class, Double.class);
 	     
 	       
 	       double x = 1; 
@@ -1654,9 +1654,9 @@ public void OneBarGraphShow(){
 	       x = 7; 
 	       y = 20;
 	       
-	       data.add(x, y);*/
+	       data.add(x, y);
 		
-		Date dateString = (Date) datePicker.getModel().getValue();
+		/*Date dateString = (Date) datePicker.getModel().getValue();
  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
  		Date dateString1 = (Date) datePicker1.getModel().getValue();
  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
@@ -1691,7 +1691,7 @@ public void OneBarGraphShow(){
 			 
 			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
 			  
-		  }
+		  }*/
 	       
 	       XYPlot plot=plot = new XYPlot(data);
 	       //prikaz grafa na frameu

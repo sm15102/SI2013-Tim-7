@@ -122,7 +122,7 @@ public class BasicInformationPanel  extends ExamplePanel {
     DataTable data1;
   
     
-    //final InteractivePanel interactivePanel;
+    InteractivePanel interactivePanel;
     
     
 	/**
@@ -1160,48 +1160,156 @@ public class BasicInformationPanel  extends ExamplePanel {
 					 series=new ArrayList<DataSeries>();
 					  DataTable d=new DataTable(Long.class, Double.class, String.class);
 					  DataTable d1=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d2=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d3=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d4=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d5=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d6=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d7=new DataTable(Long.class, Double.class, String.class);
+					  DataTable d8=new DataTable(Long.class, Double.class, String.class);
+					  
 					  for(int i=0;i<list_logs.size();i++)
 					  {
 						  
 						  for(int j=0;j<list_logs.get(i).size();j++){
-							  if(i==0){
+							
 							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-							  }
-							  else
-							  {
-								  d1.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-							  }
-					
-						 
-						  }
-						  if(i==0){
+			  }
+						
 						  datas.add(d);
 						  series.add(new DataSeries(d));
 						  }
-						  else 
-						  {
-						  datas.add(d1);
-						  series.add(new DataSeries(d1));
-						  }
-
-						  
+			
 					  }
-					  
-					  
-				
-					  
-		}
-	
-	
-	       
-	        
-	        XYPlot plot = new XYPlot(series.get(0), series.get(1));
-	    	
-	    
+		 
+	      switch(value)
+	      {
+	      case 1:
+	      {
+		XYPlot plot = new XYPlot(series.get(0));
+		plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+		 plot.getTitle().setText("Measured values");
+			
+         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+         
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         rendererX.setTickLabelFormat(dateFormat);
+		  LineRenderer lines = new DefaultLineRenderer2D();
+	         plot.setLineRenderer(series.get(0), lines);
+	         Color color = new Color(0.0f, 0.3f, 1.0f);
+	        plot.getPointRenderer(series.get(0)).setColor(color);
+	         plot.getLineRenderer(series.get(0)).setColor(color);
+	         
+	         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+	         
+	         interactivePanel = new InteractivePanel(plot);
+	         
+	         interactivePanel.setLayout(null);
+	         interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+	          plot.getTitle().setText("Bar plot");
+	          interactivePanel.setVisible(true);
+	          
+	          tabbedPane.addTab("Line plot", interactivePanel);
+	      		tabbedPane.setSelectedIndex(1);   
+	         
+		break;
+	      }
+	      case 2:
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1); 
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			    interactivePanel = new InteractivePanel(plot);
+			     
+			     interactivePanel.setLayout(null);
+			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel.setVisible(true);
+			      
+			      tabbedPane.addTab("Line plot", interactivePanel);
+			  		tabbedPane.setSelectedIndex(1);
+			     
+			     break;
+	      }
 	      
-		     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	      case 3:
+	    	  
+	      {
+	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
+	    	  plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
+	    	  plot.getTitle().setText("Measured values");
+	    		
+		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+		         
+		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		         rendererX.setTickLabelFormat(dateFormat);
+			  LineRenderer lines = new DefaultLineRenderer2D();
+		         plot.setLineRenderer(series.get(0), lines);
+		         Color color = new Color(0.0f, 0.3f, 1.0f);
+		        plot.getPointRenderer(series.get(0)).setColor(color);
+		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         
+		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(1), lines1);
+			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(1)).setColor(color1);
+			     plot.getLineRenderer(series.get(1)).setColor(color1);
+			     
+			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
+			     plot.setLineRenderer(series.get(2), lines2);
+			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
+			     plot.getPointRenderer(series.get(2)).setColor(color2);
+			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     
+			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+			  interactivePanel = new InteractivePanel(plot);
+			     
+			     interactivePanel.setLayout(null);
+			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
+			      plot.getTitle().setText("Bar plot");
+			      interactivePanel.setVisible(true);
+			      
+			      tabbedPane.addTab("Line plot", interactivePanel);
+			  		tabbedPane.setSelectedIndex(1);
+			     
+			     break;
+	      }
+	      
+	      case 4:
+	      {
+	    	  
+	    	  
+	      }
+	    	  
+	      }
+	
+		   
+		//plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 		     // plot.setBackground(Color.WHITE);
-
+/*
 	         plot.getTitle().setText("Measured values");
 	
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1209,10 +1317,10 @@ public class BasicInformationPanel  extends ExamplePanel {
 	        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	         rendererX.setTickLabelFormat(dateFormat);
-	         
+	         */
 	     
 	        
-	        LineRenderer lines = new DefaultLineRenderer2D();
+	       /* LineRenderer lines = new DefaultLineRenderer2D();
 	         plot.setLineRenderer(series.get(0), lines);
 	         Color color = new Color(0.0f, 0.3f, 1.0f);
 	        plot.getPointRenderer(series.get(0)).setColor(color);
@@ -1225,15 +1333,15 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         Color color1 = new Color(0.0f, 0.3f, 1.0f);
 	      plot.getPointRenderer(series.get(1)).setColor(color1);
 	      
-	         plot.getLineRenderer(series.get(1)).setColor(color1);
+	         plot.getLineRenderer(series.get(1)).setColor(color1);*/
 	        
 	         
 	      
 	       // Style the plot area
-	        plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+	     //   plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 	 
 
-  final InteractivePanel interactivePanel = new InteractivePanel(plot);
+  /*final InteractivePanel interactivePanel = new InteractivePanel(plot);
   
    interactivePanel.setLayout(null);
    interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
@@ -1241,7 +1349,7 @@ public class BasicInformationPanel  extends ExamplePanel {
     interactivePanel.setVisible(true);
     
     tabbedPane.addTab("Line plot", interactivePanel);
-		tabbedPane.setSelectedIndex(1);
+		tabbedPane.setSelectedIndex(1); */
 		 final JButton btnChange = new JButton("Change data");
 			
 	       btnChange.addMouseListener(new MouseAdapter() {

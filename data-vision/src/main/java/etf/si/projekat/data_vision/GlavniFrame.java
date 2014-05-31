@@ -131,7 +131,7 @@ public class GlavniFrame extends JFrame {
 		
 		TwoGraphsViewPanel twographsviewpanel1 = new TwoGraphsViewPanel(tabbedPane);
 		//BasicInformationPanel basicInfo2 = new BasicInformationPanel(); ovo mijenjalaa
-		ThreeGraphsViewPanel basicInfo3 = new ThreeGraphsViewPanel();
+		//ThreeGraphsViewPanel basicInfo3 = new ThreeGraphsViewPanel();
 		
 	/*	basicInfo.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
@@ -163,7 +163,7 @@ public class GlavniFrame extends JFrame {
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Three graph view", null, tabbedPane_4, null);
-		tabbedPane_4.add(basicInfo3);
+		//tabbedPane_4.add(basicInfo3);
 		
 		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
