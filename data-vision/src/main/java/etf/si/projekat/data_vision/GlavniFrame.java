@@ -68,7 +68,6 @@ public class GlavniFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniFrame() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 987, 630);
 		
