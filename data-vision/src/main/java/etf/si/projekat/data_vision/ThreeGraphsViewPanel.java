@@ -220,7 +220,7 @@ public class ThreeGraphsViewPanel extends JPanel  {
 
 
 
-		spinner.setModel(new SpinnerNumberModel(1, 1, 1, 1));
+		spinner.setModel(new SpinnerNumberModel(2, 2, 2, 1));
 		spinner.setBounds(152, 137, 165, 18);
 
 
