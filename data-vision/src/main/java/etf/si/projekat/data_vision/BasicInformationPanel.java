@@ -912,13 +912,13 @@ public class BasicInformationPanel  extends ExamplePanel {
 							 
 						}
 						}catch(Exception e){
-							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+							
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
 					} 
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
-						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						 
 						e1.printStackTrace();
 					}
 					
@@ -944,11 +944,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 		{
 		case 1:
 		{
-			final BarPlot plot= new BarPlot(series.get(0));
+			final BarPlot plot= new BarPlot(datas.get(0));
 			plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-		    plot.setBarWidth(0.075);
+		    //plot.setBarWidth(BarPlot.AUTO_RESIZE);
 		         // Format bars
-		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(datas.get(0));
 		    pointRenderer.setColor(
 		           new LinearGradientPaint(0f,0f, 0f,1f,
 		           new float[] { 0.0f, 1.0f },
@@ -963,6 +963,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
 	                 )
 	         );
+	         
 	         
 	        		 
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -994,11 +995,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 		
 		case 2: 
 		{
-			final BarPlot plot= new BarPlot(series.get(0), series.get(1) );
+			final BarPlot plot= new BarPlot(datas.get(0), datas.get(1) );
 			plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
 		    plot.setBarWidth(0.075);
 		         // Format bars
-		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		  BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(datas.get(0));
 		    pointRenderer.setColor(
 		           new LinearGradientPaint(0f,0f, 0f,1f,
 		           new float[] { 0.0f, 1.0f },
@@ -1020,7 +1021,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
 	         
-	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+	        /* BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(datas.get(1));
 			    pointRenderer1.setColor(
 			           new LinearGradientPaint(0f,0f, 0f,1f,
 			           new float[] { 0.0f, 1.0f },
@@ -1039,8 +1040,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 		         pointRenderer1.setValueColumn(2);
 		         pointRenderer1.setValueLocation(Location.CENTER);
 		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR2));
-		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-	        		 
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD)); 
+	        	
+		  */
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
 	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
@@ -1087,8 +1089,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         pointRenderer.setValueLocation(Location.CENTER);
 	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-	         
-	         
+
 	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
 			    pointRenderer1.setColor(
 			           new LinearGradientPaint(0f,0f, 0f,1f,
@@ -1127,11 +1128,11 @@ public class BasicInformationPanel  extends ExamplePanel {
 			                 )
 			         );
 			         pointRenderer2.setValueVisible(true);
-			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueColumn(3);
 			         pointRenderer2.setValueLocation(Location.CENTER);
 			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-	        		 
+	         
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
 	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
@@ -2147,6 +2148,44 @@ public class BasicInformationPanel  extends ExamplePanel {
 		}
 		}
 		
+		 final JButton btnChange = new JButton("Change data");
+			
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(650, 492, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+	
+		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+		 lblExport.setBounds(40, 499, 137, 23);
+		 lblExport.setSize(400, 15);
+		 lblExport.setForeground(Color.red);
+		 interactivePanel.add(lblExport);
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(800, 492, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			//tabbedPane.resetKeyboardActions();
+			tabbedPane.remove(0);
+			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
+			tabbedPane.add("Basic data",basicInfo);
+			basicInfo.setLayout(null);
+		
+			tabbedPane.setSelectedIndex(1);
+				}
+			});
+		
 	}
 	
 	
@@ -2214,7 +2253,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 					} 
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
-						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						
 						e1.printStackTrace();
 					}
 					
@@ -2746,44 +2785,45 @@ public class BasicInformationPanel  extends ExamplePanel {
 	    	  
 	      }
 
-		 final JButton btnChange = new JButton("Change data");
+
+			 final JButton btnChange = new JButton("Change data");
+				
+		       btnChange.addMouseListener(new MouseAdapter() {
+		       	@Override
+		       	public void mouseClicked(MouseEvent arg0) {
+		       		tabbedPane.setSelectedIndex(0);
+		       	}
+		       });
+		     btnChange.setBounds(650, 492, 137, 23);
+			 interactivePanel.add(btnChange);
+			 
+		
+			 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+			 lblExport.setBounds(40, 499, 137, 23);
+			 lblExport.setSize(400, 15);
+			 lblExport.setForeground(Color.red);
+			 interactivePanel.add(lblExport);
+			 final JButton btnExit = new JButton("Cancel");
 			
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
-		 
-	
-		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
-		 lblExport.setSize(400, 15);
-		 
-		 interactivePanel.add(lblExport);
-		 final JButton btnExit = new JButton("Cancel");
-		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
-		 
-		 
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
-			tabbedPane.remove(0);
-			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			tabbedPane.add("Basic data",basicInfo);
-			basicInfo.setLayout(null);
-		
-			tabbedPane.setSelectedIndex(1);
+		     btnExit.setBounds(800, 492, 137, 23);
+			 interactivePanel.add(btnExit);
+			 
+			 
 			
-				}
-			});
+			 btnExit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+				tabbedPane.remove(1);
+				//tabbedPane.resetKeyboardActions();
+				tabbedPane.remove(0);
+				BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
+				tabbedPane.add("Basic data",basicInfo);
+				basicInfo.setLayout(null);
+			
+				tabbedPane.setSelectedIndex(1);
+					}
+				});
+			
 		
 		
 	}
