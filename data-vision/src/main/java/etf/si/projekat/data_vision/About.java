@@ -82,6 +82,10 @@ public class About extends JFrame {
 		lblSnjezanaMiletic.setBounds(10, 138, 103, 14);
 		contentPane.add(lblSnjezanaMiletic);
 		
+		JLabel lblSalemMaglic = new JLabel("Salem Maglic");
+		lblSnjezanaMiletic.setBounds(10, 138, 103, 14);
+		contentPane.add(lblSnjezanaMiletic);
+		
 		JLabel lblAdnanOmanovic = new JLabel("Adnan Omanovic");
 		lblAdnanOmanovic.setBounds(10, 156, 103, 14);
 		contentPane.add(lblAdnanOmanovic);
