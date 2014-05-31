@@ -206,16 +206,16 @@ InteractivePanel inter2;
         datePicker1.setSize(165, 28);
       add(datePicker1);
       
-      UtilDateModel model2 = new UtilDateModel();
+     /* UtilDateModel model2 = new UtilDateModel();
       JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
-      final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);
+      final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);*/
       datePicker2.setLocation(464, 75);
       datePicker2.setSize(165, 28);
     add(datePicker2);
     
-    UtilDateModel model3 = new UtilDateModel();
+   /*UtilDateModel model3 = new UtilDateModel();
     JDatePanelImpl datePane3 = new JDatePanelImpl(model3);
-    final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);
+    final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);*/
     datePicker3.setLocation(464, 104);
     datePicker3.setSize(165, 28);
     add(datePicker3);
@@ -1454,14 +1454,14 @@ public void OneBarGraphShow(){
 	
 	public void  OneLineGraphShow1()
 	{
-		contentPane = new JPanel();
+		/*contentPane = new JPanel();
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-		contentPane.setBackground(Color.white);
+		contentPane.setBackground(Color.black);
 		//contentPane.setBounds(10,10,5,5);
 		//contentPane.setBounds(0,0,2000,3000);
-		
+		*/
 		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		
@@ -1574,7 +1574,7 @@ public void OneBarGraphShow(){
 	          plot.getTitle().setText("Bar plot");
 	          interactivePanel.setVisible(true);
 	          
-	          contentPane.add(interactivePanel);
+	          //contentPane.add(interactivePanel);
 	         
 		break;
 	      }
@@ -1610,7 +1610,7 @@ public void OneBarGraphShow(){
 			      plot.getTitle().setText("Bar plot");
 			      interactivePanel.setVisible(true);
 			      
-			      contentPane.add(interactivePanel);
+			     // contentPane.add(interactivePanel);
 			  	
 			     
 			     break;
@@ -1655,7 +1655,7 @@ public void OneBarGraphShow(){
 			      plot.getTitle().setText("Bar plot");
 			      interactivePanel.setVisible(true);
 			      
-			      contentPane.add(interactivePanel);
+			     // contentPane.add(interactivePanel);
 			     
 			     break;
 	      }
@@ -1723,7 +1723,7 @@ public void OneBarGraphShow(){
 		for(int k=0; k<value; k++)
 		{
 							 
-				//Podaci koji ce se prikazivati na grafu 
+				    //Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker2.getModel().getValue();
 			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker3.getModel().getValue();
@@ -1825,15 +1825,33 @@ public void OneBarGraphShow(){
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	         interactivePanel1.setLayout(null);
 	         interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
 	          plot.getTitle().setText("Bar plot");
-	          interactivePanel1.setVisible(true);
+	         // interactivePanel1.setVisible(true);
 	          
-	          contentPane.add(interactivePanel1);
+	       /*   contentPane.add(interactivePanel1);
 	          tabbedPane.addTab("Line plot", contentPane);
 	          contentPane.setLayout(null);
-	      	  tabbedPane.setSelectedIndex(1);   
+	      	  tabbedPane.setSelectedIndex(1);   */
+	          contentPane = new JPanel();
+	       
+				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+				contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
+				contentPane.setBackground(Color.white);
+				//contentPane.setBounds(10,10,5,5);
+				//contentPane.setBounds(0,0,2000,3000);
+				//contentPane.add(interactivePanel);
+				contentPane.add(interactivePanel1, BorderLayout.CENTER);
+				interactivePanel1.setVisible(true);
+		         interactivePanel1.setLayout(null);
+
+				
+				 tabbedPane.addTab("Two graphs", contentPane);
+				 contentPane.setVisible(true);
+				 contentPane.setLayout(null);
+				//contentPane.setLayout(null);
+				tabbedPane.setSelectedIndex(1);
 	         
 		break;
 	      }
@@ -1916,10 +1934,20 @@ public void OneBarGraphShow(){
 			      plot.getTitle().setText("Bar plot");
 			      interactivePanel1.setVisible(true);
 			      
-			      contentPane.add(interactivePanel1);
-			      tabbedPane.addTab("Line plot", contentPane);
-			      contentPane.setLayout(null);
-			  		tabbedPane.setSelectedIndex(1);
+			      contentPane = new JPanel();
+					contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+					//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
+					contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
+					contentPane.setBackground(Color.white);
+					//contentPane.setBounds(10,10,5,5);
+					//contentPane.setBounds(0,0,2000,3000);
+					contentPane.add(interactivePanel);
+					contentPane.add(interactivePanel1);
+					//contentPane.setLayout(null);
+					 tabbedPane.addTab("Two graphs", contentPane);
+					 
+					contentPane.setLayout(null);
+					tabbedPane.setSelectedIndex(1);
 			     
 			     break;
 	      }
