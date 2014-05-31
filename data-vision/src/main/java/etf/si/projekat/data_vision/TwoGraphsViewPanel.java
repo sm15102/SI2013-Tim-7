@@ -1571,10 +1571,10 @@ public void OneBarGraphShow(){
 	         
 	         interactivePanel.setLayout(null);
 	         interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-	          plot.getTitle().setText("Bar plot");
+	          plot.getTitle().setText("Line plot");
 	          interactivePanel.setVisible(true);
 	          
-	          //contentPane.add(interactivePanel);
+	          contentPane.add(interactivePanel);
 	         
 		break;
 	      }
@@ -1825,7 +1825,7 @@ public void OneBarGraphShow(){
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	         interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
+	         interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
 	          plot.getTitle().setText("Bar plot");
 	         // interactivePanel1.setVisible(true);
 	          
@@ -1838,19 +1838,25 @@ public void OneBarGraphShow(){
 				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
 				contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-				contentPane.setBackground(Color.white);
+				//contentPane.setBackground(Color.white);
 				//contentPane.setBounds(10,10,5,5);
 				//contentPane.setBounds(0,0,2000,3000);
 				//contentPane.add(interactivePanel);
 				contentPane.add(interactivePanel1, BorderLayout.CENTER);
+			      interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
+
 				interactivePanel1.setVisible(true);
 		         interactivePanel1.setLayout(null);
-
+		        
 				
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
-				 contentPane.setLayout(null);
-				//contentPane.setLayout(null);
+				 //contentPane.setLayout(null);
+				// contentPane.add(interactivePanel1, BorderLayout.CENTER);
+				// contentPane.add(interactivePanel);
+					interactivePanel1.setVisible(true);
+			         interactivePanel1.setLayout(null);
+				contentPane.setLayout(null);
 				tabbedPane.setSelectedIndex(1);
 	         
 		break;
@@ -1944,7 +1950,7 @@ public void OneBarGraphShow(){
 					contentPane.add(interactivePanel);
 					contentPane.add(interactivePanel1);
 					//contentPane.setLayout(null);
-					 tabbedPane.addTab("Two graphs", contentPane);
+					 tabbedPane.addTab("Two graphs", interactivePanel1);
 					 
 					contentPane.setLayout(null);
 					tabbedPane.setSelectedIndex(1);
