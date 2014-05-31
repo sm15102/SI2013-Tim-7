@@ -426,7 +426,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 							
 				        
 							
-							JOptionPane.showMessageDialog(null,logs.get(i).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+							
 								
 							values.add(logs.get(i).getValue());           
 							
@@ -506,7 +506,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 					
 					finally {}
 					size=logs.size();
-					JOptionPane.showMessageDialog(null,choice_12.getSelectedItem(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+					
 					  values1=new ArrayList<Double>();
 					
 					for(int i=0; i<logs1.size();i++){
@@ -580,8 +580,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate())
 						{
 							dt.add(logs1.get(i).getValue(),logs.get(j).getValue());
-							JOptionPane.showMessageDialog(null,logs1.get(i).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-							JOptionPane.showMessageDialog(null,logs.get(j).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+							
 							break;
 						}
 						
@@ -690,7 +689,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 					
 					
 			  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-
+			  
 				}
 				
 				finally {}
@@ -702,7 +701,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 				for(int i=0; i<logs.size();i++){
 					
 		        
-					JOptionPane.showMessageDialog(null,logs.get(i).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+					
 						
 					values.add(logs.get(i).getValue());           
 				
@@ -764,7 +763,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			         
 			         interactivePanel = new InteractivePanel(plot);
 			         
-			         interactivePanel.setLayout(null);
+			        // interactivePanel.setLayout(null);
 			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
 			         //interactivePanel.setOpaque(true);
 
@@ -799,7 +798,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 							
 							finally {}
 							size=logs.size();
-							JOptionPane.showMessageDialog(null,choice_12.getSelectedItem(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+							
 							  values1=new ArrayList<Double>();
 							
 							for(int i=0; i<logs1.size();i++){
@@ -889,8 +888,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 									if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate())
 									{
 										dt.add(logs1.get(i).getValue(),logs.get(j).getValue());
-										JOptionPane.showMessageDialog(null,logs1.get(i).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
-										JOptionPane.showMessageDialog(null,logs.get(j).getValue(), "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+										
 										break;
 									}
 									
