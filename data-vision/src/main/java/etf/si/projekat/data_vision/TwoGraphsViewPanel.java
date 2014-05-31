@@ -5584,7 +5584,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	
 		   
 		
-		 /*final JButton btnChange = new JButton("Change data");
+	      final JButton btnChange = new JButton("Change data");
 			
 	       btnChange.addMouseListener(new MouseAdapter() {
 	       	@Override
@@ -5593,18 +5593,18 @@ interactivePanel1 = new InteractivePanel(plot);
 	       	}
 	       });
 	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
+		 contentPane.add(btnChange);
 		 
 	
 		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 		 lblExport.setBounds(131, 462, 137, 23);
 		 lblExport.setSize(400, 15);
 		 
-		 interactivePanel.add(lblExport);
+		 contentPane.add(lblExport);
 		 final JButton btnExit = new JButton("Cancel");
 		
 	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
+		 contentPane.add(btnExit);
 		 
 		 
 		
@@ -5622,7 +5622,6 @@ interactivePanel1 = new InteractivePanel(plot);
 			
 				}
 			});
-		*/
 		
 	}
 	
