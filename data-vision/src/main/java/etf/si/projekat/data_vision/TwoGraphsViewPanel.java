@@ -933,7 +933,7 @@ InteractivePanel inter2;
           	{
           		//XYPlot plot1=new XYPlot();
           		//plot1=OneLineGraphShow();
-          		OneLineGraphShow1();
+          		OneBarGraphShow1();
           		OneLineGraphShow2();
           	
           	}
@@ -1319,137 +1319,7 @@ InteractivePanel inter2;
      
       
       //-------------------------------------------------------------------------------
-      
-public void OneBarGraphShow(){
-		
-		
-		List<Choice> choices=new ArrayList<Choice>();
-		choices.add(choice_1);
-		choices.add(choice_2);
-		choices.add(choice_3);
-		choices.add(choice_4);
-		choices.add(choice_5);
-		choices.add(choice_6);
-		choices.add(choice_7);
-		choices.add(choice_8);
-		choices.add(choice_9);
-		
-		Integer value = (Integer) spinner.getValue();
-		ArrayList<String> senzori = new ArrayList<String>();
-		for(int i=0;i<value;i++)
-		{
-			
-			senzori.add(choices.get(i).getSelectedItem());
-		   
-		}
-		
-		 DataTable data = new DataTable(Double.class, Integer.class, String.class);
-		 double j=0.1;
-		 for(int i=0; i<value; i++)
-		 {
-			
-			data.add(j, i+1, senzori.get(i));
-			j+=0.2;
-			
-		 }
-       
-       BarPlot  plot = new BarPlot(data);
-         // Format plot
-         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
-         plot.setBarWidth(0.075);
-         // Format bars
-         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
-         pointRenderer.setColor(
-                 new LinearGradientPaint(0f,0f, 0f,1f,
-                                 new float[] { 0.0f, 1.0f },
-                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-                 )
-         );
-         pointRenderer.setBorderStroke(new BasicStroke(3f));
-         pointRenderer.setBorderColor(
-                 new LinearGradientPaint(0f,0f, 0f,1f,
-                                 new float[] { 0.0f, 1.0f },
-                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-                 )
-         );
-         
-         pointRenderer.setValueVisible(true);
-         pointRenderer.setValueColumn(2);
-         pointRenderer.setValueLocation(Location.CENTER);
-         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-         // Add plot to Swing component
-         // add(new InteractivePanel(plot));
-       
-         
-            /* contentPane = new JPanel();
-			contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-			contentPane.setBounds(new Rectangle(50, 0, 50, 50));
-			contentPane.setBackground(Color.white);
-			contentPane.setBounds(10,10,5,5);
 
-	         add(contentPane, BorderLayout.NORTH);*/
-         
-          interactivePanel = new InteractivePanel(plot);
-          interactivePanel.setLayout(null);
-          interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-	       plot.getTitle().setText("Bar plot");
-	       interactivePanel.setVisible(true);
-	      // contentPane.add(p, BorderLayout.CENTER);
-	       
-			//p.setVisible(true);
-		   // content2.add(interactivePanel, BorderLayout.CENTER);
-			//content2.add(new Label("bla")); //doda u novi tab graf
-			//content2.add(new InteractivePanel(plot));
-		    //content2.setLayout(new BoxLayout(content2, BoxLayout.X_AXIS));
-
-		//f.getContentPane().getComponent(0).getComponentAt(0);
-	//	tabbedPane.getTabComponentAt(1).add(interactivePanel, BorderLayout.SOUTH);
-	       
-	       
-	       
-	       
-	      final JButton btnChange = new JButton("Change data");
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     btnChange.setBounds(81, 462, 137, 23);
-		 interactivePanel.add(btnChange);
-		 
-		 final JButton btnExport = new JButton("Export plot");
-	       btnExport.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	      //ovdje ce ici kod za export
-	       	}
-	       });
-	     btnExport.setBounds(281, 462, 137, 23);
-		 interactivePanel.add(btnExport);
-		 
-		 final JButton btnExit = new JButton("Cancel");
-		
-	     btnExit.setBounds(481, 462, 137, 23);
-		 interactivePanel.add(btnExit);
-		 
-		 tabbedPane.addTab("Line plot", interactivePanel);
-		 tabbedPane.setSelectedIndex(1);
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			tabbedPane.setSelectedIndex(1);
-				}
-			});
-		
-		  tabbedPane.addTab("Bar plot",  interactivePanel);
-		  tabbedPane.setSelectedIndex(1);
-		   	
-	}
-	
 	
 	
 	public void  OneLineGraphShow1()
@@ -2898,345 +2768,1385 @@ interactivePanel1 = new InteractivePanel(plot);
 	
 	
 	
-	public void twoGraphsShow()
-	{
-		//KOD ZA THREE GRAPHS SHOW
-		
-		/*
-		 +		 DataTable data = new DataTable(Double.class, Double.class);
-		 +	     
-		 +	       
-		 +	       double x = 1; 
-		 +	       double y = 17;
-		 +	       data.add(x, y);
-		 +	       x = 2; 
-		 +	       y = 16;
-		 +	       data.add(x, y);
-		 +	        
-		 +	       x = 3; 
-		 +	       y = 18;
-		 +	       data.add(x, y);
-		 +	        
-		 +	      x = 4; 
-		 +	       y = 20;
-		 +	       data.add(x, y);
-		 +	        
-		 +	        x = 5; 
-		 +	       y = 19;
-		 +	       data.add(x, y);
-		 +	        
-		 +	       x = 6; 
-		 +	        y = 22;
-		 +	       data.add(x, y);
-		 +	        
-		 +	       x = 7; 
-		 +	       y = 20;
-		 +	       
-		 +	       data.add(x, y);
-		 +	       
-		 +		
-		 +		
-		 +		
-		          
-		 +		final DataSeries barSeries = new DataSeries(data, 0, 1);
-		 +		final DataSeries lineSeries = new DataSeries(data, 0, 1);
-		 +
-		 +		BarPlot plot = new BarPlot(barSeries, lineSeries);
-		 +
-		 +		// Change the color of all bars
-		 +		PointRenderer barRenderer = plot.getPointRenderer(barSeries);
-		 +		barRenderer.setColor(Color.LIGHT_GRAY);
-		 +
-		 +		// Display the second data series as a line plot
-		 +		LineRenderer lineRenderer = new DefaultLineRenderer2D();
-		 +		lineRenderer.setColor(Color.RED);
-		 +		plot.setLineRenderer(lineSeries, lineRenderer);
-		 +		// The default point renderer (BarRenderer) needs to be deactivated (or changed)
-		 +		plot.setPointRenderer(lineSeries, null);
-		 +		
-		 +		interactivePanel2 = new InteractivePanel(plot);
-		  		tabbedPane.addTab("two",  interactivePanel2);
-		 -		tabbedPane.setSelectedIndex(1);
-		 +		tabbedPane.setSelectedIndex(1);*/
-		
-		
-		
-		 //Podaci koji ce se prikazivati na grafu 
-	     DataTable data = new DataTable(Double.class, Double.class);
-	     
-	       
-	       double x = 1; 
-	       double y = 17;
-	       data.add(x, y);
-	       x = 2; 
-	       y = 16;
-	       data.add(x, y);
-	        
-	       x = 3; 
-	       y = 18;
-	       data.add(x, y);
-	        
-	      x = 4; 
-	       y = 20;
-	       data.add(x, y);
-	        
-	        x = 5; 
-	       y = 19;
-	       data.add(x, y);
-	        
-	       x = 6; 
-	        y = 22;
-	       data.add(x, y);
-	        
-	       x = 7; 
-	       y = 20;
-	       
-	       data.add(x, y);
-		
-		/*Date dateString = (Date) datePicker.getModel().getValue();
- 		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
- 		Date dateString1 = (Date) datePicker1.getModel().getValue();
- 		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date date_start;
-		Date date_end;
-		
-		  try {
-			date_start = sdf.parse(date_from);
-			date_end = sdf.parse(date_to);
-			try {
-				
-			
-		  list_logs= new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-		  list_values = new ArrayList<Double>();
-			size=list_logs.size();
-			for(int i=0; i<list_logs.size();i++){
-				list_values.add(list_logs.get(i).getValue());           //Ovo čemo stavljati na graf valjda :D
-			}
-			}catch(NullPointerException e){
-				System.out.println("Ne poklapaju se vrijednosti");
-			}
-		} 
-		  catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		 
-		
-		  for(int i=0;i<size;i++)
-		  {
-			 
-			  data.add(list_logs.get(i).getTimestamp().getTime(), list_values.get(i));
-			  
-		  }*/
-	       
-	       XYPlot plot=plot = new XYPlot(data);
-	       //prikaz grafa na frameu
-	     //  add(new InteractivePanel(plot));
-
-	     plot.setVisible(data, true);
-	     plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-	   // plot.setBackground(Color.WHITE);
-
-      plot.getTitle().setText("Temperature  for 7 days");
-      LineRenderer lines = new DefaultLineRenderer2D();
-      plot.setLineRenderer(data, lines);
-      Color color = new Color(0.0f, 0.3f, 1.0f);
-      plot.getPointRenderer(data).setColor(color);
-      plot.getLineRenderer(data).setColor(color);
-   // Draw a tick mark and a grid line every 10 units along x axis
-      plot.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
-      // Draw a tick mark and a grid line every 20 units along y axis
-      plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-      
-      
-      XYPlot plot1 = new XYPlot(data);
-      //prikaz grafa na frameu
-    //  add(new InteractivePanel(plot));
-
-    plot1.setVisible(data, true);
-    
-    
-    // plot.setBackground(Color.WHITE);
-
- plot1.getTitle().setText("Temperature  for 7 days");
-LineRenderer lines1 = new DefaultLineRenderer2D();
- plot1.setLineRenderer(data, lines);
- Color color1 = new Color(0.0f, 0.3f, 1.0f);
- plot1.getPointRenderer(data).setColor(color);
- plot1.getLineRenderer(data).setColor(color);
-//Draw a tick mark and a grid line every 10 units along x axis
- plot1.getAxisRenderer(XYPlot.AXIS_X).setTickSpacing(1.0);
- // Draw a tick mark and a grid line every 20 units along y axis
- plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
-
-      
-      InteractivePanel interactivePanel1 = new InteractivePanel(plot);
-      InteractivePanel interactivePanel2=new InteractivePanel(plot1);
-      interactivePanel1.setBounds(new Rectangle(0, 0, 400, 400));
-      //interactivePanel1.setBounds(new Rectangle(0, 0, 600, 200));
-      interactivePanel1.setVisible(true);
-      interactivePanel1.setLayout(null);
-      //interactivePanel2.setBounds(new Rectangle(200, 0, 400, 400));
-   interactivePanel2.setBounds(new Rectangle(0, 100, 600, 400));
-      interactivePanel2.setVisible(true);
-      interactivePanel2.setLayout(null);
-      
-      
-     plot1.setInsets(new Insets2D.Double(0.0, 40.0, 80.0, 80.0));
-     
-      //interactivePanel.add(null, plot1);
-     /* interactivePanel.setLayout(null);
-      plot1.setBounds(0, 0, 10, 50); 
-	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));*/
-		 
-      contentPane = new JPanel();
-		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-		contentPane.setBackground(Color.white);
-		//contentPane.setBounds(10,10,5,5);
-		//contentPane.setBounds(0,0,2000,3000);
-		contentPane.add(interactivePanel1);
-		contentPane.add(interactivePanel2);
-		//contentPane.setLayout(null);
-		 tabbedPane.addTab("Two graphs", contentPane);
-		 
-		contentPane.setLayout(null);
-		 tabbedPane.setSelectedIndex(1);
-		 
-		
-		
-		
-	}
 	
-	public void TwoGraphsShow() 
+	
+	//-----kod za lijevi bar ---------------------------------------------------------------------//
+	
+	
+	
+	public void  OneBarGraphShow1()
 	{
-		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Bar")
+		
+		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+		Integer value = (Integer) spinner.getValue();
+		
+		for(int k=0; k<value; k++)
 		{
+							 
+				//Podaci koji ce se prikazivati na grafu 
+					Date dateString = (Date) datePicker.getModel().getValue();
+			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+					Date date_start;
+					Date date_end;
+					
+					  try {
+						date_start = sdf.parse(date_from);
+						date_end = sdf.parse(date_to);
+						 
+
+						try {
+						
+							
+							List<Choice> choices=new ArrayList<Choice>();
+							choices.add(choice_1);
+							choices.add(choice_2);
+							choices.add(choice_3);
+							choices.add(choice_4);
+							choices.add(choice_5);
+							choices.add(choice_6);
+							choices.add(choice_7);
+							choices.add(choice_8);
+							choices.add(choice_9);	
+							
+							list_logs=new ArrayList<List<EventLogs>>();
+						for(int i=0;i<value;i++){
+							
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					 
+						}
+						size=list_logs.size();
+						list_values=new ArrayList<List<Double>>();
+						for(int i=0; i<list_logs.size();i++){
+							
+							List<Double>values=new ArrayList<Double>();
+							for(int j=0;j<list_logs.get(i).size();j++){
+								
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							
+							}
+							list_values.add(values);
+							
+							 
+						}
+						}catch(Exception e){
+							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+							System.out.println("Ne poklapaju se vrijednosti");
+						}
+					} 
+					  catch (Exception e1) {
+						// TODO Auto-generated catch block
+						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						e1.printStackTrace();
+					}
+					
+					datas=new ArrayList<DataTable>();
+					 series=new ArrayList<DataSeries>();
+					  DataTable d=new DataTable(Long.class, Double.class, String.class);
+					 
+					  
+					  for(int i=0;i<list_logs.size();i++)
+					  {
+						  
+						  for(int j=0;j<list_logs.get(i).size();j++){
+							
+							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+			  }
+						
+						  datas.add(d);
+						  series.add(new DataSeries(d));
+						  }
 			
-			List<Choice> choices=new ArrayList<Choice>();
-			choices.add(choice_1);
-			choices.add(choice_2);
-			choices.add(choice_3);
-			choices.add(choice_4);
-			choices.add(choice_5);
-			choices.add(choice_6);
-			choices.add(choice_7);
-			choices.add(choice_8);
-			choices.add(choice_9);
+					  }
+		 
+	      switch(value)
+	      {
+	      case 1:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0));
+		//plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
+		//Insets2D.Double(double top, double left, double bottom, double right)
+		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		 plot.getTitle().setText("Bar plot");
 			
-		
-			
-			Integer value = (Integer) spinner.getValue();
-			ArrayList<String> senzori = new ArrayList<String>();
-			for(int i=0;i<value;i++)
-			{
-				
-				senzori.add(choices.get(i).getSelectedItem());
-			   
-			}
-			
-			 DataTable data = new DataTable(Double.class, Integer.class, String.class);
-			 double j=0.1;
-			 for(int i=0; i<value; i++)
-			 {
-				
-				data.add(j, i+1, senzori.get(i));
-				j+=0.2;
-				
-			 }
+		  plot.setBarWidth(0.075);
+	         // Format bars
+	    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+	    pointRenderer.setColor(
+	           new LinearGradientPaint(0f,0f, 0f,1f,
+	           new float[] { 0.0f, 1.0f },
+	           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	                 )
+	         );
 	       
-	       BarPlot  plot = new BarPlot(data);
-	         // Format plot
-	         plot.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
-	         plot.setBarWidth(0.075);
-	         // Format bars
-	         BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(data);
-	         pointRenderer.setColor(
-	                 new LinearGradientPaint(0f,0f, 0f,1f,
-	                                 new float[] { 0.0f, 1.0f },
-	                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-	                 )
-	         );
-	         pointRenderer.setBorderStroke(new BasicStroke(3f));
-	         pointRenderer.setBorderColor(
-	                 new LinearGradientPaint(0f,0f, 0f,1f,
-	                                 new float[] { 0.0f, 1.0f },
-	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-	                 )
-	         );
+	    pointRenderer.setBorderStroke(new BasicStroke(3f));
+      pointRenderer.setBorderColor(
+              new LinearGradientPaint(0f,0f, 0f,1f,
+                              new float[] { 0.0f, 1.0f },
+                              new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+              )
+      );
+      
+     		 
+      plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+      AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      rendererX.setTickLabelFormat(dateFormat);
+      
+      
+      pointRenderer.setValueVisible(true);
+      pointRenderer.setValueColumn(2);
+      pointRenderer.setValueLocation(Location.CENTER);
+      pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+      pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
-	         pointRenderer.setValueVisible(true);
-	         pointRenderer.setValueColumn(2);
-	         pointRenderer.setValueLocation(Location.CENTER);
-	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-		
+	         interactivePanel = new InteractivePanel(plot);
 	         
-	        
-	         //drugi
-	        
-	         BarPlot  plot1 = new BarPlot(data);
-	         // Format plot
-	         plot1.setInsets(new Insets2D.Double(40.0, 40.0, 40.0, 40.0));
-	         plot1.setBarWidth(0.075);
+	         interactivePanel.setLayout(null);
+	         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+	         //interactivePanel.setOpaque(true);
+
+	       
+	          interactivePanel.setVisible(true);
+	          
+	          //contentPane.add(interactivePanel);
+	         
+		break;
+	      }
+	      case 2:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Bar plot");
+	  			
+	  		plot.setBarWidth(0.075);
 	         // Format bars
-	         BarRenderer pointRenderer1 = (BarRenderer) plot1.getPointRenderer(data);
-	         pointRenderer1.setColor(
-	                 new LinearGradientPaint(0f,0f, 0f,1f,
-	                                 new float[] { 0.0f, 1.0f },
-	                                 new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+	    pointRenderer.setColor(
+	           new LinearGradientPaint(0f,0f, 0f,1f,
+	           new float[] { 0.0f, 1.0f },
+	           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
 	                 )
 	         );
-	         pointRenderer1.setBorderStroke(new BasicStroke(3f));
+	       
+	    pointRenderer.setBorderStroke(new BasicStroke(3f));
+        pointRenderer.setBorderColor(
+                new LinearGradientPaint(0f,0f, 0f,1f,
+                                new float[] { 0.0f, 1.0f },
+                                new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                )
+        );
+        pointRenderer.setValueVisible(true);
+        pointRenderer.setValueColumn(2);
+        pointRenderer.setValueLocation(Location.CENTER);
+        pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+        pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+        
+        
+        BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+		    pointRenderer1.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR2, GraphicsUtils.deriveBrighter(COLOR2) }
+		                 )
+		         );
+		       
+		    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer1.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR2), COLOR2 }
+	                 )
+	         );
+	         pointRenderer1.setValueVisible(true);
+	         pointRenderer1.setValueColumn(2);
+	         pointRenderer1.setValueLocation(Location.CENTER);
+	         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR2));
+	         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+       		 
+        plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        rendererX.setTickLabelFormat(dateFormat);
+			     
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		        interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		        
+		          interactivePanel.setVisible(true);
+			  	
+			     
+			     break;
+	      }
+	      
+	      case 3:
+	    	  
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Bar plot");
+	  			
+	    		
+	  		plot.setBarWidth(0.075);
+	         // Format bars
+	    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+	    pointRenderer.setColor(
+	           new LinearGradientPaint(0f,0f, 0f,1f,
+	           new float[] { 0.0f, 1.0f },
+	           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	                 )
+	         );
+	       
+	    pointRenderer.setBorderStroke(new BasicStroke(3f));
+        pointRenderer.setBorderColor(
+                new LinearGradientPaint(0f,0f, 0f,1f,
+                                new float[] { 0.0f, 1.0f },
+                                new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                )
+        );
+        pointRenderer.setValueVisible(true);
+        pointRenderer.setValueColumn(2);
+        pointRenderer.setValueLocation(Location.CENTER);
+        pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+        pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+        
+        
+        BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+		    pointRenderer1.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer1.setBorderStroke(new BasicStroke(3f));
 	         pointRenderer1.setBorderColor(
 	                 new LinearGradientPaint(0f,0f, 0f,1f,
 	                                 new float[] { 0.0f, 1.0f },
 	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
 	                 )
 	         );
-	         
 	         pointRenderer1.setValueVisible(true);
 	         pointRenderer1.setValueColumn(2);
 	         pointRenderer1.setValueLocation(Location.CENTER);
 	         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 	         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
-	         //paneli
+	         
+	         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+			    pointRenderer2.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer2.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer2.setValueVisible(true);
+		         pointRenderer2.setValueColumn(2);
+		         pointRenderer2.setValueLocation(Location.CENTER);
+		         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+       		 
+        plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        rendererX.setTickLabelFormat(dateFormat);
+			     
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+			     
+			     break;
+	      }
+	      
+	      case 4:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+	  		//Insets2D.Double(double top, double left, double bottom, double right)
+
+	  		 plot.getTitle().setText("Bar plot");
+	  			
+	    		
+	  		plot.setBarWidth(0.075);
+	         // Format bars
+	    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+	    pointRenderer.setColor(
+	           new LinearGradientPaint(0f,0f, 0f,1f,
+	           new float[] { 0.0f, 1.0f },
+	           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+	                 )
+	         );
+	       
+	    pointRenderer.setBorderStroke(new BasicStroke(3f));
+        pointRenderer.setBorderColor(
+                new LinearGradientPaint(0f,0f, 0f,1f,
+                                new float[] { 0.0f, 1.0f },
+                                new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+                )
+        );
+        pointRenderer.setValueVisible(true);
+        pointRenderer.setValueColumn(2);
+        pointRenderer.setValueLocation(Location.CENTER);
+        pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+        pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+        
+        
+        BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+		    pointRenderer1.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer1.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer1.setValueVisible(true);
+	         pointRenderer1.setValueColumn(2);
+	         pointRenderer1.setValueLocation(Location.CENTER);
+	         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
 	         
-	        InteractivePanel interactivePanel1 = new InteractivePanel(plot1);
-	         InteractivePanel interactivePanel2=new InteractivePanel(plot);
-	       interactivePanel1.setBounds(new Rectangle(0, 0, 0, 50));
-	         interactivePanel1.setVisible(true);
-	         interactivePanel1.setLayout(null);
-	         interactivePanel2.setBounds(new Rectangle(0, 0, 0, 50));
-	         interactivePanel2.setVisible(true);
-	         interactivePanel2.setLayout(null);
+	         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+			    pointRenderer2.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer2.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer2.setValueVisible(true);
+		         pointRenderer2.setValueColumn(3);
+		         pointRenderer2.setValueLocation(Location.CENTER);
+		         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+				    pointRenderer3.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer3.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer3.setValueVisible(true);
+			         pointRenderer3.setValueColumn(2);
+			         pointRenderer3.setValueLocation(Location.CENTER);
+			         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+       		 
+        plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        rendererX.setTickLabelFormat(dateFormat);
+        
+                 interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+		          break;
+	    	  
+	      }
+	    	  
+	      
+	      case 5:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4) );
+	    	 
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		      //Insets2D.Double(double top, double left, double bottom, double right)
+
+		  		 plot.getTitle().setText("Bar plot");
+		  			
+	    		
+		  		plot.setBarWidth(0.075);
+		         // Format bars
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    pointRenderer.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
 	         
-	      //  plot1.setInsets(new Insets2D.Double(20.0, 40.0, 100.0, 500.0));
-	        
-	         //interactivePanel.add(null, plot1);
-	       /*  interactivePanel.setLayout(null);
-	         plot1.setBounds(0, 0, 10, 50); 
-	   	   interactivePanel.setBounds(new Rectangle(0, 0, 0, 50))*/
-	   		 
-	         contentPane = new JPanel();
-	   		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-	   		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-	   		contentPane.setBackground(Color.white);
-	   		//contentPane.setBounds(10,10,5,5);
-	   		
-	   		contentPane.add(interactivePanel1);
-	   		//contentPane.add(interactivePanel2);
-	   		
-	   		 tabbedPane.addTab("Two graphs", contentPane);
-	   		 
-	   		 tabbedPane.setSelectedIndex(1);
+	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+			    pointRenderer1.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer1.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer1.setValueVisible(true);
+		         pointRenderer1.setValueColumn(2);
+		         pointRenderer1.setValueLocation(Location.CENTER);
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+				    pointRenderer2.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer2.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer2.setValueVisible(true);
+			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueLocation(Location.CENTER);
+			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         
+			         
+			         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+					    pointRenderer3.setColor(
+					           new LinearGradientPaint(0f,0f, 0f,1f,
+					           new float[] { 0.0f, 1.0f },
+					           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+					                 )
+					         );
+					       
+					    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+				         pointRenderer3.setBorderColor(
+				                 new LinearGradientPaint(0f,0f, 0f,1f,
+				                                 new float[] { 0.0f, 1.0f },
+				                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+				                 )
+				         );
+				         pointRenderer3.setValueVisible(true);
+				         pointRenderer3.setValueColumn(2);
+				         pointRenderer3.setValueLocation(Location.CENTER);
+				         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+				         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+				         
+				         
+				         BarRenderer pointRenderer4 = (BarRenderer) plot.getPointRenderer(series.get(4));
+						    pointRenderer4.setColor(
+						           new LinearGradientPaint(0f,0f, 0f,1f,
+						           new float[] { 0.0f, 1.0f },
+						           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+						                 )
+						         );
+						       
+						    pointRenderer4.setBorderStroke(new BasicStroke(3f));
+					         pointRenderer4.setBorderColor(
+					                 new LinearGradientPaint(0f,0f, 0f,1f,
+					                                 new float[] { 0.0f, 1.0f },
+					                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+					                 )
+					         );
+					         pointRenderer4.setValueVisible(true);
+					         pointRenderer4.setValueColumn(2);
+					         pointRenderer4.setValueLocation(Location.CENTER);
+					         pointRenderer4.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+					         pointRenderer4.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	        		 
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	         rendererX.setTickLabelFormat(dateFormat);
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+		          break;
+	      }
+	      
+	      case 6:
+	      {
+	    	  
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		      //Insets2D.Double(double top, double left, double bottom, double right)
+
+		  		 plot.getTitle().setText("Bar plot");
+	    		
+		  		plot.setBarWidth(0.075);
+		         // Format bars
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    pointRenderer.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	         
+	         
+	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+			    pointRenderer1.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer1.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer1.setValueVisible(true);
+		         pointRenderer1.setValueColumn(2);
+		         pointRenderer1.setValueLocation(Location.CENTER);
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+				    pointRenderer2.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer2.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer2.setValueVisible(true);
+			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueLocation(Location.CENTER);
+			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         
+			         
+			         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+					    pointRenderer3.setColor(
+					           new LinearGradientPaint(0f,0f, 0f,1f,
+					           new float[] { 0.0f, 1.0f },
+					           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+					                 )
+					         );
+					       
+					    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+				         pointRenderer3.setBorderColor(
+				                 new LinearGradientPaint(0f,0f, 0f,1f,
+				                                 new float[] { 0.0f, 1.0f },
+				                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+				                 )
+				         );
+				         pointRenderer3.setValueVisible(true);
+				         pointRenderer3.setValueColumn(2);
+				         pointRenderer3.setValueLocation(Location.CENTER);
+				         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+				         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+				         
+				         
+				         BarRenderer pointRenderer4 = (BarRenderer) plot.getPointRenderer(series.get(4));
+						    pointRenderer4.setColor(
+						           new LinearGradientPaint(0f,0f, 0f,1f,
+						           new float[] { 0.0f, 1.0f },
+						           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+						                 )
+						         );
+						       
+						    pointRenderer4.setBorderStroke(new BasicStroke(3f));
+					         pointRenderer4.setBorderColor(
+					                 new LinearGradientPaint(0f,0f, 0f,1f,
+					                                 new float[] { 0.0f, 1.0f },
+					                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+					                 )
+					         );
+					         pointRenderer4.setValueVisible(true);
+					         pointRenderer4.setValueColumn(2);
+					         pointRenderer4.setValueLocation(Location.CENTER);
+					         pointRenderer4.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+					         pointRenderer4.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+					         
+					         BarRenderer pointRenderer5 = (BarRenderer) plot.getPointRenderer(series.get(5));
+							    pointRenderer5.setColor(
+							           new LinearGradientPaint(0f,0f, 0f,1f,
+							           new float[] { 0.0f, 1.0f },
+							           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+							                 )
+							         );
+							       
+							    pointRenderer5.setBorderStroke(new BasicStroke(3f));
+						         pointRenderer5.setBorderColor(
+						                 new LinearGradientPaint(0f,0f, 0f,1f,
+						                                 new float[] { 0.0f, 1.0f },
+						                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+						                 )
+						         );
+						         pointRenderer5.setValueVisible(true);
+						         pointRenderer5.setValueColumn(2);
+						         pointRenderer5.setValueLocation(Location.CENTER);
+						         pointRenderer5.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+						         pointRenderer5.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	        		 
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	         rendererX.setTickLabelFormat(dateFormat);
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+		          break;
+	      }
+	      
+	      case 7:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		      //Insets2D.Double(double top, double left, double bottom, double right)
+
+		  		 plot.getTitle().setText("Bar plot");
+	    		
+		  		 plot.setBarWidth(0.075);
+		         // Format bars
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    pointRenderer.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	         
+	         
+	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+			    pointRenderer1.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer1.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer1.setValueVisible(true);
+		         pointRenderer1.setValueColumn(2);
+		         pointRenderer1.setValueLocation(Location.CENTER);
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+				    pointRenderer2.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer2.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer2.setValueVisible(true);
+			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueLocation(Location.CENTER);
+			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         
+			         
+			         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+					    pointRenderer3.setColor(
+					           new LinearGradientPaint(0f,0f, 0f,1f,
+					           new float[] { 0.0f, 1.0f },
+					           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+					                 )
+					         );
+					       
+					    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+				         pointRenderer3.setBorderColor(
+				                 new LinearGradientPaint(0f,0f, 0f,1f,
+				                                 new float[] { 0.0f, 1.0f },
+				                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+				                 )
+				         );
+				         pointRenderer3.setValueVisible(true);
+				         pointRenderer3.setValueColumn(2);
+				         pointRenderer3.setValueLocation(Location.CENTER);
+				         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+				         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+				         
+				         
+				         BarRenderer pointRenderer4 = (BarRenderer) plot.getPointRenderer(series.get(4));
+						    pointRenderer4.setColor(
+						           new LinearGradientPaint(0f,0f, 0f,1f,
+						           new float[] { 0.0f, 1.0f },
+						           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+						                 )
+						         );
+						       
+						    pointRenderer4.setBorderStroke(new BasicStroke(3f));
+					         pointRenderer4.setBorderColor(
+					                 new LinearGradientPaint(0f,0f, 0f,1f,
+					                                 new float[] { 0.0f, 1.0f },
+					                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+					                 )
+					         );
+					         pointRenderer4.setValueVisible(true);
+					         pointRenderer4.setValueColumn(2);
+					         pointRenderer4.setValueLocation(Location.CENTER);
+					         pointRenderer4.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+					         pointRenderer4.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+					         
+					         BarRenderer pointRenderer5 = (BarRenderer) plot.getPointRenderer(series.get(5));
+							    pointRenderer5.setColor(
+							           new LinearGradientPaint(0f,0f, 0f,1f,
+							           new float[] { 0.0f, 1.0f },
+							           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+							                 )
+							         );
+							       
+							    pointRenderer5.setBorderStroke(new BasicStroke(3f));
+						         pointRenderer5.setBorderColor(
+						                 new LinearGradientPaint(0f,0f, 0f,1f,
+						                                 new float[] { 0.0f, 1.0f },
+						                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+						                 )
+						         );
+						         pointRenderer5.setValueVisible(true);
+						         pointRenderer5.setValueColumn(2);
+						         pointRenderer5.setValueLocation(Location.CENTER);
+						         pointRenderer5.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+						         pointRenderer5.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	        		
+						         BarRenderer pointRenderer6 = (BarRenderer) plot.getPointRenderer(series.get(6));
+								    pointRenderer6.setColor(
+								           new LinearGradientPaint(0f,0f, 0f,1f,
+								           new float[] { 0.0f, 1.0f },
+								           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+								                 )
+								         );
+								       
+								    pointRenderer6.setBorderStroke(new BasicStroke(3f));
+							         pointRenderer6.setBorderColor(
+							                 new LinearGradientPaint(0f,0f, 0f,1f,
+							                                 new float[] { 0.0f, 1.0f },
+							                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+							                 )
+							         );
+							         pointRenderer6.setValueVisible(true);
+							         pointRenderer6.setValueColumn(2);
+							         pointRenderer6.setValueLocation(Location.CENTER);
+							         pointRenderer6.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+							         pointRenderer6.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		        		 			         
+						         
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	         rendererX.setTickLabelFormat(dateFormat);
+        
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+			     
+			     break; 
+	    	 
+	      }
+	      
+	      
+	      case 8:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7) );
+	    	 
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		      //Insets2D.Double(double top, double left, double bottom, double right)
+
+		  		 plot.getTitle().setText("Bar plot");
+	    		
+		  		plot.setBarWidth(0.075);
+		         // Format bars
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    pointRenderer.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	         
+	         
+	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+			    pointRenderer1.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer1.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer1.setValueVisible(true);
+		         pointRenderer1.setValueColumn(2);
+		         pointRenderer1.setValueLocation(Location.CENTER);
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+				    pointRenderer2.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer2.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer2.setValueVisible(true);
+			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueLocation(Location.CENTER);
+			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         
+			         
+			         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+					    pointRenderer3.setColor(
+					           new LinearGradientPaint(0f,0f, 0f,1f,
+					           new float[] { 0.0f, 1.0f },
+					           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+					                 )
+					         );
+					       
+					    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+				         pointRenderer3.setBorderColor(
+				                 new LinearGradientPaint(0f,0f, 0f,1f,
+				                                 new float[] { 0.0f, 1.0f },
+				                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+				                 )
+				         );
+				         pointRenderer3.setValueVisible(true);
+				         pointRenderer3.setValueColumn(2);
+				         pointRenderer3.setValueLocation(Location.CENTER);
+				         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+				         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+				         
+				         
+				         BarRenderer pointRenderer4 = (BarRenderer) plot.getPointRenderer(series.get(4));
+						    pointRenderer4.setColor(
+						           new LinearGradientPaint(0f,0f, 0f,1f,
+						           new float[] { 0.0f, 1.0f },
+						           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+						                 )
+						         );
+						       
+						    pointRenderer4.setBorderStroke(new BasicStroke(3f));
+					         pointRenderer4.setBorderColor(
+					                 new LinearGradientPaint(0f,0f, 0f,1f,
+					                                 new float[] { 0.0f, 1.0f },
+					                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+					                 )
+					         );
+					         pointRenderer4.setValueVisible(true);
+					         pointRenderer4.setValueColumn(2);
+					         pointRenderer4.setValueLocation(Location.CENTER);
+					         pointRenderer4.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+					         pointRenderer4.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+					         
+					         BarRenderer pointRenderer5 = (BarRenderer) plot.getPointRenderer(series.get(5));
+							    pointRenderer5.setColor(
+							           new LinearGradientPaint(0f,0f, 0f,1f,
+							           new float[] { 0.0f, 1.0f },
+							           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+							                 )
+							         );
+							       
+							    pointRenderer5.setBorderStroke(new BasicStroke(3f));
+						         pointRenderer5.setBorderColor(
+						                 new LinearGradientPaint(0f,0f, 0f,1f,
+						                                 new float[] { 0.0f, 1.0f },
+						                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+						                 )
+						         );
+						         pointRenderer5.setValueVisible(true);
+						         pointRenderer5.setValueColumn(2);
+						         pointRenderer5.setValueLocation(Location.CENTER);
+						         pointRenderer5.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+						         pointRenderer5.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	        		
+						         BarRenderer pointRenderer6 = (BarRenderer) plot.getPointRenderer(series.get(6));
+								    pointRenderer6.setColor(
+								           new LinearGradientPaint(0f,0f, 0f,1f,
+								           new float[] { 0.0f, 1.0f },
+								           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+								                 )
+								         );
+								       
+								    pointRenderer6.setBorderStroke(new BasicStroke(3f));
+							         pointRenderer6.setBorderColor(
+							                 new LinearGradientPaint(0f,0f, 0f,1f,
+							                                 new float[] { 0.0f, 1.0f },
+							                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+							                 )
+							         );
+							         pointRenderer6.setValueVisible(true);
+							         pointRenderer6.setValueColumn(2);
+							         pointRenderer6.setValueLocation(Location.CENTER);
+							         pointRenderer6.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+							         pointRenderer6.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+							         
+							         BarRenderer pointRenderer7 = (BarRenderer) plot.getPointRenderer(series.get(7));
+									    pointRenderer7.setColor(
+									           new LinearGradientPaint(0f,0f, 0f,1f,
+									           new float[] { 0.0f, 1.0f },
+									           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+									                 )
+									         );
+									       
+									    pointRenderer7.setBorderStroke(new BasicStroke(3f));
+								         pointRenderer7.setBorderColor(
+								                 new LinearGradientPaint(0f,0f, 0f,1f,
+								                                 new float[] { 0.0f, 1.0f },
+								                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+								                 )
+								         );
+								         pointRenderer7.setValueVisible(true);
+								         pointRenderer7.setValueColumn(2);
+								         pointRenderer7.setValueLocation(Location.CENTER);
+								         pointRenderer7.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+								         pointRenderer7.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		        		 			         
+						         
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	         rendererX.setTickLabelFormat(dateFormat);
+			     
+interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+			     
+			     break; 
+	      }
+	      
+	      case 9:
+	      {
+	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8) );
+	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
+		      //Insets2D.Double(double top, double left, double bottom, double right)
+
+		  		 plot.getTitle().setText("Bar plot");
+	    		
+		  		 plot.setBarWidth(0.075);
+		         // Format bars
+		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(series.get(0));
+		    pointRenderer.setColor(
+		           new LinearGradientPaint(0f,0f, 0f,1f,
+		           new float[] { 0.0f, 1.0f },
+		           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+		                 )
+		         );
+		       
+		    pointRenderer.setBorderStroke(new BasicStroke(3f));
+	         pointRenderer.setBorderColor(
+	                 new LinearGradientPaint(0f,0f, 0f,1f,
+	                                 new float[] { 0.0f, 1.0f },
+	                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+	                 )
+	         );
+	         pointRenderer.setValueVisible(true);
+	         pointRenderer.setValueColumn(2);
+	         pointRenderer.setValueLocation(Location.CENTER);
+	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	         
+	         
+	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+			    pointRenderer1.setColor(
+			           new LinearGradientPaint(0f,0f, 0f,1f,
+			           new float[] { 0.0f, 1.0f },
+			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+			                 )
+			         );
+			       
+			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
+		         pointRenderer1.setBorderColor(
+		                 new LinearGradientPaint(0f,0f, 0f,1f,
+		                                 new float[] { 0.0f, 1.0f },
+		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+		                 )
+		         );
+		         pointRenderer1.setValueVisible(true);
+		         pointRenderer1.setValueColumn(2);
+		         pointRenderer1.setValueLocation(Location.CENTER);
+		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		         
+		         
+		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
+				    pointRenderer2.setColor(
+				           new LinearGradientPaint(0f,0f, 0f,1f,
+				           new float[] { 0.0f, 1.0f },
+				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+				                 )
+				         );
+				       
+				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
+			         pointRenderer2.setBorderColor(
+			                 new LinearGradientPaint(0f,0f, 0f,1f,
+			                                 new float[] { 0.0f, 1.0f },
+			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+			                 )
+			         );
+			         pointRenderer2.setValueVisible(true);
+			         pointRenderer2.setValueColumn(2);
+			         pointRenderer2.setValueLocation(Location.CENTER);
+			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         
+			         
+			         BarRenderer pointRenderer3 = (BarRenderer) plot.getPointRenderer(series.get(3));
+					    pointRenderer3.setColor(
+					           new LinearGradientPaint(0f,0f, 0f,1f,
+					           new float[] { 0.0f, 1.0f },
+					           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+					                 )
+					         );
+					       
+					    pointRenderer3.setBorderStroke(new BasicStroke(3f));
+				         pointRenderer3.setBorderColor(
+				                 new LinearGradientPaint(0f,0f, 0f,1f,
+				                                 new float[] { 0.0f, 1.0f },
+				                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+				                 )
+				         );
+				         pointRenderer3.setValueVisible(true);
+				         pointRenderer3.setValueColumn(2);
+				         pointRenderer3.setValueLocation(Location.CENTER);
+				         pointRenderer3.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+				         pointRenderer3.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+				         
+				         
+				         BarRenderer pointRenderer4 = (BarRenderer) plot.getPointRenderer(series.get(4));
+						    pointRenderer4.setColor(
+						           new LinearGradientPaint(0f,0f, 0f,1f,
+						           new float[] { 0.0f, 1.0f },
+						           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+						                 )
+						         );
+						       
+						    pointRenderer4.setBorderStroke(new BasicStroke(3f));
+					         pointRenderer4.setBorderColor(
+					                 new LinearGradientPaint(0f,0f, 0f,1f,
+					                                 new float[] { 0.0f, 1.0f },
+					                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+					                 )
+					         );
+					         pointRenderer4.setValueVisible(true);
+					         pointRenderer4.setValueColumn(2);
+					         pointRenderer4.setValueLocation(Location.CENTER);
+					         pointRenderer4.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+					         pointRenderer4.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+					         
+					         BarRenderer pointRenderer5 = (BarRenderer) plot.getPointRenderer(series.get(5));
+							    pointRenderer5.setColor(
+							           new LinearGradientPaint(0f,0f, 0f,1f,
+							           new float[] { 0.0f, 1.0f },
+							           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+							                 )
+							         );
+							       
+							    pointRenderer5.setBorderStroke(new BasicStroke(3f));
+						         pointRenderer5.setBorderColor(
+						                 new LinearGradientPaint(0f,0f, 0f,1f,
+						                                 new float[] { 0.0f, 1.0f },
+						                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+						                 )
+						         );
+						         pointRenderer5.setValueVisible(true);
+						         pointRenderer5.setValueColumn(2);
+						         pointRenderer5.setValueLocation(Location.CENTER);
+						         pointRenderer5.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+						         pointRenderer5.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+	        		
+						         BarRenderer pointRenderer6 = (BarRenderer) plot.getPointRenderer(series.get(6));
+								    pointRenderer6.setColor(
+								           new LinearGradientPaint(0f,0f, 0f,1f,
+								           new float[] { 0.0f, 1.0f },
+								           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+								                 )
+								         );
+								       
+								    pointRenderer6.setBorderStroke(new BasicStroke(3f));
+							         pointRenderer6.setBorderColor(
+							                 new LinearGradientPaint(0f,0f, 0f,1f,
+							                                 new float[] { 0.0f, 1.0f },
+							                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+							                 )
+							         );
+							         pointRenderer6.setValueVisible(true);
+							         pointRenderer6.setValueColumn(2);
+							         pointRenderer6.setValueLocation(Location.CENTER);
+							         pointRenderer6.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+							         pointRenderer6.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+							         
+							         BarRenderer pointRenderer7 = (BarRenderer) plot.getPointRenderer(series.get(7));
+									    pointRenderer7.setColor(
+									           new LinearGradientPaint(0f,0f, 0f,1f,
+									           new float[] { 0.0f, 1.0f },
+									           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+									                 )
+									         );
+									       
+									    pointRenderer7.setBorderStroke(new BasicStroke(3f));
+								         pointRenderer7.setBorderColor(
+								                 new LinearGradientPaint(0f,0f, 0f,1f,
+								                                 new float[] { 0.0f, 1.0f },
+								                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+								                 )
+								         );
+								         pointRenderer7.setValueVisible(true);
+								         pointRenderer7.setValueColumn(2);
+								         pointRenderer7.setValueLocation(Location.CENTER);
+								         pointRenderer7.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+								         pointRenderer7.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+		        		 			   
+								         BarRenderer pointRenderer8 = (BarRenderer) plot.getPointRenderer(series.get(8));
+										    pointRenderer8.setColor(
+										           new LinearGradientPaint(0f,0f, 0f,1f,
+										           new float[] { 0.0f, 1.0f },
+										           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
+										                 )
+										         );
+										       
+										    pointRenderer8.setBorderStroke(new BasicStroke(3f));
+									         pointRenderer8.setBorderColor(
+									                 new LinearGradientPaint(0f,0f, 0f,1f,
+									                                 new float[] { 0.0f, 1.0f },
+									                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
+									                 )
+									         );
+									         pointRenderer8.setValueVisible(true);
+									         pointRenderer8.setValueColumn(2);
+									         pointRenderer8.setValueLocation(Location.CENTER);
+									         pointRenderer8.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
+									         pointRenderer8.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+						         
+	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
+
+	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
+	         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	         rendererX.setTickLabelFormat(dateFormat);
+			     
+			     interactivePanel = new InteractivePanel(plot);
+		         
+		         interactivePanel.setLayout(null);
+		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
+		         interactivePanel.setOpaque(true);
+
+		          
+		          interactivePanel.setVisible(true);
+			     
+			     break; 
+	      }
+	      
+	      }
+	
+		   
+		
+		 /*final JButton btnChange = new JButton("Change data");
+			
+	       btnChange.addMouseListener(new MouseAdapter() {
+	       	@Override
+	       	public void mouseClicked(MouseEvent arg0) {
+	       		tabbedPane.setSelectedIndex(0);
+	       	}
+	       });
+	     btnChange.setBounds(690, 462, 137, 23);
+		 interactivePanel.add(btnChange);
+		 
+	
+		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+		 lblExport.setBounds(131, 462, 137, 23);
+		 lblExport.setSize(400, 15);
+		 
+		 interactivePanel.add(lblExport);
+		 final JButton btnExit = new JButton("Cancel");
+		
+	     btnExit.setBounds(831, 462, 137, 23);
+		 interactivePanel.add(btnExit);
+		 
+		 
+		
+		 btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+			tabbedPane.remove(1);
+			//tabbedPane.resetKeyboardActions();
+			tabbedPane.remove(0);
+			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
+			tabbedPane.add("Basic data",basicInfo);
+			basicInfo.setLayout(null);
+		
+			tabbedPane.setSelectedIndex(1);
+			
+				}
+			});
+		*/
+		
 	}
-	}
+	
+	
+	
 	
 	public void fillChoices(int k){
 		switch(k){
