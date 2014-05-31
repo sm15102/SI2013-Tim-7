@@ -946,7 +946,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		{
 			final BarPlot plot= new BarPlot(datas.get(0));
 			plot.setInsets(new Insets2D.Double(20.0, 40.0, 80.0, 40.0));
-		    //plot.setBarWidth(BarPlot.AUTO_RESIZE);
+	
 		         // Format bars
 		    BarRenderer pointRenderer = (BarRenderer) plot.getPointRenderer(datas.get(0));
 		    pointRenderer.setColor(
