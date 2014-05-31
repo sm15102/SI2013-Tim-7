@@ -271,8 +271,11 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
-      choice_1.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      
+      choice_1.addMouseListener(new MouseAdapter() {
+        	@Override
+          	public void mouseClicked(MouseEvent arg0) {
+				
 				if((Integer) spinner.getValue()==1) btnGenerateGraph.setVisible(true);
 				fillChoices(1);
 			}
@@ -282,8 +285,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
-      choice_2.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_2.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==2) btnGenerateGraph.setVisible(true);
 				fillChoices(2);
 			}
@@ -292,8 +296,9 @@ public class BasicInformationPanel  extends ExamplePanel {
        choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
-      choice_3.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_3.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==3) btnGenerateGraph.setVisible(true);
 				fillChoices(3);
 			}
@@ -302,8 +307,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
-      choice_4.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_4.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==4) btnGenerateGraph.setVisible(true);
 				fillChoices(4);
 			}
@@ -312,8 +318,9 @@ public class BasicInformationPanel  extends ExamplePanel {
      choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
-      choice_5.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_5.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==5) btnGenerateGraph.setVisible(true);
 				fillChoices(5);
 			}
@@ -322,8 +329,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
-      choice_6.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_6.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==6) btnGenerateGraph.setVisible(true);
 				fillChoices(6);
 			}
@@ -332,8 +340,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
-      choice_7.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_7.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==7) btnGenerateGraph.setVisible(true);
 				fillChoices(7);
 			}
@@ -341,8 +350,9 @@ public class BasicInformationPanel  extends ExamplePanel {
        choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
-      choice_8.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_8.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==8) btnGenerateGraph.setVisible(true);
 				fillChoices(8);
 			}
@@ -350,8 +360,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
-      choice_9.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_9.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==9) btnGenerateGraph.setVisible(true);
 				fillChoices(9);
 			}
@@ -411,7 +422,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       		
       		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
       		
-      		choice_1.enable();
+      		
+      			
+      	    choice_1.enable();
       		choice_2.enable();
       		choice_3.enable();
       		choice_4.enable();
@@ -431,6 +444,9 @@ public class BasicInformationPanel  extends ExamplePanel {
       		choice_8.removeAll();
       		choice_9.removeAll();
       		
+      		
+     
+      	   
       		btnGenerateGraph.setVisible(false);
       		
       		int value = (Integer) spinner.getValue();
