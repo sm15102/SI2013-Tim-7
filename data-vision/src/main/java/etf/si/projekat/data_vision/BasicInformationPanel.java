@@ -153,11 +153,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		lblDataNumber.setBounds(40, 139, 83, 14);
 		add(lblDataNumber);
 		
-	   /* choice = new Choice();
-		choice.setBounds(177, 50, 117, 25);
-		choice.add("Line");
-		choice.add("Bar");
-		add(choice);*/
+	 
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
@@ -1021,28 +1017,6 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
 	         
-	        /* BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(datas.get(1));
-			    pointRenderer1.setColor(
-			           new LinearGradientPaint(0f,0f, 0f,1f,
-			           new float[] { 0.0f, 1.0f },
-			           new Color[] { COLOR2, GraphicsUtils.deriveBrighter(COLOR2) }
-			                 )
-			         );
-			       
-			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
-		         pointRenderer1.setBorderColor(
-		                 new LinearGradientPaint(0f,0f, 0f,1f,
-		                                 new float[] { 0.0f, 1.0f },
-		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR2), COLOR2 }
-		                 )
-		         );
-		         pointRenderer1.setValueVisible(true);
-		         pointRenderer1.setValueColumn(2);
-		         pointRenderer1.setValueLocation(Location.CENTER);
-		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR2));
-		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD)); 
-	        	
-		  */
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
 	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
