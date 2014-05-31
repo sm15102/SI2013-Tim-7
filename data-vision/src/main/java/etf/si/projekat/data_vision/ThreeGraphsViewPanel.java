@@ -12,11 +12,17 @@ import java.awt.event.WindowListener;
 
 
 
+
+
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
+
+
+
 
 
 
@@ -28,13 +34,22 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 
 
+
+
+
 import java.awt.Label;
+
+
+
 
 
 
 
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+
+
 
 
 
@@ -48,13 +63,20 @@ import java.util.List;
 
 
 
+
+
+
 import javax.swing.JButton;
+
+
+
 
 
 
 
 import de.erichseifert.gral.data.DataSeries;
 import de.erichseifert.gral.data.DataTable;
+import de.erichseifert.gral.examples.ExamplePanel;
 import de.erichseifert.gral.io.data.DataWriter;
 import de.erichseifert.gral.io.data.DataWriterFactory;
 import de.erichseifert.gral.io.plots.DrawableWriter;
@@ -73,6 +95,9 @@ import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
+
+
+
 
 
 
@@ -101,7 +126,7 @@ import java.io.IOException;
 
 
 
-public class ThreeGraphsViewPanel extends JPanel  {
+public class ThreeGraphsViewPanel extends ExamplePanel  {
 	 /**
 	 * 
 	 */
@@ -121,13 +146,21 @@ public class ThreeGraphsViewPanel extends JPanel  {
 		private List<DataSeries>series;
 		final JSpinner spinner = new JSpinner();
 		 DataTable data1;
-
-
+		 XYPlot plot2=new XYPlot();
+			XYPlot plot1=new XYPlot();
+			  private JPanel contentPane;
+			  boolean paneli_bar;
+			  boolean paneli_line;
+			  
+			  
 	     final static DataTable data=new DataTable(Long.class, Double.class);
 
 
 		private static final Color COLOR1 = Color.RED;
 		 XYPlot plot;
+		 
+	
+		
 
 
 
@@ -1667,6 +1700,16 @@ interactivePanel = new InteractivePanel(plot);
 			}
 			public void setValueFirstGraph(int valueFirstGraph) {
 				this.valueFirstGraph = valueFirstGraph;
+			}
+			@Override
+			public String getDescription() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			@Override
+			public String getTitle() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 
 
