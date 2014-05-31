@@ -1,19 +1,19 @@
 package etf.si.projekat.data_vision;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import javax.persistence.NoResultException;
+import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -33,12 +34,6 @@ import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
-import javax.swing.SpinnerNumberModel;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JTextArea;
-import java.awt.Dimension;
-import java.awt.Font;
 
 
 public class Consumption extends JPanel {
@@ -66,7 +61,7 @@ public class Consumption extends JPanel {
 	
 public Consumption() {
 	setForeground(Color.WHITE);
-	setBounds(10, 49, 849, 501);
+	setBounds(10, 49, 990, 501);
 	setBackground(Color.WHITE);
 	setLayout(null);
 	
@@ -155,8 +150,8 @@ public Consumption() {
         table1.setVisible(true);
         table1.setModel(tablemodel1);
         pane1 = new JScrollPane(table1);
-        pane1.setSize(339, 255);
-        pane1.setLocation(500, 235);
+        pane1.setSize(369, 255);
+        pane1.setLocation(586, 235);
         add(pane1);
        
         
@@ -175,17 +170,17 @@ public Consumption() {
         add(lblNewLabel);
         
         JLabel lblNewLabel_1 = new JLabel("Periodical results (kWh)");
-        lblNewLabel_1.setBounds(500, 210, 150, 14);
+        lblNewLabel_1.setBounds(586, 210, 150, 14);
         add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("Total result for selected period (kWh)");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_2.setBounds(500, 0, 260, 31);
+        lblNewLabel_2.setBounds(586, 20, 260, 31);
         add(lblNewLabel_2);
         
         lblTotalResult = new JLabel("");
         lblTotalResult.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        lblTotalResult.setBounds(535, 62, 304, 58);
+        lblTotalResult.setBounds(586, 62, 304, 58);
         add(lblTotalResult);
        
         
