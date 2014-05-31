@@ -94,6 +94,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     final Choice choice_17;
     final Choice choice_18;
     final Choice choice_19;
+    
     final JSpinner spinner;
     final JSpinner spinner_2;
     final JTabbedPane tabbedPane;
