@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
 
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
@@ -46,7 +47,7 @@ public class ThreeGraphsViewPanel extends JPanel  {
 	    boolean isPressed1=false;
 		boolean isPressed2=false;
 		boolean isPressed3=false;
-		private SpringLayout springLayout;
+		final JTabbedPane tabbedPane;
 	 
   	
 
@@ -54,8 +55,10 @@ public class ThreeGraphsViewPanel extends JPanel  {
 
 	/**
 	 * Create the panel.
+	 * @param tabbedPane_4 
 	 */
-	public ThreeGraphsViewPanel() {
+	public ThreeGraphsViewPanel(JTabbedPane tabbedPane_4) {
+		tabbedPane = tabbedPane_4;
 		setBackground(SystemColor.menu);
 	
 		setLayout(null);
@@ -146,9 +149,7 @@ public class ThreeGraphsViewPanel extends JPanel  {
   UtilDateModel model4 = new UtilDateModel();
   JDatePanelImpl datePane4 = new JDatePanelImpl(model4);
   final JDatePickerImpl datePicker4 = new JDatePickerImpl(datePane4);
-  springLayout.putConstraint(SpringLayout.NORTH, datePicker4.getJFormattedTextField(), -34, SpringLayout.SOUTH, datePicker4);
-  springLayout.putConstraint(SpringLayout.SOUTH, datePicker4.getJFormattedTextField(), -11, SpringLayout.SOUTH, datePicker4);
-  springLayout = (SpringLayout) datePicker4.getLayout();
+ 
   datePicker4.setLocation(782, 75);
   datePicker4.setSize(165, 29);
 add(datePicker4);
