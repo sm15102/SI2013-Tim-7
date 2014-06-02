@@ -66,20 +66,26 @@ public class AddDevice extends JFrame { //extends JFrame
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DeviceName dn = new DeviceName();
 				
+				if(textField_2.getText().isEmpty() || textField_3.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Nisu sva polja ispunjena", "AlertBox", JOptionPane.WARNING_MESSAGE);
+				}
+				else{
+				DeviceName dn = new DeviceName();
 				dn.setName(textField_2.getText());
 				HibernateDeviceName hdn = new HibernateDeviceName();
 				hdn.addDeviceName(dn);
 				
 				DeviceType dt = new DeviceType();
+			
 				dt.setType(textField_3.getText());
 				HibernateDeviceType hdt = new HibernateDeviceType();
 				hdt.addDeviceType(dt);
 				
 				JOptionPane.showMessageDialog(null, "Novi uređaj dodan", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				
-				dispose();				
+				dispose();
+				}
 			}
 		});
 		button.setBounds(354, 230, 70, 22);
