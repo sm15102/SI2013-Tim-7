@@ -67,7 +67,7 @@ public class AddDevice extends JFrame { //extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if(textField_2.getText().isEmpty() || textField_3.getText().isEmpty()){
+				if(textField_2.getText().isEmpty() || textField_3.getText().isEmpty() || textField_2.getText().matches("\\s+")|| textField_3.getText().matches("\\s+")){
 					JOptionPane.showMessageDialog(null, "Nisu sva polja ispunjena", "AlertBox", JOptionPane.WARNING_MESSAGE);
 				}
 				else{
