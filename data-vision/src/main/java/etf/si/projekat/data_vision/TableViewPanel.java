@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import etf.si.projekat.data_vision.AddSensorsTableView;
+
 import etf.si.projekat.util.HibernateUtil;
 
 import javax.swing.GroupLayout;
