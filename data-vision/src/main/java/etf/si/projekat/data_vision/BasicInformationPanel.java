@@ -988,7 +988,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1058,7 +1058,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1260,7 +1260,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1394,7 +1394,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1549,7 +1549,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1726,7 +1726,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -1925,7 +1925,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
@@ -2143,7 +2143,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
