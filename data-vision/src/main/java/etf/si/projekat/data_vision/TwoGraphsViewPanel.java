@@ -1306,14 +1306,7 @@ InteractivePanel inter2;
 	
 	public void  OneLineGraphShow1()
 	{
-		/*contentPane = new JPanel();
-		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		//contentPane.setBounds(new Rectangle(0, 0, 0, 50));
-		contentPane.setBounds(new Rectangle(0, 0,4000, 4000));
-		contentPane.setBackground(Color.black);
-		//contentPane.setBounds(10,10,5,5);
-		//contentPane.setBounds(0,0,2000,3000);
-		*/
+		
 		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		
@@ -1425,12 +1418,7 @@ InteractivePanel inter2;
 	         
 	         interactivePanel.setLayout(null);
 	         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
-	         //interactivePanel.setOpaque(true);
-
-	       
-	          interactivePanel.setVisible(true);
-	          
-	          //contentPane.add(interactivePanel);
+	         interactivePanel.setVisible(true);
 	         
 		break;
 	      }
@@ -1438,8 +1426,7 @@ InteractivePanel inter2;
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+	  		
 	  		 plot.getTitle().setText("Line plot");
 	  			
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1525,9 +1512,7 @@ InteractivePanel inter2;
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
-
-	  		 plot.getTitle().setText("Line plot");
+	  		  plot.getTitle().setText("Line plot");
 	  			
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -1695,9 +1680,7 @@ InteractivePanel inter2;
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
-		  		 plot.getTitle().setText("Line plot");
+		      plot.getTitle().setText("Line plot");
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
@@ -1843,9 +1826,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
-		  		 plot.getTitle().setText("Line plot");
+		      plot.getTitle().setText("Line plot");
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 		         
@@ -1922,47 +1903,6 @@ interactivePanel = new InteractivePanel(plot);
 	      
 	      }
 	
-		   
-		
-		 /*final JButton btnChange = new JButton("Change data");
-			
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
-		 
-	
-		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
-		 lblExport.setSize(400, 15);
-		 
-		 interactivePanel.add(lblExport);
-		 final JButton btnExit = new JButton("Cancel");
-		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
-		 
-		 
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
-			tabbedPane.remove(0);
-			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			tabbedPane.add("Basic data",basicInfo);
-			basicInfo.setLayout(null);
-		
-			tabbedPane.setSelectedIndex(1);
-			
-				}
-			});
-		*/
 		
 	}
 	
@@ -2083,14 +2023,12 @@ interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	        // interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
 	         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400)); 
 	         
 	          contentPane = new JPanel();
 	       
 				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-			
-			//	interactivePanel1.setVisible(true);
+
 		         interactivePanel1.setLayout(null);			
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
@@ -2735,9 +2673,9 @@ interactivePanel1 = new InteractivePanel(plot);
 			tabbedPane.remove(1);
 			//tabbedPane.resetKeyboardActions();
 			tabbedPane.remove(0);
-			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			tabbedPane.add("Basic data",basicInfo);
-			basicInfo.setLayout(null);
+			TwoGraphsViewPanel twoGraphs= new TwoGraphsViewPanel(tabbedPane);
+			tabbedPane.add("Two graphs",twoGraphs);
+			twoGraphs.setLayout(null);
 		
 			tabbedPane.setSelectedIndex(1);
 			
@@ -5611,11 +5549,9 @@ interactivePanel1 = new InteractivePanel(plot);
 				public void actionPerformed(ActionEvent e) {
 					
 			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
-			//tabbedPane.remove(0);
-			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			tabbedPane.add("Basic data",basicInfo);
-			basicInfo.setLayout(null);
+			TwoGraphsViewPanel twoGraphs= new TwoGraphsViewPanel(tabbedPane);
+			tabbedPane.add("Two graphs",twoGraphs);
+			twoGraphs.setLayout(null);
 		
 			tabbedPane.setSelectedIndex(1);
 				}
