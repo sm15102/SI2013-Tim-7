@@ -156,7 +156,7 @@ public class GlavniFrame extends JFrame {
 		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
 		tabbedPane_3.setBounds(new Rectangle(0, 0,1200, 1200));
 		twoGraphs = new TwoGraphsViewPanel(tabbedPane_3);
-		tabbedPane_3.add("Basic info",twoGraphs);
+		tabbedPane_3.add("Two graphs",twoGraphs);
 		twoGraphs.setLayout(null);
 
 		
