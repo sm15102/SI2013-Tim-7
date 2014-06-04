@@ -1,9 +1,11 @@
 package ba.unsa.etf.si.beans;
 
 public class DeviceName implements java.io.Serializable {
+	private long devicename_id;
+	private String name;
 	
 	public DeviceName() {}
-	long devicename_id;
+	
 	public long getDevicename_id() {
 		return devicename_id;
 	}
@@ -16,6 +18,5 @@ public class DeviceName implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	String name;
 
 }

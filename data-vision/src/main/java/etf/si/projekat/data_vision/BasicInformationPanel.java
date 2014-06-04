@@ -278,6 +278,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 				
 				if((Integer) spinner.getValue()==1) btnGenerateGraph.setVisible(true);
 				fillChoices(1);
+				choice_2.enable();
 			}
 		});
       
@@ -290,6 +291,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==2) btnGenerateGraph.setVisible(true);
 				fillChoices(2);
+				choice_3.enable();
+
 			}
 		});
       
@@ -301,6 +304,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==3) btnGenerateGraph.setVisible(true);
 				fillChoices(3);
+				choice_4.enable();
+
 			}
 		});
       
@@ -312,6 +317,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==4) btnGenerateGraph.setVisible(true);
 				fillChoices(4);
+				choice_5.enable();
+
 			}
 		});
       
@@ -323,6 +330,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==5) btnGenerateGraph.setVisible(true);
 				fillChoices(5);
+				choice_6.enable();
+
 			}
 		});
       
@@ -334,6 +343,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==6) btnGenerateGraph.setVisible(true);
 				fillChoices(6);
+				choice_7.enable();
+
 			}
 		});
       
@@ -345,6 +356,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==7) btnGenerateGraph.setVisible(true);
 				fillChoices(7);
+				choice_8.enable();
+
 			}
 		});
        choice_8 = new Choice();
@@ -355,6 +368,8 @@ public class BasicInformationPanel  extends ExamplePanel {
       	public void mouseClicked(MouseEvent arg0) {
 				if((Integer) spinner.getValue()==8) btnGenerateGraph.setVisible(true);
 				fillChoices(8);
+				choice_9.enable();
+
 			}
 		});
       choice_9 = new Choice();
@@ -398,6 +413,9 @@ public class BasicInformationPanel  extends ExamplePanel {
 		choice_8.setVisible(false);
 		choice_9.setVisible(false);
 		
+		
+		
+		
 		lblSensorType_1.setVisible(false);
 		lblSensorType_2.setVisible(false);
 		lblSensorType_3.setVisible(false);
@@ -420,19 +438,69 @@ public class BasicInformationPanel  extends ExamplePanel {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		boolean islect=false;
+      		boolean date1Beforedate2=false;
+      		boolean inFuture1=false;
+      		boolean inFuture2=false;
+
       		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
+				islect=true;
+			}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
+      		if(islect){
+      		Date dateString = (Date) datePicker.getModel().getValue();
+	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date date_start;
+			Date date_end;
+			Date date_now;
+	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+	        
+				try {
+					date_start = sdf.parse(date_from);
+					date_end = sdf.parse(date_to);
+				    date_now = sdf.parse(now);
+				    
+
+      	    if( date_start.compareTo(date_end) < 0) {
+      	    	date1Beforedate2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "'Time interval from' is before 'Time interval to'");
+      	    	}
+      	    if((date_start.compareTo(date_now) < 0)){
+    	    	inFuture1=true;
+    	    }else{
+    	    	JOptionPane.showMessageDialog(null, "'Time interval from' is in the future");
+    	    }
+      	    if((date_end.compareTo(date_now) < 0)){
+      	    	inFuture2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "'Time interval to' is  in the future");
+
+      	    }
+			} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+      		}
+      		
+      		if(date1Beforedate2 && inFuture1 && inFuture2){
       		
       		
       			
       	    choice_1.enable();
-      		choice_2.enable();
-      		choice_3.enable();
-      		choice_4.enable();
-      		choice_5.enable();
-      		choice_6.enable();
-      		choice_7.enable();
-      		choice_8.enable();
-      		choice_9.enable();
+      	  choice_2.disable();
+  		choice_3.disable();
+  		choice_4.disable();
+  		choice_5.disable();
+  		choice_6.disable();
+  		choice_7.disable();
+  		choice_8.disable();
+  		choice_9.disable();
       		
       		choice_1.removeAll();
       		choice_2.removeAll();
@@ -708,8 +776,34 @@ public class BasicInformationPanel  extends ExamplePanel {
 		     String s = datePicker1.getComponentListeners().toString();
 		     System.out.println(s);
 	
-      		}else{
-      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
+      		else{
+      			choice_1.setVisible(false);
+				choice_2.setVisible(false);
+				choice_3.setVisible(false);
+				choice_4.setVisible(false);
+				choice_5.setVisible(false);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+			
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				lblSensorType_1.setVisible(false);
+				
+				
+				lblSensorType.setVisible(false);
+				separator_2.setVisible(false);
+				
+				label_1.setVisible(false);
+				label_2.setVisible(false);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+      			
       		}
 		  		
 		      	

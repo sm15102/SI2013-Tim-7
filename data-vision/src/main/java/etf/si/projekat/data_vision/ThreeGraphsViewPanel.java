@@ -19,11 +19,14 @@ import java.awt.event.WindowListener;
 
 
 
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
+
 
 
 
@@ -49,7 +52,9 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 
 
+
 import java.awt.Label;
+
 
 
 
@@ -74,7 +79,9 @@ import javax.swing.SwingConstants;
 
 
 
+
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,7 +97,9 @@ import java.util.List;
 
 
 
+
 import javax.swing.JButton;
+
 
 
 
@@ -117,6 +126,7 @@ import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
+
 
 
 
@@ -359,12 +369,70 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
       		btnGenerateGraphs.addMouseListener(new MouseAdapter() {
       			@Override
       			public void mouseClicked(MouseEvent arg0) {
+      				choice_1.enable();
+      				choice_12.enable();
+      				
+      				boolean islect=false;
+      	      		boolean date1Beforedate2=false;
+      	      		boolean inFuture1=false;
+      	      		boolean inFuture2=false;
+
+      	      		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
+      					islect=true;
+      				}else{
+      	      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      	      		}
+      	      		if(islect){
+      	      		Date dateString = (Date) datePicker.getModel().getValue();
+      		  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+      		  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+      		  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+      				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      				Date date_start;
+      				Date date_end;
+      				Date date_now;
+      		        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+      		        
+      					try {
+      						date_start = sdf.parse(date_from);
+      						date_end = sdf.parse(date_to);
+      					    date_now = sdf.parse(now);
+      					    
+
+      	      	    if( date_start.compareTo(date_end) < 0) {
+      	      	    	date1Beforedate2=true;
+      	      	    }else{
+      	      	    	JOptionPane.showMessageDialog(null, "'Time interval from' is before 'Time interval to'");
+      	      	    	}
+      	      	    if((date_start.compareTo(date_now) < 0)){
+      	    	    	inFuture1=true;
+      	    	    }else{
+      	    	    	JOptionPane.showMessageDialog(null, "'Time interval from' is in the future");
+      	    	    }
+      	      	    if((date_end.compareTo(date_now) < 0)){
+      	      	    	inFuture2=true;
+      	      	    }else{
+      	      	    	JOptionPane.showMessageDialog(null, "'Time interval to' is  in the future");
+
+      	      	    }
+      				} catch (ParseException e) {
+      						// TODO Auto-generated catch block
+      						e.printStackTrace();
+      					}
+      				
+      	      		}
+      	      		
+      	      		if(date1Beforedate2 && inFuture1 && inFuture2){
+      				
+      				
+      				
       				if(choice.getSelectedItem().toString() == "Line"){
       					Graf();
       					
       				}
       				
       				else GrafBar();
+      			}
       			}
       		});
       	
@@ -400,13 +468,34 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 
 	      for (int i=0; i<list_device.size(); i++){
 		    	 choice_1.add(list_device.get(i).getName() );
-		    	 choice_12.add(list_device.get(i).getName() );
+		    	
 
 	    }
-
+	      choice_1.addMouseListener(new MouseAdapter() {
+	        	@Override
+	          	public void mouseClicked(MouseEvent arg0) {
+	        		 for (int i=0; i<list_device.size(); i++){
+	        			 if(choice_1.getSelectedItem()==list_device.get(i).getName()) continue;
+	        			 choice_12.add(list_device.get(i).getName() );
+	                      choice_1.disable();
+	        		 }
+		
+				}
+			});
+	      choice_12.addMouseListener(new MouseAdapter() {
+	        	@Override
+	          	public void mouseClicked(MouseEvent arg0) {
+	        		
+	                      choice_12.disable();
+	        		 
+		
+				}
+			});
 
 	}
 	public void Graf(){
+				boolean have1=true;
+				boolean have2=true;
 
 							 
 				//Podaci koji ce se prikazivati na grafu 
@@ -436,23 +525,19 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						finally {}
 						
 						size=logs.size();
+						if(size==0){
+							have1=false;
+							JOptionPane.showMessageDialog(null, "Graph one is empty");
+						}
 						values=new ArrayList<Double>();
 						
 						for(int i=0; i<logs.size();i++){
-							
-				        
-							
-							
-								
-							values.add(logs.get(i).getValue());           
-							
 						
-							
-							
-							 
+							values.add(logs.get(i).getValue());           
+						 
 						}
+						
 						}catch(Exception e){
-							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
 					
@@ -465,9 +550,65 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 							
 							d.add(logs.get(i).getTimestamp().getTime(), values.get(i),logs.get(i).getDevice_name());
 			  }
+					  
+					  //two graph
+					  Date dateString2 = (Date) datePicker.getModel().getValue();
+				  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+				  		Date dateString3 = (Date) datePicker1.getModel().getValue();
+				  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+						SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+						Date date_start1;
+						Date date_end1;
 						
+						  try {
+							date_start1 = sdf1.parse(date_from1);
+							date_end1 = sdf1.parse(date_to1);
+							 
+
+							try {
+								date_start = sdf.parse(date_from);
+								date_end = sdf.parse(date_to);
+								
+							logs1=new ArrayList<EventLogs>();
+								
+								
+							
+								
+						  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 						 
+							}
+							
+							finally {}
+							size=logs1.size();
+							if(size==0){
+								have1=false;
+								JOptionPane.showMessageDialog(null, "Graph two is empty");
+							}
+							
+							  values1=new ArrayList<Double>();
+							
+							for(int i=0; i<logs1.size();i++){
+								
+					      
+								
+									
+								values1.add(logs1.get(i).getValue());          
+								
+						
+								
+								
+								 
+							}
+							}catch(Exception e){
+								 
+								System.out.println("Ne poklapaju se vrijednosti");
+							}
 						 
+						  
+						  //------------------------------
+						  
+						
+		if(have1 && have2)	{		 
 						  
 		XYPlot plot = new XYPlot(d);
 		plot.setInsets(new Insets2D.Double(30.0, 20.0, 40.0, 0));
@@ -494,54 +635,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 	          
 	          //-----------------------------------------------------------------------------------------------------
 	          
-	          Date dateString2 = (Date) datePicker.getModel().getValue();
-		  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
-		  		Date dateString3 = (Date) datePicker1.getModel().getValue();
-		  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				Date date_start1;
-				Date date_end1;
-				
-				  try {
-					date_start1 = sdf1.parse(date_from1);
-					date_end1 = sdf1.parse(date_to1);
-					 
-
-					try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
-						
-					logs1=new ArrayList<EventLogs>();
-						
-						
-					
-						
-				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-				 
-					}
-					
-					finally {}
-					size=logs.size();
-					
-					  values1=new ArrayList<Double>();
-					
-					for(int i=0; i<logs1.size();i++){
-						
-			      
-						
-							
-						values1.add(logs1.get(i).getValue());          
-						
-				
-						
-						
-						 
-					}
-					}catch(Exception e){
-						 
-						System.out.println("Ne poklapaju se vrijednosti");
-					}
-				 
+	          
 				 
 				  DataTable d1=new DataTable(Long.class, Double.class, String.class);
 				 
@@ -716,13 +810,19 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			 						}
 			 					});		
 			 				
-			 				
+		
+		}		
 			 				
 	}
 		 
 
 		void GrafBar() {
 			
+			boolean have1=true;
+			boolean have2=true;
+
+		      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
 			//Podaci koji ce se prikazivati na grafu 
 			Date dateString = (Date) datePicker.getModel().getValue();
 	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
@@ -741,7 +841,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 				
 				
 					
-				logs=new ArrayList<EventLogs>();
+				
 					
 					
 					
@@ -753,23 +853,82 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 
 				
 				size=logs.size();
+				if(size==0){
+					have1=false;
+					JOptionPane.showMessageDialog(null, "Graph one is empty");
+				}
 				values=new ArrayList<Double>();
 				
 				for(int i=0; i<logs.size();i++){
-					
-		        
-					
-						
-					values.add(logs.get(i).getValue());           
 				
-					
-					
-					 
+					values.add(logs.get(i).getValue());           
+				 
 				}
+				
 				}catch(Exception e){
-					 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 					System.out.println("Ne poklapaju se vrijednosti");
 				}
+			  
+			  
+			  //two graph
+			  
+			  Date dateString2 = (Date) datePicker.getModel().getValue();
+		  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+		  		Date dateString3 = (Date) datePicker1.getModel().getValue();
+		  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				Date date_start1;
+				Date date_end1;
+				
+				  try {
+					date_start1 = sdf1.parse(date_from1);
+					date_end1 = sdf1.parse(date_to1);
+					 
+
+					try {
+						date_start = sdf.parse(date_from);
+						date_end = sdf.parse(date_to);
+						
+							
+						
+					
+						
+				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+				 
+					}
+					
+					finally {}
+					size=logs1.size();
+					if(size==0){
+						have2=false;
+						JOptionPane.showMessageDialog(null, "Graph two is empty");
+
+					}
+					  values1=new ArrayList<Double>();
+					
+					for(int i=0; i<logs1.size();i++){
+						
+			      
+					
+							
+						values1.add(logs1.get(i).getValue());
+						
+					
+						
+						 
+					}
+					}catch(Exception e){
+						 
+						System.out.println("Ne poklapaju se vrijednosti");
+					}
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			 if(have1 && have2){
 			 
 			  
 			  DataTable d=new DataTable(Long.class, Double.class, String.class);
@@ -808,7 +967,6 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 		      plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
 		      AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
-		      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		      rendererX.setTickLabelFormat(dateFormat);
 		      
 		      
@@ -823,57 +981,13 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			        // interactivePanel.setLayout(null);
 			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
 			         //interactivePanel.setOpaque(true);
-
+			 
 			       
 			        //  interactivePanel.setVisible(true);
 			  
-			          Date dateString2 = (Date) datePicker.getModel().getValue();
-				  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
-				  		Date dateString3 = (Date) datePicker1.getModel().getValue();
-				  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-						SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-						Date date_start1;
-						Date date_end1;
-						
-						  try {
-							date_start1 = sdf1.parse(date_from1);
-							date_end1 = sdf1.parse(date_to1);
-							 
-
-							try {
-								date_start = sdf.parse(date_from);
-								date_end = sdf.parse(date_to);
-								
-							logs1=new ArrayList<EventLogs>();
-								
-								
-							
-								
-						  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+			        
 						 
-							}
-							
-							finally {}
-							size=logs.size();
-							
-							  values1=new ArrayList<Double>();
-							
-							for(int i=0; i<logs1.size();i++){
-								
-					      
-							
-									
-								values1.add(logs1.get(i).getValue());
-								
-							
-								
-								 
-							}
-							}catch(Exception e){
-								 
-								System.out.println("Ne poklapaju se vrijednosti");
-							}
-						 
+							  
 						  DataTable d1=new DataTable(Long.class, Double.class, String.class);
 						 
 						  
@@ -884,7 +998,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 								d1.add(logs1.get(j).getTimestamp().getTime(), values1.get(j),logs1.get(j).getDevice_name());
 				  }
 							
-							
+						
 						  
 						  
 						  final BarPlot plot1= new BarPlot(d1);
@@ -1069,9 +1183,9 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 								 					tabbedPane.setSelectedIndex(0);
 						 						}
 						 					});		
-						 				
-						 				
-						 				
+					
+			 }
+		
 		}	
 		
 			public int getValueFirstGraph() {

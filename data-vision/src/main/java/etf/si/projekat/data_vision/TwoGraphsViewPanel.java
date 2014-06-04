@@ -445,7 +445,56 @@ InteractivePanel inter2;
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		boolean islect=false;
+      		boolean date1Beforedate2=false;
+      		boolean inFuture1=false;
+      		boolean inFuture2=false;
+
       		if(datePicker.getModel().isSelected() && datePicker1.getModel().isSelected()){
+				islect=true;
+			}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
+      		if(islect){
+      		Date dateString = (Date) datePicker.getModel().getValue();
+	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
+	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date date_start;
+			Date date_end;
+			Date date_now;
+	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+	        
+				try {
+					date_start = sdf.parse(date_from);
+					date_end = sdf.parse(date_to);
+				    date_now = sdf.parse(now);
+				   
+      	    if( date_start.compareTo(date_end) < 0) {
+      	    	date1Beforedate2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is before 'Time interval to'");
+      	    	}
+      	    if((date_start.compareTo(date_now) < 0)){
+    	    	inFuture1=true;
+    	    }else{
+    	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is in the future");
+    	    }
+      	    if((date_end.compareTo(date_now) < 0)){
+      	    	inFuture2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
+
+      	    }
+			} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+      		}
+      		
+      		if(date1Beforedate2 && inFuture1 && inFuture2){
       		
       		choice_1.enable();
       		choice_2.enable();
@@ -723,8 +772,34 @@ InteractivePanel inter2;
 			    	 choice_1.add(list_device.get(i).getName() );
 			    	
 		      }
-      		}else{
-      			JOptionPane.showMessageDialog(null, "Time is not selected");      		}
+      	}
+      		else{
+      			choice_1.setVisible(false);
+				choice_2.setVisible(false);
+				choice_3.setVisible(false);
+				choice_4.setVisible(false);
+				choice_5.setVisible(false);
+				choice_6.setVisible(false);
+				choice_7.setVisible(false);
+				choice_8.setVisible(false);
+				choice_9.setVisible(false);
+				
+			
+				lblSensorType_2.setVisible(false);
+				lblSensorType_3.setVisible(false);
+				lblSensorType_4.setVisible(false);
+				lblSensorType_1.setVisible(false);
+				
+				
+				lblSensorType.setVisible(false);
+				separator_2.setVisible(false);
+				
+				label_1.setVisible(false);
+				label_2.setVisible(false);
+				label_3.setVisible(false);
+				label_4.setVisible(false);
+				label_5.setVisible(false);
+      		}
       	}
       });
 		
@@ -1015,7 +1090,56 @@ InteractivePanel inter2;
 		@Override
       	public void mouseClicked(MouseEvent arg0) {
       		
+      		boolean islect=false;
+      		boolean date1Beforedate2=false;
+      		boolean inFuture1=false;
+      		boolean inFuture2=false;
+
       		if(datePicker2.getModel().isSelected() && datePicker3.getModel().isSelected()){
+				islect=true;
+			}else{
+      			JOptionPane.showMessageDialog(null, "Time is not selected");
+      		}
+      		if(islect){
+      		Date dateString = (Date) datePicker2.getModel().getValue();
+	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		Date dateString1 = (Date) datePicker3.getModel().getValue();
+	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date date_start;
+			Date date_end;
+			Date date_now;
+	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+	        
+				try {
+					date_start = sdf.parse(date_from);
+					date_end = sdf.parse(date_to);
+				    date_now = sdf.parse(now);
+				   
+      	    if( date_start.compareTo(date_end) < 0) {
+      	    	date1Beforedate2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is before 'Time interval to'");
+      	    	}
+      	    if((date_start.compareTo(date_now) < 0)){
+    	    	inFuture1=true;
+    	    }else{
+    	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is in the future");
+    	    }
+      	    if((date_end.compareTo(date_now) < 0)){
+      	    	inFuture2=true;
+      	    }else{
+      	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
+
+      	    }
+			} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+      		}
+      		
+      		if(date1Beforedate2 && inFuture1 && inFuture2){
       		
       		// KOD ZA DRUGI GRAF
       			
@@ -1280,13 +1404,28 @@ InteractivePanel inter2;
 		    	 choice_11.add(list_device.get(i).getName() );
 		    	
 	      }
-	      
-      		
-      		
-      	
-      	}else{
-      		
-      		JOptionPane.showMessageDialog(null, "Time is not selected");      	}
+	      }else{
+	    	  choice_11.setVisible(false);
+				choice_12.setVisible(false);
+				choice_13.setVisible(false);
+				choice_14.setVisible(false);
+				choice_15.setVisible(false);
+				choice_16.setVisible(false);
+				choice_17.setVisible(false);
+				choice_18.setVisible(false);
+				choice_19.setVisible(false);
+				
+				
+				label_12.setVisible(false);
+				label_13.setVisible(false);
+				label_14.setVisible(false);
+				label_15.setVisible(false);
+				label_16.setVisible(false);
+				label_17.setVisible(false);
+				label_18.setVisible(false);
+				label_19.setVisible(false);
+				label_20.setVisible(false);
+	      }
      }
   });
       button.setBounds(493, 165, 136, 23);
@@ -1358,9 +1497,9 @@ InteractivePanel inter2;
 							
 							}
 							list_values.add(values);
-							
-							 
+						 
 						}
+						
 						}catch(Exception e){
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							System.out.println("Ne poklapaju se vrijednosti");
@@ -5549,10 +5688,6 @@ interactivePanel1 = new InteractivePanel(plot);
 				public void actionPerformed(ActionEvent e) {
 					
 			tabbedPane.remove(1);
-			TwoGraphsViewPanel twoGraphs= new TwoGraphsViewPanel(tabbedPane);
-			tabbedPane.add("Two graphs",twoGraphs);
-			twoGraphs.setLayout(null);
-		
 			tabbedPane.setSelectedIndex(1);
 				}
 			});
