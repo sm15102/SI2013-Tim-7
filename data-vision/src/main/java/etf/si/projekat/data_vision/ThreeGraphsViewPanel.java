@@ -17,11 +17,15 @@ import java.awt.event.WindowListener;
 
 
 
+
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
+
+
 
 
 
@@ -43,7 +47,11 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 
 
+
+
 import java.awt.Label;
+
+
 
 
 
@@ -55,6 +63,8 @@ import java.awt.Label;
 
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+
 
 
 
@@ -78,7 +88,11 @@ import java.util.List;
 
 
 
+
+
 import javax.swing.JButton;
+
+
 
 
 
@@ -103,6 +117,8 @@ import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
+
+
 
 
 import java.awt.event.MouseAdapter;
@@ -660,7 +676,48 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			 			     	
 			 				contentPane.setLayout(null);
 			 				tabbedPane.setSelectedIndex(1);
-			          
+			  
+			 				
+			 				 final JButton btnChange = new JButton("Change data");
+			 				
+			 			       btnChange.addMouseListener(new MouseAdapter() {
+			 			       	@Override
+			 			       	public void mouseClicked(MouseEvent arg0) {
+			 			       		tabbedPane.setSelectedIndex(0);
+			 			       	}
+			 			       });
+			 			     btnChange.setBounds(650, 492, 137, 23);
+			 				 contentPane.add(btnChange);
+			 				 
+			 			
+			 				 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+			 				 lblExport.setBounds(40, 499, 137, 23);
+			 				 lblExport.setSize(400, 15);
+			 				 lblExport.setForeground(Color.red);
+			 				 contentPane.add(lblExport);
+			 				 final JButton btnExit = new JButton("Cancel");
+			 				
+			 			     btnExit.setBounds(800, 492, 137, 23);
+			 				contentPane.add(btnExit);
+			 				 
+			 				 
+			 				
+			 				 btnExit.addActionListener(new ActionListener() {
+			 						public void actionPerformed(ActionEvent e) {
+			 					
+			 							tabbedPane.remove(1);
+			 							
+			 				    tabbedPane.remove(0);
+			 				   ThreeGraphsViewPanel threeGraphs= new ThreeGraphsViewPanel(tabbedPane);
+			 					tabbedPane.add("Three graphs",threeGraphs);
+			 					threeGraphs.setLayout(null);
+			 				    
+			 					tabbedPane.setSelectedIndex(0);
+			 						}
+			 					});		
+			 				
+			 				
+			 				
 	}
 		 
 
@@ -971,7 +1028,50 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						 			     
 						 				contentPane.setLayout(null);
 						 				tabbedPane.setSelectedIndex(1);		          
-						          
+						        
+						 				
+						 				
+						 				
+						 				 final JButton btnChange = new JButton("Change data");
+						 				
+						 			       btnChange.addMouseListener(new MouseAdapter() {
+						 			       	@Override
+						 			       	public void mouseClicked(MouseEvent arg0) {
+						 			       		tabbedPane.setSelectedIndex(0);
+						 			       	}
+						 			       });
+						 			     btnChange.setBounds(650, 492, 137, 23);
+						 				 contentPane.add(btnChange);
+						 				 
+						 			
+						 				 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+						 				 lblExport.setBounds(40, 499, 137, 23);
+						 				 lblExport.setSize(400, 15);
+						 				 lblExport.setForeground(Color.red);
+						 				 contentPane.add(lblExport);
+						 				 final JButton btnExit = new JButton("Cancel");
+						 				
+						 			     btnExit.setBounds(800, 492, 137, 23);
+						 				contentPane.add(btnExit);
+						 				 
+						 				 
+						 				
+						 				 btnExit.addActionListener(new ActionListener() {
+						 						public void actionPerformed(ActionEvent e) {
+						 							
+						 							tabbedPane.remove(1);
+						 							
+								 				    tabbedPane.remove(0);
+								 				   ThreeGraphsViewPanel threeGraphs= new ThreeGraphsViewPanel(tabbedPane);
+								 					tabbedPane.add("Three graphs",threeGraphs);
+								 					threeGraphs.setLayout(null);
+								 				    
+								 					tabbedPane.setSelectedIndex(0);
+						 						}
+						 					});		
+						 				
+						 				
+						 				
 		}	
 		
 			public int getValueFirstGraph() {
