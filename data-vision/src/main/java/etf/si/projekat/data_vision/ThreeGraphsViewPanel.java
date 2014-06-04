@@ -632,19 +632,19 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			         
 			        
 			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
-			         interactivePanel.setOpaque(true);
+			      //   interactivePanel.setOpaque(true);
 
 			       
-			          interactivePanel.setVisible(true);	
+			        //  interactivePanel.setVisible(true);	
 					
 			          interactivePanel2 = new InteractivePanel(plot3);
 				         
-				         interactivePanel.setLayout(null);
+				         //interactivePanel.setLayout(null);
 				         interactivePanel2.setBounds(new Rectangle(0,0, 540,500));
-				         interactivePanel2.setOpaque(true);
+				         //interactivePanel2.setOpaque(true);
 
 				       
-				          interactivePanel2.setVisible(true);	
+				         // interactivePanel2.setVisible(true);	
 						
 			          
 
@@ -652,10 +652,10 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 				          
 				         
 				          interactivePanel1.setBounds(new Rectangle(0, 0, 950, 230));
-				         interactivePanel1.setOpaque(true);
+				       //  interactivePanel1.setOpaque(true);
 
 				        
-				           interactivePanel1.setVisible(true);
+				          // interactivePanel1.setVisible(true);
 			          
 			          contentPane = new JPanel();
 				       
@@ -663,7 +663,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			 			
 			 		
 			 		        
-			 				 tabbedPane.addTab("Two graphs", contentPane);
+			 				 tabbedPane.addTab("Three graphs", contentPane);
 			 				 contentPane.setVisible(true);
 			 				contentPane.add(interactivePanel);
 			 				
@@ -825,7 +825,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 			         //interactivePanel.setOpaque(true);
 
 			       
-			          interactivePanel.setVisible(true);
+			        //  interactivePanel.setVisible(true);
 			  
 			          Date dateString2 = (Date) datePicker.getModel().getValue();
 				  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
@@ -996,7 +996,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 					        
 
 					       
-					          interactivePanel2.setVisible(true);
+					          //interactivePanel2.setVisible(true);
 		
 							          
 					      interactivePanel1 = new InteractivePanel(plot1);
@@ -1006,7 +1006,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						         
 
 						       
-						          interactivePanel1.setVisible(true);
+						         // interactivePanel1.setVisible(true);
 			
 						          contentPane = new JPanel();
 							       
@@ -1014,7 +1014,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 						 			
 						 			
 						 		        
-						 				 tabbedPane.addTab("Two graphs", contentPane);
+						 				 tabbedPane.addTab("Three graphs", contentPane);
 						 				 contentPane.setVisible(true);
 						 				contentPane.add(interactivePanel);
 						 				
