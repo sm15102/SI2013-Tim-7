@@ -2311,7 +2311,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         
 	         interactivePanel.setLayout(null);
 	         interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-	          plot.getTitle().setText("Bar plot");
+	          plot.getTitle().setText("Line plot");
 	          interactivePanel.setVisible(true);
 	          
 	          tabbedPane.addTab("Line plot", interactivePanel);
@@ -2348,7 +2348,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2393,7 +2393,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2443,7 +2443,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2500,7 +2500,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2562,7 +2562,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2630,7 +2630,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2705,7 +2705,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
@@ -2785,7 +2785,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			     
 			     interactivePanel.setLayout(null);
 			     interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
-			      plot.getTitle().setText("Bar plot");
+			      plot.getTitle().setText("Line plot");
 			      interactivePanel.setVisible(true);
 			      
 			      tabbedPane.addTab("Line plot", interactivePanel);
