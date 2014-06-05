@@ -266,7 +266,8 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 
 
 		add(spinner);
-
+		spinner.setValue((Integer)2);
+		spinner.setEnabled(false);
 
         JLabel lblGraphType = new JLabel("Graph type");
         lblGraphType.setHorizontalAlignment(SwingConstants.RIGHT);
