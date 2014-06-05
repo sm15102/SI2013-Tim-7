@@ -324,7 +324,8 @@ private List<ActivePeriod> ActivePeriods()
 		int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
 		EventLogs ev = new HibernateEventLogs().giveEventLogs(id);
 		 String message = ev.getEvent_message();
-				if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && activeperiod.getStart()==null && !on && i==0)
+		
+		 if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && activeperiod.getStart()==null && !on && i==0)
 		 {
 			 on = true;
 			 activeperiod.setStart(model.getValue());
@@ -337,7 +338,7 @@ private List<ActivePeriod> ActivePeriods()
 		 else if((message.equalsIgnoreCase("closed") || message.equalsIgnoreCase("turnOff")) && on && i==rowcount-1)
 		 {
 			 on = false;
-			 activeperiod.setEnd(model1.getValue());
+			 activeperiod.setEnd(ev.getTimestamp());
 			 periods.add(activeperiod);
 			 activeperiod = new ActivePeriod();
 		 }
