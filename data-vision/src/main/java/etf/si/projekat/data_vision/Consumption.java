@@ -115,15 +115,7 @@ public Consumption() {
         });
         
         units = new JComboBox();
-        units.addItemListener(new ItemListener() {
-        	public void itemStateChanged(ItemEvent arg0) {
-        		if((Double)spinner.getValue() != 0 && (String)units.getSelectedItem()=="kilowatts (kW)")
-        		{
-        			spinner.setValue((Double)spinner.getValue()/1000);
-        		} else
-        			spinner.setValue((Double)spinner.getValue()*1000);
-        	}
-        });
+        
        
         
 		for(int i=0; i<listdevices.size(); i++){
@@ -174,7 +166,7 @@ public Consumption() {
         lblNewLabel_1.setBounds(550, 211, 150, 14);
         add(lblNewLabel_1);
         
-        JLabel lblNewLabel_2 = new JLabel("Total result for selected period (kWh)");
+        JLabel lblNewLabel_2 = new JLabel("Total result for selected period ");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblNewLabel_2.setBounds(549, 20, 260, 31);
         add(lblNewLabel_2);
@@ -388,21 +380,26 @@ private List<ActivePeriod> ActivePeriods()
 		 lblTotalResult.setText("0 kWh");
 		 return;
 		 }
-	 
-	 if((String)units.getSelectedItem()=="watts (W)") power = power/1000;
+	 double PeriodicalConsumption;
 	 double TotalConsumption = 0;
 	 for(int i=0;i<periods.size();i++)
 	 {
 		 Date date1 = periods.get(i).getStart();
 		 Date date2 = periods.get(i).getEnd();
 		 long hoursbetween = (date2.getTime() - date1.getTime())/3600000; 
-		 double PeriodicalConsumption = power*hoursbetween;
+		 PeriodicalConsumption = power*hoursbetween;
 		 tablemodel1.addRow(new Object[]{date1,date2,PeriodicalConsumption});
 		 TotalConsumption+=PeriodicalConsumption;
 	 }
 	 
-	 lblTotalResult.setText(String.format("%.4f",TotalConsumption)+" kWh");
-	 }
+	 if((String)units.getSelectedItem()=="watts (W)") {
+		 lblTotalResult.setText(String.format("%.4f",(TotalConsumption*1000)) +" Wh");
+		 }
+		 if((String)units.getSelectedItem()=="kilowatts (kW)"){
+		 lblTotalResult.setText(String.format("%.4f",TotalConsumption)+" kWh");
+		 }
+		 
+ }
 
 }
 
