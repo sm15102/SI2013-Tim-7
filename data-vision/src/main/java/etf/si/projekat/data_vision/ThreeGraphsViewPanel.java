@@ -261,7 +261,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 
 
 
-		spinner.setModel(new SpinnerNumberModel(1, 1, 1, 1));
+		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(152, 137, 165, 18);
 
 
