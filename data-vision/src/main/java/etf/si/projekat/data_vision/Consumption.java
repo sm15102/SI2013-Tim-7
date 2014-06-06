@@ -34,10 +34,16 @@ import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.event.PopupMenuEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class Consumption extends JPanel {
-	List<DeviceName> listdevices = new HibernateDeviceName().giveAllDeviceName();
+	private List<DeviceName> listdevices;
 	public List<DeviceType> ListDevices = new ArrayList<DeviceType>();
 	final JTable table;
 	private String selecteddevice;
@@ -101,28 +107,32 @@ public Consumption() {
     add(time_interval_to);
     
     devices = new JComboBox();
+    devices.addPopupMenuListener(new PopupMenuListener() {
+    	public void popupMenuCanceled(PopupMenuEvent arg0) {
+    	}
+    	public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
+    		if(selecteddevice != null && selecteddevice !="Chose device..." )
+    			EarseTable();
+    		    PopuniTabelu();
+    		
+    	}
+    	public void popupMenuWillBecomeVisible(PopupMenuEvent arg0) {
+    		devices.removeAllItems();
+    		
+    		List<DeviceName> listdevices = new HibernateDeviceName().giveAllDeviceName();
+    		
+    		devices.addItem("Chose device...");
+    		for(int i=0; i<listdevices.size(); i++){
+    		devices.addItem(listdevices.get(i).getName());}
+    	}
+    });
+    
     devices.setToolTipText("Device name");
     devices.setBounds(195, 86, 165, 28);
     add(devices);
         
-    devices.addItem("Chose device...");
-    devices.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent arg0) {
-    		if(selecteddevice != null && selecteddevice !="Chose device..." )
-    			EarseTable();
-    		PopuniTabelu();
-    		}
-        });
-        
-        units = new JComboBox();
-        
-       
-        
-		for(int i=0; i<listdevices.size(); i++){
-			devices.addItem(listdevices.get(i).getName());
-			}
-			
-        units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowatts (kW)"}));
+    units = new JComboBox();
+    units.setModel(new DefaultComboBoxModel(new String[] {"watts (W)", "kilowatts (kW)"}));
         units.setBounds(370, 125, 120, 28);
         add(units);
         
