@@ -1,9 +1,7 @@
 DEVICENAME_ID,NAME
-1,Light_Blob
-2,Window
-3,Temperature
-11,heat
-12,water
-13,smoke
-14,air
-15,wind
+1,SenzorVentilacije
+2,graySocket
+3,sensor
+11,elatkoSensor
+12,senzorTemperature
+13,senzorZraka
