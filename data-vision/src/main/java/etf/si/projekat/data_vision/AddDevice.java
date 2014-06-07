@@ -82,7 +82,7 @@ public class AddDevice extends JFrame { //extends JFrame
 				HibernateDeviceType hdt = new HibernateDeviceType();
 				hdt.addDeviceType(dt);
 				
-				JOptionPane.showMessageDialog(null, "Novi uređaj dodan", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "New device added.", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 				
 				dispose();
 				}
