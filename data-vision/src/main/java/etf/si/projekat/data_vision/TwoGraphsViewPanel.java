@@ -278,112 +278,120 @@ InteractivePanel inter2;
       choice_1 = new Choice();
       choice_1.setBounds(152, 235, 165, 20);
       add(choice_1);
-      choice_1.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_1.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==1 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==1 && !isFill2) isFill1=true;
 				fillChoices(1);
+				choice_2.enable();
 			}
 		});
       choice_2 = new Choice();
       choice_2.setBounds(152, 261, 165, 20);
       add(choice_2);
-      choice_2.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_2.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==2 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==2 && !isFill2) isFill1=true;
 				fillChoices(2);
+				choice_3.enable();
 			}
 		});
       choice_3 = new Choice();
       choice_3.setBounds(152, 285, 165, 20);
       add(choice_3);
-      choice_3.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_3.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==3 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==3 && !isFill2) isFill1=true;
 				fillChoices(3);
+				choice_4.enable();
 			}
 		});
       choice_4 = new Choice();
       choice_4.setBounds(152, 310, 165, 20);
       add(choice_4);
-      choice_4.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_4.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==4 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==4 && !isFill2) isFill1=true;
 				fillChoices(4);
+				choice_5.enable();
 			}
 		});
       choice_5 = new Choice();
       choice_5.setBounds(152, 335, 165, 20);
       add(choice_5);
-      choice_5.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_5.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==5 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==5 && !isFill2) isFill1=true;
 				fillChoices(5);
+				choice_6.enable();
 			}
 		});
       choice_6 = new Choice();
       choice_6.setBounds(152, 360, 165, 20);
       add(choice_6);
-      choice_6.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_6.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==6 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==6 && !isFill2) isFill1=true;
 				fillChoices(6);
+				choice_7.enable();
 			}
 		});
       choice_7 = new Choice();
       choice_7.setBounds(152, 385, 165, 20);
       add(choice_7);
-      choice_7.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_7.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==7 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==7 && !isFill2) isFill1=true;
 				fillChoices(7);
+				choice_8.enable();
 			}
 		});
       choice_8 = new Choice();
       choice_8.setBounds(152, 410, 165, 20);
       add(choice_8);
-      choice_8.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_8.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==8 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner.getValue()==8 && !isFill2) isFill1=true;
 				fillChoices(8);
+				choice_9.enable();
 			}
 		});
       choice_9 = new Choice();
       choice_9.setBounds(152, 436, 165, 20);
       add(choice_9);
-      choice_9.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_9.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==9 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
@@ -435,6 +443,9 @@ InteractivePanel inter2;
 		
 		lblSensorType.setVisible(false);
 		separator_2.setVisible(false);
+		
+		
+		
 
       JButton btnProcess = new JButton("Process");
       btnProcess.addActionListener(new ActionListener() {
@@ -497,14 +508,14 @@ InteractivePanel inter2;
       		if(date1Beforedate2 && inFuture1 && inFuture2){
       		
       		choice_1.enable();
-      		choice_2.enable();
-      		choice_3.enable();
-      		choice_4.enable();
-      		choice_5.enable();
-      		choice_6.enable();
-      		choice_7.enable();
-      		choice_8.enable();
-      		choice_9.enable();
+      		choice_2.disable();
+      		choice_3.disable();
+      		choice_4.disable();
+      		choice_5.disable();
+      		choice_6.disable();
+      		choice_7.disable();
+      		choice_8.disable();
+      		choice_9.disable();
       		
       		choice_1.removeAll();
       		choice_2.removeAll();
@@ -820,14 +831,15 @@ InteractivePanel inter2;
      choice_11.setVisible(false);
       choice_11.setBounds(464, 235, 165, 20);
       add(choice_11);
-      choice_11.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_11.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==1 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==1 && !isFill1) isFill2=true;
 				fillChoices_1(1);
+				choice_12.enable();
 			}
 		});
       
@@ -876,70 +888,75 @@ InteractivePanel inter2;
       choice_12.setBounds(464, 260, 165, 20);
       choice_12.setVisible(false);
       add(choice_12);
-      choice_12.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_12.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==2 && isFill1) {
 					btnGenerateGraphs.setVisible(true);
 					isFill2=true;
 				}
 				if((Integer) spinner_2.getValue()==2 && !isFill1) isFill2=true;
 				fillChoices_1(2);
+				choice_13.enable();
 			}
 		});
       choice_13 = new Choice();
       choice_13.setBounds(464, 285, 165, 20);
       choice_13.setVisible(false);
       add(choice_13);
-      choice_13.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_13.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==3 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==3 && !isFill1) isFill2=true;
 				fillChoices_1(3);
+				choice_14.enable();
 			}
 		});
       choice_14 = new Choice();
       choice_14.setBounds(464, 310, 165, 20);
       choice_14.setVisible(false);
       add(choice_14);
-      choice_14.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_14.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==4 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==4 && !isFill1) isFill2=true;
 				fillChoices_1(4);
+				choice_15.enable();
 			}
 		});
       choice_15 = new Choice();
       choice_15.setBounds(464, 335, 165, 20);
       choice_15.setVisible(false);
       add(choice_15);
-      choice_15.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_15.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==5 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==5 && !isFill1) isFill2=true;
 				fillChoices_1(5);
+				choice_16.enable();
 			}
 		});
       choice_16 = new Choice();
       choice_16.setBounds(464, 360, 165, 20);
       choice_16.setVisible(false);
       add(choice_16);
-      choice_16.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_16.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==6 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==6 && !isFill1) isFill2=true;
 				fillChoices_1(6);
+				choice_17.enable();
 			}
 		});
       
@@ -947,14 +964,15 @@ InteractivePanel inter2;
       choice_17.setBounds(464, 385, 165, 20);
       choice_17.setVisible(false);
       add(choice_17);
-      choice_17.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_17.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==7 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==7 && !isFill1) isFill2=true;
 				fillChoices_1(7);
+				choice_18.enable();
 			}
 		});
       
@@ -962,14 +980,15 @@ InteractivePanel inter2;
       choice_18.setBounds(464, 410, 165, 20);
       choice_18.setVisible(false);
       add(choice_18);
-      choice_18.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_18.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==8 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
 				if((Integer) spinner_2.getValue()==8 && !isFill1) isFill2=true;
 				fillChoices_1(8);
+				choice_19.enable();
 			}
 		});
       
@@ -977,8 +996,8 @@ InteractivePanel inter2;
       choice_19.setBounds(464, 436, 165, 20);
       choice_19.setVisible(false);
       add(choice_19);
-      choice_19.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e){
+      choice_19.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==9 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
@@ -1144,14 +1163,14 @@ InteractivePanel inter2;
       		// KOD ZA DRUGI GRAF
       			
       		choice_11.enable();
-      		choice_12.enable();
-      		choice_13.enable();
-      		choice_14.enable();
-      		choice_15.enable();
-      		choice_16.enable();
-      		choice_17.enable();
-      		choice_18.enable();
-      		choice_19.enable();
+      		choice_12.disable();
+      		choice_13.disable();
+      		choice_14.disable();
+      		choice_15.disable();
+      		choice_16.disable();
+      		choice_17.disable();
+      		choice_18.disable();
+      		choice_19.disable();
       		
       		choice_11.removeAll();
       		choice_12.removeAll();
@@ -1483,7 +1502,7 @@ InteractivePanel inter2;
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -1493,7 +1512,7 @@ InteractivePanel inter2;
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
@@ -2088,7 +2107,7 @@ interactivePanel = new InteractivePanel(plot);
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -2098,7 +2117,7 @@ interactivePanel = new InteractivePanel(plot);
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
@@ -2871,7 +2890,7 @@ interactivePanel1 = new InteractivePanel(plot);
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -2881,7 +2900,7 @@ interactivePanel1 = new InteractivePanel(plot);
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
@@ -4247,7 +4266,7 @@ interactivePanel = new InteractivePanel(plot);
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -4257,7 +4276,7 @@ interactivePanel = new InteractivePanel(plot);
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
