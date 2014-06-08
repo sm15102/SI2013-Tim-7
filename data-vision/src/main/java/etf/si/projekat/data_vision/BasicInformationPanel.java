@@ -1189,7 +1189,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 
-	         BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
+	       /*  BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
 			    pointRenderer1.setColor(
 			           new LinearGradientPaint(0f,0f, 0f,1f,
 			           new float[] { 0.0f, 1.0f },
@@ -1230,7 +1230,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 			         pointRenderer2.setValueColumn(3);
 			         pointRenderer2.setValueLocation(Location.CENTER);
 			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
+			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD)); */
 	         
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
@@ -1245,7 +1245,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 		      plot.getTitle().setText("Bar plot");
 		      interactivePanel.setVisible(true);
 		      
-		      tabbedPane.addTab("Line plot", interactivePanel);
+		      tabbedPane.addTab("Bar plot", interactivePanel);
 		  		tabbedPane.setSelectedIndex(1);
 		     
 		     break;
