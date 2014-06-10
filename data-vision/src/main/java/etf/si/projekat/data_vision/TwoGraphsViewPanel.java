@@ -72,6 +72,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TwoGraphsViewPanel extends ExamplePanel {
+	private static final Logger logger = Logger.getLogger(TwoGraphsViewPanel.class);
 	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 
     final Choice choice; 
