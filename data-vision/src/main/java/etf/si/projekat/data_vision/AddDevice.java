@@ -13,7 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
@@ -22,6 +23,7 @@ import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 import java.awt.Color;
 
 public class AddDevice extends JFrame { //extends JFrame
+	private static final Logger logger = Logger.getLogger(AddDevice.class.getName());
 
 	private JPanel contentPane;
 	private JTextField textField_2;
@@ -38,7 +40,8 @@ public class AddDevice extends JFrame { //extends JFrame
 					AddDevice frame = new AddDevice();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					
+					logger.log( Level.SEVERE, "context", e );
 				}
 			}
 		});
