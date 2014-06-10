@@ -26,8 +26,8 @@ public class AddDevice extends JFrame { //extends JFrame
 	private static final Logger logger = Logger.getLogger(AddDevice.class.getName());
 
 	private JPanel contentPane;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textField2;
+	private JTextField textField3;
 	
 
 	/**
@@ -70,18 +70,18 @@ public class AddDevice extends JFrame { //extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if(textField_2.getText().isEmpty() || textField_3.getText().isEmpty() || textField_2.getText().matches("\\s+")|| textField_3.getText().matches("\\s+")){
+				if(textField2.getText().isEmpty() || textField3.getText().isEmpty() || textField2.getText().matches("\\s+")|| textField3.getText().matches("\\s+")){
 					JOptionPane.showMessageDialog(null, "Nisu sva polja ispunjena", "AlertBox", JOptionPane.WARNING_MESSAGE);
 				}
 				else{
 				DeviceName dn = new DeviceName();
-				dn.setName(textField_2.getText());
+				dn.setName(textField2.getText());
 				HibernateDeviceName hdn = new HibernateDeviceName();
 				hdn.addDeviceName(dn);
 				
 				DeviceType dt = new DeviceType();
 			
-				dt.setType(textField_3.getText());
+				dt.setType(textField3.getText());
 				HibernateDeviceType hdt = new HibernateDeviceType();
 				hdt.addDeviceType(dt);
 				
@@ -94,34 +94,34 @@ public class AddDevice extends JFrame { //extends JFrame
 		button.setBounds(354, 230, 70, 22);
 		contentPane.add(button);
 		
-		Button button_1 = new Button("Cancel");
-		button_1.addActionListener(new ActionListener() {
+		Button button1 = new Button("Cancel");
+		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		button_1.setBounds(278, 230, 70, 22);
-		contentPane.add(button_1);
+		button1.setBounds(278, 230, 70, 22);
+		contentPane.add(button1);
 	
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 191, 255));
 		panel.setBounds(0, 0, 434, 36);
 		contentPane.add(panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 191, 255));
-		panel_1.setBounds(0, 218, 434, 54);
-		contentPane.add(panel_1);
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(new Color(0, 191, 255));
+		panel1.setBounds(0, 218, 434, 54);
+		contentPane.add(panel1);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(181, 81, 86, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		textField2 = new JTextField();
+		textField2.setBounds(181, 81, 86, 20);
+		contentPane.add(textField2);
+		textField2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(180, 136, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		textField3 = new JTextField();
+		textField3.setBounds(180, 136, 86, 20);
+		contentPane.add(textField3);
+		textField3.setColumns(10);
 		
 	}
 }
