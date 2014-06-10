@@ -13,7 +13,8 @@ import de.erichseifert.gral.util.Location;
 import de.erichseifert.gral.examples.ExamplePanel;
 
 
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 
@@ -49,6 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BarPlotShow extends ExamplePanel {
+private static final Logger logger = Logger.getLogger(BarPlotShow.class.getName());
 
 	private JPanel contentPane;
 	private JFrame f;
@@ -67,7 +69,7 @@ public class BarPlotShow extends ExamplePanel {
 				
 				     		    
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log( Level.SEVERE, "context", e );
 				}
 			//}
 		
