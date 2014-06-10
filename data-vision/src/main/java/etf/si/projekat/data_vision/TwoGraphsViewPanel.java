@@ -1473,7 +1473,7 @@ InteractivePanel inter2;
 		
 //		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
-		
+		boolean have1=false;
 	//	for(int k=0; k<value; k++)
 		//{
 							 
@@ -1525,7 +1525,7 @@ InteractivePanel inter2;
 								list_values.add(values);
 								}
 							for(int i=0; i<list_logs.size();i++){
-								if(list_logs.get(i).size()!=0) isFill1=true;
+								if(list_logs.get(i).size()!=0) have1=true;
 							}
 							}catch(Exception e){
 								 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
@@ -1559,7 +1559,7 @@ InteractivePanel inter2;
 					  }
 			
 					//  }
-	if(isFill1){	 
+	if(have1){	 
 	      switch(value)
 	      {
 	      case 1:
@@ -2097,7 +2097,7 @@ interactivePanel = new InteractivePanel(plot);
 		
 //		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner_2.getValue();
-		
+		boolean have2=false;
 //		for(int k=0; k<value; k++)
 	//	{
 							 
@@ -2149,7 +2149,7 @@ interactivePanel = new InteractivePanel(plot);
 							list_values2.add(values);
 							}
 						for(int i=0; i<list_logs2.size();i++){
-							if(list_logs2.get(i).size()!=0) isFill2=true;
+							if(list_logs2.get(i).size()!=0) have2=true;
 						}
 						}catch(Exception e){
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
@@ -2184,7 +2184,7 @@ interactivePanel = new InteractivePanel(plot);
 						  }
 				
 //					  }
-		if(isFill2){ 
+		if(have2){ 
 	      switch(value)
 	      {
 	      case 1:
