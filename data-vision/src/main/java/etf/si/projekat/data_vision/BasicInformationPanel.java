@@ -619,7 +619,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 				choice6.setVisible(false);
 				choice7.setVisible(false);
 				choice8.setVisible(false);
-				choice_.setVisible(false);
+				choice9.setVisible(false);
 				
 				lblSensorType1.setVisible(false);
 				lblSensorType2.setVisible(false);
