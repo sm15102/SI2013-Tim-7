@@ -427,7 +427,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
       				
       				
       				
-      				if(choice.getSelectedItem().toString() == "Line"){
+      				if("Line".equals(choice.getSelectedItem().toString())){
       					Graf();
       					
       				}
