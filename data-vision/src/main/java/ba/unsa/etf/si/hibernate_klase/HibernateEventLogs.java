@@ -133,15 +133,15 @@ public HibernateEventLogs(){
 		query.setParameter("end_date", dateTo);
 		
 		
-		List<EventLogs> temp_list=query.list();
-			if(temp_list.size()==0){
+		List<EventLogs> tempList=query.list();
+			if(tempList.size()==0){
 				session.close();
 				List<EventLogs> newlist = new ArrayList<EventLogs>(); 
 				return newlist;
 				
 			}else{
 				session.close();
-				return temp_list;
+				return tempList;
 			}
 	}
 
