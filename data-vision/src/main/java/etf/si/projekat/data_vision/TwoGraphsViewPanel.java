@@ -5,6 +5,7 @@ import java.awt.geom.*;
 
 import javax.swing.*;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.awt.BasicStroke;
 import java.awt.Button;
 import java.awt.Choice;
