@@ -2,7 +2,8 @@ package etf.si.projekat.data_vision;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 public class AboutTeam7 extends JFrame {
 
 	private JPanel contentPane;
-
+		private static final Logger logger = Logger.getLogger(AboutTeam7.class.getName());
 	/**
 	 * Launch the application.
 	 */
@@ -21,7 +22,7 @@ public class AboutTeam7 extends JFrame {
 					AboutTeam7 frame = new AboutTeam7();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log( Level.SEVERE, "context", e );
 				}
 			}
 		});
