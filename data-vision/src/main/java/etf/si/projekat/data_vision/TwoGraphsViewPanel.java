@@ -60,7 +60,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TwoGraphsViewPanel extends ExamplePanel {
-	private static final Logger logger = Logger.getLogger(TwoGraphsViewPanel.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TwoGraphsViewPanel.class.getName());
 	 List<DeviceName> listDevice=new HibernateDeviceName().giveAllDeviceName();
 
     final Choice choice; 
@@ -85,7 +85,7 @@ public class TwoGraphsViewPanel extends ExamplePanel {
     final Choice choice19;
     
     final JSpinner spinner;
-    final JSpinner spinner_2;
+    final JSpinner spinner2;
     final JTabbedPane tabbedPane;
  
   InteractivePanel interactivePanel;
@@ -96,8 +96,8 @@ public class TwoGraphsViewPanel extends ExamplePanel {
 InteractivePanel inter1;
 InteractivePanel inter2;
   private JPanel contentPane;
-  boolean paneli_bar;
-  boolean paneli_line;
+  boolean paneliBar;
+  boolean paneliLine;
 
   final UtilDateModel model = new UtilDateModel();
  final JDatePanelImpl datePanel = new JDatePanelImpl(model);
@@ -119,7 +119,7 @@ InteractivePanel inter2;
 
   private List<Choice> choices;
   private List<Choice> choices2;
-   final static DataTable data=new DataTable(Long.class, Double.class);
+   static final DataTable data=new DataTable(Long.class, Double.class);
    XYPlot plot;
    private List<DataTable> datas;
    private List<DataSeries>series;
@@ -134,8 +134,8 @@ InteractivePanel inter2;
 	public TwoGraphsViewPanel(JTabbedPane tabbedPane1) {
 		tabbedPane=tabbedPane1;
 		setLayout(null);
-		paneli_line=false;
-		paneli_bar=false;
+		paneliLine=false;
+		paneliBar=false;
 		
 		JLabel lblTimeIntervalFrom = new JLabel("Time interval from");
 		lblTimeIntervalFrom.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -479,12 +479,12 @@ InteractivePanel inter2;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is before 'Time interval to'");
       	    	}
-      	    if((dateStart.compareTo(dateNow) < 0)){
+      	    if(dateStart.compareTo(dateNow) < 0){
     	    	inFuture1=true;
     	    }else{
     	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is in the future");
     	    }
-      	    if((dateEnd.compareTo(dateNow) < 0)){
+      	    if(dateEnd.compareTo(dateNow) < 0){
       	    	inFuture2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
@@ -492,7 +492,7 @@ InteractivePanel inter2;
       	    }
 			} catch (ParseException e) {
 				
-					logger.log( Level.SEVERE, "context", e );
+					LOGGER.log( Level.SEVERE, "context", e );
 				
 				}
 			
@@ -553,9 +553,8 @@ InteractivePanel inter2;
 				label4.setVisible(false);
 				label5.setVisible(false);
 			
-			}
-			
-			else if(value == 2){
+			}else if(value == 2){
+				
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(false);
@@ -579,9 +578,7 @@ InteractivePanel inter2;
 				label3.setVisible(false);
 				label4.setVisible(false);
 				label5.setVisible(false);
-			}
-			
-			else if(value == 3){
+			}else if(value == 3){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -607,9 +604,7 @@ InteractivePanel inter2;
 				label4.setVisible(false);
 				label5.setVisible(false);
 
-			}
-			
-			else if(value == 4){
+			}else if(value == 4){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -633,9 +628,7 @@ InteractivePanel inter2;
 				label3.setVisible(true);
 				label4.setVisible(true);
 				label5.setVisible(false);
-			}
-			
-			else if(value == 5){
+			}else if(value == 5){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -659,12 +652,7 @@ InteractivePanel inter2;
 				label3.setVisible(true);
 				label4.setVisible(true);
 				label5.setVisible(true);
-			}
-			
-			
-			
-			
-			else if(value == 6){
+			}else if(value == 6){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -689,9 +677,7 @@ InteractivePanel inter2;
 				label4.setVisible(true);
 				label5.setVisible(true);
 
-			}
-			
-			else if(value == 7){
+			}else if(value == 7){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -715,9 +701,7 @@ InteractivePanel inter2;
 				label3.setVisible(true);
 				label4.setVisible(true);
 				label5.setVisible(true);
-			}
-			
-			else if(value == 8){
+			}else if(value == 8){
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -742,9 +726,7 @@ InteractivePanel inter2;
 				label4.setVisible(true);
 				label5.setVisible(true);
 
-			}
-			
-			else{
+			}else{
 				choice1.setVisible(true);
 				choice2.setVisible(true);
 				choice3.setVisible(true);
@@ -776,8 +758,7 @@ InteractivePanel inter2;
 			    	 choice1.add(listDevice.get(i).getName() );
 			    	
 		      }
-      	}
-      		else{
+      	}else{
       			choice1.setVisible(false);
 				choice2.setVisible(false);
 				choice3.setVisible(false);
@@ -826,11 +807,11 @@ InteractivePanel inter2;
       add(choice11);
       choice11.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==1 && isFill1) {
+				if((Integer) spinner2.getValue()==1 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==1 && !isFill1){
+				if((Integer) spinner2.getValue()==1 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(1);
@@ -885,11 +866,11 @@ InteractivePanel inter2;
       add(choice12);
       choice12.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==2 && isFill1) {
+				if((Integer) spinner2.getValue()==2 && isFill1) {
 					btnGenerateGraphs.setVisible(true);
 					isFill2=true;
 				}
-				if((Integer) spinner_2.getValue()==2 && !isFill1){
+				if((Integer) spinner2.getValue()==2 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(2);
@@ -902,11 +883,11 @@ InteractivePanel inter2;
       add(choice13);
       choice13.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==3 && isFill1){
+				if((Integer) spinner2.getValue()==3 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==3 && !isFill1){
+				if((Integer) spinner2.getValue()==3 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(3);
@@ -919,11 +900,11 @@ InteractivePanel inter2;
       add(choice14);
       choice14.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==4 && isFill1) {
+				if((Integer) spinner2.getValue()==4 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==4 && !isFill1){
+				if((Integer) spinner2.getValue()==4 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(4);
@@ -936,11 +917,11 @@ InteractivePanel inter2;
       add(choice15);
       choice15.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==5 && isFill1) {
+				if((Integer) spinner2.getValue()==5 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==5 && !isFill1){
+				if((Integer) spinner2.getValue()==5 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(5);
@@ -953,11 +934,11 @@ InteractivePanel inter2;
       add(choice16);
       choice16.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==6 && isFill1){
+				if((Integer) spinner2.getValue()==6 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==6 && !isFill1){
+				if((Integer) spinner2.getValue()==6 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(6);
@@ -971,11 +952,11 @@ InteractivePanel inter2;
       add(choice17);
       choice17.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==7 && isFill1){
+				if((Integer) spinner2.getValue()==7 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==7 && !isFill1){
+				if((Integer) spinner2.getValue()==7 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(7);
@@ -989,11 +970,11 @@ InteractivePanel inter2;
       add(choice18);
       choice18.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==8 && isFill1) {
+				if((Integer) spinner2.getValue()==8 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==8 && !isFill1){
+				if((Integer) spinner2.getValue()==8 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(8);
@@ -1007,11 +988,11 @@ InteractivePanel inter2;
       add(choice19);
       choice19.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
-				if((Integer) spinner_2.getValue()==9 && isFill1){
+				if((Integer) spinner2.getValue()==9 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==9 && !isFill1){
+				if((Integer) spinner2.getValue()==9 && !isFill1){
 					isFill2=true;
 				}
 				fillChoices1(9);
@@ -1147,12 +1128,12 @@ InteractivePanel inter2;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is before 'Time interval to'");
       	    	}
-      	    if((dateStart.compareTo(dateNow) < 0)){
+      	    if(dateStart.compareTo(dateNow) < 0){
     	    	inFuture1=true;
     	    }else{
     	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is in the future");
     	    }
-      	    if((dateEnd.compareTo(dateNow) < 0)){
+      	    if(dateEnd.compareTo(dateNow) < 0){
       	    	inFuture2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
@@ -1161,7 +1142,7 @@ InteractivePanel inter2;
 			} catch (ParseException e) {
 				
 				
-				logger.log( Level.SEVERE, "context", e );
+				LOGGER.log( Level.SEVERE, "context", e );
 				}
 			
       		}
@@ -1192,7 +1173,7 @@ InteractivePanel inter2;
       		
       		btnGenerateGraphs.setVisible(false);
       		
-      	  int valueSecondGraph = (Integer) spinner_2.getValue();
+      	  int valueSecondGraph = (Integer) spinner2.getValue();
       		
       		
       		
@@ -1222,9 +1203,7 @@ InteractivePanel inter2;
 				
 				
 				
-			}
-			
-			else if(valueSecondGraph == 2){
+			}else if(valueSecondGraph == 2){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(false);
@@ -1247,9 +1226,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 			
 				
-			}
-			
-			else if(valueSecondGraph == 3){
+			}else if(valueSecondGraph == 3){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1272,9 +1249,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 				
 			
-			}
-			
-			else if(valueSecondGraph == 4){
+			}else if(valueSecondGraph == 4){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1296,9 +1271,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 			
 				
-			}
-			
-			else if(valueSecondGraph == 5){
+			}else if(valueSecondGraph == 5){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1321,12 +1294,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 				
 			
-			}
-			
-			
-			
-			
-			else if(valueSecondGraph == 6){
+			}else if(valueSecondGraph == 6){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1349,9 +1317,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 				
 			
-			}
-			
-			else if(valueSecondGraph == 7){
+			}else if(valueSecondGraph == 7){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1374,9 +1340,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 				
 			
-			}
-			
-			else if(valueSecondGraph == 8){
+			}else if(valueSecondGraph == 8){
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1399,9 +1363,7 @@ InteractivePanel inter2;
 				label20.setVisible(false);
 				
 				
-			}
-			
-			else{
+			}else{
 				choice11.setVisible(true);
 				choice12.setVisible(true);
 				choice13.setVisible(true);
@@ -1429,8 +1391,8 @@ InteractivePanel inter2;
       		
       		for (int i=0; i<listDevice.size(); i++){
 		    	 choice11.add(listDevice.get(i).getName() );
-		    	
-	      }
+		    	}
+      		
 	      }else{
 	    	  choice11.setVisible(false);
 				choice12.setVisible(false);
@@ -1458,10 +1420,10 @@ InteractivePanel inter2;
       button.setBounds(493, 165, 136, 23);
       add(button);
       
-      spinner_2 = new JSpinner();
-      spinner_2.setModel(new SpinnerNumberModel(1, 1, 9, 1));
-      spinner_2.setBounds(464, 136, 165, 18);
-      add(spinner_2);
+      spinner2 = new JSpinner();
+      spinner2.setModel(new SpinnerNumberModel(1, 1, 9, 1));
+      spinner2.setBounds(464, 136, 165, 18);
+      add(spinner2);
 	}
       
      
@@ -1522,18 +1484,16 @@ InteractivePanel inter2;
 								listValues.add(values);
 								}
 							for(int i=0; i<listLogs.size();i++){
-								if(listLogs.get(i).size()!=0){
+								if(!listLogs.get(i).isEmpty()){
 									have1=true;
 								}
 							}
 							}catch(Exception e){
-								 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-								System.out.println("Ne poklapaju se vrijednosti");
+								 System.out.println("Ne poklapaju se vrijednosti");
 							}
-						} 
-						  catch (Exception e1) {
+						}catch (Exception e1) {
 							
-								logger.log( Level.SEVERE, "context", e1 );
+								LOGGER.log( Level.SEVERE, "context", e1 );
 						}
 						
 						datas=new ArrayList<DataTable>();
@@ -2088,7 +2048,7 @@ interactivePanel = new InteractivePanel(plot);
 	public void  oneLineGraphShow2(){
 		
 
-		Integer value = (Integer) spinner_2.getValue();
+		Integer value = (Integer) spinner2.getValue();
 		boolean have2=false;
 
 							 
@@ -2151,7 +2111,7 @@ interactivePanel = new InteractivePanel(plot);
 					} 
 					  catch (Exception e1) {
 						
-							logger.log( Level.SEVERE, "context", e1 );
+							LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					  datas2=new ArrayList<DataTable>();
@@ -2957,7 +2917,7 @@ interactivePanel1 = new InteractivePanel(plot);
 					  catch (Exception e1) {
 					
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-							logger.log( Level.SEVERE, "context", e1 );
+							LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
@@ -4251,7 +4211,7 @@ interactivePanel = new InteractivePanel(plot);
 							choices.add(choice17);
 							choices.add(choice18);
 							choices.add(choice19);	
-						 value = (Integer) spinner_2.getValue();
+						 value = (Integer) spinner2.getValue();
 
 							listLogs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
@@ -4281,7 +4241,7 @@ interactivePanel = new InteractivePanel(plot);
 					  catch (Exception e1) {
 					
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-							logger.log( Level.SEVERE, "context", e1 );
+							LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();

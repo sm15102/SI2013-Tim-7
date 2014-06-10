@@ -1,17 +1,9 @@
- 
 package etf.si.projekat.data_vision;
 
-
 import javax.swing.*;
-
 import java.awt.Choice;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.WindowListener;
-
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,91 +12,24 @@ import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
 
-
-
-
-
-
-
-
-
-
-
-
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
-
-
-
-
-
-
-
-
-
-
-
 import java.awt.Label;
-
-
-
-
-
-
-
-
-
-
-
-
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
-
-
-
-
-
-
-
-
-
-
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
-
-
-
-
-
-
-
-
-
-
 import javax.swing.JButton;
-
-
-
-
-
 
 import de.erichseifert.gral.data.DataSeries;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.examples.ExamplePanel;
-import de.erichseifert.gral.io.data.DataWriter;
-import de.erichseifert.gral.io.data.DataWriterFactory;
-import de.erichseifert.gral.io.plots.DrawableWriter;
-import de.erichseifert.gral.io.plots.DrawableWriterFactory;
 import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
@@ -120,33 +45,22 @@ import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
-
-
-
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 
 
 public class ThreeGraphsViewPanel extends ExamplePanel  {
-	 /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 
@@ -166,7 +80,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 		private List<DataSeries>series;
 		final JSpinner spinner = new JSpinner();
 		 DataTable data1;
-		 //XYPlot plot2=new XYPlot();
+		
 			XYPlot plot1;
 			  private JPanel contentPane;
 			  boolean paneli_bar;
@@ -211,10 +125,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 
 	
 
-	/**
-	 * Create the panel.
-	 * @param tabbedPane_4 
-	 */
+	
 	public ThreeGraphsViewPanel(JTabbedPane tabbedPane_4) {
 		tabbedPane = tabbedPane_4;
 		setBackground(SystemColor.menu);
@@ -340,7 +251,6 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
       add(label_13);
       
       JSeparator separator_4 = new JSeparator();
-      //separator_4.setForeground(Color.GRAY);
       separator_4.setBounds(622, 30, -273, 15);
       add(separator_4);
       
@@ -411,7 +321,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 
       	      	    }
       				} catch (ParseException e) {
-      						// TODO Auto-generated catch block
+      					
       					logger.log( Level.SEVERE, "context", e );
       					}
       				
@@ -635,20 +545,18 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 				  DataTable d1=new DataTable(Long.class, Double.class, String.class);
 				 
 				  
-				  for(int j=0;j<logs1.size();j++)
-				  {
+				  for(int j=0;j<logs1.size();j++){
 					 
 						
 						d1.add(logs1.get(j).getTimestamp().getTime(), values1.get(j),logs1.get(j).getDevice_name());
-		  }
+				  }
 					
-					 // datas.add(d);
+					
 					 
 					  
 	XYPlot plot1 = new XYPlot(d1);
 	plot1.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-	//Insets2D.Double(double top, double left, double bottom, double right)
-
+	
 	 plot1.getTitle().setText("Line plot");
 		
    plot1.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -668,27 +576,20 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 				values2=new ArrayList<Double>();
 				double vel;
 				int k;
-				if(logs1.get(logs1.size()-1).getTimestamp().getDate()<logs.get(logs.size()-1).getTimestamp().getDate())
-				{
+				if(logs1.get(logs1.size()-1).getTimestamp().getDate()<logs.get(logs.size()-1).getTimestamp().getDate()){
 				 k=logs1.size();
-				}
-				else 
-				{
-			   k=logs.size();
+				}else{
+					k=logs.size();
 				}
 				DataTable dt=new DataTable(Double.class, Double.class);
 				
-				for(int i=0;i<k;i++)
-				{
-					for(int j=i;j<k;j++)
-					{
-						if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate())
-						{
+				for(int i=0;i<k;i++){
+					for(int j=i;j<k;j++){
+						if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate()){
 							dt.add(logs1.get(i).getValue(),logs.get(j).getValue());
 							
 							break;
-						}
-						
+							}
 						}
 					}
 					
@@ -721,19 +622,13 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 			         
 			        
 			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
-			      //   interactivePanel.setOpaque(true);
-
-			       
-			        //  interactivePanel.setVisible(true);	
+			     
 					
 			          interactivePanel2 = new InteractivePanel(plot3);
 				         
-				         //interactivePanel.setLayout(null);
-				         interactivePanel2.setBounds(new Rectangle(0,0, 540,500));
-				         //interactivePanel2.setOpaque(true);
-
 				       
-				         // interactivePanel2.setVisible(true);	
+				         interactivePanel2.setBounds(new Rectangle(0,0, 540,500));
+				      
 						
 			          
 
@@ -741,10 +636,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 				          
 				         
 				          interactivePanel1.setBounds(new Rectangle(0, 0, 950, 230));
-				       //  interactivePanel1.setOpaque(true);
-
-				        
-				          // interactivePanel1.setVisible(true);
+				     
 			          
 			          contentPane = new JPanel();
 				       
@@ -811,7 +703,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 	}
 		 
 
-		void GrafBar() {
+		void GrafBar(){
 			
 			boolean have1=true;
 			boolean have2=true;
@@ -840,7 +732,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 					
 					
 					
-			  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+			  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end);
 			  
 				}
 				
@@ -888,7 +780,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 						
 					
 						
-				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);
 				 
 					}
 					
@@ -929,12 +821,11 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 			  DataTable d=new DataTable(Long.class, Double.class, String.class);
 			 
 			  
-			  for(int i=0;i<logs.size();i++)
-			  {
+			  for(int i=0;i<logs.size();i++){
 				 
 					
 					d.add(logs.get(i).getTimestamp().getTime(), values.get(i),logs.get(i).getDevice_name());
-	  }
+			  }
 			  
 			  final BarPlot plot= new BarPlot(d);
 								plot.setInsets(new Insets2D.Double(30.0, 20.0, 40.0, 0.0));
@@ -973,25 +864,20 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 			         
 			         interactivePanel = new InteractivePanel(plot);
 			         
-			        // interactivePanel.setLayout(null);
+			      
 			         interactivePanel.setBounds(new Rectangle(0, 0, 440, 230));
-			         //interactivePanel.setOpaque(true);
-			 
-			       
-			        //  interactivePanel.setVisible(true);
-			  
+			
 			        
 						 
 							  
 						  DataTable d1=new DataTable(Long.class, Double.class, String.class);
 						 
 						  
-						  for(int j=0;j<logs1.size();j++)
-						  {
+						  for(int j=0;j<logs1.size();j++){
 							 
 								
 								d1.add(logs1.get(j).getTimestamp().getTime(), values1.get(j),logs1.get(j).getDevice_name());
-				  }
+						  }
 							
 						
 						  
@@ -1037,26 +923,20 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 					      values2=new ArrayList<Double>();
 							double vel;
 							int k;
-							if(logs1.get(logs1.size()-1).getTimestamp().getDate()<logs.get(logs.size()-1).getTimestamp().getDate())
-							{
+							if(logs1.get(logs1.size()-1).getTimestamp().getDate()<logs.get(logs.size()-1).getTimestamp().getDate()){
 							 k=logs1.size();
-							}
-							else 
-							{
-						   k=logs.size();
+							}else{
+								k=logs.size();
 							}
 							DataTable dt=new DataTable(Double.class, Double.class);
-							//List<DataTable>new_values= new ArrayList<DataTable>();;
-							for(int i=0;i<k;i++)
-							{
-								for(int j=i;j<k;j++)
-								{
-									if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate())
-									{
+							
+							for(int i=0;i<k;i++){
+								for(int j=i;j<k;j++){
+									if(logs1.get(i).getTimestamp().getDate()==logs.get(j).getTimestamp().getDate()){
 										dt.add(logs1.get(i).getValue(),logs.get(j).getValue());
 										
 										break;
-									}
+										}
 									
 									}
 								}
@@ -1105,7 +985,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 					        
 
 					       
-					          //interactivePanel2.setVisible(true);
+					        
 		
 							          
 					      interactivePanel1 = new InteractivePanel(plot1);
@@ -1115,7 +995,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 						         
 
 						       
-						         // interactivePanel1.setVisible(true);
+						       
 			
 						          contentPane = new JPanel();
 							       
@@ -1200,19 +1080,4 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 				return null;
 			}
 }
-
-
-      
-
- 
- 
-
-
- 
-   
-
- 
-
-
-
 
