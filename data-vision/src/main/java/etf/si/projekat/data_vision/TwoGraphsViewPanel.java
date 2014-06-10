@@ -125,13 +125,19 @@ InteractivePanel inter2;
   
   private List<List<EventLogs>> list_logs;
   private List<List<Double>> list_values;
+  private List<List<EventLogs>> list_logs2;
+  private List<List<Double>> list_values2;
+
+  private List<Choice> choices;
+  private List<Choice> choices2;
    final static DataTable data=new DataTable(Long.class, Double.class);
    XYPlot plot;
    private int size;
  
    private List<DataTable> datas;
    private List<DataSeries>series;
-   
+   private List<DataTable> datas2;
+   private List<DataSeries>series2;
    boolean isFill1=false;
    boolean isFill2=false;
 
@@ -500,7 +506,7 @@ InteractivePanel inter2;
       	    }
 			} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log("context", e);
 				}
 			
       		}
@@ -1013,7 +1019,7 @@ InteractivePanel inter2;
       	public void mouseClicked(MouseEvent arg0) {
       		
       	
-          	if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Bar")	
+          	if("Line".equals(choice.getSelectedItem()) && "Bar".equals(choice_10.getSelectedItem()))	
           	{
           		//na lijevoj strani prikaz line, na desnoj prikaz bar
           		OneLineGraphShow1();
@@ -1021,14 +1027,14 @@ InteractivePanel inter2;
           	
           	}
       		
-      		if(choice.getSelectedItem()=="Line" && choice_10.getSelectedItem()=="Line")
+      		if("Line".equals(choice.getSelectedItem()) && "Line".equals(choice_10.getSelectedItem()))
       		{
       			//i lijevo i desno line
       			OneLineGraphShow1();
           		OneLineGraphShow2();
       		}
       		
-      		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Line")
+      		if("Bar".equals(choice.getSelectedItem()) && "Line".equals(choice_10.getSelectedItem()))
       		{
       			//lijevo bar, desno line
       			OneBarGraphShow1();
@@ -1036,7 +1042,7 @@ InteractivePanel inter2;
       			
       		}
       		
-      		if(choice.getSelectedItem()=="Bar" && choice_10.getSelectedItem()=="Bar")
+      		if("Bar".equals(choice.getSelectedItem()) && "Bar".equals(choice_10.getSelectedItem()))
       		{
       			//lijevo i desno bar
       			OneBarGraphShow1();
@@ -1153,7 +1159,7 @@ InteractivePanel inter2;
       	    }
 			} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log("context", e);
 				}
 			
       		}
@@ -1465,11 +1471,11 @@ InteractivePanel inter2;
 	public void  OneLineGraphShow1()
 	{
 		
-		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+//		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		
-		for(int k=0; k<value; k++)
-		{
+	//	for(int k=0; k<value; k++)
+		//{
 							 
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
@@ -1488,7 +1494,7 @@ InteractivePanel inter2;
 						try {
 						
 							
-							List<Choice> choices=new ArrayList<Choice>();
+							choices=new ArrayList<Choice>();
 							choices.add(choice_1);
 							choices.add(choice_2);
 							choices.add(choice_3);
@@ -1498,57 +1504,62 @@ InteractivePanel inter2;
 							choices.add(choice_7);
 							choices.add(choice_8);
 							choices.add(choice_9);	
-							
 							list_logs=new ArrayList<List<EventLogs>>();
-						for(int i=0;i<value;i++){
-							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-					 
-						}
-						size=list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
-							
-							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int i=0;i<value;i++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
-							
-							}
-							list_values.add(values);
+						  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));
+						  //.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));
+						  //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 						 
+							}
+							size=list_logs.size();
+							list_values=new ArrayList<List<Double>>();
+							for(int i=0; i<list_logs.size();i++){
+								
+								List<Double>values=new ArrayList<Double>();
+								for(int j=0;j<list_logs.get(i).size();j++){
+									
+								values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+								
+								}
+								list_values.add(values);
+								}
+							for(int i=0; i<list_logs.size();i++){
+								if(list_logs.get(i).size()!=0) isFill1=true;
+							}
+							}catch(Exception e){
+								 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
+								System.out.println("Ne poklapaju se vrijednosti");
+							}
+						} 
+						  catch (Exception e1) {
+							
+							LOGGER.log("context", e1);
 						}
 						
-						}catch(Exception e){
-							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-							System.out.println("Ne poklapaju se vrijednosti");
-						}
-					} 
-					  catch (Exception e1) {
-						// TODO Auto-generated catch block
-						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						e1.printStackTrace();
-					}
-					
-					datas=new ArrayList<DataTable>();
-					 series=new ArrayList<DataSeries>();
-					  DataTable d=new DataTable(Long.class, Double.class, String.class);
-					 
+						datas=new ArrayList<DataTable>();
+						 series=new ArrayList<DataSeries>();
 					  
 					  for(int i=0;i<list_logs.size();i++)
 					  {
+						  DataTable d=new DataTable(Long.class, Double.class, String.class);
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++){
-							
-							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-			  }
+						  for(int j=0;j<list_logs.get(i).size();j++)
+						  {
+							  d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+						  }
 						
 						  datas.add(d);
-						  series.add(new DataSeries(d));
-						  }
-			
+						  
 					  }
-		 
+					  
+					  for(int i=0;i<datas.size();i++)
+					  {
+						  series.add(new DataSeries(datas.get(i)));
+					  }
+			
+					//  }
+	if(isFill1){	 
 	      switch(value)
 	      {
 	      case 1:
@@ -1564,14 +1575,23 @@ InteractivePanel inter2;
         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
          DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
          rendererX.setTickLabelFormat(dateFormat);
+  		 
 		  LineRenderer lines = new DefaultLineRenderer2D();
-	         plot.setLineRenderer(series.get(0), lines);
-	         Color color = new Color(0.0f, 0.3f, 1.0f);
-	        plot.getPointRenderer(series.get(0)).setColor(color);
-	         plot.getLineRenderer(series.get(0)).setColor(color);
+		  lines.setColor(Color.green);
+		  plot.setLineRenderer(series.get(0), lines);
+		  plot.setPointRenderer(series.get(0), null);
+
+         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 	         
-	         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-	         
+         
+         String device = choices.get(0).getSelectedItem();
+         
+         //    plot.setLegendVisible(true);
+             	              
+       //      plot.getLegend().add(datas.get(0));
+           		  
+             plot.getTitle().setText("Line plot: "+device+"(green)");
+             
 	         interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel.setLayout(null);
@@ -1592,26 +1612,27 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1); 
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series.get(0), lines);
+	    		  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+	    		     
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		        interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
-
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), and "+device2+"(blue)");
 		        
 		          interactivePanel.setVisible(true);
 			  	
@@ -1634,23 +1655,20 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series.get(0), lines);
+	    		  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
 			     
 			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
@@ -1660,7 +1678,11 @@ InteractivePanel inter2;
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
-		          
+		         String device1 = choices.get(0).getSelectedItem();
+			     String device2 = choices.get(1).getSelectedItem();
+			     String device3 = choices.get(2).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), and "+device3+"(red)");
 		          interactivePanel.setVisible(true);
 			     
 			     break;
@@ -1678,29 +1700,25 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series.get(0), lines);
+	    		  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
 			     
 			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
 			     
 			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
+			     lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
                  interactivePanel = new InteractivePanel(plot);
@@ -1708,7 +1726,11 @@ InteractivePanel inter2;
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
-
+		         String device1 = choices.get(0).getSelectedItem();
+			     String device2 = choices.get(1).getSelectedItem();
+			     String device3 = choices.get(2).getSelectedItem();
+			     String device4 = choices.get(3).getSelectedItem();
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red),\n and "+device4+"(yellow)");
 		          
 		          interactivePanel.setVisible(true);
 		          break;
@@ -1730,45 +1752,47 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series.get(0), lines);
+		    	  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series.get(4), lines4);
+				  plot.getPointRenderer(series.get(4)).setColor(Color.black);
+				
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+				     
+			
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
-
-		          
-		          interactivePanel.setVisible(true);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  String device3 = choices.get(2).getSelectedItem();
+				  String device4 = choices.get(3).getSelectedItem();
+				  String device5 = choices.get(4).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), and "+device5+"(black)");
+				      interactivePanel.setVisible(true);
 		          break;
 	      }
 	      
@@ -1786,51 +1810,52 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series.get(0), lines);
+		    	  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series.get(4), lines4);
+				  plot.getPointRenderer(series.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series.get(5), lines5);
+				  plot.getPointRenderer(series.get(5)).setColor(Color.cyan);
+				
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  String device3 = choices.get(2).getSelectedItem();
+				  String device4 = choices.get(3).getSelectedItem();
+				  String device5 = choices.get(4).getSelectedItem();
+				  String device6 = choices.get(5).getSelectedItem();
+				  
 
-		          
-		          interactivePanel.setVisible(true);
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black),\n and "+device6+"(cyan)");
+				  interactivePanel.setVisible(true);
 		          break;
 	      }
 	      
@@ -1845,59 +1870,59 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series.get(0), lines);
+		    	  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series.get(4), lines4);
+				  plot.getPointRenderer(series.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series.get(5), lines5);
+				  plot.getPointRenderer(series.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series.get(6), lines6);
+				  plot.getPointRenderer(series.get(6)).setColor(Color.darkGray);
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+				     
 			     interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
 
-		          
-		          interactivePanel.setVisible(true);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  String device3 = choices.get(2).getSelectedItem();
+				  String device4 = choices.get(3).getSelectedItem();
+				  String device5 = choices.get(4).getSelectedItem();
+				  String device6 = choices.get(5).getSelectedItem();
+				  String device7 = choices.get(6).getSelectedItem();
+				  
+
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), and "+device7+"(darkGrey)");
+				  interactivePanel.setVisible(true);
 			     
 			     break; 
 	    	 
@@ -1918,64 +1943,63 @@ InteractivePanel inter2;
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     LineRenderer lines7 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(7), lines7);
-			     Color color7 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(7)).setColor(color7);
-			     plot.getLineRenderer(series.get(7)).setColor(color7);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series.get(0), lines);
+		    	  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series.get(4), lines4);
+				  plot.getPointRenderer(series.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series.get(5), lines5);
+				  plot.getPointRenderer(series.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series.get(6), lines6);
+				  plot.getPointRenderer(series.get(6)).setColor(Color.darkGray);
+				  
+				  LineRenderer lines7 = new DefaultLineRenderer2D(); 
+				  lines7.setColor(Color.magenta);
+				  plot.setLineRenderer(series.get(7), lines7);
+				  plot.getPointRenderer(series.get(7)).setColor(Color.magenta);
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
 interactivePanel = new InteractivePanel(plot);
 		         
 		         interactivePanel.setLayout(null);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
 		         interactivePanel.setOpaque(true);
-
-		          
-		          interactivePanel.setVisible(true);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  String device3 = choices.get(2).getSelectedItem();
+				  String device4 = choices.get(3).getSelectedItem();
+				  String device5 = choices.get(4).getSelectedItem();
+				  String device6 = choices.get(5).getSelectedItem();
+				  String device7 = choices.get(6).getSelectedItem();
+				  String device8 = choices.get(7).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), "+device7+"(darkGrey),\n and "+device8+"(magenta)");
+				  interactivePanel.setVisible(true);
 			     
 			     break; 
 	      }
@@ -1991,61 +2015,52 @@ interactivePanel = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     LineRenderer lines7 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(7), lines7);
-			     Color color7 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(7)).setColor(color7);
-			     plot.getLineRenderer(series.get(7)).setColor(color7);
-			     
-			     LineRenderer lines8 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(8), lines8);
-			     Color color8 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(8)).setColor(color8);
-			     plot.getLineRenderer(series.get(8)).setColor(color8);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series.get(0), lines);
+		    	  plot.getPointRenderer(series.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series.get(1), lines1);
+				  plot.getPointRenderer(series.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series.get(2), lines2);
+				  plot.getPointRenderer(series.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series.get(3), lines3);
+				  plot.getPointRenderer(series.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series.get(4), lines4);
+				  plot.getPointRenderer(series.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series.get(5), lines5);
+				  plot.getPointRenderer(series.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series.get(6), lines6);
+				  plot.getPointRenderer(series.get(6)).setColor(Color.darkGray);
+				  
+				  LineRenderer lines7 = new DefaultLineRenderer2D(); 
+				  lines7.setColor(Color.magenta);
+				  plot.setLineRenderer(series.get(7), lines7);
+				  plot.getPointRenderer(series.get(7)).setColor(Color.magenta);
+				  
+				  LineRenderer lines8 = new DefaultLineRenderer2D(); 
+				  lines8.setColor(Color.orange);
+				  plot.setLineRenderer(series.get(8), lines8);
+				  plot.getPointRenderer(series.get(8)).setColor(Color.orange);
+				  
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
 			     interactivePanel = new InteractivePanel(plot);
 		         
@@ -2053,13 +2068,24 @@ interactivePanel = new InteractivePanel(plot);
 		         interactivePanel.setBounds(new Rectangle(0, 0, 950, 400));
 		         interactivePanel.setOpaque(true);
 
-		          
-		          interactivePanel.setVisible(true);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices.get(1).getSelectedItem();
+				  String device3 = choices.get(2).getSelectedItem();
+				  String device4 = choices.get(3).getSelectedItem();
+				  String device5 = choices.get(4).getSelectedItem();
+				  String device6 = choices.get(5).getSelectedItem();
+				  String device7 = choices.get(6).getSelectedItem();
+				  String device8 = choices.get(7).getSelectedItem();
+				  String device9 = choices.get(8).getSelectedItem();
+
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), "+device7+"(darkGrey), \n"+device8+"(magenta) and "+device9+"(orange)");
+			      interactivePanel.setVisible(true);
 			     
 			     break; 
 	      }
 	      
 	      }
+	}
 	
 		
 	}
@@ -2069,11 +2095,11 @@ interactivePanel = new InteractivePanel(plot);
 	public void  OneLineGraphShow2()
 	{
 		
-		List<DataTable> vrijednosti= new ArrayList<DataTable>();
-		Integer value = (Integer) spinner.getValue();
+//		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+		Integer value = (Integer) spinner_2.getValue();
 		
-		for(int k=0; k<value; k++)
-		{
+//		for(int k=0; k<value; k++)
+	//	{
 							 
 				    //Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker2.getModel().getValue();
@@ -2092,37 +2118,38 @@ interactivePanel = new InteractivePanel(plot);
 						try {
 						
 							
-							List<Choice> choices=new ArrayList<Choice>();
-							choices.add(choice_11);
-							choices.add(choice_12);
-							choices.add(choice_13);
-							choices.add(choice_14);
-							choices.add(choice_15);
-							choices.add(choice_16);
-							choices.add(choice_17);
-							choices.add(choice_18);
-							choices.add(choice_19);	
-						 value = (Integer) spinner_2.getValue();
+							choices2=new ArrayList<Choice>();
+							choices2.add(choice_11);
+							choices2.add(choice_12);
+							choices2.add(choice_13);
+							choices2.add(choice_14);
+							choices2.add(choice_15);
+							choices2.add(choice_16);
+							choices2.add(choice_17);
+							choices2.add(choice_18);
+							choices2.add(choice_19);	
+						
 
-							list_logs=new ArrayList<List<EventLogs>>();
+							list_logs2=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs2.add(new HibernateEventLogs().getdatesbetween(choices2.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						size=list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
+						size=list_logs2.size();
+						list_values2=new ArrayList<List<Double>>();
+						for(int i=0; i<list_logs2.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int j=0;j<list_logs2.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+							values.add(list_logs2.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
-							list_values.add(values);
-							
-							 
+							list_values2.add(values);
+							}
+						for(int i=0; i<list_logs2.size();i++){
+							if(list_logs2.get(i).size()!=0) isFill2=true;
 						}
 						}catch(Exception e){
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
@@ -2130,35 +2157,39 @@ interactivePanel = new InteractivePanel(plot);
 						}
 					} 
 					  catch (Exception e1) {
-						// TODO Auto-generated catch block
-						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						e1.printStackTrace();
+						
+						LOGGER.log("context", e1);
 					}
 					
-					datas=new ArrayList<DataTable>();
-					 series=new ArrayList<DataSeries>();
-					  DataTable d=new DataTable(Long.class, Double.class, String.class);
-					 
-					  
-					  for(int i=0;i<list_logs.size();i++)
-					  {
+					  datas2=new ArrayList<DataTable>();
+						 series2=new ArrayList<DataSeries>();
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++){
+						  
+						  for(int i=0;i<list_logs2.size();i++)
+						  {
+							  DataTable d=new DataTable(Long.class, Double.class, String.class);
+							  
+							  for(int j=0;j<list_logs2.get(i).size();j++)
+							  {
+								  d.add(list_logs2.get(i).get(j).getTimestamp().getTime(), list_values2.get(i).get(j), list_logs2.get(i).get(j).getDevice_name());
+							  }
 							
-							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-			  }
-						
-						  datas.add(d);
-						  series.add(new DataSeries(d));
+							  datas2.add(d);
+							  
 						  }
-			
-					  }
-		 
+						  
+						  for(int i=0;i<datas2.size();i++)
+						  {
+							  series2.add(new DataSeries(datas2.get(i)));
+						  }
+				
+//					  }
+		if(isFill2){ 
 	      switch(value)
 	      {
 	      case 1:
 	      {
-		XYPlot plot = new XYPlot(series.get(0));
+		XYPlot plot = new XYPlot(series2.get(0));
 		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		//plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		//Insets2D.Double(double top, double left, double bottom, double right)
@@ -2171,13 +2202,21 @@ interactivePanel = new InteractivePanel(plot);
         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
          DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
          rendererX.setTickLabelFormat(dateFormat);
-		  LineRenderer lines = new DefaultLineRenderer2D();
-	         plot.setLineRenderer(series.get(0), lines);
-	         Color color = new Color(0.0f, 0.3f, 1.0f);
-	        plot.getPointRenderer(series.get(0)).setColor(color);
-	         plot.getLineRenderer(series.get(0)).setColor(color);
-	         
-	         plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+   	  LineRenderer lines = new DefaultLineRenderer2D();
+	  lines.setColor(Color.green);
+	  plot.setLineRenderer(series2.get(0), lines);
+	  plot.setPointRenderer(series2.get(0), null);
+
+     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+         
+     
+     String device = choices2.get(0).getSelectedItem();
+     
+     //    plot.setLegendVisible(true);
+         	              
+   //      plot.getLegend().add(datas.get(0));
+       		  
+         plot.getTitle().setText("Line plot: "+device+"(green)");
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
@@ -2204,7 +2243,7 @@ interactivePanel = new InteractivePanel(plot);
 	      }
 	      case 2:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2215,20 +2254,21 @@ interactivePanel = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1); 
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-			     
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series2.get(0), lines);
+	    		  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
+	    		     
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+				    String device1 = choices2.get(0).getSelectedItem();
+					  String device2 = choices2.get(1).getSelectedItem();
+					  
+					  plot.getTitle().setText("Line plot: "+device1+"(green), and \n"+device2+"(blue)");
 			     interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
@@ -2258,7 +2298,7 @@ interactivePanel = new InteractivePanel(plot);
 	      case 3:
 	    	  
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 	  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2269,30 +2309,32 @@ interactivePanel = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series2.get(0), lines);
+	    		  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
 			     
 			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
 			     interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
-		         
+		         String device1 = choices2.get(0).getSelectedItem();
+			     String device2 = choices2.get(1).getSelectedItem();
+			     String device3 = choices2.get(2).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), and "+device3+"(red)");
+		          interactivePanel.setVisible(true);
 		       
 		          contentPane = new JPanel();
 		       
@@ -2317,7 +2359,7 @@ interactivePanel = new InteractivePanel(plot);
 	      
 	      case 4:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2329,35 +2371,36 @@ interactivePanel = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+	    		  lines.setColor(Color.green);
+	    		  plot.setLineRenderer(series2.get(0), lines);
+	    		  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+	    		  
+			      LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
 			     
 			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
 			     
 			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
+			     lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series2.get(3), lines3);
+				  plot.getPointRenderer(series2.get(3)).setColor(Color.yellow);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-interactivePanel1 = new InteractivePanel(plot);
+			     interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
-		         
+		         String device1 = choices2.get(0).getSelectedItem();
+			     String device2 = choices2.get(1).getSelectedItem();
+			     String device3 = choices2.get(2).getSelectedItem();
+			     String device4 = choices2.get(3).getSelectedItem();
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red),\n and "+device4+"(yellow)");
+		          
 		       
 		          contentPane = new JPanel();
 		       
@@ -2383,7 +2426,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      
 	      case 5:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2396,41 +2439,48 @@ interactivePanel1 = new InteractivePanel(plot);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
 			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
+		         plot.setLineRenderer(series2.get(0), lines);
 		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
+		        plot.getPointRenderer(series2.get(0)).setColor(color);
+		         plot.getLineRenderer(series2.get(0)).setColor(color);
 		         
 		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
+			     plot.setLineRenderer(series2.get(1), lines1);
 			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+			     plot.getPointRenderer(series2.get(1)).setColor(color1);
+			     plot.getLineRenderer(series2.get(1)).setColor(color1);
 			     
 			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
+			     plot.setLineRenderer(series2.get(2), lines2);
 			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+			     plot.getPointRenderer(series2.get(2)).setColor(color2);
+			     plot.getLineRenderer(series2.get(2)).setColor(color2);
 			     
 			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
+			     plot.setLineRenderer(series2.get(3), lines3);
 			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
+			     plot.getPointRenderer(series2.get(3)).setColor(color3);
+			     plot.getLineRenderer(series2.get(3)).setColor(color3);
 			     
 			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
+			     plot.setLineRenderer(series2.get(4), lines4);
 			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
+			     plot.getPointRenderer(series2.get(4)).setColor(color4);
+			     plot.getLineRenderer(series2.get(4)).setColor(color4);
 			     
 			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
-		       
+		         String device1 = choices2.get(0).getSelectedItem();
+				  String device2 = choices2.get(1).getSelectedItem();
+				  String device3 = choices2.get(2).getSelectedItem();
+				  String device4 = choices2.get(3).getSelectedItem();
+				  String device5 = choices2.get(4).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), and "+device5+"(black)");
+
 		          contentPane = new JPanel();
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -2454,7 +2504,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      case 6:
 	      {
 	    	  
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2465,43 +2515,48 @@ interactivePanel1 = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series2.get(0), lines);
+		    	  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series2.get(3), lines3);
+				  plot.getPointRenderer(series2.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series2.get(4), lines4);
+				  plot.getPointRenderer(series2.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series2.get(5), lines5);
+				  plot.getPointRenderer(series2.get(5)).setColor(Color.cyan);
+				
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+
+		         String device1 = choices2.get(0).getSelectedItem();
+				  String device2 = choices2.get(1).getSelectedItem();
+				  String device3 = choices2.get(2).getSelectedItem();
+				  String device4 = choices2.get(3).getSelectedItem();
+				  String device5 = choices2.get(4).getSelectedItem();
+				  String device6 = choices2.get(5).getSelectedItem();
+				  
+
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black),\n and "+device6+"(cyan)");
+
 interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
@@ -2529,7 +2584,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      
 	      case 7:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2540,52 +2595,55 @@ interactivePanel1 = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-interactivePanel1 = new InteractivePanel(plot);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series2.get(0), lines);
+		    	  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series2.get(3), lines3);
+				  plot.getPointRenderer(series2.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series2.get(4), lines4);
+				  plot.getPointRenderer(series2.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series2.get(5), lines5);
+				  plot.getPointRenderer(series2.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series2.get(6), lines6);
+				  plot.getPointRenderer(series2.get(6)).setColor(Color.darkGray);
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+				     
+
+		         String device1 = choices2.get(0).getSelectedItem();
+				  String device2 = choices2.get(1).getSelectedItem();
+				  String device3 = choices2.get(2).getSelectedItem();
+				  String device4 = choices2.get(3).getSelectedItem();
+				  String device5 = choices2.get(4).getSelectedItem();
+				  String device6 = choices2.get(5).getSelectedItem();
+				  String device7 = choices2.get(6).getSelectedItem();
+				  
+
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), and "+device7+"(darkGrey)");
+
+				  interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
@@ -2615,7 +2673,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      
 	      case 8:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6), series2.get(7));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2626,57 +2684,60 @@ interactivePanel1 = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
-		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series2.get(0), lines);
+		    	  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series2.get(3), lines3);
+				  plot.getPointRenderer(series2.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series2.get(4), lines4);
+				  plot.getPointRenderer(series2.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series2.get(5), lines5);
+				  plot.getPointRenderer(series2.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series2.get(6), lines6);
+				  plot.getPointRenderer(series2.get(6)).setColor(Color.darkGray);
+				  
+				  LineRenderer lines7 = new DefaultLineRenderer2D(); 
+				  lines7.setColor(Color.magenta);
+				  plot.setLineRenderer(series2.get(7), lines7);
+				  plot.getPointRenderer(series2.get(7)).setColor(Color.magenta);
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
 			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
+		         String device1 = choices.get(0).getSelectedItem();
+				  String device2 = choices2.get(1).getSelectedItem();
+				  String device3 = choices2.get(2).getSelectedItem();
+				  String device4 = choices2.get(3).getSelectedItem();
+				  String device5 = choices2.get(4).getSelectedItem();
+				  String device6 = choices2.get(5).getSelectedItem();
+				  String device7 = choices2.get(6).getSelectedItem();
+				  String device8 = choices2.get(7).getSelectedItem();
+				  
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), "+device7+"(darkGrey),\n and "+device8+"(magenta)");
+
 			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     LineRenderer lines7 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(7), lines7);
-			     Color color7 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(7)).setColor(color7);
-			     plot.getLineRenderer(series.get(7)).setColor(color7);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-			     
-interactivePanel1 = new InteractivePanel(plot);
+				  interactivePanel1 = new InteractivePanel(plot);
 		         
 		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
@@ -2704,7 +2765,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      
 	      case 9:
 	      {
-	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8));
+	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6), series2.get(7), series2.get(8));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
 		  		//Insets2D.Double(double top, double left, double bottom, double right)
 
@@ -2715,65 +2776,70 @@ interactivePanel1 = new InteractivePanel(plot);
 		        AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
 		         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		         rendererX.setTickLabelFormat(dateFormat);
-			  LineRenderer lines = new DefaultLineRenderer2D();
-		         plot.setLineRenderer(series.get(0), lines);
-		         Color color = new Color(0.0f, 0.3f, 1.0f);
-		        plot.getPointRenderer(series.get(0)).setColor(color);
-		         plot.getLineRenderer(series.get(0)).setColor(color);
+		         LineRenderer lines = new DefaultLineRenderer2D();
+		    	  lines.setColor(Color.green);
+		    	  plot.setLineRenderer(series2.get(0), lines);
+		    	  plot.getPointRenderer(series2.get(0)).setColor(Color.green);
+		    	  
+				  LineRenderer lines1 = new DefaultLineRenderer2D(); 
+				  lines1.setColor(Color.blue);
+				  plot.setLineRenderer(series2.get(1), lines1);
+				  plot.getPointRenderer(series2.get(1)).setColor(Color.blue);
+				     
+				  LineRenderer lines2 = new DefaultLineRenderer2D(); 
+				  lines2.setColor(Color.red);
+				  plot.setLineRenderer(series2.get(2), lines2);
+				  plot.getPointRenderer(series2.get(2)).setColor(Color.red);
+				     
+				  LineRenderer lines3 = new DefaultLineRenderer2D(); 
+				  lines3.setColor(Color.yellow);
+				  plot.setLineRenderer(series2.get(3), lines3);
+				  plot.getPointRenderer(series2.get(3)).setColor(Color.yellow);
+				     
+				  LineRenderer lines4 = new DefaultLineRenderer2D(); 
+				  lines4.setColor(Color.black);
+				  plot.setLineRenderer(series2.get(4), lines4);
+				  plot.getPointRenderer(series2.get(4)).setColor(Color.black);
+				
+				  LineRenderer lines5 = new DefaultLineRenderer2D(); 
+				  lines5.setColor(Color.cyan);
+				  plot.setLineRenderer(series2.get(5), lines5);
+				  plot.getPointRenderer(series2.get(5)).setColor(Color.cyan);
+				
+				  LineRenderer lines6 = new DefaultLineRenderer2D(); 
+				  lines6.setColor(Color.darkGray);
+				  plot.setLineRenderer(series2.get(6), lines6);
+				  plot.getPointRenderer(series2.get(6)).setColor(Color.darkGray);
+				  
+				  LineRenderer lines7 = new DefaultLineRenderer2D(); 
+				  lines7.setColor(Color.magenta);
+				  plot.setLineRenderer(series2.get(7), lines7);
+				  plot.getPointRenderer(series2.get(7)).setColor(Color.magenta);
+				  
+				  LineRenderer lines8 = new DefaultLineRenderer2D(); 
+				  lines8.setColor(Color.orange);
+				  plot.setLineRenderer(series2.get(8), lines8);
+				  plot.getPointRenderer(series2.get(8)).setColor(Color.orange);
+				  
+				  plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
+			     
+				  String device1 = choices2.get(0).getSelectedItem();
+				  String device2 = choices2.get(1).getSelectedItem();
+				  String device3 = choices2.get(2).getSelectedItem();
+				  String device4 = choices2.get(3).getSelectedItem();
+				  String device5 = choices2.get(4).getSelectedItem();
+				  String device6 = choices2.get(5).getSelectedItem();
+				  String device7 = choices2.get(6).getSelectedItem();
+				  String device8 = choices2.get(7).getSelectedItem();
+				  String device9 = choices2.get(8).getSelectedItem();
+
+				  plot.getTitle().setText("Line plot: "+device1+"(green), \n"+device2+"(blue), "+device3+"(red), \n"+device4+"(yellow), "+device5+"(black), \n"+device6+"(cyan), "+device7+"(darkGrey), \n"+device8+"(magenta) and "+device9+"(orange)");
+			      
+			     
+			     
+				  interactivePanel1 = new InteractivePanel(plot);
 		         
-		         LineRenderer lines1 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(1), lines1);
-			     Color color1 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(1)).setColor(color1);
-			     plot.getLineRenderer(series.get(1)).setColor(color1);
-			     
-			     LineRenderer lines2 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(2), lines2);
-			     Color color2 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(2)).setColor(color2);
-			     plot.getLineRenderer(series.get(2)).setColor(color2);
-			     
-			     LineRenderer lines3 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(3), lines3);
-			     Color color3 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(3)).setColor(color3);
-			     plot.getLineRenderer(series.get(3)).setColor(color3);
-			     
-			     LineRenderer lines4 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(4), lines4);
-			     Color color4 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(4)).setColor(color4);
-			     plot.getLineRenderer(series.get(4)).setColor(color4);
-			     
-			     LineRenderer lines5 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(5), lines5);
-			     Color color5 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(5)).setColor(color5);
-			     plot.getLineRenderer(series.get(5)).setColor(color5);
-			     
-			     LineRenderer lines6 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(6), lines6);
-			     Color color6 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(6)).setColor(color6);
-			     plot.getLineRenderer(series.get(6)).setColor(color6);
-			     
-			     LineRenderer lines7 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(7), lines7);
-			     Color color7 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(7)).setColor(color7);
-			     plot.getLineRenderer(series.get(7)).setColor(color7);
-			     
-			     LineRenderer lines8 = new DefaultLineRenderer2D(); 
-			     plot.setLineRenderer(series.get(8), lines8);
-			     Color color8 = new Color(0.0f, 0.3f, 1.0f);
-			     plot.getPointRenderer(series.get(8)).setColor(color8);
-			     plot.getLineRenderer(series.get(8)).setColor(color8);
-			     
-			     plot.getPlotArea().setBorderColor(new Color(0.0f, 0.3f, 1.0f));
-			     
-interactivePanel1 = new InteractivePanel(plot);
-		         
-		         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
+				  interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400));
 		         
 		       
 		          contentPane = new JPanel();
@@ -2799,6 +2865,9 @@ interactivePanel1 = new InteractivePanel(plot);
 	      
 	    	  
 	      }
+		}
+		
+	
 	
 		   
 	      final JButton btnChange = new JButton("Change data");
@@ -2890,7 +2959,7 @@ interactivePanel1 = new InteractivePanel(plot);
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -2900,7 +2969,7 @@ interactivePanel1 = new InteractivePanel(plot);
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo Ă„Ĺ¤emo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
@@ -2915,7 +2984,7 @@ interactivePanel1 = new InteractivePanel(plot);
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						e1.printStackTrace();
+						LOGGER.log("context", e1);
 					}
 					
 					datas=new ArrayList<DataTable>();
@@ -4266,7 +4335,7 @@ interactivePanel = new InteractivePanel(plot);
 							list_logs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
 						size=list_logs.size();
@@ -4276,7 +4345,7 @@ interactivePanel = new InteractivePanel(plot);
 							List<Double>values=new ArrayList<Double>();
 							for(int j=0;j<list_logs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo cemo stavljati na graf valjda :D
 							
 							}
 							list_values.add(values);
@@ -4291,7 +4360,7 @@ interactivePanel = new InteractivePanel(plot);
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						e1.printStackTrace();
+						LOGGER.log("context", e1);
 					}
 					
 					datas=new ArrayList<DataTable>();
