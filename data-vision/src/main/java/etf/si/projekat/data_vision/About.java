@@ -4,7 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +17,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class About extends JFrame {
+
+	private static final Logger logger = Logger.getLogger(About.class.getName());
 
 	/**
 	 * 
@@ -34,7 +37,8 @@ public class About extends JFrame {
 				    
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					
+					logger.log( Level.SEVERE, "context", e );
 				}
 			}
 
