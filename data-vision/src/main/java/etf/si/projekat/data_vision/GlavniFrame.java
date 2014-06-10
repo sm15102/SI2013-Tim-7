@@ -1,7 +1,8 @@
 package etf.si.projekat.data_vision;
 
 import java.awt.*;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -31,7 +32,7 @@ import java.awt.event.ActionEvent;
 
 public class GlavniFrame extends JFrame {
 
-	
+	private static final Logger logger = Logger.getLogger(GlavniFrame.class.getName());
 	/**
 	 * 
 	 */
@@ -58,7 +59,7 @@ public class GlavniFrame extends JFrame {
 				    
 				//	frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log( Level.SEVERE, "context", e );
 				}
 			}
 		});
