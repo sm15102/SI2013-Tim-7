@@ -111,7 +111,7 @@ public Consumption() {
     	public void popupMenuCanceled(PopupMenuEvent arg0) {
     	}
     	public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
-    		if(!null.equals(selecteddevice) && !"Chose device...".equals(selecteddevice))
+    		if(!selecteddevice.equals(null) && !"Chose device...".equals(selecteddevice))
     			EarseTable();
     		    PopuniTabelu();
     		
