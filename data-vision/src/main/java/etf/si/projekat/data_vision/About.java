@@ -64,10 +64,10 @@ public class About extends JFrame {
 		lblTeam.setBounds(10, 10, 108, 28);
 		contentPane.add(lblTeam);
 		
-		JLabel lblTeam_1 = new JLabel("TEAM7");
-		lblTeam_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTeam_1.setBounds(10, 35, 93, 14);
-		contentPane.add(lblTeam_1);
+		JLabel lblTeam1 = new JLabel("TEAM7");
+		lblTeam1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTeam1.setBounds(10, 35, 93, 14);
+		contentPane.add(lblTeam1);
 		
 		JLabel lblDevelopers = new JLabel("Developers");
 		lblDevelopers.setFont(new Font("Tahoma", Font.BOLD, 13));
