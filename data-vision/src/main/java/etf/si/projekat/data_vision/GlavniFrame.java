@@ -145,53 +145,53 @@ public class GlavniFrame extends JFrame {
 		
 	
 	
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("One graph view", null, tabbedPane_1, null);
-		basicInfo = new BasicInformationPanel(tabbedPane_1);
-		tabbedPane_1.add("Basic data",basicInfo);
+		JTabbedPane tabbedPane1 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("One graph view", null, tabbedPane1, null);
+		basicInfo = new BasicInformationPanel(tabbedPane1);
+		tabbedPane1.add("Basic data",basicInfo);
 		basicInfo.setLayout(null);
 		
 		
 		
-		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Two graph view", null, tabbedPane_3, null);
-		tabbedPane_3.setBounds(new Rectangle(0, 0,1200, 1200));
-		twoGraphs = new TwoGraphsViewPanel(tabbedPane_3);
-		tabbedPane_3.add("Two graphs",twoGraphs);
+		JTabbedPane tabbedPane3 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Two graph view", null, tabbedPane3, null);
+		tabbedPane3.setBounds(new Rectangle(0, 0,1200, 1200));
+		twoGraphs = new TwoGraphsViewPanel(tabbedPane3);
+		tabbedPane3.add("Two graphs",twoGraphs);
 		twoGraphs.setLayout(null);
 
 		
-		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Three graph view", null, tabbedPane_4, null);
-		threeGraphs = new ThreeGraphsViewPanel(tabbedPane_4);
-		tabbedPane_4.add("Three graphs", threeGraphs);
+		JTabbedPane tabbedPane4 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Three graph view", null, tabbedPane4, null);
+		threeGraphs = new ThreeGraphsViewPanel(tabbedPane4);
+		tabbedPane4.add("Three graphs", threeGraphs);
 		threeGraphs.setLayout(null);
 	
 		
-		JTabbedPane tabbedPane_5 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Table view", null, tabbedPane_5, null);
+		JTabbedPane tabbedPane5 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Table view", null, tabbedPane5, null);
 		tabbedPane.setEnabledAt(3, true);
-		tableView=new TableViewPanel(tabbedPane_5);
+		tableView=new TableViewPanel(tabbedPane5);
 		tableView.setLayout(null);
 		tableView.setBackground(Color.white);
 		//TREBA OVDJE TABLEVIEW DA BUDE ISTE VELICINE KAO I TAB, ODNOSNO TABELU POVECATI
 		tableView.setBounds(10, 49, 694, 501);
-		tabbedPane_5.add("Table view",tableView);
-		tabbedPane_5.setBounds(10, 49, 694, 501);
+		tabbedPane5.add("Table view",tableView);
+		tabbedPane5.setBounds(10, 49, 694, 501);
 		
 		
-		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Consumption", null, tabbedPane_6, null);
+		JTabbedPane tabbedPane6 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Consumption", null, tabbedPane6, null);
 		Consumption c= new Consumption();
 		c.setBounds(10, 49, 694, 501);
-		tabbedPane_6.add("Consumption",c);
+		tabbedPane6.add("Consumption",c);
 		contentPane.add(tabbedPane);
-		tabbedPane_6.setBounds(10, 49, 694, 501);
+		tabbedPane6.setBounds(10, 49, 694, 501);
 		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_2.setBounds(0, 45, 912, 516);
-		contentPane.add(tabbedPane_2);
-		tabbedPane_2.addMouseListener(new MouseAdapter() {
+		JTabbedPane tabbedPane2 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane2.setBounds(0, 45, 912, 516);
+		contentPane.add(tabbedPane2);
+		tabbedPane2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 			
