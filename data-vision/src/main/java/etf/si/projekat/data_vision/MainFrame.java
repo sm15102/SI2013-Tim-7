@@ -1,7 +1,8 @@
 package etf.si.projekat.data_vision;
 
 import java.awt.BorderLayout;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame {
+	private static final Logger logger = Logger.getLogger(MainFrame.class.getName());
 
 	/**
 	 * 
@@ -27,7 +29,9 @@ public class MainFrame extends JFrame {
 					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+				
+
+					logger.log( Level.SEVERE, "context", e );
 				}
 			}
 		});
