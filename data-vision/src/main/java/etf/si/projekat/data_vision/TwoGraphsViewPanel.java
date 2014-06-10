@@ -1,13 +1,8 @@
 package etf.si.projekat.data_vision;
 
-import java.awt.*;
-import java.awt.geom.*;
-
-import javax.swing.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.awt.BasicStroke;
-import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,7 +11,6 @@ import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,8 +27,6 @@ import java.awt.Label;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,20 +45,15 @@ import de.erichseifert.gral.plots.BarPlot.BarRenderer;
 import de.erichseifert.gral.plots.axes.AxisRenderer;
 import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
 import de.erichseifert.gral.plots.lines.LineRenderer;
-import de.erichseifert.gral.plots.points.PointRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
 import ba.unsa.etf.si.beans.DeviceName;
-import ba.unsa.etf.si.beans.DeviceType;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
-import ba.unsa.etf.si.hibernate_klase.HibernateDeviceType;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -74,33 +61,33 @@ import java.awt.event.ActionEvent;
 
 public class TwoGraphsViewPanel extends ExamplePanel {
 	private static final Logger logger = Logger.getLogger(TwoGraphsViewPanel.class.getName());
-	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
+	 List<DeviceName> listDevice=new HibernateDeviceName().giveAllDeviceName();
 
     final Choice choice; 
-    final  Choice choice_10;
-    final Choice choice_1;
-    final Choice choice_2;
-    final Choice choice_3;
-    final Choice choice_4;
-    final Choice choice_5;
-    final Choice choice_6;
-    final Choice choice_7;
-    final Choice choice_8;
-    final Choice choice_9;
-    final Choice choice_11;
-    final Choice choice_12;
-    final Choice choice_13;
-    final Choice choice_14;
-    final Choice choice_15;
-    final Choice choice_16;
-    final Choice choice_17;
-    final Choice choice_18;
-    final Choice choice_19;
+    final  Choice choice10;
+    final Choice choice1;
+    final Choice choice2;
+    final Choice choice3;
+    final Choice choice4;
+    final Choice choice5;
+    final Choice choice6;
+    final Choice choice7;
+    final Choice choice8;
+    final Choice choice9;
+    final Choice choice11;
+    final Choice choice12;
+    final Choice choice13;
+    final Choice choice14;
+    final Choice choice15;
+    final Choice choice16;
+    final Choice choice17;
+    final Choice choice18;
+    final Choice choice19;
     
     final JSpinner spinner;
     final JSpinner spinner_2;
     final JTabbedPane tabbedPane;
-    //final JTabbedPane tabbedPane;
+ 
   InteractivePanel interactivePanel;
   InteractivePanel interactivePanel1;
   InteractivePanel interactivePanel2;
@@ -125,17 +112,15 @@ InteractivePanel inter2;
   final JDatePanelImpl datePanel3 = new JDatePanelImpl(model3);
   final JDatePickerImpl datePicker3=new JDatePickerImpl(datePanel3);
   
-  private List<List<EventLogs>> list_logs;
-  private List<List<Double>> list_values;
-  private List<List<EventLogs>> list_logs2;
-  private List<List<Double>> list_values2;
+  private List<List<EventLogs>> listLogs;
+  private List<List<Double>> listValues;
+  private List<List<EventLogs>> listLogs2;
+  private List<List<Double>> listValues2;
 
   private List<Choice> choices;
   private List<Choice> choices2;
    final static DataTable data=new DataTable(Long.class, Double.class);
    XYPlot plot;
-   private int size;
- 
    private List<DataTable> datas;
    private List<DataSeries>series;
    private List<DataTable> datas2;
@@ -146,8 +131,8 @@ InteractivePanel inter2;
 	/**
 	 * Create the panel.
 	 */
-	public TwoGraphsViewPanel(JTabbedPane tabbedPane_1) {
-		tabbedPane=tabbedPane_1;
+	public TwoGraphsViewPanel(JTabbedPane tabbedPane1) {
+		tabbedPane=tabbedPane1;
 		setLayout(null);
 		paneli_line=false;
 		paneli_bar=false;
@@ -167,20 +152,13 @@ InteractivePanel inter2;
 		lblDataNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDataNumber.setBounds(40, 139, 83, 14);
 		add(lblDataNumber);
-		
-	/*	 choice = new Choice();
-		choice.setBounds(177, 50, 117, 25);
-		choice.add("Line");
-		choice.add("Bar");
-		contentPane.add(choice);*/
+
 		
 		  final JButton btnGenerateGraphs = new JButton("Generate graphs");
 	      btnGenerateGraphs.setBounds(493, 477, 136, 23);
 	      btnGenerateGraphs.setVisible(false);
 	      add(btnGenerateGraphs);
 		
-		
-		SensorChoosingPanel p = new SensorChoosingPanel();
 		
 		spinner = new JSpinner();
 		
@@ -196,35 +174,27 @@ InteractivePanel inter2;
 		
 		add(spinner);
 		
-		//UtilDateModel model = new UtilDateModel();
-       // JDatePanelImpl datePanel = new JDatePanelImpl(model);
+	
         JLabel lblGraphType = new JLabel("Graph type");
         lblGraphType.setHorizontalAlignment(SwingConstants.RIGHT);
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
-       // final JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+      
         datePicker.setLocation(152, 75);
         datePicker.setSize(165, 28);
        add(datePicker);
         
         
-        /*UtilDateModel model1 = new UtilDateModel();
-        JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
-        final JDatePickerImpl datePicker1 = new JDatePickerImpl(datePane1);*/
+     
         datePicker1.setLocation(152, 104);
         datePicker1.setSize(165, 28);
       add(datePicker1);
-      
-     /* UtilDateModel model2 = new UtilDateModel();
-      JDatePanelImpl datePane2 = new JDatePanelImpl(model2);
-      final JDatePickerImpl datePicker2 = new JDatePickerImpl(datePane2);*/
+   
       datePicker2.setLocation(464, 75);
       datePicker2.setSize(165, 28);
     add(datePicker2);
     
-   /*UtilDateModel model3 = new UtilDateModel();
-    JDatePanelImpl datePane3 = new JDatePanelImpl(model3);
-    final JDatePickerImpl datePicker3 = new JDatePickerImpl(datePane3);*/
+  
     datePicker3.setLocation(464, 104);
     datePicker3.setSize(165, 28);
     add(datePicker3);
@@ -248,45 +218,45 @@ InteractivePanel inter2;
       lblSensorType.setVisible(false);
       add(lblSensorType);
       
-      final JSeparator separator_1 = new JSeparator();
-      separator_1.setBounds(222, 220, -220, -5);
-      separator_1.setVisible(false);
-      add(separator_1);
+      final JSeparator separator1 = new JSeparator();
+      separator1.setBounds(222, 220, -220, -5);
+      separator1.setVisible(false);
+      add(separator1);
       
       
-      final JSeparator separator_2 = new JSeparator();
-      separator_2.setBounds(10, 228, 619, 2);
-      add(separator_2);
+      final JSeparator separator2 = new JSeparator();
+      separator2.setBounds(10, 228, 619, 2);
+      add(separator2);
       
-      final  JLabel label_1 = new JLabel("Sensor type 1");
-      label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_1.setBounds(28, 241, 95, 14);
-      add(label_1);
+      final  JLabel label1 = new JLabel("Sensor type 1");
+      label1.setHorizontalAlignment(SwingConstants.RIGHT);
+      label1.setBounds(28, 241, 95, 14);
+      add(label1);
       
-      final JLabel label_2 = new JLabel("Sensor type 2");
-      label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_2.setBounds(28, 266, 95, 14);
-      add(label_2);
+      final JLabel label2 = new JLabel("Sensor type 2");
+      label2.setHorizontalAlignment(SwingConstants.RIGHT);
+      label2.setBounds(28, 266, 95, 14);
+      add(label2);
       
-      final  JLabel label_3 = new JLabel("Sensor type 3");
-      label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_3.setBounds(30, 291, 95, 14);
-      add(label_3);
+      final  JLabel label3 = new JLabel("Sensor type 3");
+      label3.setHorizontalAlignment(SwingConstants.RIGHT);
+      label3.setBounds(30, 291, 95, 14);
+      add(label3);
       
-      final  JLabel label_4 = new JLabel("Sensor type 4");
-      label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_4.setBounds(30, 316, 95, 14);
-      add(label_4);
+      final  JLabel label4 = new JLabel("Sensor type 4");
+      label4.setHorizontalAlignment(SwingConstants.RIGHT);
+      label4.setBounds(30, 316, 95, 14);
+      add(label4);
       
-      final  JLabel label_5 = new JLabel("Sensor type 5");
-      label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_5.setBounds(30, 341, 95, 14);
-      add(label_5);
+      final  JLabel label5 = new JLabel("Sensor type 5");
+      label5.setHorizontalAlignment(SwingConstants.RIGHT);
+      label5.setBounds(30, 341, 95, 14);
+      add(label5);
       
-      choice_1 = new Choice();
-      choice_1.setBounds(152, 235, 165, 20);
-      add(choice_1);
-      choice_1.addMouseListener(new MouseAdapter(){
+      choice1 = new Choice();
+      choice1.setBounds(152, 235, 165, 20);
+      add(choice1);
+      choice1.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==1 && isFill2){
 					isFill1=true;
@@ -294,13 +264,13 @@ InteractivePanel inter2;
 				}
 				if((Integer) spinner.getValue()==1 && !isFill2) isFill1=true;
 				fillChoices(1);
-				choice_2.enable();
+				choice2.enable();
 			}
 		});
-      choice_2 = new Choice();
-      choice_2.setBounds(152, 261, 165, 20);
-      add(choice_2);
-      choice_2.addMouseListener(new MouseAdapter(){
+      choice2 = new Choice();
+      choice2.setBounds(152, 261, 165, 20);
+      add(choice2);
+      choice2.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==2 && isFill2){
 					isFill1=true;
@@ -308,149 +278,163 @@ InteractivePanel inter2;
 				}
 				if((Integer) spinner.getValue()==2 && !isFill2) isFill1=true;
 				fillChoices(2);
-				choice_3.enable();
+				choice3.enable();
 			}
 		});
-      choice_3 = new Choice();
-      choice_3.setBounds(152, 285, 165, 20);
-      add(choice_3);
-      choice_3.addMouseListener(new MouseAdapter(){
+      choice3 = new Choice();
+      choice3.setBounds(152, 285, 165, 20);
+      add(choice3);
+      choice3.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==3 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==3 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==3 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(3);
-				choice_4.enable();
+				choice4.enable();
 			}
 		});
-      choice_4 = new Choice();
-      choice_4.setBounds(152, 310, 165, 20);
-      add(choice_4);
-      choice_4.addMouseListener(new MouseAdapter(){
+      choice4 = new Choice();
+      choice4.setBounds(152, 310, 165, 20);
+      add(choice4);
+      choice4.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==4 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==4 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==4 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(4);
-				choice_5.enable();
+				choice5.enable();
 			}
 		});
-      choice_5 = new Choice();
-      choice_5.setBounds(152, 335, 165, 20);
-      add(choice_5);
-      choice_5.addMouseListener(new MouseAdapter(){
+      choice5 = new Choice();
+      choice5.setBounds(152, 335, 165, 20);
+      add(choice5);
+      choice5.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==5 && isFill2){
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==5 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==5 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(5);
-				choice_6.enable();
+				choice6.enable();
 			}
 		});
-      choice_6 = new Choice();
-      choice_6.setBounds(152, 360, 165, 20);
-      add(choice_6);
-      choice_6.addMouseListener(new MouseAdapter(){
+      choice6 = new Choice();
+      choice6.setBounds(152, 360, 165, 20);
+      add(choice6);
+      choice6.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==6 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==6 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==6 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(6);
-				choice_7.enable();
+				choice7.enable();
 			}
 		});
-      choice_7 = new Choice();
-      choice_7.setBounds(152, 385, 165, 20);
-      add(choice_7);
-      choice_7.addMouseListener(new MouseAdapter(){
+      choice7 = new Choice();
+      choice7.setBounds(152, 385, 165, 20);
+      add(choice7);
+      choice7.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==7 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==7 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==7 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(7);
-				choice_8.enable();
+				choice8.enable();
 			}
 		});
-      choice_8 = new Choice();
-      choice_8.setBounds(152, 410, 165, 20);
-      add(choice_8);
-      choice_8.addMouseListener(new MouseAdapter(){
+      choice8 = new Choice();
+      choice8.setBounds(152, 410, 165, 20);
+      add(choice8);
+      choice8.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==8 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==8 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==8 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(8);
-				choice_9.enable();
+				choice9.enable();
 			}
 		});
-      choice_9 = new Choice();
-      choice_9.setBounds(152, 436, 165, 20);
-      add(choice_9);
-      choice_9.addMouseListener(new MouseAdapter(){
+      choice9 = new Choice();
+      choice9.setBounds(152, 436, 165, 20);
+      add(choice9);
+      choice9.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner.getValue()==9 && isFill2) {
 					isFill1=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner.getValue()==9 && !isFill2) isFill1=true;
+				if((Integer) spinner.getValue()==9 && !isFill2){
+					isFill1=true;
+				}
 				fillChoices(9);
 			}
 		});
       
-      final  JLabel lblSensorType_1 = new JLabel("Sensor type 6");
-      lblSensorType_1.setHorizontalAlignment(SwingConstants.RIGHT);
-      lblSensorType_1.setBounds(30, 366, 95, 14);
-      add(lblSensorType_1);
+      final  JLabel lblSensorType1 = new JLabel("Sensor type 6");
+      lblSensorType1.setHorizontalAlignment(SwingConstants.RIGHT);
+      lblSensorType1.setBounds(30, 366, 95, 14);
+      add(lblSensorType1);
       
-      final JLabel lblSensorType_2 = new JLabel("Sensor type 7");
-      lblSensorType_2.setHorizontalAlignment(SwingConstants.RIGHT);
-      lblSensorType_2.setBounds(30, 391, 95, 14);
-      add(lblSensorType_2);
+      final JLabel lblSensorType2 = new JLabel("Sensor type 7");
+      lblSensorType2.setHorizontalAlignment(SwingConstants.RIGHT);
+      lblSensorType2.setBounds(30, 391, 95, 14);
+      add(lblSensorType2);
       
-      final JLabel lblSensorType_3 = new JLabel("Sensor type 8");
-      lblSensorType_3.setHorizontalAlignment(SwingConstants.RIGHT);
-      lblSensorType_3.setBounds(30, 416, 95, 14);
-      add(lblSensorType_3);
+      final JLabel lblSensorType3 = new JLabel("Sensor type 8");
+      lblSensorType3.setHorizontalAlignment(SwingConstants.RIGHT);
+      lblSensorType3.setBounds(30, 416, 95, 14);
+      add(lblSensorType3);
       
-      final JLabel lblSensorType_4 = new JLabel("Sensor type 9");
-      lblSensorType_4.setHorizontalAlignment(SwingConstants.RIGHT);
-      lblSensorType_4.setBounds(28, 442, 95, 14);
-      add(lblSensorType_4);
+      final JLabel lblSensorType4 = new JLabel("Sensor type 9");
+      lblSensorType4.setHorizontalAlignment(SwingConstants.RIGHT);
+      lblSensorType4.setBounds(28, 442, 95, 14);
+      add(lblSensorType4);
       
-		choice_1.setVisible(false);
-		choice_2.setVisible(false);
-		choice_3.setVisible(false);
-		choice_4.setVisible(false);
-		choice_5.setVisible(false);
-		choice_6.setVisible(false);
-		choice_7.setVisible(false);
-		choice_8.setVisible(false);
-		choice_9.setVisible(false);
+		choice1.setVisible(false);
+		choice2.setVisible(false);
+		choice3.setVisible(false);
+		choice4.setVisible(false);
+		choice5.setVisible(false);
+		choice6.setVisible(false);
+		choice7.setVisible(false);
+		choice8.setVisible(false);
+		choice9.setVisible(false);
 		
-		lblSensorType_1.setVisible(false);
-		lblSensorType_2.setVisible(false);
-		lblSensorType_3.setVisible(false);
-		lblSensorType_4.setVisible(false);
-		label_1.setVisible(false);
-		label_2.setVisible(false);
-		label_3.setVisible(false);
-		label_4.setVisible(false);
-		label_5.setVisible(false);
+		lblSensorType1.setVisible(false);
+		lblSensorType2.setVisible(false);
+		lblSensorType3.setVisible(false);
+		lblSensorType4.setVisible(false);
+		label1.setVisible(false);
+		label2.setVisible(false);
+		label3.setVisible(false);
+		label4.setVisible(false);
+		label5.setVisible(false);
 		
 		lblSensorType.setVisible(false);
-		separator_2.setVisible(false);
+		separator2.setVisible(false);
 		
 		
 		
@@ -476,38 +460,38 @@ InteractivePanel inter2;
       		}
       		if(islect){
       		Date dateString = (Date) datePicker.getModel().getValue();
-	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+	  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date date_start;
-			Date date_end;
-			Date date_now;
+			Date dateStart;
+			Date dateEnd;
+			Date dateNow;
 	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 	        
 				try {
-					date_start = sdf.parse(date_from);
-					date_end = sdf.parse(date_to);
-				    date_now = sdf.parse(now);
+					dateStart = sdf.parse(dateFrom);
+					dateEnd = sdf.parse(dateTo);
+				    dateNow = sdf.parse(now);
 				   
-      	    if( date_start.compareTo(date_end) < 0) {
+      	    if( dateStart.compareTo(dateEnd) < 0) {
       	    	date1Beforedate2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is before 'Time interval to'");
       	    	}
-      	    if((date_start.compareTo(date_now) < 0)){
+      	    if((dateStart.compareTo(dateNow) < 0)){
     	    	inFuture1=true;
     	    }else{
     	    	JOptionPane.showMessageDialog(null, "Time interval from (one graph) is in the future");
     	    }
-      	    if((date_end.compareTo(date_now) < 0)){
+      	    if((dateEnd.compareTo(dateNow) < 0)){
       	    	inFuture2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
 
       	    }
 			} catch (ParseException e) {
-					// TODO Auto-generated catch block
+				
 					logger.log( Level.SEVERE, "context", e );
 				
 				}
@@ -516,25 +500,25 @@ InteractivePanel inter2;
       		
       		if(date1Beforedate2 && inFuture1 && inFuture2){
       		
-      		choice_1.enable();
-      		choice_2.disable();
-      		choice_3.disable();
-      		choice_4.disable();
-      		choice_5.disable();
-      		choice_6.disable();
-      		choice_7.disable();
-      		choice_8.disable();
-      		choice_9.disable();
+      		choice1.enable();
+      		choice2.disable();
+      		choice3.disable();
+      		choice4.disable();
+      		choice5.disable();
+      		choice6.disable();
+      		choice7.disable();
+      		choice8.disable();
+      		choice9.disable();
       		
-      		choice_1.removeAll();
-      		choice_2.removeAll();
-      		choice_3.removeAll();
-      		choice_4.removeAll();
-      		choice_5.removeAll();
-      		choice_6.removeAll();
-      		choice_7.removeAll();
-      		choice_8.removeAll();
-      		choice_9.removeAll();
+      		choice1.removeAll();
+      		choice2.removeAll();
+      		choice3.removeAll();
+      		choice4.removeAll();
+      		choice5.removeAll();
+      		choice6.removeAll();
+      		choice7.removeAll();
+      		choice8.removeAll();
+      		choice9.removeAll();
       		
       		 btnGenerateGraphs.setVisible(false);
       		 
@@ -543,282 +527,282 @@ InteractivePanel inter2;
 			
 			
 			if(value == 1){
-				choice_1.setVisible(true);
-				choice_2.setVisible(false);
-				choice_3.setVisible(false);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(false);
+				choice3.setVisible(false);
+				choice4.setVisible(false);
+				choice5.setVisible(false);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
 			
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
-				lblSensorType_1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
+				lblSensorType1.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
+				separator2.setVisible(true);
 				
-				label_1.setVisible(true);
-				label_2.setVisible(false);
-				label_3.setVisible(false);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				label1.setVisible(true);
+				label2.setVisible(false);
+				label3.setVisible(false);
+				label4.setVisible(false);
+				label5.setVisible(false);
 			
 			}
 			
 			else if(value == 2){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(false);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(false);
+				choice4.setVisible(false);
+				choice5.setVisible(false);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(false);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(false);
+				label4.setVisible(false);
+				label5.setVisible(false);
 			}
 			
 			else if(value == 3){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(false);
+				choice5.setVisible(false);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
+				separator2.setVisible(true);
 				
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(false);
+				label5.setVisible(false);
 
 			}
 			
 			else if(value == 4){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(false);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(false);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(false);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(false);
 			}
 			
 			else if(value == 5){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(true);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(true);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(false);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(true);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(true);
 			}
 			
 			
 			
 			
 			else if(value == 6){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(true);
-				choice_6.setVisible(true);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(true);
+				choice6.setVisible(true);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(true);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 			
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(true);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(true);
 
 			}
 			
 			else if(value == 7){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(true);
-				choice_6.setVisible(true);
-				choice_7.setVisible(true);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(true);
+				choice6.setVisible(true);
+				choice7.setVisible(true);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
-				lblSensorType_2.setVisible(true);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(true);
+				lblSensorType2.setVisible(true);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(true);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(true);
 			}
 			
 			else if(value == 8){
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(true);
-				choice_6.setVisible(true);
-				choice_7.setVisible(true);
-				choice_8.setVisible(true);
-				choice_9.setVisible(false);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(true);
+				choice6.setVisible(true);
+				choice7.setVisible(true);
+				choice8.setVisible(true);
+				choice9.setVisible(false);
 				
-				lblSensorType_1.setVisible(true);
-				lblSensorType_2.setVisible(true);
-				lblSensorType_3.setVisible(true);
-				lblSensorType_4.setVisible(false);
+				lblSensorType1.setVisible(true);
+				lblSensorType2.setVisible(true);
+				lblSensorType3.setVisible(true);
+				lblSensorType4.setVisible(false);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(true);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(true);
 
 			}
 			
 			else{
-				choice_1.setVisible(true);
-				choice_2.setVisible(true);
-				choice_3.setVisible(true);
-				choice_4.setVisible(true);
-				choice_5.setVisible(true);
-				choice_6.setVisible(true);
-				choice_7.setVisible(true);
-				choice_8.setVisible(true);
-				choice_9.setVisible(true);
+				choice1.setVisible(true);
+				choice2.setVisible(true);
+				choice3.setVisible(true);
+				choice4.setVisible(true);
+				choice5.setVisible(true);
+				choice6.setVisible(true);
+				choice7.setVisible(true);
+				choice8.setVisible(true);
+				choice9.setVisible(true);
 				
-				lblSensorType_1.setVisible(true);
-				lblSensorType_2.setVisible(true);
-				lblSensorType_3.setVisible(true);
-				lblSensorType_4.setVisible(true);
+				lblSensorType1.setVisible(true);
+				lblSensorType2.setVisible(true);
+				lblSensorType3.setVisible(true);
+				lblSensorType4.setVisible(true);
 				
 				
 				lblSensorType.setVisible(true);
-				separator_2.setVisible(true);
-				label_1.setVisible(true);
-				label_2.setVisible(true);
-				label_3.setVisible(true);
-				label_4.setVisible(true);
-				label_5.setVisible(true);
+				separator2.setVisible(true);
+				label1.setVisible(true);
+				label2.setVisible(true);
+				label3.setVisible(true);
+				label4.setVisible(true);
+				label5.setVisible(true);
 
 			}
 			
     
-		      for (int i=0; i<list_device.size(); i++){
-			    	 choice_1.add(list_device.get(i).getName() );
+		      for (int i=0; i<listDevice.size(); i++){
+			    	 choice1.add(listDevice.get(i).getName() );
 			    	
 		      }
       	}
       		else{
-      			choice_1.setVisible(false);
-				choice_2.setVisible(false);
-				choice_3.setVisible(false);
-				choice_4.setVisible(false);
-				choice_5.setVisible(false);
-				choice_6.setVisible(false);
-				choice_7.setVisible(false);
-				choice_8.setVisible(false);
-				choice_9.setVisible(false);
+      			choice1.setVisible(false);
+				choice2.setVisible(false);
+				choice3.setVisible(false);
+				choice4.setVisible(false);
+				choice5.setVisible(false);
+				choice6.setVisible(false);
+				choice7.setVisible(false);
+				choice8.setVisible(false);
+				choice9.setVisible(false);
 				
 			
-				lblSensorType_2.setVisible(false);
-				lblSensorType_3.setVisible(false);
-				lblSensorType_4.setVisible(false);
-				lblSensorType_1.setVisible(false);
+				lblSensorType2.setVisible(false);
+				lblSensorType3.setVisible(false);
+				lblSensorType4.setVisible(false);
+				lblSensorType1.setVisible(false);
 				
 				
 				lblSensorType.setVisible(false);
-				separator_2.setVisible(false);
+				separator2.setVisible(false);
 				
-				label_1.setVisible(false);
-				label_2.setVisible(false);
-				label_3.setVisible(false);
-				label_4.setVisible(false);
-				label_5.setVisible(false);
+				label1.setVisible(false);
+				label2.setVisible(false);
+				label3.setVisible(false);
+				label4.setVisible(false);
+				label5.setVisible(false);
       		}
       	}
       });
@@ -831,188 +815,206 @@ InteractivePanel inter2;
       btnProcess.setBounds(181, 165, 136, 23);
       add(btnProcess);
       
-      final  Label label_12 = new Label("Sensor type 1");
-      label_12.setBounds(376, 241, 83, 14);
-      label_12.setVisible(false);
-      add(label_12);
+      final  Label label12 = new Label("Sensor type 1");
+      label12.setBounds(376, 241, 83, 14);
+      label12.setVisible(false);
+      add(label12);
       
-      choice_11 = new Choice();
-     choice_11.setVisible(false);
-      choice_11.setBounds(464, 235, 165, 20);
-      add(choice_11);
-      choice_11.addMouseListener(new MouseAdapter(){
+      choice11 = new Choice();
+     choice11.setVisible(false);
+      choice11.setBounds(464, 235, 165, 20);
+      add(choice11);
+      choice11.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==1 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==1 && !isFill1) isFill2=true;
-				fillChoices_1(1);
-				choice_12.enable();
+				if((Integer) spinner_2.getValue()==1 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(1);
+				choice12.enable();
 			}
 		});
       
-      final Label label_13 = new Label("Sensor type 2");
-      label_13.setBounds(376, 266, 83, 14);
-      label_13.setVisible(false);
-      add(label_13);
+      final Label label13 = new Label("Sensor type 2");
+      label13.setBounds(376, 266, 83, 14);
+      label13.setVisible(false);
+      add(label13);
       
-      final  Label label_14 = new Label("Sensor type 3");
-      label_14.setBounds(376, 291, 83, 14);
-      label_14.setVisible(false);
-      add(label_14);
+      final  Label label14 = new Label("Sensor type 3");
+      label14.setBounds(376, 291, 83, 14);
+      label14.setVisible(false);
+      add(label14);
       
-      final  Label label_15 = new Label("Sensor type 4");
-      label_15.setBounds(376, 316, 83, 14);
-      label_15.setVisible(false);
-      add(label_15);
+      final  Label label15 = new Label("Sensor type 4");
+      label15.setBounds(376, 316, 83, 14);
+      label15.setVisible(false);
+      add(label15);
       
-      final  Label label_16 = new Label("Sensor type 5");
-      label_16.setBounds(376, 341, 83, 14);
-      label_16.setVisible(false);
-      add(label_16);
+      final  Label label16 = new Label("Sensor type 5");
+      label16.setBounds(376, 341, 83, 14);
+      label16.setVisible(false);
+      add(label16);
       
-      final  Label label_17 = new Label("Sensor type 6");
-      label_17.setBounds(376, 366, 83, 14);
-      label_17.setVisible(false);
-      add(label_17);
+      final  Label label17 = new Label("Sensor type 6");
+      label17.setBounds(376, 366, 83, 14);
+      label17.setVisible(false);
+      add(label17);
       
-      final Label label_18 = new Label("Sensor type 7");
-      label_18.setBounds(376, 391, 83, 14);
-      label_18.setVisible(false);
-      add(label_18);
+      final Label label18 = new Label("Sensor type 7");
+      label18.setBounds(376, 391, 83, 14);
+      label18.setVisible(false);
+      add(label18);
       
-      final Label label_19 = new Label("Sensor type 8");
-      label_19.setVisible(false);
-      label_19.setBounds(376, 416, 83, 14);
-      add(label_19);
+      final Label label19 = new Label("Sensor type 8");
+      label19.setVisible(false);
+      label19.setBounds(376, 416, 83, 14);
+      add(label19);
       
-      final Label label_20 = new Label("Sensor type 9");
+      final Label label20 = new Label("Sensor type 9");
     
-      label_20.setBounds(376, 442, 83, 14);
-      label_20.setVisible(false);
-      add(label_20);
+      label20.setBounds(376, 442, 83, 14);
+      label20.setVisible(false);
+      add(label20);
       
-      choice_12 = new Choice();
-      choice_12.setBounds(464, 260, 165, 20);
-      choice_12.setVisible(false);
-      add(choice_12);
-      choice_12.addMouseListener(new MouseAdapter(){
+      choice12 = new Choice();
+      choice12.setBounds(464, 260, 165, 20);
+      choice12.setVisible(false);
+      add(choice12);
+      choice12.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==2 && isFill1) {
 					btnGenerateGraphs.setVisible(true);
 					isFill2=true;
 				}
-				if((Integer) spinner_2.getValue()==2 && !isFill1) isFill2=true;
-				fillChoices_1(2);
-				choice_13.enable();
+				if((Integer) spinner_2.getValue()==2 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(2);
+				choice13.enable();
 			}
 		});
-      choice_13 = new Choice();
-      choice_13.setBounds(464, 285, 165, 20);
-      choice_13.setVisible(false);
-      add(choice_13);
-      choice_13.addMouseListener(new MouseAdapter(){
+      choice13 = new Choice();
+      choice13.setBounds(464, 285, 165, 20);
+      choice13.setVisible(false);
+      add(choice13);
+      choice13.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==3 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==3 && !isFill1) isFill2=true;
-				fillChoices_1(3);
-				choice_14.enable();
+				if((Integer) spinner_2.getValue()==3 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(3);
+				choice14.enable();
 			}
 		});
-      choice_14 = new Choice();
-      choice_14.setBounds(464, 310, 165, 20);
-      choice_14.setVisible(false);
-      add(choice_14);
-      choice_14.addMouseListener(new MouseAdapter(){
+      choice14 = new Choice();
+      choice14.setBounds(464, 310, 165, 20);
+      choice14.setVisible(false);
+      add(choice14);
+      choice14.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==4 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==4 && !isFill1) isFill2=true;
-				fillChoices_1(4);
-				choice_15.enable();
+				if((Integer) spinner_2.getValue()==4 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(4);
+				choice15.enable();
 			}
 		});
-      choice_15 = new Choice();
-      choice_15.setBounds(464, 335, 165, 20);
-      choice_15.setVisible(false);
-      add(choice_15);
-      choice_15.addMouseListener(new MouseAdapter(){
+      choice15 = new Choice();
+      choice15.setBounds(464, 335, 165, 20);
+      choice15.setVisible(false);
+      add(choice15);
+      choice15.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==5 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==5 && !isFill1) isFill2=true;
-				fillChoices_1(5);
-				choice_16.enable();
+				if((Integer) spinner_2.getValue()==5 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(5);
+				choice16.enable();
 			}
 		});
-      choice_16 = new Choice();
-      choice_16.setBounds(464, 360, 165, 20);
-      choice_16.setVisible(false);
-      add(choice_16);
-      choice_16.addMouseListener(new MouseAdapter(){
+      choice16 = new Choice();
+      choice16.setBounds(464, 360, 165, 20);
+      choice16.setVisible(false);
+      add(choice16);
+      choice16.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==6 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==6 && !isFill1) isFill2=true;
-				fillChoices_1(6);
-				choice_17.enable();
+				if((Integer) spinner_2.getValue()==6 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(6);
+				choice17.enable();
 			}
 		});
       
-      choice_17 = new Choice();
-      choice_17.setBounds(464, 385, 165, 20);
-      choice_17.setVisible(false);
-      add(choice_17);
-      choice_17.addMouseListener(new MouseAdapter(){
+      choice17 = new Choice();
+      choice17.setBounds(464, 385, 165, 20);
+      choice17.setVisible(false);
+      add(choice17);
+      choice17.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==7 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==7 && !isFill1) isFill2=true;
-				fillChoices_1(7);
-				choice_18.enable();
+				if((Integer) spinner_2.getValue()==7 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(7);
+				choice18.enable();
 			}
 		});
       
-      choice_18 = new Choice();
-      choice_18.setBounds(464, 410, 165, 20);
-      choice_18.setVisible(false);
-      add(choice_18);
-      choice_18.addMouseListener(new MouseAdapter(){
+      choice18 = new Choice();
+      choice18.setBounds(464, 410, 165, 20);
+      choice18.setVisible(false);
+      add(choice18);
+      choice18.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==8 && isFill1) {
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==8 && !isFill1) isFill2=true;
-				fillChoices_1(8);
-				choice_19.enable();
+				if((Integer) spinner_2.getValue()==8 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(8);
+				choice19.enable();
 			}
 		});
       
-      choice_19 = new Choice();
-      choice_19.setBounds(464, 436, 165, 20);
-      choice_19.setVisible(false);
-      add(choice_19);
-      choice_19.addMouseListener(new MouseAdapter(){
+      choice19 = new Choice();
+      choice19.setBounds(464, 436, 165, 20);
+      choice19.setVisible(false);
+      add(choice19);
+      choice19.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent arg0){
 				if((Integer) spinner_2.getValue()==9 && isFill1){
 					isFill2=true;
 					btnGenerateGraphs.setVisible(true);
 				}
-				if((Integer) spinner_2.getValue()==9 && !isFill1) isFill2=true;
-				fillChoices_1(9);
+				if((Integer) spinner_2.getValue()==9 && !isFill1){
+					isFill2=true;
+				}
+				fillChoices1(9);
 			}
 		});
 
@@ -1022,34 +1024,30 @@ InteractivePanel inter2;
       	public void mouseClicked(MouseEvent arg0) {
       		
       	
-          	if("Line".equals(choice.getSelectedItem()) && "Bar".equals(choice_10.getSelectedItem()))	
-          	{
+          	if("Line".equals(choice.getSelectedItem()) && "Bar".equals(choice10.getSelectedItem()))	{
           		//na lijevoj strani prikaz line, na desnoj prikaz bar
-          		OneLineGraphShow1();
-          		OneBarGraphShow2();
+          		oneLineGraphShow1();
+          		oneBarGraphShow2();
           	
           	}
       		
-      		if("Line".equals(choice.getSelectedItem()) && "Line".equals(choice_10.getSelectedItem()))
-      		{
+      		if("Line".equals(choice.getSelectedItem()) && "Line".equals(choice10.getSelectedItem())){
       			//i lijevo i desno line
-      			OneLineGraphShow1();
-          		OneLineGraphShow2();
+      			oneLineGraphShow1();
+          		oneLineGraphShow2();
       		}
       		
-      		if("Bar".equals(choice.getSelectedItem()) && "Line".equals(choice_10.getSelectedItem()))
-      		{
+      		if("Bar".equals(choice.getSelectedItem()) && "Line".equals(choice10.getSelectedItem())){
       			//lijevo bar, desno line
-      			OneBarGraphShow1();
-          		OneLineGraphShow2();
+      			oneBarGraphShow1();
+          		oneLineGraphShow2();
       			
       		}
       		
-      		if("Bar".equals(choice.getSelectedItem()) && "Bar".equals(choice_10.getSelectedItem()))
-      		{
+      		if("Bar".equals(choice.getSelectedItem()) && "Bar".equals(choice10.getSelectedItem())){
       			//lijevo i desno bar
-      			OneBarGraphShow1();
-          		OneBarGraphShow2();
+      			oneBarGraphShow1();
+          		oneBarGraphShow2();
       			
       		}
       		
@@ -1065,44 +1063,44 @@ InteractivePanel inter2;
       btnGenerateGraphs.setVisible(false);
       add(btnGenerateGraphs);
       
-      final JSeparator separator_3 = new JSeparator();
-      separator_3.setBounds(356, 226, 273, 16);
-      separator_3.setVisible(false);
-      add(separator_3);
+      final JSeparator separator3 = new JSeparator();
+      separator3.setBounds(356, 226, 273, 16);
+      separator3.setVisible(false);
+      add(separator3);
       
 
-      JSeparator separator_4 = new JSeparator();
-      //separator_4.setForeground(Color.GRAY);
-      separator_4.setBounds(622, 30, -273, 15);
-      add(separator_4);
+      JSeparator separator4 = new JSeparator();
+ 
+      separator4.setBounds(622, 30, -273, 15);
+      add(separator4);
       
       
-      final JLabel label_6 = new JLabel("Graph type");
-      label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_6.setBounds(373, 57, 68, 14);
-      add(label_6);
+      final JLabel label6 = new JLabel("Graph type");
+      label6.setHorizontalAlignment(SwingConstants.RIGHT);
+      label6.setBounds(373, 57, 68, 14);
+      add(label6);
       
-      choice_10 = new Choice();
-      choice_10.setBounds(464, 51, 165, 20);
-      choice_10.add("Line");
-      choice_10.add("Bar");
-      add(choice_10);
+      choice10 = new Choice();
+      choice10.setBounds(464, 51, 165, 20);
+      choice10.add("Line");
+      choice10.add("Bar");
+      add(choice10);
       
-      final JLabel label_7 = new JLabel("Time interval from");
-      label_7.setVerticalAlignment(SwingConstants.BOTTOM);
-      label_7.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_7.setBounds(327, 85, 113, 14);
-      add(label_7);
+      final JLabel label7 = new JLabel("Time interval from");
+      label7.setVerticalAlignment(SwingConstants.BOTTOM);
+      label7.setHorizontalAlignment(SwingConstants.RIGHT);
+      label7.setBounds(327, 85, 113, 14);
+      add(label7);
       
-      JLabel label_8 = new JLabel("Time interval to");
-      label_8.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_8.setBounds(348, 114, 93, 14);
-      add(label_8);
+      JLabel label8 = new JLabel("Time interval to");
+      label8.setHorizontalAlignment(SwingConstants.RIGHT);
+      label8.setBounds(348, 114, 93, 14);
+      add(label8);
       
-      JLabel label_9 = new JLabel("Data number");
-      label_9.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_9.setBounds(358, 139, 83, 14);
-      add(label_9);
+      JLabel label9 = new JLabel("Data number");
+      label9.setHorizontalAlignment(SwingConstants.RIGHT);
+      label9.setBounds(358, 139, 83, 14);
+      add(label9);
       
 
       
@@ -1130,38 +1128,38 @@ InteractivePanel inter2;
       		}
       		if(islect){
       		Date dateString = (Date) datePicker2.getModel().getValue();
-	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 	  		Date dateString1 = (Date) datePicker3.getModel().getValue();
-	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+	  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date date_start;
-			Date date_end;
-			Date date_now;
+			Date dateStart;
+			Date dateEnd;
+			Date dateNow;
 	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 	        
 				try {
-					date_start = sdf.parse(date_from);
-					date_end = sdf.parse(date_to);
-				    date_now = sdf.parse(now);
+					dateStart = sdf.parse(dateFrom);
+					dateEnd = sdf.parse(dateTo);
+				    dateNow = sdf.parse(now);
 				   
-      	    if( date_start.compareTo(date_end) < 0) {
+      	    if( dateStart.compareTo(dateEnd) < 0) {
       	    	date1Beforedate2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is before 'Time interval to'");
       	    	}
-      	    if((date_start.compareTo(date_now) < 0)){
+      	    if((dateStart.compareTo(dateNow) < 0)){
     	    	inFuture1=true;
     	    }else{
     	    	JOptionPane.showMessageDialog(null, "Time interval from (two graph) is in the future");
     	    }
-      	    if((date_end.compareTo(date_now) < 0)){
+      	    if((dateEnd.compareTo(dateNow) < 0)){
       	    	inFuture2=true;
       	    }else{
       	    	JOptionPane.showMessageDialog(null, "Time interval to (one graph) is  in the future");
 
       	    }
 			} catch (ParseException e) {
-					// TODO Auto-generated catch block
+				
 				
 				logger.log( Level.SEVERE, "context", e );
 				}
@@ -1172,25 +1170,25 @@ InteractivePanel inter2;
       		
       		// KOD ZA DRUGI GRAF
       			
-      		choice_11.enable();
-      		choice_12.disable();
-      		choice_13.disable();
-      		choice_14.disable();
-      		choice_15.disable();
-      		choice_16.disable();
-      		choice_17.disable();
-      		choice_18.disable();
-      		choice_19.disable();
+      		choice11.enable();
+      		choice12.disable();
+      		choice13.disable();
+      		choice14.disable();
+      		choice15.disable();
+      		choice16.disable();
+      		choice17.disable();
+      		choice18.disable();
+      		choice19.disable();
       		
-      		choice_11.removeAll();
-      		choice_12.removeAll();
-      		choice_13.removeAll();
-      		choice_14.removeAll();
-      		choice_15.removeAll();
-      		choice_16.removeAll();
-      		choice_17.removeAll();
-      		choice_18.removeAll();
-      		choice_19.removeAll();
+      		choice11.removeAll();
+      		choice12.removeAll();
+      		choice13.removeAll();
+      		choice14.removeAll();
+      		choice15.removeAll();
+      		choice16.removeAll();
+      		choice17.removeAll();
+      		choice18.removeAll();
+      		choice19.removeAll();
       		
       		btnGenerateGraphs.setVisible(false);
       		
@@ -1200,26 +1198,26 @@ InteractivePanel inter2;
       		
 			
 			 if(valueSecondGraph == 1){
-				choice_11.setVisible(true);
-				choice_12.setVisible(false);
-				choice_13.setVisible(false);
-				choice_14.setVisible(false);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(false);
+				choice13.setVisible(false);
+				choice14.setVisible(false);
+				choice15.setVisible(false);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 				
-				label_12.setVisible(true);
-				label_13.setVisible(false);
-				label_14.setVisible(false);
-				label_15.setVisible(false);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(false);
+				label14.setVisible(false);
+				label15.setVisible(false);
+				label16.setVisible(false);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 				
 				
 				
@@ -1227,100 +1225,100 @@ InteractivePanel inter2;
 			}
 			
 			else if(valueSecondGraph == 2){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(false);
-				choice_14.setVisible(false);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(false);
+				choice14.setVisible(false);
+				choice15.setVisible(false);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 		
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(false);
-				label_15.setVisible(false);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(false);
+				label15.setVisible(false);
+				label16.setVisible(false);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 			
 				
 			}
 			
 			else if(valueSecondGraph == 3){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(false);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(false);
+				choice15.setVisible(false);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 		
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(false);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(false);
+				label16.setVisible(false);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 				
 			
 			}
 			
 			else if(valueSecondGraph == 4){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(false);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(false);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 			
 				
 			}
 			
 			else if(valueSecondGraph == 5){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(true);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(true);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 		
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(true);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(true);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 				
 			
 			}
@@ -1329,131 +1327,131 @@ InteractivePanel inter2;
 			
 			
 			else if(valueSecondGraph == 6){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(true);
-				choice_16.setVisible(true);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(true);
+				choice16.setVisible(true);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 		
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(true);
-				label_17.setVisible(true);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(true);
+				label17.setVisible(true);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 				
 			
 			}
 			
 			else if(valueSecondGraph == 7){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(true);
-				choice_16.setVisible(true);
-				choice_17.setVisible(true);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(true);
+				choice16.setVisible(true);
+				choice17.setVisible(true);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 		
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(true);
-				label_17.setVisible(true);
-				label_18.setVisible(true);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(true);
+				label17.setVisible(true);
+				label18.setVisible(true);
+				label19.setVisible(false);
+				label20.setVisible(false);
 				
 			
 			}
 			
 			else if(valueSecondGraph == 8){
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(true);
-				choice_16.setVisible(true);
-				choice_17.setVisible(true);
-				choice_18.setVisible(true);
-				choice_19.setVisible(false);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(true);
+				choice16.setVisible(true);
+				choice17.setVisible(true);
+				choice18.setVisible(true);
+				choice19.setVisible(false);
 				
 				
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(true);
-				label_17.setVisible(true);
-				label_18.setVisible(true);
-				label_19.setVisible(true);
-				label_20.setVisible(false);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(true);
+				label17.setVisible(true);
+				label18.setVisible(true);
+				label19.setVisible(true);
+				label20.setVisible(false);
 				
 				
 			}
 			
 			else{
-				choice_11.setVisible(true);
-				choice_12.setVisible(true);
-				choice_13.setVisible(true);
-				choice_14.setVisible(true);
-				choice_15.setVisible(true);
-				choice_16.setVisible(true);
-				choice_17.setVisible(true);
-				choice_18.setVisible(true);
-				choice_19.setVisible(true);
+				choice11.setVisible(true);
+				choice12.setVisible(true);
+				choice13.setVisible(true);
+				choice14.setVisible(true);
+				choice15.setVisible(true);
+				choice16.setVisible(true);
+				choice17.setVisible(true);
+				choice18.setVisible(true);
+				choice19.setVisible(true);
 				
 				
-				label_12.setVisible(true);
-				label_13.setVisible(true);
-				label_14.setVisible(true);
-				label_15.setVisible(true);
-				label_16.setVisible(true);
-				label_17.setVisible(true);
-				label_18.setVisible(true);
-				label_19.setVisible(true);
-				label_20.setVisible(true);
+				label12.setVisible(true);
+				label13.setVisible(true);
+				label14.setVisible(true);
+				label15.setVisible(true);
+				label16.setVisible(true);
+				label17.setVisible(true);
+				label18.setVisible(true);
+				label19.setVisible(true);
+				label20.setVisible(true);
 				
 				
 			}
       		
       		
-      		for (int i=0; i<list_device.size(); i++){
-		    	 choice_11.add(list_device.get(i).getName() );
+      		for (int i=0; i<listDevice.size(); i++){
+		    	 choice11.add(listDevice.get(i).getName() );
 		    	
 	      }
 	      }else{
-	    	  choice_11.setVisible(false);
-				choice_12.setVisible(false);
-				choice_13.setVisible(false);
-				choice_14.setVisible(false);
-				choice_15.setVisible(false);
-				choice_16.setVisible(false);
-				choice_17.setVisible(false);
-				choice_18.setVisible(false);
-				choice_19.setVisible(false);
+	    	  choice11.setVisible(false);
+				choice12.setVisible(false);
+				choice13.setVisible(false);
+				choice14.setVisible(false);
+				choice15.setVisible(false);
+				choice16.setVisible(false);
+				choice17.setVisible(false);
+				choice18.setVisible(false);
+				choice19.setVisible(false);
 				
 				
-				label_12.setVisible(false);
-				label_13.setVisible(false);
-				label_14.setVisible(false);
-				label_15.setVisible(false);
-				label_16.setVisible(false);
-				label_17.setVisible(false);
-				label_18.setVisible(false);
-				label_19.setVisible(false);
-				label_20.setVisible(false);
+				label12.setVisible(false);
+				label13.setVisible(false);
+				label14.setVisible(false);
+				label15.setVisible(false);
+				label16.setVisible(false);
+				label17.setVisible(false);
+				label18.setVisible(false);
+				label19.setVisible(false);
+				label20.setVisible(false);
 	      }
      }
   });
@@ -1472,64 +1470,61 @@ InteractivePanel inter2;
 
 	
 	
-	public void  OneLineGraphShow1()
-	{
+	public void  oneLineGraphShow1(){
 		
-//		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+
 		Integer value = (Integer) spinner.getValue();
 		boolean have1=false;
-	//	for(int k=0; k<value; k++)
-		//{
-							 
+	
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
-			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-					Date date_start;
-					Date date_end;
+					Date dateStart;
+					Date dateEnd;
 					
 					  try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						 
 
 						try {
 						
 							
 							choices=new ArrayList<Choice>();
-							choices.add(choice_1);
-							choices.add(choice_2);
-							choices.add(choice_3);
-							choices.add(choice_4);
-							choices.add(choice_5);
-							choices.add(choice_6);
-							choices.add(choice_7);
-							choices.add(choice_8);
-							choices.add(choice_9);	
-							list_logs=new ArrayList<List<EventLogs>>();
+							choices.add(choice1);
+							choices.add(choice2);
+							choices.add(choice3);
+							choices.add(choice4);
+							choices.add(choice5);
+							choices.add(choice6);
+							choices.add(choice7);
+							choices.add(choice8);
+							choices.add(choice9);	
+							listLogs=new ArrayList<List<EventLogs>>();
 							for(int i=0;i<value;i++){
 								
-						  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));
-						  //.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));
-						  //lista eventlogova ciji su datumi izmeÄ‘u unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
-						 
+						  listLogs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));
+				
 							}
-							size=list_logs.size();
-							list_values=new ArrayList<List<Double>>();
-							for(int i=0; i<list_logs.size();i++){
+							listLogs.size();
+							listValues=new ArrayList<List<Double>>();
+							for(int i=0; i<listLogs.size();i++){
 								
 								List<Double>values=new ArrayList<Double>();
-								for(int j=0;j<list_logs.get(i).size();j++){
+								for(int j=0;j<listLogs.get(i).size();j++){
 									
-								values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+								values.add(listLogs.get(i).get(j).getValue());
 								
 								}
-								list_values.add(values);
+								listValues.add(values);
 								}
-							for(int i=0; i<list_logs.size();i++){
-								if(list_logs.get(i).size()!=0) have1=true;
+							for(int i=0; i<listLogs.size();i++){
+								if(listLogs.get(i).size()!=0){
+									have1=true;
+								}
 							}
 							}catch(Exception e){
 								 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
@@ -1544,33 +1539,29 @@ InteractivePanel inter2;
 						datas=new ArrayList<DataTable>();
 						 series=new ArrayList<DataSeries>();
 					  
-					  for(int i=0;i<list_logs.size();i++)
-					  {
+					  for(int i=0;i<listLogs.size();i++){
 						  DataTable d=new DataTable(Long.class, Double.class, String.class);
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++)
-						  {
-							  d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+						  for(int j=0;j<listLogs.get(i).size();j++){
+							  d.add(listLogs.get(i).get(j).getTimestamp().getTime(), listValues.get(i).get(j), listLogs.get(i).get(j).getDevice_name());
 						  }
 						
 						  datas.add(d);
 						  
 					  }
 					  
-					  for(int i=0;i<datas.size();i++)
-					  {
+					  for(int i=0;i<datas.size();i++){
 						  series.add(new DataSeries(datas.get(i)));
 					  }
 			
-					//  }
+				
 	if(have1){	 
 	      switch(value)
 	      {
 	      case 1:
 	      {
 		XYPlot plot = new XYPlot(series.get(0));
-		//plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		//Insets2D.Double(double top, double left, double bottom, double right)
+	
 		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		 plot.getTitle().setText("Line plot");
 			
@@ -1590,9 +1581,7 @@ InteractivePanel inter2;
          
          String device = choices.get(0).getSelectedItem();
          
-         //    plot.setLegendVisible(true);
-             	              
-       //      plot.getLegend().add(datas.get(0));
+     
            		  
              plot.getTitle().setText("Line plot: "+device+"(green)");
              
@@ -1649,7 +1638,7 @@ InteractivePanel inter2;
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
+	  
 
 	  		 plot.getTitle().setText("Line plot");
 	  			
@@ -1746,7 +1735,7 @@ InteractivePanel inter2;
 	      {
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
+		
 
 		  		 plot.getTitle().setText("Line plot");
 		  			
@@ -1805,7 +1794,7 @@ InteractivePanel inter2;
 	    	  
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
+		  
 
 		  		 plot.getTitle().setText("Line plot");
 	    		
@@ -1938,7 +1927,7 @@ InteractivePanel inter2;
 	    	  XYPlot plot = new XYPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7));
 	    	 
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
+		
 
 		  		 plot.getTitle().setText("Line plot");
 	    		
@@ -2096,64 +2085,64 @@ interactivePanel = new InteractivePanel(plot);
 	
 	
 	
-	public void  OneLineGraphShow2()
-	{
+	public void  oneLineGraphShow2(){
 		
-//		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+
 		Integer value = (Integer) spinner_2.getValue();
 		boolean have2=false;
-//		for(int k=0; k<value; k++)
-	//	{
+
 							 
 				    //Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker2.getModel().getValue();
-			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker3.getModel().getValue();
-			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-					Date date_start;
-					Date date_end;
+					Date dateStart;
+					Date dateEnd;
 					
 					  try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						 
 
 						try {
 						
 							
 							choices2=new ArrayList<Choice>();
-							choices2.add(choice_11);
-							choices2.add(choice_12);
-							choices2.add(choice_13);
-							choices2.add(choice_14);
-							choices2.add(choice_15);
-							choices2.add(choice_16);
-							choices2.add(choice_17);
-							choices2.add(choice_18);
-							choices2.add(choice_19);	
+							choices2.add(choice11);
+							choices2.add(choice12);
+							choices2.add(choice13);
+							choices2.add(choice14);
+							choices2.add(choice15);
+							choices2.add(choice16);
+							choices2.add(choice17);
+							choices2.add(choice18);
+							choices2.add(choice19);	
 						
 
-							list_logs2=new ArrayList<List<EventLogs>>();
+							listLogs2=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs2.add(new HibernateEventLogs().getdatesbetween(choices2.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  listLogs2.add(new HibernateEventLogs().getdatesbetween(choices2.get(i).getSelectedItem(),dateStart,dateEnd));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						size=list_logs2.size();
-						list_values2=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs2.size();i++){
+						listLogs2.size();
+						listValues2=new ArrayList<List<Double>>();
+						for(int i=0; i<listLogs2.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs2.get(i).size();j++){
+							for(int j=0;j<listLogs2.get(i).size();j++){
 								
-							values.add(list_logs2.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
+							values.add(listLogs2.get(i).get(j).getValue());//add(listLogs.get(i).get(j).getValue());           //Ovo ÄŤemo stavljati na graf valjda :D
 							
 							}
-							list_values2.add(values);
+							listValues2.add(values);
 							}
-						for(int i=0; i<list_logs2.size();i++){
-							if(list_logs2.get(i).size()!=0) have2=true;
+						for(int i=0; i<listLogs2.size();i++){
+							if(listLogs2.get(i).size()!=0){
+								have2=true;
+							}
 						}
 						}catch(Exception e){
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
@@ -2169,25 +2158,22 @@ interactivePanel = new InteractivePanel(plot);
 						 series2=new ArrayList<DataSeries>();
 						  
 						  
-						  for(int i=0;i<list_logs2.size();i++)
-						  {
+						  for(int i=0;i<listLogs2.size();i++){
 							  DataTable d=new DataTable(Long.class, Double.class, String.class);
 							  
-							  for(int j=0;j<list_logs2.get(i).size();j++)
-							  {
-								  d.add(list_logs2.get(i).get(j).getTimestamp().getTime(), list_values2.get(i).get(j), list_logs2.get(i).get(j).getDevice_name());
+							  for(int j=0;j<listLogs2.get(i).size();j++){
+								  d.add(listLogs2.get(i).get(j).getTimestamp().getTime(), listValues2.get(i).get(j), listLogs2.get(i).get(j).getDevice_name());
 							  }
 							
 							  datas2.add(d);
 							  
 						  }
 						  
-						  for(int i=0;i<datas2.size();i++)
-						  {
+						  for(int i=0;i<datas2.size();i++){
 							  series2.add(new DataSeries(datas2.get(i)));
 						  }
 				
-//					  }
+
 		if(have2){ 
 	      switch(value)
 	      {
@@ -2195,8 +2181,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 		XYPlot plot = new XYPlot(series2.get(0));
 		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		//plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		//Insets2D.Double(double top, double left, double bottom, double right)
+	
 
 		 plot.getTitle().setText("Line plot");
 	       
@@ -2216,9 +2201,7 @@ interactivePanel = new InteractivePanel(plot);
      
      String device = choices2.get(0).getSelectedItem();
      
-     //    plot.setLegendVisible(true);
-         	              
-   //      plot.getLegend().add(datas.get(0));
+    
        		  
          plot.getTitle().setText("Line plot: "+device+"(green)");
 	         
@@ -2234,12 +2217,11 @@ interactivePanel = new InteractivePanel(plot);
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
 				contentPane.add(interactivePanel);
-				//interactivePanel.isOpaque();
-					//interactivePanel1.setVisible(true);
+	
 			         
 			     	contentPane.add(interactivePanel1);
 			     	interactivePanel1.setLayout(null);
-			        // interactivePanel.setLayout(null);
+			
 				contentPane.setLayout(null);
 				tabbedPane.setSelectedIndex(1);
 	         
@@ -2249,7 +2231,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
+	 
 
 	    	  plot.getTitle().setText("Line plot");
 	    		
@@ -2282,17 +2264,16 @@ interactivePanel = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+				
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					   
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -2304,7 +2285,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
+	  
 
 	  		 plot.getTitle().setText("Line plot");
 	    		
@@ -2344,17 +2325,16 @@ interactivePanel = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -2365,7 +2345,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  	
 
 		  		 plot.getTitle().setText("Line plot");
 	  			
@@ -2410,17 +2390,16 @@ interactivePanel = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+					
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -2432,7 +2411,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  	
 
 		  		 plot.getTitle().setText("Line plot");
 		  			
@@ -2489,17 +2468,15 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+					
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
-					         
+					
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					       
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -2510,8 +2487,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	    	  
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		  	
 		  		 plot.getTitle().setText("Line plot");
 	    		
 		         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
@@ -2570,17 +2546,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					      
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -2590,7 +2565,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  	
 
 		  		 plot.getTitle().setText("Line plot");
 	    		
@@ -2656,17 +2631,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -2679,7 +2653,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6), series2.get(7));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  		
 
 		  		 plot.getTitle().setText("Line plot");
 	    		
@@ -2750,17 +2724,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					   
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -2771,7 +2744,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  XYPlot plot = new XYPlot(series2.get(0), series2.get(1), series2.get(2), series2.get(3), series2.get(4), series2.get(5), series2.get(6), series2.get(7), series2.get(8));
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  	
 
 		  		 plot.getTitle().setText("Line plot");
 	    		
@@ -2850,17 +2823,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					 
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -2902,7 +2874,7 @@ interactivePanel1 = new InteractivePanel(plot);
 				public void actionPerformed(ActionEvent e) {
 					
 			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
+		
 			tabbedPane.remove(0);
 			TwoGraphsViewPanel twoGraphs= new TwoGraphsViewPanel(tabbedPane);
 			tabbedPane.add("Two graphs",twoGraphs);
@@ -2923,60 +2895,57 @@ interactivePanel1 = new InteractivePanel(plot);
 	
 	
 	
-	public void  OneBarGraphShow1()
-	{
+	public void  oneBarGraphShow1(){
 		
-		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		
-		for(int k=0; k<value; k++)
-		{
+		for(int k=0; k<value; k++){
 							 
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
-			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-					Date date_start;
-					Date date_end;
+					Date dateStart;
+					Date dateEnd;
 					
 					  try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						 
 
 						try {
 						
 							
 							List<Choice> choices=new ArrayList<Choice>();
-							choices.add(choice_1);
-							choices.add(choice_2);
-							choices.add(choice_3);
-							choices.add(choice_4);
-							choices.add(choice_5);
-							choices.add(choice_6);
-							choices.add(choice_7);
-							choices.add(choice_8);
-							choices.add(choice_9);	
+							choices.add(choice1);
+							choices.add(choice2);
+							choices.add(choice3);
+							choices.add(choice4);
+							choices.add(choice5);
+							choices.add(choice6);
+							choices.add(choice7);
+							choices.add(choice8);
+							choices.add(choice9);	
 							
-							list_logs=new ArrayList<List<EventLogs>>();
+							listLogs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  listLogs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						size=list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
+						listLogs.size();
+						listValues=new ArrayList<List<Double>>();
+						for(int i=0; i<listLogs.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int j=0;j<listLogs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo Ă„Ĺ¤emo stavljati na graf valjda :D
+							values.add(listLogs.get(i).get(j).getValue());//add(listLogs.get(i).get(j).getValue());           //Ovo Ă„Ĺ¤emo stavljati na graf valjda :D
 							
 							}
-							list_values.add(values);
+							listValues.add(values);
 							
 							 
 						}
@@ -2986,7 +2955,7 @@ interactivePanel1 = new InteractivePanel(plot);
 						}
 					} 
 					  catch (Exception e1) {
-						// TODO Auto-generated catch block
+					
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							logger.log( Level.SEVERE, "context", e1 );
 					}
@@ -2996,13 +2965,12 @@ interactivePanel1 = new InteractivePanel(plot);
 					  DataTable d=new DataTable(Long.class, Double.class, String.class);
 					 
 					  
-					  for(int i=0;i<list_logs.size();i++)
-					  {
+					  for(int i=0;i<listLogs.size();i++){
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++){
+						  for(int j=0;j<listLogs.get(i).size();j++){
 							
-							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-			  }
+							d.add(listLogs.get(i).get(j).getTimestamp().getTime(), listValues.get(i).get(j), listLogs.get(i).get(j).getDevice_name());
+						  }
 						
 						  datas.add(d);
 						  series.add(new DataSeries(d));
@@ -3015,8 +2983,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      case 1:
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0));
-		//plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		//Insets2D.Double(double top, double left, double bottom, double right)
+	
 		plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
 		 plot.getTitle().setText("Bar plot");
 			
@@ -3056,12 +3023,12 @@ interactivePanel1 = new InteractivePanel(plot);
 	         
 	         interactivePanel.setLayout(null);
 	         interactivePanel.setBounds(new Rectangle(0, 0, 440, 400));
-	         //interactivePanel.setOpaque(true);
+	     
 
 	       
 	          interactivePanel.setVisible(true);
 	          
-	          //contentPane.add(interactivePanel);
+	  
 	         
 		break;
 	      }
@@ -3069,7 +3036,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
+	  	
 
 	  		 plot.getTitle().setText("Bar plot");
 	  			
@@ -3142,8 +3109,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+	  	
 	  		 plot.getTitle().setText("Bar plot");
 	  			
 	    		
@@ -3236,8 +3202,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+	  	
 	  		 plot.getTitle().setText("Bar plot");
 	  			
 	    		
@@ -3354,8 +3319,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4) );
 	    	 
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
+		
 		  		 plot.getTitle().setText("Bar plot");
 		  			
 	    		
@@ -3491,8 +3455,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	    	  
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
+		
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		plot.setBarWidth(0.075);
@@ -3647,8 +3610,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
+		
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		 plot.setBarWidth(0.075);
@@ -3830,8 +3792,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7) );
 	    	 
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
+		
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		plot.setBarWidth(0.075);
@@ -4031,8 +3992,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		      //Insets2D.Double(double top, double left, double bottom, double right)
-
+	
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		 plot.setBarWidth(0.075);
@@ -4252,107 +4212,64 @@ interactivePanel = new InteractivePanel(plot);
 	
 		   
 		
-		 /*final JButton btnChange = new JButton("Change data");
-			
-	       btnChange.addMouseListener(new MouseAdapter() {
-	       	@Override
-	       	public void mouseClicked(MouseEvent arg0) {
-	       		tabbedPane.setSelectedIndex(0);
-	       	}
-	       });
-	     btnChange.setBounds(690, 462, 137, 23);
-		 interactivePanel.add(btnChange);
-		 
-	
-		 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-		 lblExport.setBounds(131, 462, 137, 23);
-		 lblExport.setSize(400, 15);
-		 
-		 interactivePanel.add(lblExport);
-		 final JButton btnExit = new JButton("Cancel");
-		
-	     btnExit.setBounds(831, 462, 137, 23);
-		 interactivePanel.add(btnExit);
-		 
-		 
-		
-		 btnExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
-			tabbedPane.remove(0);
-			BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			tabbedPane.add("Basic data",basicInfo);
-			basicInfo.setLayout(null);
-		
-			tabbedPane.setSelectedIndex(1);
-			
-				}
-			});
-		*/
-		
 	}
 	
 	
 	
 	//Kod za prikaz desno barplota 
 	
-	public void  OneBarGraphShow2()
-	{
+	public void  oneBarGraphShow2(){
 		
-		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		
-		for(int k=0; k<value; k++)
-		{
+		for(int k=0; k<value; k++){
 							 
 				    //Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker2.getModel().getValue();
-			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker3.getModel().getValue();
-			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-					Date date_start;
-					Date date_end;
+					Date dateStart;
+					Date dateEnd;
 					
 					  try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						 
 
 						try {
 						
 							
 							List<Choice> choices=new ArrayList<Choice>();
-							choices.add(choice_11);
-							choices.add(choice_12);
-							choices.add(choice_13);
-							choices.add(choice_14);
-							choices.add(choice_15);
-							choices.add(choice_16);
-							choices.add(choice_17);
-							choices.add(choice_18);
-							choices.add(choice_19);	
+							choices.add(choice11);
+							choices.add(choice12);
+							choices.add(choice13);
+							choices.add(choice14);
+							choices.add(choice15);
+							choices.add(choice16);
+							choices.add(choice17);
+							choices.add(choice18);
+							choices.add(choice19);	
 						 value = (Integer) spinner_2.getValue();
 
-							list_logs=new ArrayList<List<EventLogs>>();
+							listLogs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi izmedu unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  listLogs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));
 					 
 						}
-						size=list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
+						listLogs.size();
+						listValues=new ArrayList<List<Double>>();
+						for(int i=0; i<listLogs.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int j=0;j<listLogs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo cemo stavljati na graf valjda :D
+							values.add(listLogs.get(i).get(j).getValue());
 							
 							}
-							list_values.add(values);
+							listValues.add(values);
 							
 							 
 						}
@@ -4362,7 +4279,7 @@ interactivePanel = new InteractivePanel(plot);
 						}
 					} 
 					  catch (Exception e1) {
-						// TODO Auto-generated catch block
+					
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							logger.log( Level.SEVERE, "context", e1 );
 					}
@@ -4372,13 +4289,12 @@ interactivePanel = new InteractivePanel(plot);
 					  DataTable d=new DataTable(Long.class, Double.class, String.class);
 					 
 					  
-					  for(int i=0;i<list_logs.size();i++)
-					  {
+					  for(int i=0;i<listLogs.size();i++){
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++){
+						  for(int j=0;j<listLogs.get(i).size();j++){
 							
-							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
-			  }
+							d.add(listLogs.get(i).get(j).getTimestamp().getTime(), listValues.get(i).get(j), listLogs.get(i).get(j).getDevice_name());
+						  }
 						
 						  datas.add(d);
 						  series.add(new DataSeries(d));
@@ -4392,8 +4308,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    final BarPlot plot= new BarPlot(series.get(0));
 		plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		//plot.setInsets(new Insets2D.Double(30.0, 40.0, 40.0, 0.0));
-		//Insets2D.Double(double top, double left, double bottom, double right)
+	
 
 		 plot.getTitle().setText("Bar plot");
 	       
@@ -4432,24 +4347,23 @@ interactivePanel = new InteractivePanel(plot);
 	         
 	         interactivePanel1 = new InteractivePanel(plot);
 	         
-	        // interactivePanel1.setBounds(new Rectangle(0, 0, 440, 400));
+	   
 	         interactivePanel1.setBounds(new Rectangle(0, 0, 950, 400)); 
 	         
 	          contentPane = new JPanel();
 	       
 				contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			
-			//	interactivePanel1.setVisible(true);
+	
 		         interactivePanel1.setLayout(null);			
 				 tabbedPane.addTab("Two graphs", contentPane);
 				 contentPane.setVisible(true);
 				contentPane.add(interactivePanel);
-				//interactivePanel.isOpaque();
-					//interactivePanel1.setVisible(true);
+			
 			         
 			     	contentPane.add(interactivePanel1);
 			     	interactivePanel1.setLayout(null);
-			        // interactivePanel.setLayout(null);
+			     
 				contentPane.setLayout(null);
 				tabbedPane.setSelectedIndex(1);
 	         
@@ -4459,7 +4373,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
+	  	
 
 	    	  plot.getTitle().setText("Bar plot");
 	    		
@@ -4524,17 +4438,16 @@ interactivePanel = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					    
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -4546,8 +4459,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-	  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+	  	
 	  		 plot.getTitle().setText("Bar plot");
 	    		
 	  		plot.setBarWidth(0.075);
@@ -4632,17 +4544,16 @@ interactivePanel = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -4653,8 +4564,7 @@ interactivePanel = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		  		
 		  		 plot.getTitle().setText("Bar plot");
 	  			
 	    		
@@ -4761,17 +4671,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -4783,8 +4692,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		  		
 		  		 plot.getTitle().setText("Bar plot");
 		  			
 	    		
@@ -4914,17 +4822,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					   
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -4935,7 +4842,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	    	  
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  		
 
 		  		 plot.getTitle().setText("Bar plot");
 	    		
@@ -5085,17 +4992,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					       
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 		          break;
@@ -5105,7 +5011,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
+		  		
 
 		  		 plot.getTitle().setText("Bar plot");
 	    		
@@ -5278,17 +5184,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+					
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+						
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					      
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -5301,8 +5206,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		  		
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		plot.setBarWidth(0.075);
@@ -5495,17 +5399,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					      
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -5516,8 +5419,7 @@ interactivePanel1 = new InteractivePanel(plot);
 	      {
 	    	  final BarPlot plot= new BarPlot(series.get(0), series.get(1), series.get(2), series.get(3), series.get(4), series.get(5), series.get(6), series.get(7), series.get(8) );
 	    	  plot.setInsets(new Insets2D.Double(30.0, 510.0, 40.0, 0));
-		  		//Insets2D.Double(double top, double left, double bottom, double right)
-
+		  	
 		  		 plot.getTitle().setText("Bar plot");
 	    		
 		  		 plot.setBarWidth(0.075);
@@ -5730,17 +5632,16 @@ interactivePanel1 = new InteractivePanel(plot);
 		       
 		          contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 					
-					//	interactivePanel1.setVisible(true);
+				
 				         interactivePanel1.setLayout(null);			
 						 tabbedPane.addTab("Two graphs", contentPane);
 						 contentPane.setVisible(true);
 						contentPane.add(interactivePanel);
-						//interactivePanel.isOpaque();
-							//interactivePanel1.setVisible(true);
+					
 					         
 					     	contentPane.add(interactivePanel1);
 					     	interactivePanel1.setLayout(null);
-					        // interactivePanel.setLayout(null);
+					     
 						contentPane.setLayout(null);
 						tabbedPane.setSelectedIndex(1);
 			     
@@ -5800,160 +5701,192 @@ interactivePanel1 = new InteractivePanel(plot);
 	public void fillChoices(int k){
 		switch(k){
 		case 1 : {
-			for(int i=0; i<list_device.size();i++){
-			if(choice_1.getSelectedItem() == list_device.get(i).getName()) continue;
-			choice_2.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+			if(choice1.getSelectedItem() == listDevice.get(i).getName()){
+				continue;
 			}
-			choice_1.disable();
+			choice2.add(listDevice.get(i).getName());
+			}
+			choice1.disable();
 			break;
 			
 		}
 		case 2 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_3.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_2.disable();
+				choice3.add(listDevice.get(i).getName());
+				}
+				choice2.disable();
 				break;
 		}
 		case 3 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_4.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_3.disable();
+				choice4.add(listDevice.get(i).getName());
+				}
+				choice3.disable();
 				break;
 		}
 		case 4 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
-						(choice_4.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_5.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_4.disable();
+				choice5.add(listDevice.get(i).getName());
+				}
+				choice4.disable();
 				break;
 		}
 		case 5 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
-						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_6.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_5.disable();
+				choice6.add(listDevice.get(i).getName());
+				}
+				choice5.disable();
 				break;
 		}
 		case 6 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
-						(choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_7.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_6.disable();
+				choice7.add(listDevice.get(i).getName());
+				}
+				choice6.disable();
 				break;
 		}
 		case 7 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_7.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_8.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice7.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_7.disable();
+				choice8.add(listDevice.get(i).getName());
+				}
+				choice7.disable();
 				break;
 		}
 		case 8 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_1.getSelectedItem() == list_device.get(i).getName()) || (choice_2.getSelectedItem() == list_device.get(i).getName())||(choice_3.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_4.getSelectedItem() == list_device.get(i).getName())||(choice_5.getSelectedItem() == list_device.get(i).getName())||(choice_6.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_7.getSelectedItem() == list_device.get(i).getName())||(choice_8.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_9.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice7.getSelectedItem() == listDevice.get(i).getName())||(choice8.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_8.disable();
+				choice9.add(listDevice.get(i).getName());
+				}
+				choice8.disable();
 				break;
 		}
 		case 9 : {
-			choice_9.disable();
+			choice9.disable();
 			
 		}	
 	}
 		
 	}
-	public void fillChoices_1(int k){
+	public void fillChoices1(int k){
 		switch(k){
 		case 1 : {
-			for(int i=0; i<list_device.size();i++){
-			if(choice_11.getSelectedItem() == list_device.get(i).getName()) continue;
-			choice_12.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+			if(choice11.getSelectedItem() == listDevice.get(i).getName()){
+				continue;
 			}
-			choice_11.disable();
+			choice12.add(listDevice.get(i).getName());
+			}
+			choice11.disable();
 			break;
 			
 		}
 		case 2 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_13.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_12.disable();
+				choice13.add(listDevice.get(i).getName());
+				}
+				choice12.disable();
 				break;
 		}
 		case 3 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_14.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_13.disable();
+				choice14.add(listDevice.get(i).getName());
+				}
+				choice13.disable();
 				break;
 		}
 		case 4 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
-						(choice_14.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_15.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())||
+						(choice14.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_14.disable();
+				choice15.add(listDevice.get(i).getName());
+				}
+				choice14.disable();
 				break;
 		}
 		case 5 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
-						(choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_16.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())||
+						(choice14.getSelectedItem() == listDevice.get(i).getName())||(choice15.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_15.disable();
+				choice16.add(listDevice.get(i).getName());
+				}
+				choice15.disable();
 				break;
 		}
 		case 6 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
-						(choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_17.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())||
+						(choice14.getSelectedItem() == listDevice.get(i).getName())||(choice15.getSelectedItem() == listDevice.get(i).getName())||(choice16.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_16.disable();
+				choice17.add(listDevice.get(i).getName());
+				}
+				choice16.disable();
 				break;
 		}
 		case 7 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_17.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_18.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice14.getSelectedItem() == listDevice.get(i).getName())||(choice15.getSelectedItem() == listDevice.get(i).getName())||(choice16.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice17.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_17.disable();
+				choice18.add(listDevice.get(i).getName());
+				}
+				choice17.disable();
 				break;
 		}
 		case 8 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice_11.getSelectedItem() == list_device.get(i).getName()) || (choice_12.getSelectedItem() == list_device.get(i).getName())||(choice_13.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_14.getSelectedItem() == list_device.get(i).getName())||(choice_15.getSelectedItem() == list_device.get(i).getName())||(choice_16.getSelectedItem() == list_device.get(i).getName())||
-				   (choice_17.getSelectedItem() == list_device.get(i).getName())||(choice_18.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice_19.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice11.getSelectedItem() == listDevice.get(i).getName()) || (choice12.getSelectedItem() == listDevice.get(i).getName())||(choice13.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice14.getSelectedItem() == listDevice.get(i).getName())||(choice15.getSelectedItem() == listDevice.get(i).getName())||(choice16.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice17.getSelectedItem() == listDevice.get(i).getName())||(choice18.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
 				}
-				choice_18.disable();
+				choice19.add(listDevice.get(i).getName());
+				}
+				choice18.disable();
 				break;
 		}
 		case 9 : {
-			choice_19.disable();
+			choice19.disable();
 			
 		}	
 	}
