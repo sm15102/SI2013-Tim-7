@@ -172,14 +172,14 @@ public Consumption() {
         lblNewLabel.setBounds(50, 211, 200, 14);
         add(lblNewLabel);
         
-        JLabel lblNewLabel_1 = new JLabel("Periodical results (kWh)");
-        lblNewLabel_1.setBounds(550, 211, 150, 14);
-        add(lblNewLabel_1);
+        JLabel lblNewLabel1 = new JLabel("Periodical results (kWh)");
+        lblNewLabel1.setBounds(550, 211, 150, 14);
+        add(lblNewLabel1);
         
-        JLabel lblNewLabel_2 = new JLabel("Total result for selected period ");
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_2.setBounds(549, 20, 260, 31);
-        add(lblNewLabel_2);
+        JLabel lblNewLabel2 = new JLabel("Total result for selected period ");
+        lblNewLabel2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel2.setBounds(549, 20, 260, 31);
+        add(lblNewLabel2);
         
         lblTotalResult = new JLabel("0.0000 kWh");
         lblTotalResult.setForeground(Color.BLACK);
@@ -373,8 +373,8 @@ private List<ActivePeriod> ActivePeriods()
 		 lblTotalResult.setText("0 kWh");
 		 return;
 		 }
-	 double PeriodicalConsumption;
-	 double TotalConsumption = 0;
+	 double periodicalConsumption;
+	 double totalConsumption = 0;
 	 SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy hh:mm:ss");
 	  
 	 for(int i=0;i<periods.size();i++)
@@ -382,16 +382,16 @@ private List<ActivePeriod> ActivePeriods()
 		 Date date1 = periods.get(i).getStart();
 		 Date date2 = periods.get(i).getEnd();
 		 long hoursbetween = (date2.getTime() - date1.getTime())/3600000; 
-		 PeriodicalConsumption = power*hoursbetween;
-		 tablemodel1.addRow(new Object[]{formatter.format(date1),formatter.format(date2),PeriodicalConsumption});
-		 TotalConsumption+=PeriodicalConsumption;
+		 periodicalConsumption = power*hoursbetween;
+		 tablemodel1.addRow(new Object[]{formatter.format(date1),formatter.format(date2),periodicalConsumption});
+		 totalConsumption+=periodicalConsumption;
 	 }
 	 
 	 if("watts (W)".equals((String)units.getSelectedItem())) {
-		 lblTotalResult.setText(String.format("%.4f",(TotalConsumption*1000)) +" Wh");
+		 lblTotalResult.setText(String.format("%.4f",(totalConsumption*1000)) +" Wh");
 		 }
 		 if("kilowatts (kW)".equals((String)units.getSelectedItem())){
-		 lblTotalResult.setText(String.format("%.4f",TotalConsumption)+" kWh");
+		 lblTotalResult.setText(String.format("%.4f",totalConsumption)+" kWh");
 		 }
 		 
  }
