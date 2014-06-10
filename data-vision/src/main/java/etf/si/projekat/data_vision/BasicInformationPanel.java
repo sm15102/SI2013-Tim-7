@@ -103,15 +103,15 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
     private JPanel contentPane;
     final JTabbedPane tabbedPane;
     //choices
-    final Choice choice_1;
-    final Choice choice_2;
-    final Choice choice_3;
-    final Choice choice_4;
-    final Choice choice_5;
-    final Choice choice_6;
-    final Choice choice_7;
-    final Choice choice_8;
-    final Choice choice_9;
+    final Choice choice1;
+    final Choice choice2;
+    final Choice choice3;
+    final Choice choice4;
+    final Choice choice5;
+    final Choice choice6;
+    final Choice choice7;
+    final Choice choice8;
+    final Choice choice9;
     private int size;
     private List<List<EventLogs>> list_logs;
    private List<List<Double>> list_values;
