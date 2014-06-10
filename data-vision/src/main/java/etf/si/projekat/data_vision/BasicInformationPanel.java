@@ -2,21 +2,14 @@ package etf.si.projekat.data_vision;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
@@ -24,9 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -43,8 +33,6 @@ import java.awt.Label;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,10 +42,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-import com.mysql.jdbc.Statement;
-
 import de.erichseifert.gral.data.DataSeries;
-import de.erichseifert.gral.data.DataSource;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.examples.ExamplePanel;
 import de.erichseifert.gral.graphics.DrawingContext;
@@ -69,28 +54,22 @@ import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
 import de.erichseifert.gral.plots.axes.AxisRenderer;
-import de.erichseifert.gral.plots.legends.SeriesLegend;
-import de.erichseifert.gral.plots.legends.ValueLegend;
 import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
 import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
-import de.erichseifert.gral.util.Orientation;
 import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
 	
@@ -112,13 +91,12 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
     final Choice choice7;
     final Choice choice8;
     final Choice choice9;
-    private int size;
     private List<List<EventLogs>> list_logs;
    private List<List<Double>> list_values;
    private List<DataTable> datas;
    private List<DataSeries>series;
    private List<Choice> choices;
-    final static DataTable data=new DataTable(Long.class, Double.class);
+    static final DataTable data=new DataTable(Long.class, Double.class);
     XYPlot plot;
     
     UtilDateModel model1 = new UtilDateModel();
@@ -157,12 +135,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 		lblDataNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDataNumber.setBounds(40, 139, 83, 14);
 		add(lblDataNumber);
-		
-	   /* choice = new Choice();
-		choice.setBounds(177, 50, 117, 25);
-		choice.add("Line");
-		choice.add("Bar");
-		add(choice);*/
+	
 		
 		SensorChoosingPanel p = new SensorChoosingPanel();
 		
@@ -229,7 +202,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       	public void mouseClicked(MouseEvent arg0) {
       	if("Bar".equals(choice.getSelectedItem()))	
       	{
-      		//OneBarGraphShow();
+      		
       		GrafBar();
       	}
       	else
@@ -487,7 +460,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 
       	    }
 			} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					
 				logger.log( Level.SEVERE, "context", e );
 				}
 			
@@ -829,19 +802,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
   
 	}
 	
-	/*public void OneBarGraphShow(){
-		
-		
-	}
-	*/
 	
-/*	public void OneLineGraphShow()
-	{
-   
-	}
-
-*/
-
 	//za export grafa, ali snima graf kao csv file
 	private static void writeData() throws IOException {
 		
@@ -956,7 +917,6 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 	
 	public void GrafBar()
 	{
-		List<DataTable> vrijednosti= new ArrayList<DataTable>();
 		Integer value = (Integer) spinner.getValue();
 		boolean have=false;
 		for(int k=0; k<value; k++)
@@ -996,7 +956,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						size=list_logs.size();
+						list_logs.size();
 						list_values=new ArrayList<List<Double>>();
 						for(int i=0; i<list_logs.size();i++){
 							
@@ -1017,7 +977,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 						}
 					} 
 					  catch (Exception e1) {
-						// TODO Auto-generated catch block
+					
 						 
 						logger.log( Level.SEVERE, "context", e1 );
 					}
@@ -1121,29 +1081,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 	         
-	         
-	        /* BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(datas.get(1));
-			    pointRenderer1.setColor(
-			           new LinearGradientPaint(0f,0f, 0f,1f,
-			           new float[] { 0.0f, 1.0f },
-			           new Color[] { COLOR2, GraphicsUtils.deriveBrighter(COLOR2) }
-			                 )
-			         );
-			       
-			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
-		         pointRenderer1.setBorderColor(
-		                 new LinearGradientPaint(0f,0f, 0f,1f,
-		                                 new float[] { 0.0f, 1.0f },
-		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR2), COLOR2 }
-		                 )
-		         );
-		         pointRenderer1.setValueVisible(true);
-		         pointRenderer1.setValueColumn(2);
-		         pointRenderer1.setValueLocation(Location.CENTER);
-		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR2));
-		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD)); 
-	        	
-		  */
+	       
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
 	         AxisRenderer rendererX = plot.getAxisRenderer(XYPlot.AXIS_X);
@@ -1191,48 +1129,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 	         pointRenderer.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
 	         pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 
-	       /*  BarRenderer pointRenderer1 = (BarRenderer) plot.getPointRenderer(series.get(1));
-			    pointRenderer1.setColor(
-			           new LinearGradientPaint(0f,0f, 0f,1f,
-			           new float[] { 0.0f, 1.0f },
-			           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-			                 )
-			         );
-			       
-			    pointRenderer1.setBorderStroke(new BasicStroke(3f));
-		         pointRenderer1.setBorderColor(
-		                 new LinearGradientPaint(0f,0f, 0f,1f,
-		                                 new float[] { 0.0f, 1.0f },
-		                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-		                 )
-		         );
-		         pointRenderer1.setValueVisible(true);
-		         pointRenderer1.setValueColumn(2);
-		         pointRenderer1.setValueLocation(Location.CENTER);
-		         pointRenderer1.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-		         pointRenderer1.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
-		         
-		         
-		         BarRenderer pointRenderer2 = (BarRenderer) plot.getPointRenderer(series.get(2));
-				    pointRenderer2.setColor(
-				           new LinearGradientPaint(0f,0f, 0f,1f,
-				           new float[] { 0.0f, 1.0f },
-				           new Color[] { COLOR1, GraphicsUtils.deriveBrighter(COLOR1) }
-				                 )
-				         );
-				       
-				    pointRenderer2.setBorderStroke(new BasicStroke(3f));
-			         pointRenderer2.setBorderColor(
-			                 new LinearGradientPaint(0f,0f, 0f,1f,
-			                                 new float[] { 0.0f, 1.0f },
-			                                 new Color[] { GraphicsUtils.deriveBrighter(COLOR1), COLOR1 }
-			                 )
-			         );
-			         pointRenderer2.setValueVisible(true);
-			         pointRenderer2.setValueColumn(3);
-			         pointRenderer2.setValueLocation(Location.CENTER);
-			         pointRenderer2.setValueColor(GraphicsUtils.deriveDarker(COLOR1));
-			         pointRenderer2.setValueFont(Font.decode(null).deriveFont(Font.BOLD)); */
+	     
 	         
 	         plot.getAxisRenderer(XYPlot.AXIS_Y).setTickSpacing(1.0);
 
@@ -2277,13 +2174,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 				public void actionPerformed(ActionEvent e) {
 					
 			tabbedPane.remove(1);
-			//tabbedPane.resetKeyboardActions();
-			//tabbedPane.remove(0);
-			//BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-			//tabbedPane.add("Basic data",basicInfo);
-			//tabbedPane.add("Basic data",basicInfo);
-
-			//basicInfo.setLayout(null);
+		
 		
 			tabbedPane.setSelectedIndex(1);
 				}
@@ -2298,14 +2189,11 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 	
 	public void Graf(){
 		
-//		List<DataTable> vrijednosti= new ArrayList<DataTable>();
+
 		Integer value = (Integer) spinner.getValue();
 		boolean have=false;
 		
-//		for(int k=0; k<value; k++)
-//		{
-				//if(value==1){
-//				 data1 = new DataTable(Long.class, Double.class, String.class);				 
+	 
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
 			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
@@ -2338,11 +2226,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 						for(int i=0;i<value;i++){
 							
 					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));
-					  //.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end));
-					  //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						size=list_logs.size();
+						list_logs.size();
 						list_values=new ArrayList<List<Double>>();
 						for(int i=0; i<list_logs.size();i++){
 							
@@ -2417,11 +2303,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 	              interactivePanel.setBounds(new Rectangle(0, 0, 0, 50));
 	              
 	              String device = choices.get(0).getSelectedItem();
-	              
-	          //    plot.setLegendVisible(true);
-	              	              
-	        //      plot.getLegend().add(datas.get(0));
-	            		  
+	         		  
 	              plot.getTitle().setText("Line plot: "+device+"(green)");
 	              interactivePanel.setVisible(true);
 	              
@@ -2946,13 +2828,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 					public void actionPerformed(ActionEvent e) {
 						
 				tabbedPane.remove(1);
-				//tabbedPane.resetKeyboardActions();
-				//tabbedPane.remove(0);
-				//BasicInformationPanel basicInfo = new BasicInformationPanel(tabbedPane);
-				//tabbedPane.add("Basic data",basicInfo);
-				//basicInfo.setLayout(null);
 			
-				//tabbedPane.setSelectedIndex(1);
 					}
 				});
 			

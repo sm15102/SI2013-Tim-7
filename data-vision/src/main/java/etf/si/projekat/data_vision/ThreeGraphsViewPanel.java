@@ -40,11 +40,11 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.GraphicsUtils;
 import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Location;
-import ba.unsa.etf.si.beans.DeviceName;
 import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
+import ba.unsa.etf.si.beans.DeviceName;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -73,8 +73,8 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 		InteractivePanel interactivePanel2;
 		final JTabbedPane tabbedPane;
 		private int size;
-	    private List<List<EventLogs>> list_logs;
-		private List<List<Double>> list_values;
+	    private List<List<EventLogs>> listLogs;
+		private List<List<Double>> listValues;
 		private List<DataTable> datas;
 		private List<DataTable> datas1;
 		private List<DataSeries>series;
@@ -83,8 +83,8 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 		
 			XYPlot plot1;
 			  private JPanel contentPane;
-			  boolean paneli_bar;
-			  boolean paneli_line;
+			  boolean paneliBar;
+			  boolean paneliLine;
 			  List<EventLogs> logs;
 			  List<EventLogs> logs1;
 			  List<Double>values;
@@ -126,8 +126,8 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 	
 
 	
-	public ThreeGraphsViewPanel(JTabbedPane tabbedPane_4) {
-		tabbedPane = tabbedPane_4;
+	public ThreeGraphsViewPanel(JTabbedPane tabbedPane4) {
+		tabbedPane = tabbedPane4;
 		setBackground(SystemColor.menu);
 
 
@@ -179,16 +179,16 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
         lblGraphType.setBounds(55, 60, 68, 14);
         add(lblGraphType);
        
-        SpringLayout springLayout_1 = (SpringLayout) datePicker.getLayout();
-        springLayout_1.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker);
+        SpringLayout springLayout1 = (SpringLayout) datePicker.getLayout();
+        springLayout1.putConstraint(SpringLayout.SOUTH, datePicker.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker);
         datePicker.setLocation(152, 75);
         datePicker.setSize(165, 29);
        add(datePicker);
         
         
        
-        SpringLayout springLayout_2 = (SpringLayout) datePicker1.getLayout();
-        springLayout_2.putConstraint(SpringLayout.SOUTH, datePicker1.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker1);
+        SpringLayout springLayout2 = (SpringLayout) datePicker1.getLayout();
+        springLayout2.putConstraint(SpringLayout.SOUTH, datePicker1.getJFormattedTextField(), 0, SpringLayout.SOUTH, datePicker1);
         datePicker1.setLocation(152, 104);
         datePicker1.setSize(165, 29);
       add(datePicker1);
@@ -213,22 +213,22 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
       lblSensorType.setBounds(10, 172, 77, 14);
       add(lblSensorType);
       
-      final JSeparator separator_1 = new JSeparator();
-      separator_1.setBounds(222, 220, -220, -5);
-      separator_1.setVisible(false);
-      add(separator_1);
+      final JSeparator separator1 = new JSeparator();
+      separator1.setBounds(222, 220, -220, -5);
+      separator1.setVisible(false);
+      add(separator1);
       
       
-      final JSeparator separator_2 = new JSeparator();
-      separator_2.setBackground(SystemColor.textHighlight);
-      separator_2.setBounds(10, 233, 618, -5);
-      add(separator_2);
+      final JSeparator separator2 = new JSeparator();
+      separator2.setBackground(SystemColor.textHighlight);
+      separator2.setBounds(10, 233, 618, -5);
+      add(separator2);
       
-      final  JLabel label_1 = new JLabel("Sensor type 1");
-      label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-      label_1.setBounds(28, 220, 95, 18);
-      label_1.setVisible(true);
-      add(label_1);
+      final  JLabel label1 = new JLabel("Sensor type 1");
+      label1.setHorizontalAlignment(SwingConstants.RIGHT);
+      label1.setBounds(28, 220, 95, 18);
+      label1.setVisible(true);
+      add(label1);
       
       choice_1.setBounds(152, 220, 165, 20);
       choice_1.setVisible(true);
@@ -237,32 +237,32 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 
 
 		lblSensorType.setVisible(false);
-		separator_2.setVisible(true);
+		separator2.setVisible(true);
 
 
 
 
 		setValueFirstGraph((Integer) spinner.getValue());
       
-      final Label label_13 = new Label("Sensor type 2");
-      label_13.setFont(new Font("Dialog", Font.BOLD, 11));
-      label_13.setAlignment(Label.RIGHT);
-      label_13.setBounds(40, 253, 83, 14);
-      add(label_13);
+      final Label label13 = new Label("Sensor type 2");
+      label13.setFont(new Font("Dialog", Font.BOLD, 11));
+      label13.setAlignment(Label.RIGHT);
+      label13.setBounds(40, 253, 83, 14);
+      add(label13);
       
-      JSeparator separator_4 = new JSeparator();
-      separator_4.setBounds(622, 30, -273, 15);
-      add(separator_4);
+      JSeparator separator4 = new JSeparator();
+      separator4.setBounds(622, 30, -273, 15);
+      add(separator4);
       
-      final  JSeparator separator_5 = new JSeparator();
-      separator_5.setBackground(SystemColor.textHighlight);
-      separator_5.setBounds(10, 487, 618, -10);
+      final  JSeparator separator5 = new JSeparator();
+      separator5.setBackground(SystemColor.textHighlight);
+      separator5.setBounds(10, 487, 618, -10);
     
-      add(separator_5);
+      add(separator5);
       
-      final  JSeparator separator_6 = new JSeparator();
-      separator_6.setBounds(720, 220, -91, 22);
-      add(separator_6);
+      final  JSeparator separator6 = new JSeparator();
+      separator6.setBounds(720, 220, -91, 22);
+      add(separator6);
      
       
       // GENERIRAJ AKCIJA
@@ -289,32 +289,32 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
       	      		}
       	      		if(islect){
       	      		Date dateString = (Date) datePicker.getModel().getValue();
-      		  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+      		  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
       		  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-      		  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+      		  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
       				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-      				Date date_start;
-      				Date date_end;
-      				Date date_now;
+      				Date dateStart;
+      				Date dateEnd;
+      				Date dateNow;
       		        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
       		        
       					try {
-      						date_start = sdf.parse(date_from);
-      						date_end = sdf.parse(date_to);
-      					    date_now = sdf.parse(now);
+      						dateStart = sdf.parse(dateFrom);
+      						dateEnd = sdf.parse(dateTo);
+      					    dateNow = sdf.parse(now);
       					    
 
-      	      	    if( date_start.compareTo(date_end) < 0) {
+      	      	    if( dateStart.compareTo(dateEnd) < 0) {
       	      	    	date1Beforedate2=true;
       	      	    }else{
       	      	    	JOptionPane.showMessageDialog(null, "'Time interval from' is before 'Time interval to'");
       	      	    	}
-      	      	    if((date_start.compareTo(date_now) < 0)){
+      	      	    if((dateStart.compareTo(dateNow) < 0)){
       	    	    	inFuture1=true;
       	    	    }else{
       	    	    	JOptionPane.showMessageDialog(null, "'Time interval from' is in the future");
       	    	    }
-      	      	    if((date_end.compareTo(date_now) < 0)){
+      	      	    if((dateEnd.compareTo(dateNow) < 0)){
       	      	    	inFuture2=true;
       	      	    }else{
       	      	    	JOptionPane.showMessageDialog(null, "'Time interval to' is  in the future");
@@ -349,24 +349,24 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
       		add(btnGenerateGraphs);
 
 
-	      JSeparator separator_3 = new JSeparator();
-	      separator_3.setBackground(SystemColor.textHighlight);
-	      separator_3.setBounds(10, 199, 306, -13);
-	      add(separator_3);
+	      JSeparator separator3 = new JSeparator();
+	      separator3.setBackground(SystemColor.textHighlight);
+	      separator3.setBounds(10, 199, 306, -13);
+	      add(separator3);
 
 
-	      JSeparator separator_7 = new JSeparator();
-	      separator_7.setBackground(SystemColor.textHighlight);
-	      separator_7.setBounds(10, 299, 307, 14);
-	      add(separator_7);
+	      JSeparator separator7 = new JSeparator();
+	      separator7.setBackground(SystemColor.textHighlight);
+	      separator7.setBounds(10, 299, 307, 14);
+	      add(separator7);
 	      choice_12.setBounds(152, 247, 165, 20);
 	      add(choice_12);
 
 
-	      JSeparator separator_8 = new JSeparator();
-	      separator_8.setBackground(SystemColor.textHighlight);
-	      separator_8.setBounds(10, 186, 306, 15);
-	      add(separator_8);
+	      JSeparator separator8 = new JSeparator();
+	      separator8.setBackground(SystemColor.textHighlight);
+	      separator8.setBounds(10, 186, 306, 15);
+	      add(separator8);
 
 
 
@@ -405,16 +405,16 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 							 
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
-			  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+			  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 			  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-			  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+			  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-					Date date_start;
-					Date date_end;
+					Date dateStart;
+					Date dateEnd;
 					
 					  try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						 
 
 						try {
@@ -423,7 +423,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 						logs=new ArrayList<EventLogs>();
 							
 							
-					  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),dateStart,dateEnd);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 
 						}
 						
@@ -458,28 +458,28 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 					  
 					  //two graph
 					  Date dateString2 = (Date) datePicker.getModel().getValue();
-				  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+				  		String dateFrom1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 				  		Date dateString3 = (Date) datePicker1.getModel().getValue();
-				  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+				  		String dateTo1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 						SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-						Date date_start1;
-						Date date_end1;
+						Date dateStart1;
+						Date dateEnd1;
 						
 						  try {
-							date_start1 = sdf1.parse(date_from1);
-							date_end1 = sdf1.parse(date_to1);
+							dateStart1 = sdf1.parse(dateFrom1);
+							dateEnd1 = sdf1.parse(dateTo1);
 							 
 
 							try {
-								date_start = sdf.parse(date_from);
-								date_end = sdf.parse(date_to);
+								dateStart = sdf.parse(dateFrom);
+								dateEnd = sdf.parse(dateTo);
 								
 							logs1=new ArrayList<EventLogs>();
 								
 								
 							
 								
-						  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+						  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),dateStart1,dateEnd1);//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 						 
 							}
 							
@@ -712,16 +712,16 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 
 			//Podaci koji ce se prikazivati na grafu 
 			Date dateString = (Date) datePicker.getModel().getValue();
-	  		String date_from = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+	  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-	  		String date_to = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+	  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date date_start;
-			Date date_end;
+			Date dateStart;
+			Date dateEnd;
 			
 			  try {
-				date_start = sdf.parse(date_from);
-				date_end = sdf.parse(date_to);
+				dateStart = sdf.parse(dateFrom);
+				dateEnd = sdf.parse(dateTo);
 				 
 
 				try {
@@ -732,7 +732,7 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 					
 					
 					
-			  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),date_start,date_end);
+			  logs=new HibernateEventLogs().getdatesbetween(choice_1.getSelectedItem(),dateStart,dateEnd);
 			  
 				}
 				
@@ -760,27 +760,27 @@ private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class
 			  //two graph
 			  
 			  Date dateString2 = (Date) datePicker.getModel().getValue();
-		  		String date_from1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+		  		String dateFrom1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
 		  		Date dateString3 = (Date) datePicker1.getModel().getValue();
-		  		String date_to1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+		  		String dateTo1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
 				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				Date date_start1;
-				Date date_end1;
+				Date dateStart1;
+				Date dateEnd1;
 				
 				  try {
-					date_start1 = sdf1.parse(date_from1);
-					date_end1 = sdf1.parse(date_to1);
+					dateStart1 = sdf1.parse(dateFrom1);
+					dateEnd1 = sdf1.parse(dateTo1);
 					 
 
 					try {
-						date_start = sdf.parse(date_from);
-						date_end = sdf.parse(date_to);
+						dateStart = sdf.parse(dateFrom);
+						dateEnd = sdf.parse(dateTo);
 						
 							
 						
 					
 						
-				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),date_start1,date_end1);
+				  logs1=new HibernateEventLogs().getdatesbetween(choice_12.getSelectedItem(),dateStart1,dateEnd1);
 				 
 					}
 					
