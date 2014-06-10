@@ -225,7 +225,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       btnGenerateGraph.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      	if("Bar"equals.(choice.getSelectedItem()))	
+      	if("Bar".equals(choice.getSelectedItem()))	
       	{
       		//OneBarGraphShow();
       		GrafBar();
