@@ -111,7 +111,7 @@ public Consumption() {
     	public void popupMenuCanceled(PopupMenuEvent arg0) {
     	}
     	public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
-    		if(selecteddevice != null && selecteddevice !="Chose device..." )
+    		if(!null.equals(selecteddevice) && !"Chose device...".equals(selecteddevice))
     			EarseTable();
     		    PopuniTabelu();
     		
@@ -281,9 +281,9 @@ private void PopuniTabelu()
 		return;
 	}
 	
-	if (selecteddevice != "Chose device...")try{
+	if (!"Chose device...".equals(selecteddevice))try{
     List<EventLogs>sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
-    if(sveKolone.size() == 0 && selecteddevice != "Chose device...")
+    if(sveKolone.size() == 0 && !"Chose device...".equals(selecteddevice))
 	{
     	JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
 		return;
@@ -387,10 +387,10 @@ private List<ActivePeriod> ActivePeriods()
 		 TotalConsumption+=PeriodicalConsumption;
 	 }
 	 
-	 if((String)units.getSelectedItem()=="watts (W)") {
+	 if("watts (W)".equals((String)units.getSelectedItem())) {
 		 lblTotalResult.setText(String.format("%.4f",(TotalConsumption*1000)) +" Wh");
 		 }
-		 if((String)units.getSelectedItem()=="kilowatts (kW)"){
+		 if("kilowatts (kW)".equals((String)units.getSelectedItem())){
 		 lblTotalResult.setText(String.format("%.4f",TotalConsumption)+" kWh");
 		 }
 		 
