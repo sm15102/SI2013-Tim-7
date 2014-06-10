@@ -1,6 +1,7 @@
 package etf.si.projekat.data_vision;
 
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 
@@ -93,6 +94,7 @@ import java.awt.event.ActionEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
 	
+private static final Logger logger = Logger.getLogger(BasicInformationPanel.class.getName());
 	
 	// POkupiti iz baze ime device-a
     List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
@@ -486,7 +488,7 @@ public class BasicInformationPanel  extends ExamplePanel {
       	    }
 			} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+				logger.log( Level.SEVERE, "context", e );
 				}
 			
       		}
@@ -1017,7 +1019,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
 						 
-						e1.printStackTrace();
+						logger.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
@@ -2362,7 +2364,7 @@ public class BasicInformationPanel  extends ExamplePanel {
 					} 
 					  catch (Exception e1) {
 						
-						e1.printStackTrace();
+						logger.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
