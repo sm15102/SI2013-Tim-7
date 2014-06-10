@@ -20,6 +20,8 @@ import de.erichseifert.gral.util.Insets2D;
 import de.erichseifert.gral.util.Orientation;
 
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 
@@ -62,6 +64,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class OneGraphShow extends JFrame {
+private static final Logger logger = Logger.getLogger(OneGraphShow.class.getName());
 
 	private JPanel contentPane;
 	private JFrame f;
@@ -82,7 +85,7 @@ public class OneGraphShow extends JFrame {
 				
 				     		    
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.log( Level.SEVERE, "context", e );
 				}
 			//}
 		
