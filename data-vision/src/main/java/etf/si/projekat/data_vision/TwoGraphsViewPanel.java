@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 import javax.swing.*;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import java.awt.BasicStroke;
 import java.awt.Button;
 import java.awt.Choice;
@@ -72,7 +72,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TwoGraphsViewPanel extends ExamplePanel {
-	private static final Logger logger = Logger.getLogger(TwoGraphsViewPanel.class);
+	private static final Logger logger = Logger.getLogger(TwoGraphsViewPanel.class.getName());
 	 List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 
     final Choice choice; 
@@ -507,7 +507,8 @@ InteractivePanel inter2;
       	    }
 			} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					logger.error("context", e);
+					logger.log( Level.SEVERE, "context", e );
+				
 				}
 			
       		}
@@ -1160,7 +1161,8 @@ InteractivePanel inter2;
       	    }
 			} catch (ParseException e) {
 					// TODO Auto-generated catch block
-				logger.error("context", e);
+				
+				logger.log( Level.SEVERE, "context", e );
 				}
 			
       		}
@@ -1535,7 +1537,7 @@ InteractivePanel inter2;
 						} 
 						  catch (Exception e1) {
 							
-							logger.error("context", e1);
+								logger.log( Level.SEVERE, "context", e1 );
 						}
 						
 						datas=new ArrayList<DataTable>();
@@ -2159,7 +2161,7 @@ interactivePanel = new InteractivePanel(plot);
 					} 
 					  catch (Exception e1) {
 						
-						logger.error("context", e1);
+							logger.log( Level.SEVERE, "context", e1 );
 					}
 					
 					  datas2=new ArrayList<DataTable>();
@@ -2985,7 +2987,7 @@ interactivePanel1 = new InteractivePanel(plot);
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						logger.error("context", e1);
+							logger.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
@@ -4361,7 +4363,7 @@ interactivePanel = new InteractivePanel(plot);
 					  catch (Exception e1) {
 						// TODO Auto-generated catch block
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-						logger.error("context", e1);
+							logger.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
