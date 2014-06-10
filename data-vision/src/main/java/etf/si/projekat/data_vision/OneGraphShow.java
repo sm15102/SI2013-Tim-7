@@ -100,9 +100,9 @@ private static final Logger logger = Logger.getLogger(OneGraphShow.class.getName
 		senzori=s; 
 		datePickerFrom=datePicker1;
 		datePickerTo=datePicker2;
-		final List list_time;
+		final List listTime;
 		
-		final List list_value;
+		final List listValue;
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        setSize(1000, 1000);
@@ -122,15 +122,15 @@ private static final Logger logger = Logger.getLogger(OneGraphShow.class.getName
 				//ovo je samo za jedan sensor ako je izabran, za sad, pa kad proradi dalje cu :D
 			
 				
-			 list_time = session.createQuery("select value from EventLogs where timestamp>CAST(datePickerFrom as datetime) and timestamp<CAST(datePickerTo AS datetime) and device_name=senzori[0]").list();
+			 listTime = session.createQuery("select value from EventLogs where timestamp>CAST(datePickerFrom as datetime) and timestamp<CAST(datePickerTo AS datetime) and device_name=senzori[0]").list();
 			 
-				//list_value = session.createQuery("select value from EventLogs where TIMESTAMP>STR_TO_DATE(datePickerFrom, 'YYYY-mm-dd hh:mm:ss') and timestamp<STR_TO_DATE(datePickerTo, 'YYYY-mm-dd hh:mm:ss') and device_name=senzori[0]").list();
-				list_value=session.createQuery("select value from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name=[0]").list();
+				//listValue = session.createQuery("select value from EventLogs where TIMESTAMP>STR_TO_DATE(datePickerFrom, 'YYYY-mm-dd hh:mm:ss') and timestamp<STR_TO_DATE(datePickerTo, 'YYYY-mm-dd hh:mm:ss') and device_name=senzori[0]").list();
+				listValue=session.createQuery("select value from eventlogs where TIMESTAMP>= CONVERT(datetime, datePickerFrom) and timestamp<= CONVERT(datetime, datePickerTo) and device_name=[0]").list();
 			//OVDJE PADA POSLIJE OVIH QUERY-A!! pada kod converta 
 			 
 			  data = new DataTable(Date.class, Double.class);
-				for (Iterator iterator = list_time.iterator(); iterator.hasNext();){  
-			    	Iterator iterator1=list_value.iterator(); 
+				for (Iterator iterator = listTime.iterator(); iterator.hasNext();){  
+			    	Iterator iterator1=listValue.iterator(); 
 			        Date dp =(Date) iterator.next();
 			        Double value=(Double)iterator1.next();
 			        data.add(dp, value);
