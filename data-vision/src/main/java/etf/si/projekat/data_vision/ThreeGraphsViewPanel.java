@@ -9,15 +9,8 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.WindowListener;
 
-
-
-
-
-
-
-
-
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 import javax.swing.JLabel;
@@ -157,6 +150,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
 	private static final long serialVersionUID = 1L;
 
 
+private static final Logger logger = Logger.getLogger(ThreeGraphsViewPanel.class.getName());
 	List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
 
 
@@ -418,7 +412,7 @@ public class ThreeGraphsViewPanel extends ExamplePanel  {
       	      	    }
       				} catch (ParseException e) {
       						// TODO Auto-generated catch block
-      						e.printStackTrace();
+      					logger.log( Level.SEVERE, "context", e );
       					}
       				
       	      		}
