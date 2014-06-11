@@ -865,7 +865,7 @@ private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.clas
 		}
 		case 9 : {
 			choice9.disable();
-			
+			break;
 		}
 		default: break;
 	}
