@@ -53,9 +53,7 @@ public DeviceName giveActivityLogs(long id) {
 			session.close();
 			return new DeviceName();
 			
-		}
-		
-		else {
+		}else {
 			session.close();
 			return dn;
 		}
@@ -89,9 +87,7 @@ public boolean existDeviceName(long id) {
 		if(n == null) {
 			session.close();
 			return false;
-		}
-		
-		else {
+		}else {
 			session.close();
 			return true;
 		}
@@ -107,9 +103,7 @@ public boolean existDeviceName(String type) {
 	if(query.list().size()==0) {
 		session.close();
 		return false;
-	}
-	
-	else {
+	}else {
 		session.close();
 		return true;
 	}

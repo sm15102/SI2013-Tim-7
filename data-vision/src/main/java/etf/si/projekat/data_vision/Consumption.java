@@ -329,18 +329,15 @@ private List<ActivePeriod> activePeriods(){
 		int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
 		EventLogs ev = new HibernateEventLogs().giveEventLogs(id);
 		String message = ev.getEvent_message();
-		if(("open".equalsIgnoreCase(message) ||"turnOn".equalsIgnoreCase(message)) && !on && i<rowcount-1)
-		 {
+		if(("open".equalsIgnoreCase(message) ||"turnOn".equalsIgnoreCase(message)) && !on && i<rowcount-1){
 			on = true;
 			activeperiod.setStart(ev.getTimestamp());
-		 }
-		 else if(("closed".equalsIgnoreCase(message) || "turnOff".equalsIgnoreCase(message)) && on){
+		 }else if(("closed".equalsIgnoreCase(message) || "turnOff".equalsIgnoreCase(message)) && on){
 		 on=false;
 		 activeperiod.setEnd(ev.getTimestamp());
 		 periods.add(activeperiod);
 		 activeperiod = new ActivePeriod(); 
-		 }
-		 else if(("open".equalsIgnoreCase(message) || "turnOn".equalsIgnoreCase(message)) && i==rowcount-1){
+		 }else if(("open".equalsIgnoreCase(message) || "turnOn".equalsIgnoreCase(message)) && i==rowcount-1){
 			 on=false;
 			 activeperiod.setStart(ev.getTimestamp());
 			 activeperiod.setEnd(model1.getValue());

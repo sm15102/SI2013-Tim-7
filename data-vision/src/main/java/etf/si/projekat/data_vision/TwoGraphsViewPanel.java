@@ -2107,8 +2107,7 @@ interactivePanel = new InteractivePanel(plot);
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
-					} 
-					  catch (Exception e1) {
+					}catch (Exception e1) {
 						
 							LOGGER.log( Level.SEVERE, "context", e1 );
 					}
@@ -2912,8 +2911,7 @@ interactivePanel1 = new InteractivePanel(plot);
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
-					} 
-					  catch (Exception e1) {
+					}catch (Exception e1) {
 					
 						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							LOGGER.log( Level.SEVERE, "context", e1 );
@@ -4235,8 +4233,7 @@ interactivePanel = new InteractivePanel(plot);
 						}catch(Exception e){
 							 System.out.println("Ne poklapaju se vrijednosti");
 						}
-					} 
-					  catch (Exception e1) {
+					}catch (Exception e1) {
 					
 						 LOGGER.log( Level.SEVERE, "context", e1 );
 					}

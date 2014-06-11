@@ -52,9 +52,7 @@ public class HibernateActivityLogs {
 			session.close();
 			return new ActivityLogs();
 			
-		}
-		
-		else {
+		}else {
 			session.close();
 			return a;
 		}
@@ -88,9 +86,7 @@ public class HibernateActivityLogs {
 		if(u == null) {
 			session.close();
 			return false;
-		}
-		
-		else {
+		}else {
 			session.close();
 			return true;
 		}

@@ -72,8 +72,7 @@ public class AddDevice extends JFrame { //extends JFrame
 				
 				if(textField2.getText().isEmpty() || textField3.getText().isEmpty() || textField2.getText().matches("\\s+")|| textField3.getText().matches("\\s+")){
 					JOptionPane.showMessageDialog(null, "Nisu sva polja ispunjena", "AlertBox", JOptionPane.WARNING_MESSAGE);
-				}
-				else{
+				}else{
 				DeviceName dn = new DeviceName();
 				dn.setName(textField2.getText());
 				HibernateDeviceName hdn = new HibernateDeviceName();

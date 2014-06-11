@@ -188,7 +188,7 @@ private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.clas
       		if("Bar".equals(choice.getSelectedItem())){
       			grafBar();
       		}else{
-      			Graf();
+      			graf();
       		}
       	}
       });
@@ -934,8 +934,7 @@ private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.clas
 							
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
-					} 
-					  catch (Exception e1) {
+					}catch (Exception e1) {
 					
 						 
 						LOGGER.log( Level.SEVERE, "context", e1 );
@@ -2146,7 +2145,7 @@ private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.clas
 	}
 	
 	
-	public void Graf(){
+	public void graf(){
 		
 
 		Integer value = (Integer) spinner.getValue();
@@ -2792,8 +2791,7 @@ private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.clas
 					}
 				});
 			
-		 }
-		 else{
+		 }else{
 			 JOptionPane.showMessageDialog(null, "Graph is empty");
 		 }
 		

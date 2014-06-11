@@ -188,13 +188,10 @@ private static final Logger logger = Logger.getLogger(OneGraphShow.class.getName
 				
 			  t.commit();
 			    
-		}
-			catch(Exception e)
-		{
+		}catch(Exception e){
 				
 			System.out.println("Error:"+e);
-		}
-			finally{
+		}finally{
 				session.close();
 			}
 	        

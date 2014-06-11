@@ -59,9 +59,7 @@ public HibernateEventLogs(){
 			session.close();
 			return new EventLogs();
 			
-		}
-		
-		else {
+		}else {
 			session.close();
 			return e;
 		}
@@ -95,9 +93,7 @@ public HibernateEventLogs(){
 		if(e == null) {
 			session.close();
 			return false;
-		}
-		
-		else {
+		}else {
 			session.close();
 			return true;
 		}
@@ -115,8 +111,7 @@ public HibernateEventLogs(){
 		if(temp.size() == 0) {
 			session.close();
 			return null;
-		}
-		else{
+		}else{
 		session.close();
 		
 		return temp.get(0).getTimestamp().toString().substring(0, 19);

@@ -51,9 +51,7 @@ public class HibernateDeviceType {
 			session.close();
 			return new DeviceType();
 			
-		}
-		
-		else {
+		}else {
 			session.close();
 			return dv;
 		}
@@ -87,9 +85,7 @@ public class HibernateDeviceType {
 		if(u == null) {
 			session.close();
 			return false;
-		}
-		
-		else {
+		}else {
 			session.close();
 			return true;
 		}
@@ -104,9 +100,7 @@ public class HibernateDeviceType {
 		if(query.list().size()==0) {
 			session.close();
 			return false;
-		}
-		
-		else {
+		}else {
 			session.close();
 			return true;
 		}

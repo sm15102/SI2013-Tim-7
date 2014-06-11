@@ -1,31 +1,13 @@
 package etf.si.projekat.data_vision;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-
-import java.awt.Choice;
-
-import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -40,20 +22,14 @@ import java.util.List;
 
 import etf.si.projekat.util.HibernateUtil;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 
-
-public class TableViewPanel extends JPanel
-{
+public class TableViewPanel extends JPanel{
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
 	private JTabbedPane tabbedPane;
-	public TableViewPanel(JTabbedPane tabbedPane1) 
-	{
+	public TableViewPanel(JTabbedPane tabbedPane1){
 		 tabbedPane=tabbedPane1;
 		setLayout(null);
 		model=new DefaultTableModel(
@@ -143,25 +119,20 @@ class CustModel extends AbstractTableModel {
     }
 }
 
-public void popuniTabelu()
-{
+public void popuniTabelu(){
 	List<EventLogs> temp=new ArrayList<EventLogs>();
 	List<EventLogs> sveKolone=pokupiPodatke();
-	if(sveKolone.size()<=10)
-	{
+	if(sveKolone.size()<=10){
 		temp=sveKolone;
-	}
-	else{
+	}else{
 		int start=sveKolone.size()-10;
-		for(int i=start;i<sveKolone.size();i++)
-		{
+		for(int i=start;i<sveKolone.size();i++){
 			temp.add(sveKolone.get(i));
 		}
 	}
 	
 //"Br.", "User", "Device name", "Device type", "Even message", "Value", "Timestamp"
-	for(int i=0;i<temp.size();i++)
-	{
+	for(int i=0;i<temp.size();i++){
 		EventLogs e=temp.get(i);
 		String user=e.getActivity_logs().getUser();
 		String devName=e.getDevice_name();
