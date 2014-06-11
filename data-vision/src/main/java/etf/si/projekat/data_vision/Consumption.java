@@ -112,7 +112,7 @@ public Consumption() {
     	}
     	public void popupMenuWillBecomeInvisible(PopupMenuEvent arg0) {
     		if(selecteddevice!=null && !"Chose device...".equals(selecteddevice))
-    			EarseTable();
+    			eraseTable();
     		    PopuniTabelu();
     		
     	}
@@ -123,7 +123,8 @@ public Consumption() {
     		
     		devices.addItem("Chose device...");
     		for(int i=0; i<listdevices.size(); i++){
-    		devices.addItem(listdevices.get(i).getName());}
+    		devices.addItem(listdevices.get(i).getName());
+    		}
     	}
     });
     
@@ -195,7 +196,7 @@ public Consumption() {
 		{
 			public void actionPerformed(ActionEvent e) {
 				
-				CaculateResults();
+				calculateResults();
 				
 			}
 			
@@ -203,7 +204,7 @@ public Consumption() {
 		devices.addItemListener(new ItemListener() {
 		public void itemStateChanged(ItemEvent arg0) {
 			selecteddevice =(String) arg0.getItem();
-			EarseTable();
+			eraseTable();
 		}
     });
 		
@@ -262,90 +263,84 @@ public void Model1() {
            
    }
 
-private void PopuniTabelu()
-{
+private void PopuniTabelu(){
 	
-	if(model.getValue() == null)
-	{
+	if(model.getValue() == null){
 		JOptionPane.showMessageDialog(null, "Enter Time interval from value", "Error", JOptionPane.ERROR_MESSAGE);
 		return;
-	}
-	if(model1.getValue() == null)
-	{
+		}
+	if(model1.getValue() == null){
 		JOptionPane.showMessageDialog(null, "Enter Time interval to value", "Error", JOptionPane.ERROR_MESSAGE);
 		return;
-	}
-	if(model1.getValue().before(model.getValue()))
-	{
+		}
+	if(model1.getValue().before(model.getValue())){
 		JOptionPane.showMessageDialog(null, "Time interval from and time interval to are in inccorect order", "Info", JOptionPane.INFORMATION_MESSAGE);
 		return;
-	}
-	
-	if (!"Chose device...".equals(selecteddevice))try{
-    List<EventLogs>sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
-    if(sveKolone.size() == 0 && !"Chose device...".equals(selecteddevice))
-	{
-    	JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
-		return;
-	}
-	
-	
-	for(int i=0;i<sveKolone.size();i++)
-	{
-		EventLogs e=sveKolone.get(i);
-		String id=e.getEventlogs_id().toString();
-		String devName=e.getDevice_name();
-		String devType=e.getDevice_type();
-		String evMessage=e.getEvent_message();
-		String value=String.valueOf(e.getValue());
+		}
+	if (!"Chose device...".equals(selecteddevice)){
+		try{
+			List<EventLogs>sveKolone = new HibernateEventLogs().getdatesbetween(selecteddevice, model.getValue(), model1.getValue());
+			if(sveKolone.size() == 0 && !"Chose device...".equals(selecteddevice)){
+				JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
+				return;
+				}
+			for(int i=0;i<sveKolone.size();i++){
+				EventLogs e=sveKolone.get(i);
+				String id=e.getEventlogs_id().toString();
+				String devName=e.getDevice_name();
+				String devType=e.getDevice_type();
+				String evMessage=e.getEvent_message();
+				String value=String.valueOf(e.getValue());
+				String time = null;
+				if(e.getTimestamp()!=null){
+					SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy hh:mm:ss");
+					time = formatter.format(e.getTimestamp());
+					}
+				if(devName.equals(selecteddevice)){
+					tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,time });
+					}
+				}
+			}catch(Exception m){
+				JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);
+				}
 		
-		String time = null;
-		if(e.getTimestamp()!=null){
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy hh:mm:ss");
-	    time = formatter.format(e.getTimestamp());}
-		
-		if(devName.equals(selecteddevice)){
-			tablemodel.addRow(new Object[]{id,devName,devType,evMessage,value,time });}}
-		} catch(Exception m){JOptionPane.showMessageDialog(null, "Thera are no data", "Info", JOptionPane.INFORMATION_MESSAGE);}
-	}
+		}
+}
+	
 
 
-private void EarseTable()
-{   
+private void eraseTable(){   
 	tablemodel.getDataVector().removeAllElements();
 	tablemodel.fireTableDataChanged();	
 }
-private void EarseResultTable()
-{   
+private void eraseResultTable(){   
 	tablemodel1.getDataVector().removeAllElements();
 	tablemodel1.fireTableDataChanged();	
 }
 
-private List<ActivePeriod> ActivePeriods() 
-{
+private List<ActivePeriod> activePeriods(){
 	List<ActivePeriod> periods = new ArrayList<ActivePeriod>();
 	
 	Boolean on = false;
 	int rowcount = tablemodel.getRowCount();
 	
 	ActivePeriod activeperiod = new ActivePeriod();
-	for(int i=0;i<rowcount;i++)
-	{   
+	for(int i=0;i<rowcount;i++){   
 		int id =Integer.valueOf((String) table.getModel().getValueAt(i, 0));
 		EventLogs ev = new HibernateEventLogs().giveEventLogs(id);
 		String message = ev.getEvent_message();
-		if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && !on && i<rowcount-1)
+		if(("open".equalsIgnoreCase(message) ||"turnOn".equalsIgnoreCase(message)) && !on && i<rowcount-1)
 		 {
 			on = true;
 			activeperiod.setStart(ev.getTimestamp());
 		 }
-		 else if((message.equalsIgnoreCase("closed") || message.equalsIgnoreCase("turnOff")) && on){
+		 else if(("closed".equalsIgnoreCase(message) || "turnOff".equalsIgnoreCase(message)) && on){
 		 on=false;
 		 activeperiod.setEnd(ev.getTimestamp());
 		 periods.add(activeperiod);
 		 activeperiod = new ActivePeriod(); 
 		 }
-		 else if((message.equalsIgnoreCase("open") || message.equalsIgnoreCase("turnOn")) && i==rowcount-1){
+		 else if(("open".equalsIgnoreCase(message) || "turnOn".equalsIgnoreCase(message)) && i==rowcount-1){
 			 on=false;
 			 activeperiod.setStart(ev.getTimestamp());
 			 activeperiod.setEnd(model1.getValue());
@@ -357,19 +352,18 @@ private List<ActivePeriod> ActivePeriods()
 	 return periods;
 	
 }
- private void CaculateResults()
- {
+ private void calculateResults(){
 	 List<ActivePeriod> periods = new ArrayList<ActivePeriod>();
-	 periods = ActivePeriods();
-	 if(periods.size()==0)
-	 {
+	 periods = activePeriods();
+	 if(periods.isEmpty()){
 		 JOptionPane.showMessageDialog(null,"There are no data to calculate", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 		 return;
 	 }
-	 if(tablemodel1.getRowCount() > 0) EarseResultTable();
+	 if(tablemodel1.getRowCount() > 0){
+		 eraseResultTable();
+	 }
 	 double power = (Double) spinner.getValue();
-	 if(power == 0)
-	 {
+	 if(power == 0){
 		 lblTotalResult.setText("0 kWh");
 		 return;
 		 }
@@ -377,8 +371,7 @@ private List<ActivePeriod> ActivePeriods()
 	 double totalConsumption = 0;
 	 SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy hh:mm:ss");
 	  
-	 for(int i=0;i<periods.size();i++)
-	 {
+	 for(int i=0;i<periods.size();i++){
 		 Date date1 = periods.get(i).getStart();
 		 Date date2 = periods.get(i).getEnd();
 		 long hoursbetween = (date2.getTime() - date1.getTime())/3600000; 
@@ -388,7 +381,7 @@ private List<ActivePeriod> ActivePeriods()
 	 }
 	 
 	 if("watts (W)".equals((String)units.getSelectedItem())) {
-		 lblTotalResult.setText(String.format("%.4f",(totalConsumption*1000)) +" Wh");
+		 lblTotalResult.setText(String.format("%.4f",totalConsumption*1000) +" Wh");
 		 }
 		 if("kilowatts (kW)".equals((String)units.getSelectedItem())){
 		 lblTotalResult.setText(String.format("%.4f",totalConsumption)+" kWh");

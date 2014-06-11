@@ -2,15 +2,12 @@ package etf.si.projekat.data_vision;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.awt.image.BufferedImage;
-
 import javax.swing.*;
 
 import java.awt.BasicStroke;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -19,7 +16,6 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerNumberModel;
@@ -45,11 +41,6 @@ import javax.swing.JButton;
 import de.erichseifert.gral.data.DataSeries;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.examples.ExamplePanel;
-import de.erichseifert.gral.graphics.DrawingContext;
-import de.erichseifert.gral.io.data.DataWriter;
-import de.erichseifert.gral.io.data.DataWriterFactory;
-import de.erichseifert.gral.io.plots.DrawableWriter;
-import de.erichseifert.gral.io.plots.DrawableWriterFactory;
 import de.erichseifert.gral.plots.BarPlot;
 import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.BarPlot.BarRenderer;
@@ -65,21 +56,17 @@ import ba.unsa.etf.si.beans.EventLogs;
 import ba.unsa.etf.si.hibernate_klase.HibernateDeviceName;
 import ba.unsa.etf.si.hibernate_klase.HibernateEventLogs;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BasicInformationPanel  extends ExamplePanel {
 	
-private static final Logger logger = Logger.getLogger(BasicInformationPanel.class.getName());
+private static final Logger LOGGER = Logger.getLogger(BasicInformationPanel.class.getName());
 	
 	// POkupiti iz baze ime device-a
-    List<DeviceName> list_device=new HibernateDeviceName().giveAllDeviceName();
+    List<DeviceName> listDevice=new HibernateDeviceName().giveAllDeviceName();
     final Choice choice;
     final JSpinner spinner;
-    private JPanel contentPane;
     final JTabbedPane tabbedPane;
     //choices
     final Choice choice1;
@@ -91,13 +78,13 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
     final Choice choice7;
     final Choice choice8;
     final Choice choice9;
-    private List<List<EventLogs>> list_logs;
-   private List<List<Double>> list_values;
+    private List<List<EventLogs>> listLogs;
+   private List<List<Double>> listValues;
    private List<DataTable> datas;
    private List<DataSeries>series;
    private List<Choice> choices;
-    static final DataTable data=new DataTable(Long.class, Double.class);
-    XYPlot plot;
+
+
     
     UtilDateModel model1 = new UtilDateModel();
     JDatePanelImpl datePane1 = new JDatePanelImpl(model1);
@@ -137,9 +124,7 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 		add(lblDataNumber);
 	
 		
-		SensorChoosingPanel p = new SensorChoosingPanel();
-		
-		 spinner = new JSpinner();
+		spinner = new JSpinner();
 		
 		spinner.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
@@ -200,15 +185,11 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       btnGenerateGraph.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-      	if("Bar".equals(choice.getSelectedItem()))	
-      	{
-      		
-      		GrafBar();
-      	}
-      	else
-      	{
-      		Graf();
-      	}
+      		if("Bar".equals(choice.getSelectedItem())){
+      			grafBar();
+      		}else{
+      			Graf();
+      		}
       	}
       });
       btnGenerateGraph.setBounds(181, 462, 137, 23);
@@ -254,7 +235,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
         	@Override
           	public void mouseClicked(MouseEvent arg0) {
 				
-				if((Integer) spinner.getValue()==1) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==1){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(1);
 				choice2.enable();
 			}
@@ -267,7 +250,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice2.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==2) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==2){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(2);
 				choice3.enable();
 
@@ -280,7 +265,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice3.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==3) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==3){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(3);
 				choice4.enable();
 
@@ -293,7 +280,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice4.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==4) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==4){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(4);
 				choice5.enable();
 
@@ -306,7 +295,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice5.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==5) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==5){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(5);
 				choice6.enable();
 
@@ -319,7 +310,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice6.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==6) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==6){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(6);
 				choice7.enable();
 
@@ -332,7 +325,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice7.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==7) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==7){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(7);
 				choice8.enable();
 
@@ -344,7 +339,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice8.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==8) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==8){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(8);
 				choice9.enable();
 
@@ -356,7 +353,9 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       choice9.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent arg0) {
-				if((Integer) spinner.getValue()==9) btnGenerateGraph.setVisible(true);
+				if((Integer) spinner.getValue()==9){
+					btnGenerateGraph.setVisible(true);
+				}
 				fillChoices(9);
 			}
 		});
@@ -427,335 +426,313 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
       			JOptionPane.showMessageDialog(null, "Time is not selected");
       		}
       		if(islect){
-      		Date dateString = (Date) datePicker.getModel().getValue();
-	  		String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
-	  		Date dateString1 = (Date) datePicker1.getModel().getValue();
-	  		String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date dateStart;
-			Date dateEnd;
-			Date dateNow;
-	        String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+      			Date dateString = (Date) datePicker.getModel().getValue();
+      			String dateFrom = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString);
+      			Date dateString1 = (Date) datePicker1.getModel().getValue();
+      			String dateTo = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(dateString1);	
+      			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      			
+      			Date dateStart;
+      			Date dateEnd;
+      			Date dateNow;
+      			String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 	        
-				try {
+				try{
 					dateStart = sdf.parse(dateFrom);
 					dateEnd = sdf.parse(dateTo);
 				    dateNow = sdf.parse(now);
 				    
-
-      	    if( dateStart.compareTo(dateEnd) < 0) {
-      	    	date1Beforedate2=true;
-      	    }else{
-      	    	JOptionPane.showMessageDialog(null, "'Time interval from' is before 'Time interval to'");
-      	    	}
-      	    if((dateStart.compareTo(dateNow) < 0)){
-    	    	inFuture1=true;
-    	    }else{
-    	    	JOptionPane.showMessageDialog(null, "'Time interval from' is in the future");
-    	    }
-      	    if((dateEnd.compareTo(dateNow) < 0)){
-      	    	inFuture2=true;
-      	    }else{
-      	    	JOptionPane.showMessageDialog(null, "'Time interval to' is  in the future");
-
-      	    }
-			} catch (ParseException e) {
-					
-				logger.log( Level.SEVERE, "context", e );
-				}
-			
+				    if( dateStart.compareTo(dateEnd) < 0){
+				    	date1Beforedate2=true;
+				    }else{
+				    	JOptionPane.showMessageDialog(null, "'Time interval from' is before 'Time interval to'");
+				    }
+				    
+				    if((dateStart.compareTo(dateNow) < 0)){
+				    	inFuture1=true;
+				    }else{
+				    	JOptionPane.showMessageDialog(null, "'Time interval from' is in the future");
+				    }
+				    
+				    if((dateEnd.compareTo(dateNow) < 0)){
+				    	inFuture2=true;
+				    }else{
+				    	JOptionPane.showMessageDialog(null, "'Time interval to' is  in the future");
+				    }
+				   
+				}catch(ParseException e){
+					LOGGER.log( Level.SEVERE, "context", e );
+				}			
       		}
       		
       		if(date1Beforedate2 && inFuture1 && inFuture2){
+      			choice1.enable();
+      			choice2.disable();
+      			choice3.disable();
+      			choice4.disable();
+      			choice5.disable();
+      			choice6.disable();
+      			choice7.disable();
+      			choice8.disable();
+      			choice9.disable();
       		
-      		
-      			
-      	    choice1.enable();
-      	  choice2.disable();
-  		choice3.disable();
-  		choice4.disable();
-  		choice5.disable();
-  		choice6.disable();
-  		choice7.disable();
-  		choice8.disable();
-  		choice9.disable();
-      		
-      		choice1.removeAll();
-      		choice2.removeAll();
-      		choice3.removeAll();
-      		choice4.removeAll();
-      		choice5.removeAll();
-      		choice6.removeAll();
-      		choice7.removeAll();
-      		choice8.removeAll();
-      		choice9.removeAll();
+      			choice1.removeAll();
+      			choice2.removeAll();
+	      		choice3.removeAll();
+	      		choice4.removeAll();
+	      		choice5.removeAll();
+	      		choice6.removeAll();
+	      		choice7.removeAll();
+	      		choice8.removeAll();
+	      		choice9.removeAll();
       		
       		
      
       	   
-      		btnGenerateGraph.setVisible(false);
+	      		btnGenerateGraph.setVisible(false);
       		
-      		int value = (Integer) spinner.getValue();
+	      		int value = (Integer) spinner.getValue();
 			
-			
-			
-			if(value == 1){
-				choice1.setVisible(true);
-				choice2.setVisible(false);
-				choice3.setVisible(false);
-				choice4.setVisible(false);
-				choice5.setVisible(false);
-				choice6.setVisible(false);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
+	      		if(value == 1){
+	      			choice1.setVisible(true);
+	      			choice2.setVisible(false);
+	      			choice3.setVisible(false);
+	      			choice4.setVisible(false);
+	      			choice5.setVisible(false);
+	      			choice6.setVisible(false);
+					choice7.setVisible(false);
+					choice8.setVisible(false);
+					choice9.setVisible(false);
 				
 			
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
-				lblSensorType1.setVisible(false);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
 				
-				label1.setVisible(true);
-				label2.setVisible(false);
-				label3.setVisible(false);
-				label4.setVisible(false);
-				label5.setVisible(false);
+					label1.setVisible(true);
+					label2.setVisible(false);
+					label3.setVisible(false);
+					label4.setVisible(false);
+					label5.setVisible(false);
 				
-			}
-			
-			else if(value == 2){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(false);
-				choice4.setVisible(false);
-				choice5.setVisible(false);
-				choice6.setVisible(false);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
+	      		}else if(value == 2){
+	      			choice1.setVisible(true);
+	      			choice2.setVisible(true);
+	      			choice3.setVisible(false);
+	      			choice4.setVisible(false);
+	      			choice5.setVisible(false);
+	      			choice6.setVisible(false);
+	      			choice7.setVisible(false);
+	      			choice8.setVisible(false);
+					choice9.setVisible(false);
 				
-				lblSensorType1.setVisible(false);
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(false);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(false);
-				label4.setVisible(false);
-				label5.setVisible(false);
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(false);
+					label4.setVisible(false);
+					label5.setVisible(false);
 				
-			}
-			
-			else if(value == 3){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(false);
-				choice5.setVisible(false);
-				choice6.setVisible(false);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
+	      		}else if(value == 3){
+	      			choice1.setVisible(true);
+	      			choice2.setVisible(true);
+	      			choice3.setVisible(true);
+					choice4.setVisible(false);
+					choice5.setVisible(false);
+					choice6.setVisible(false);
+					choice7.setVisible(false);
+					choice8.setVisible(false);
+					choice9.setVisible(false);
 				
-				lblSensorType1.setVisible(false);
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(false);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
 				
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(false);
-				label5.setVisible(false);
-
-			}
-			
-			else if(value == 4){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(false);
-				choice6.setVisible(false);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(false);
+					label5.setVisible(false);
 				
-				lblSensorType1.setVisible(false);
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
+	      		}else if(value == 4){
 				
+	      			choice1.setVisible(true);
+	      			choice2.setVisible(true);
+	      			choice3.setVisible(true);
+	      			choice4.setVisible(true);
+	      			choice5.setVisible(false);
+	      			choice6.setVisible(false);
+	      			choice7.setVisible(false);
+	      			choice8.setVisible(false);
+					choice9.setVisible(false);
 				
-				lblSensorType.setVisible(false);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(false);
-			}
-			
-			else if(value == 5){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(true);
-				choice6.setVisible(false);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
-				
-				lblSensorType1.setVisible(false);
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(false);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(true);
-			}
-			
-			
-			
-			
-			else if(value == 6){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(true);
-				choice6.setVisible(true);
-				choice7.setVisible(false);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
+					lblSensorType.setVisible(false);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(false);
+	      		}else if(value == 5){
+	      			choice1.setVisible(true);
+	      			choice2.setVisible(true);
+	      			choice3.setVisible(true);
+	      			choice4.setVisible(true);
+					choice5.setVisible(true);
+					choice6.setVisible(false);
+					choice7.setVisible(false);
+					choice8.setVisible(false);
+					choice9.setVisible(false);
 				
-				lblSensorType1.setVisible(true);
-				lblSensorType2.setVisible(false);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
-			
-				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(true);
-			}
-			
-			else if(value == 7){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(true);
-				choice6.setVisible(true);
-				choice7.setVisible(true);
-				choice8.setVisible(false);
-				choice9.setVisible(false);
-				
-				lblSensorType1.setVisible(true);
-				lblSensorType2.setVisible(true);
-				lblSensorType3.setVisible(false);
-				lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(false);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(true);
-			}
-			
-			else if(value == 8){
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(true);
-				choice6.setVisible(true);
-				choice7.setVisible(true);
-				choice8.setVisible(true);
-				choice9.setVisible(false);
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(true);
+	      		}else if(value == 6){
+	      			choice1.setVisible(true);
+					choice2.setVisible(true);
+					choice3.setVisible(true);
+					choice4.setVisible(true);
+					choice5.setVisible(true);
+					choice6.setVisible(true);
+					choice7.setVisible(false);
+					choice8.setVisible(false);
+					choice9.setVisible(false);
 				
-				lblSensorType1.setVisible(true);
-				lblSensorType2.setVisible(true);
-				lblSensorType3.setVisible(true);
-				lblSensorType4.setVisible(false);
+					lblSensorType1.setVisible(true);
+					lblSensorType2.setVisible(false);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
+				
+					
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(true);
+					
+	      		}else if(value == 7){
+	      			
+					choice1.setVisible(true);
+					choice2.setVisible(true);
+					choice3.setVisible(true);
+					choice4.setVisible(true);
+					choice5.setVisible(true);
+					choice6.setVisible(true);
+					choice7.setVisible(true);
+					choice8.setVisible(false);
+					choice9.setVisible(false);
+					
+					lblSensorType1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					lblSensorType3.setVisible(false);
+					lblSensorType4.setVisible(false);
+					
+					
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(true);
+	      		
+	      		}else if(value == 8){
+				
+	      			choice1.setVisible(true);
+					choice2.setVisible(true);
+					choice3.setVisible(true);
+					choice4.setVisible(true);
+					choice5.setVisible(true);
+					choice6.setVisible(true);
+					choice7.setVisible(true);
+					choice8.setVisible(true);
+					choice9.setVisible(false);
+					
+					lblSensorType1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					lblSensorType4.setVisible(false);
+					
+					
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(true);
+	      		}else{
+		      			
+					choice1.setVisible(true);
+					choice2.setVisible(true);
+					choice3.setVisible(true);
+					choice4.setVisible(true);
+					choice5.setVisible(true);
+					choice6.setVisible(true);
+					choice7.setVisible(true);
+					choice8.setVisible(true);
+					choice9.setVisible(true);
+					
+					lblSensorType1.setVisible(true);
+					lblSensorType2.setVisible(true);
+					lblSensorType3.setVisible(true);
+					lblSensorType4.setVisible(true);
 				
 				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(true);
-			}
-			
-			else{
-				choice1.setVisible(true);
-				choice2.setVisible(true);
-				choice3.setVisible(true);
-				choice4.setVisible(true);
-				choice5.setVisible(true);
-				choice6.setVisible(true);
-				choice7.setVisible(true);
-				choice8.setVisible(true);
-				choice9.setVisible(true);
-				
-				lblSensorType1.setVisible(true);
-				lblSensorType2.setVisible(true);
-				lblSensorType3.setVisible(true);
-				lblSensorType4.setVisible(true);
-				
-				
-				lblSensorType.setVisible(true);
-				separator2.setVisible(true);
-				label1.setVisible(true);
-				label2.setVisible(true);
-				label3.setVisible(true);
-				label4.setVisible(true);
-				label5.setVisible(true);
-			}
-			
-			
-			
-		      
-		      for (int i=0; i<list_device.size(); i++){
-			    	 choice1.add(list_device.get(i).getName() );
-			    	
-		      }
-		      
-		     
-		     String s = datePicker1.getComponentListeners().toString();
-		     System.out.println(s);
+					lblSensorType.setVisible(true);
+					separator2.setVisible(true);
+					label1.setVisible(true);
+					label2.setVisible(true);
+					label3.setVisible(true);
+					label4.setVisible(true);
+					label5.setVisible(true);
+	      		}
+	      		
+	      		
+	      		for (int i=0; i<listDevice.size(); i++){
+	      			choice1.add(listDevice.get(i).getName() );
+	      		}
+	      		
+	      		String s = datePicker1.getComponentListeners().toString();
+	      		System.out.println(s);
 	
-      		}
-      		else{
+      		}else{
+      			
       			choice1.setVisible(false);
 				choice2.setVisible(false);
 				choice3.setVisible(false);
@@ -788,120 +765,100 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 			
       	}
       });
-		
-      
-      
       
       btnProcess.setBounds(181, 163, 136, 23);
       add(btnProcess);
      
-    
-      
-    
-      
-  
 	}
 	
 	
-	//za export grafa, ali snima graf kao csv file
-	private static void writeData() throws IOException {
-		
 	
-	    FileOutputStream dataStream = new FileOutputStream("filename.csv");
-	    DataWriterFactory factory = DataWriterFactory.getInstance();
-	    DataWriter writer = factory.get("text/tab-separated-values");
-	    try {
-	        writer.write(data, dataStream);
-	    } finally {
-	        dataStream.close();
-	    }
-	}
-	
-	
-	private byte[] getJpg() throws IOException {
-        BufferedImage bImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = (Graphics2D) bImage.getGraphics();
-        DrawingContext context = new DrawingContext(g2d);
-        
-        plot.draw(context);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        DrawableWriter wr = DrawableWriterFactory.getInstance().get("image/jpeg");
-        wr.write(plot, baos, 800, 600);
-        baos.flush();
-        byte[] bytes = baos.toByteArray();
-        baos.close();
-        return bytes;
-    }
 	public void fillChoices(int k){
 		switch(k){
 		case 1 : {
-			for(int i=0; i<list_device.size();i++){
-			if(choice1.getSelectedItem() == list_device.get(i).getName()) continue;
-			choice2.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+			if(choice1.getSelectedItem() == listDevice.get(i).getName()){
+				continue;
+			}
+			choice2.add(listDevice.get(i).getName());
 			}
 			choice1.disable();
 			break;
 			
 		}
 		case 2 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice3.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice3.add(listDevice.get(i).getName());
 				}
 				choice2.disable();
 				break;
 		}
 		case 3 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice4.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice4.add(listDevice.get(i).getName());
 				}
 				choice3.disable();
 				break;
 		}
 		case 4 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
-						(choice4.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice5.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice5.add(listDevice.get(i).getName());
 				}
 				choice4.disable();
 				break;
 		}
 		case 5 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
-						(choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice6.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice6.add(listDevice.get(i).getName());
 				}
 				choice5.disable();
 				break;
 		}
 		case 6 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
-						(choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice7.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+						(choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice7.add(listDevice.get(i).getName());
 				}
 				choice6.disable();
 				break;
 		}
 		case 7 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
-				   (choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())||
-				   (choice7.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice8.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice7.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice8.add(listDevice.get(i).getName());
 				}
 				choice7.disable();
 				break;
 		}
 		case 8 : {
-			for(int i=0; i<list_device.size();i++){
-				if((choice1.getSelectedItem() == list_device.get(i).getName()) || (choice2.getSelectedItem() == list_device.get(i).getName())||(choice3.getSelectedItem() == list_device.get(i).getName())||
-				   (choice4.getSelectedItem() == list_device.get(i).getName())||(choice5.getSelectedItem() == list_device.get(i).getName())||(choice6.getSelectedItem() == list_device.get(i).getName())||
-				   (choice7.getSelectedItem() == list_device.get(i).getName())||(choice8.getSelectedItem() == list_device.get(i).getName())) continue;
-				choice9.add(list_device.get(i).getName());
+			for(int i=0; i<listDevice.size();i++){
+				if((choice1.getSelectedItem() == listDevice.get(i).getName()) || (choice2.getSelectedItem() == listDevice.get(i).getName())||(choice3.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice4.getSelectedItem() == listDevice.get(i).getName())||(choice5.getSelectedItem() == listDevice.get(i).getName())||(choice6.getSelectedItem() == listDevice.get(i).getName())||
+				   (choice7.getSelectedItem() == listDevice.get(i).getName())||(choice8.getSelectedItem() == listDevice.get(i).getName())){
+					continue;
+				}
+				choice9.add(listDevice.get(i).getName());
 				}
 				choice8.disable();
 				break;
@@ -909,18 +866,18 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 		case 9 : {
 			choice9.disable();
 			
-		}	
+		}
+		default: break;
 	}
 		
 	}
 	
 	
-	public void GrafBar()
-	{
+	public void grafBar(){
+		
 		Integer value = (Integer) spinner.getValue();
 		boolean have=false;
-		for(int k=0; k<value; k++)
-		{
+		for(int k=0; k<value; k++){
 			 data1 = new DataTable(Long.class, Double.class, String.class);				 
 				//Podaci koji ce se prikazivati na grafu 
 					Date dateString = (Date) datePicker.getModel().getValue();
@@ -950,26 +907,28 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 							choices.add(choice8);
 							choices.add(choice9);	
 							
-							list_logs=new ArrayList<List<EventLogs>>();
+							listLogs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
+					  listLogs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));//.add( new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),date_start,date_end)); //lista eventlogova ciji su datumi između unesenih u datepickere i odgovara im odgovrajuci device name u suprotnom vraca null tako da bi i to trebalo ispitati.
 					 
 						}
-						list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
+						listLogs.size();
+						listValues=new ArrayList<List<Double>>();
+						for(int i=0; i<listLogs.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int j=0;j<listLogs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(listLogs.get(i).get(j).getValue());//add(listLogs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
 							
 							}
-							list_values.add(values);
+							listValues.add(values);
 							}
-						for(int i=0; i<list_logs.size();i++){
-							if(list_logs.get(i).size()!=0) have=true;
+						for(int i=0; i<listLogs.size();i++){
+							if(listLogs.get(i).size()!=0){
+								have=true;
+							}
 						}
 						}catch(Exception e){
 							
@@ -979,19 +938,19 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 					  catch (Exception e1) {
 					
 						 
-						logger.log( Level.SEVERE, "context", e1 );
+						LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
 					 series=new ArrayList<DataSeries>();
 					  DataTable d=new DataTable(Long.class, Double.class, String.class);
 					  
-					  for(int i=0;i<list_logs.size();i++)
+					  for(int i=0;i<listLogs.size();i++)
 					  {
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++){
+						  for(int j=0;j<listLogs.get(i).size();j++){
 							
-							d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+							d.add(listLogs.get(i).get(j).getTimestamp().getTime(), listValues.get(i).get(j), listLogs.get(i).get(j).getDevice_name());
 			  }
 						
 						  datas.add(d);
@@ -2222,48 +2181,49 @@ private static final Logger logger = Logger.getLogger(BasicInformationPanel.clas
 							choices.add(choice8);
 							choices.add(choice9);	
 							
-							list_logs=new ArrayList<List<EventLogs>>();
+							listLogs=new ArrayList<List<EventLogs>>();
 						for(int i=0;i<value;i++){
 							
-					  list_logs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));
+					  listLogs.add(new HibernateEventLogs().getdatesbetween(choices.get(i).getSelectedItem(),dateStart,dateEnd));
 					 
 						}
-						list_logs.size();
-						list_values=new ArrayList<List<Double>>();
-						for(int i=0; i<list_logs.size();i++){
+						listLogs.size();
+						listValues=new ArrayList<List<Double>>();
+						for(int i=0; i<listLogs.size();i++){
 							
 							List<Double>values=new ArrayList<Double>();
-							for(int j=0;j<list_logs.get(i).size();j++){
+							for(int j=0;j<listLogs.get(i).size();j++){
 								
-							values.add(list_logs.get(i).get(j).getValue());//add(list_logs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
+							values.add(listLogs.get(i).get(j).getValue());//add(listLogs.get(i).get(j).getValue());           //Ovo čemo stavljati na graf valjda :D
 							
 							}
-							list_values.add(values);
+							listValues.add(values);
 							}
-						for(int i=0; i<list_logs.size();i++){
-							if(list_logs.get(i).size()!=0) have=true;
+						for(int i=0; i<listLogs.size();i++){
+							if(listLogs.get(i).size()!=0){
+								have=true;
+							}
 						}
 						}catch(Exception e){
 							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
 							System.out.println("Ne poklapaju se vrijednosti");
 						}
-					} 
-					  catch (Exception e1) {
+					}catch(Exception e1){
 						
-						logger.log( Level.SEVERE, "context", e1 );
+						LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
 					 series=new ArrayList<DataSeries>();
 					  
 					  
-					  for(int i=0;i<list_logs.size();i++)
+					  for(int i=0;i<listLogs.size();i++)
 					  {
 						  DataTable d=new DataTable(Long.class, Double.class, String.class);
 						  
-						  for(int j=0;j<list_logs.get(i).size();j++)
+						  for(int j=0;j<listLogs.get(i).size();j++)
 						  {
-							  d.add(list_logs.get(i).get(j).getTimestamp().getTime(), list_values.get(i).get(j), list_logs.get(i).get(j).getDevice_name());
+							  d.add(listLogs.get(i).get(j).getTimestamp().getTime(), listValues.get(i).get(j), listLogs.get(i).get(j).getDevice_name());
 						  }
 						
 						  datas.add(d);

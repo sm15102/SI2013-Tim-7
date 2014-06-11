@@ -119,8 +119,7 @@ InteractivePanel inter2;
 
   private List<Choice> choices;
   private List<Choice> choices2;
-   static final DataTable data=new DataTable(Long.class, Double.class);
-   XYPlot plot;
+
    private List<DataTable> datas;
    private List<DataSeries>series;
    private List<DataTable> datas2;
@@ -4234,14 +4233,12 @@ interactivePanel = new InteractivePanel(plot);
 							 
 						}
 						}catch(Exception e){
-							 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-							System.out.println("Ne poklapaju se vrijednosti");
+							 System.out.println("Ne poklapaju se vrijednosti");
 						}
 					} 
 					  catch (Exception e1) {
 					
-						 final JLabel lblExport= new JLabel("To export graph, make right click, and choose Export Image.");
-							LOGGER.log( Level.SEVERE, "context", e1 );
+						 LOGGER.log( Level.SEVERE, "context", e1 );
 					}
 					
 					datas=new ArrayList<DataTable>();
